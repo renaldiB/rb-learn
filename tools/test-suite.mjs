@@ -81,11 +81,12 @@ async function runTests() {
     await cdp.send('Page.navigate', { url: BASE_URL + '/#/' });
     await sleep(600);
 
-    // Test 1: Data integrity
+    // Test 1: Data integrity & Branding
     const lessonCount = await evaluate('return ALL.length;');
     const quizCount = await evaluate('return QUIZ_BANK.length;');
-    console.log(`[PASS] Data integrity: ${lessonCount} lessons, ${quizCount} quiz questions`);
-    if (lessonCount !== 22 || quizCount !== 47) throw new Error('Invalid count');
+    const brandText = await evaluate('return document.querySelector(".brand-text").textContent;');
+    console.log(`[PASS] Data integrity: ${lessonCount} lessons, ${quizCount} quiz questions, Brand: "${brandText}"`);
+    if (lessonCount !== 22 || quizCount !== 47 || !brandText.includes('RB Learning')) throw new Error('Invalid count or brand');
 
     // Test 2: Search functionality
     await evaluate(`
@@ -110,7 +111,7 @@ async function runTests() {
     const jsGroupBefore = await evaluate(`return document.querySelector('.side-group[data-track="js"]').classList.contains('collapsed');`);
     await evaluate(`toggleGroup('js');`);
     const jsGroupAfter = await evaluate(`return document.querySelector('.side-group[data-track="js"]').classList.contains('collapsed');`);
-    const storedCollapsed = await evaluate(`return localStorage.getItem('kelaskode:collapsed');`);
+    const storedCollapsed = await evaluate(`return localStorage.getItem('rblearn:collapsed');`);
     console.log(`[PASS] Collapsible group: before=${jsGroupBefore}, after=${jsGroupAfter}, stored=${storedCollapsed}`);
     if (jsGroupAfter === jsGroupBefore) throw new Error('Toggle group failed');
 
@@ -126,7 +127,7 @@ async function runTests() {
     // Mark done
     await evaluate(`document.querySelector('#btnDone').click();`);
     await sleep(200);
-    const isDoneStored = await evaluate(`return JSON.parse(localStorage.getItem('kelaskode:progress')).includes('js-array');`);
+    const isDoneStored = await evaluate(`return JSON.parse(localStorage.getItem('rblearn:progress')).includes('js-array');`);
     const pctText = await evaluate(`return document.querySelector('#spPct').textContent;`);
     console.log(`[PASS] Progress marked: inStorage=${isDoneStored}, UI pct=${pctText}`);
     if (!isDoneStored) throw new Error('Progress saving failed');
@@ -164,7 +165,7 @@ async function runTests() {
     const themeBefore = await evaluate(`return document.documentElement.dataset.theme;`);
     await evaluate(`document.querySelector('#themeBtn').click();`);
     const themeAfter = await evaluate(`return document.documentElement.dataset.theme;`);
-    const themeStored = await evaluate(`return localStorage.getItem('kelaskode:theme');`);
+    const themeStored = await evaluate(`return localStorage.getItem('rblearn:theme');`);
     console.log(`[PASS] Theme toggle: before=${themeBefore}, after=${themeAfter}, stored=${themeStored}`);
     if (themeBefore === themeAfter || themeAfter !== themeStored) throw new Error('Theme toggle failed');
 

@@ -1,20 +1,20 @@
 /* ============================================================
-   KelasKode — app
+   RB Learning — app
    Router hash, sidebar + pencarian, progres, quiz, playground.
    ============================================================ */
 'use strict';
 
 /* ---------- state ---------- */
 const LS = {
-  progress: 'kelaskode:progress',
-  theme: 'kelaskode:theme',
-  code: 'kelaskode:code',
+  progress: 'rblearn:progress',
+  theme: 'rblearn:theme',
+  code: 'rblearn:code',
 };
 
 const ALL = TRACKS.flatMap(t => t.lessons.map(l => ({ ...l, track: t })));
 const BY_ID = Object.fromEntries(ALL.map(l => [l.id, l]));
 
-let progress = new Set(JSON.parse(localStorage.getItem(LS.progress) || '[]'));
+let progress = new Set(JSON.parse(localStorage.getItem(LS.progress) || localStorage.getItem('kelaskode:progress') || '[]'));
 let searchIndex = null;   // id -> teks polos (dibangun malas)
 let quiz = null;          // state quiz aktif
 
@@ -43,8 +43,8 @@ function scrollTop() {
 }
 
 /* ---------- sidebar ---------- */
-const LS_COLLAPSE = 'kelaskode:collapsed';
-let collapsed = new Set(JSON.parse(localStorage.getItem(LS_COLLAPSE) || '[]'));
+const LS_COLLAPSE = 'rblearn:collapsed';
+let collapsed = new Set(JSON.parse(localStorage.getItem(LS_COLLAPSE) || localStorage.getItem('kelaskode:collapsed') || '[]'));
 
 function toggleGroup(trackId) {
   collapsed.has(trackId) ? collapsed.delete(trackId) : collapsed.add(trackId);
@@ -210,7 +210,7 @@ function viewHome() {
 
   $('#view').innerHTML = `
     <div class="home-hero">
-      <div class="home-kicker">KelasKode · Materi Lengkap Bahasa Indonesia</div>
+      <div class="home-kicker">RB Learning · Materi Lengkap Bahasa Indonesia</div>
       <h1>Dua skill, satu alur: <em>JavaScript</em> lalu <em>Playwright</em>.</h1>
       <p>Kuasai fondasi bahasa — variabel sampai async/await — lalu lanjut ke automation testing:
          locator, assertion, Page Object Model, sampai pipeline Jenkins. Setiap materi punya contoh,
