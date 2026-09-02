@@ -4,7 +4,7 @@ import fs from 'fs';
 import path from 'path';
 
 const CHROME_PATH = 'C:/Program Files/Google/Chrome/Application/chrome.exe';
-const PORT = 9222;
+const PORT = 9224;
 const BASE_URL = 'http://127.0.0.1:8741';
 const SHOTS_DIR = 'C:/Users/Z Series/MainRB/Code Project/RB Learn/tools/shots';
 
@@ -55,9 +55,7 @@ function getJson(url) {
   });
 }
 
-async function sleep(ms) {
-  return new Promise(r => setTimeout(r, ms));
-}
+const sleep = ms => new Promise(r => setTimeout(r, ms));
 
 async function run() {
   console.log('Launching Chrome...');
@@ -74,8 +72,6 @@ async function run() {
   try {
     const targets = await getJson('http://127.0.0.1:' + PORT + '/json');
     const pageTarget = targets.find(t => t.type === 'page') || targets[0];
-    console.log('Connecting to target:', pageTarget.webSocketDebuggerUrl);
-
     const cdp = await cdpSession(pageTarget.webSocketDebuggerUrl);
     await cdp.send('Page.enable');
     await cdp.send('Runtime.enable');
@@ -99,75 +95,43 @@ async function run() {
       return await cdp.send('Runtime.evaluate', { expression: expr, returnByValue: true });
     }
 
-    // 1. Beranda (Light Mode, Desktop 1440x900)
-    console.log('1. Loading Home Light...');
+    // 1. Beranda (Light Mode, 3 Tracks)
     await cdp.send('Page.navigate', { url: BASE_URL + '/#/' });
     await sleep(600);
-    await evalCode('localStorage.clear(); applyTheme(\"light\"); render(); renderSidebar();');
+    await evalCode('localStorage.clear(); applyTheme("light"); render(); renderSidebar();');
     await sleep(300);
-    await capture('verified-1-beranda-light.png', 1440, 900);
+    await capture('mojo-1-beranda.png', 1440, 900);
 
-    // 2. Materi JS: Array (Light Mode, Desktop)
-    console.log('2. Loading JS Array Light...');
-    await cdp.send('Page.navigate', { url: BASE_URL + '/#/m/js-array' });
+    // 2. Mojo 01: Pengenalan (Light Mode)
+    await cdp.send('Page.navigate', { url: BASE_URL + '/#/m/mojo-01' });
     await sleep(500);
-    await capture('verified-2-materi-js-array-light.png', 1440, 900);
+    await capture('mojo-2-pengenalan-light.png', 1440, 900);
 
-    // 3. Materi PW: Modul 03 (Light Mode, Desktop)
-    console.log('3. Loading PW Modul 03 Light...');
-    await cdp.send('Page.navigate', { url: BASE_URL + '/#/m/pw-03' });
+    // 3. Mojo 11: Mini Neural Network AI (Light Mode)
+    await cdp.send('Page.navigate', { url: BASE_URL + '/#/m/mojo-11' });
     await sleep(500);
-    await capture('verified-3-materi-pw-03-light.png', 1440, 900);
+    await capture('mojo-3-neural-network-light.png', 1440, 900);
 
-    // 4. Materi JS: Array (Dark Mode, Desktop)
-    console.log('4. Loading JS Array Dark...');
-    await evalCode('applyTheme(\"dark\");');
+    // 4. Mojo 11 (Dark Mode)
+    await evalCode('applyTheme("dark");');
     await sleep(300);
-    await capture('verified-4-materi-js-array-dark.png', 1440, 900);
+    await capture('mojo-4-neural-network-dark.png', 1440, 900);
 
-    // 5. Materi PW: Modul 03 (Dark Mode, Desktop)
-    console.log('5. Loading PW Modul 03 Dark...');
-    await cdp.send('Page.navigate', { url: BASE_URL + '/#/m/pw-03' });
-    await sleep(500);
-    await capture('verified-5-materi-pw-03-dark.png', 1440, 900);
-
-    // 6. Playground (Light Mode, Desktop)
-    console.log('6. Loading Playground Light...');
-    await evalCode('applyTheme(\"light\");');
-    await cdp.send('Page.navigate', { url: BASE_URL + '/#/playground' });
-    await sleep(500);
-    await evalCode('runPlayground();');
-    await sleep(200);
-    await capture('verified-6-playground-light.png', 1440, 900);
-
-    // 7. Quiz (Light Mode, Desktop)
-    console.log('7. Loading Quiz Light...');
+    // 5. Quiz with Mojo filter (Light Mode)
+    await evalCode('applyTheme("light");');
     await cdp.send('Page.navigate', { url: BASE_URL + '/#/quiz' });
     await sleep(500);
-    await evalCode('startQuiz(\"all\");');
+    await evalCode('startQuiz("mojo");');
     await sleep(300);
-    await capture('verified-7-quiz-light.png', 1440, 900);
+    await capture('mojo-5-quiz.png', 1440, 900);
 
-    // 8. Tablet View (768x1024)
-    console.log('8. Testing Tablet View 768x1024...');
-    await cdp.send('Page.navigate', { url: BASE_URL + '/#/m/pw-03' });
+    // 6. Mobile View Mojo
+    await cdp.send('Page.navigate', { url: BASE_URL + '/#/m/mojo-11' });
     await sleep(500);
-    await capture('verified-8-tablet-pw-03.png', 768, 1024);
-
-    // 9. Mobile View (390x844) - Materi
-    console.log('9. Testing Mobile View 390x844...');
-    await cdp.send('Page.navigate', { url: BASE_URL + '/#/m/js-array' });
-    await sleep(500);
-    await capture('verified-9-mobile-js-array.png', 390, 844);
-
-    // 10. Mobile View (390x844) - Offcanvas Sidebar Open
-    console.log('10. Testing Mobile Sidebar Open...');
-    await evalCode('openSidebar();');
-    await sleep(300);
-    await capture('verified-10-mobile-sidebar-open.png', 390, 844);
+    await capture('mojo-6-mobile.png', 390, 844);
 
     cdp.close();
-    console.log('All screenshots captured successfully.');
+    console.log('All Mojo screenshots captured successfully.');
   } catch (err) {
     console.error('Error during testing:', err);
   } finally {

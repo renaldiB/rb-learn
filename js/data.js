@@ -1,4 +1,4 @@
-/* Data materi gabungan — dihasilkan dari modul "Learn JS" + "Learn Playwright". */
+/* Data materi gabungan — dihasilkan dari modul JavaScript, Playwright, dan Mojo. */
 const TRACKS = [
  {
   "id": "js",
@@ -11,16 +11,16 @@ const TRACKS = [
     "num": "01",
     "title": "Variabel — Kotak Penyimpanan",
     "level": "Pemula",
-    "desc": "let, const, var — cara nyimpen data biar bisa dipake ulang.",
-    "intro": "Variabel itu kayak <b>kotak berlabel</b>. Lo taro barang (nilai) di dalam, kasih label (nama), tinggal panggil kapan aja.",
-    "body": "\n      <h4>📦 Cara bikin kotak</h4>\n      <p>Tiga kata kunci: <code class=\"inline\">let</code> (bisa diubah), <code class=\"inline\">const</code> (sekali isi, gak bisa diubah), <code class=\"inline\">var</code> (jadul, hindarin).</p>\n      <pre class=\"codeblock\"><code><span class=\"kw\">let</span> umur <span class=\"nm\">=</span> <span class=\"nm\">25</span>;\n<span class=\"kw\">const</span> nama <span class=\"nm\">=</span> <span class=\"st\">\"Bang\"</span>;  <span class=\"cm\">// const: gak bisa diubah</span>\numur <span class=\"nm\">=</span> <span class=\"nm\">26</span>;              <span class=\"cm\">// let: boleh diubah ✔</span>\n\n<span class=\"fn\">console.log</span>(umur);  <span class=\"cm\">// 26</span>\n<span class=\"fn\">console.log</span>(nama);  <span class=\"cm\">// Bang</span></code></pre>\n\n      <div class=\"tip\">💡 <b>Aturan jempol:</b> pake <code class=\"inline\">const</code> selalu. Ganti ke <code class=\"inline\">let</code> cuma kalo emang nilainya bakal berubah.</div>\n\n      <h4>🧩 Tipe data dasar</h4>\n      <ul>\n        <li><code class=\"inline\">\"teks\"</code> — string (kata/kalimat)</li>\n        <li><code class=\"inline\">42</code> — number (angka)</li>\n        <li><code class=\"inline\">true/false</code> — boolean (iya/tidak)</li>\n        <li><code class=\"inline\">[\"a\",\"b\"]</code> — array (daftar)</li>\n        <li><code class=\"inline\">{nama:\"Bang\"}</code> — object (kumpulan data)</li>\n      </ul>\n\n      <pre class=\"codeblock\"><code><span class=\"kw\">let</span> daftarBelanja <span class=\"nm\">=</span> [<span class=\"st\">\"telur\"</span>, <span class=\"st\">\"nasi\"</span>, <span class=\"st\">\"ayam\"</span>];\n<span class=\"kw\">let</span> user <span class=\"nm\">=</span> { nama: <span class=\"st\">\"Bang\"</span>, umur: <span class=\"nm\">25</span> };\n<span class=\"fn\">console.log</span>(user.nama);   <span class=\"cm\">// Bang</span></code></pre>\n\n      <div class=\"note\">📌 <b>Inget gini aja:</b> variabel = kotak, <code class=\"inline\">=</code> = masukin barang ke kotak, nama = label kotak.</div>\n    ",
+    "desc": "let, const, var — cara menyimpan data biar bisa dipake ulang.",
+    "intro": "Variabel itu kayak <b>kotak berlabel</b>. kamu taro barang (nilai) di dalam, kasih label (nama), tinggal panggil kapan aja.",
+    "body": "\n      <h4>📦 Cara bikin kotak</h4>\n      <p>Tiga kata kunci: <code class=\"inline\">let</code> (bisa diubah), <code class=\"inline\">const</code> (sekali isi, gak bisa diubah), <code class=\"inline\">var</code> (jadul, hindarin).</p>\n      <pre class=\"codeblock\"><code><span class=\"kw\">let</span> umur <span class=\"nm\">=</span> <span class=\"nm\">25</span>;\n<span class=\"kw\">const</span> nama <span class=\"nm\">=</span> <span class=\"st\">\"Supriyanto\"</span>;  <span class=\"cm\">// const: gak bisa diubah</span>\numur <span class=\"nm\">=</span> <span class=\"nm\">26</span>;              <span class=\"cm\">// let: boleh diubah ✔</span>\n\n<span class=\"fn\">console.log</span>(umur);  <span class=\"cm\">// 26</span>\n<span class=\"fn\">console.log</span>(nama);  <span class=\"cm\">// Supriyanto</span></code></pre>\n\n      <div class=\"tip\">💡 <b>Aturan jempol:</b> pake <code class=\"inline\">const</code> selalu. Ganti ke <code class=\"inline\">let</code> cuma kalo emang nilainya bakal berubah.</div>\n\n      <h4>🧩 Tipe data dasar</h4>\n      <ul>\n        <li><code class=\"inline\">\"teks\"</code> — string (kata/kalimat)</li>\n        <li><code class=\"inline\">42</code> — number (angka)</li>\n        <li><code class=\"inline\">true/false</code> — boolean (iya/tidak)</li>\n        <li><code class=\"inline\">[\"a\",\"b\"]</code> — array (daftar)</li>\n        <li><code class=\"inline\">{nama:\"Supriyanto\"}</code> — object (kumpulan data)</li>\n      </ul>\n\n      <pre class=\"codeblock\"><code><span class=\"kw\">let</span> daftarBelanja <span class=\"nm\">=</span> [<span class=\"st\">\"telur\"</span>, <span class=\"st\">\"nasi\"</span>, <span class=\"st\">\"ayam\"</span>];\n<span class=\"kw\">let</span> user <span class=\"nm\">=</span> { nama: <span class=\"st\">\"Supriyanto\"</span>, umur: <span class=\"nm\">25</span> };\n<span class=\"fn\">console.log</span>(user.nama);   <span class=\"cm\">// Supriyanto</span></code></pre>\n\n      <div class=\"note\">📌 <b>Inget gini aja:</b> variabel = kotak, <code class=\"inline\">=</code> = masukin barang ke kotak, nama = label kotak.</div>\n    ",
     "quiz": {
      "q": "Manakah yang benar untuk membuat variabel yang nilainya TIDAK BISA diubah?",
      "opts": [
-      "let nama = \"Bang\"",
-      "const nama = \"Bang\"",
-      "var nama = \"Bang\"",
-      "nama = \"Bang\""
+      "let nama = \"Supriyanto\"",
+      "const nama = \"Supriyanto\"",
+      "var nama = \"Supriyanto\"",
+      "nama = \"Supriyanto\""
      ],
      "ans": 1,
      "why": "const artinya konstan = tetap. Sekali diisi, tidak bisa diubah."
@@ -53,7 +53,7 @@ const TRACKS = [
     "level": "Pemula",
     "desc": "Gabung teks, template literal, dan trik string yang sering kepake.",
     "intro": "String = <b>teks</b>. Antara pake tanda kutip: <code class=\"inline\">\"...\"</code>, <code class=\"inline\">'...'</code>, atau backtick <code class=\"inline\">`...`</code> (paling keren).",
-    "body": "\n      <h4>✂️ Potong &amp; gabung teks</h4>\n      <pre class=\"codeblock\"><code><span class=\"kw\">const</span> nama <span class=\"nm\">=</span> <span class=\"st\">\"Bang\"</span>;\n<span class=\"kw\">const</span> sapaan <span class=\"nm\">=</span> <span class=\"st\">\"Halo \"</span> + nama;      <span class=\"cm\">// cara jadul</span>\n<span class=\"fn\">console.log</span>(sapaan);                    <span class=\"cm\">// Halo Bang</span>\n\n<span class=\"cm\">// Cara modern (TEMPLATE LITERAL) — pake backtick</span>\n<span class=\"kw\">const</span> sapaan2 <span class=\"nm\">=</span> <span class=\"st\">`Halo ${nama}!`</span>;\n<span class=\"fn\">console.log</span>(sapaan2);                   <span class=\"cm\">// Halo Bang!</span></code></pre>\n\n      <div class=\"tip\">💡 <b>Template literal</b> (<code class=\"inline\">`...${var}...`</code>) itu cara paling gampang masukin variabel ke teks. Hafalin, pasti kepake tiap hari.</div>\n\n      <h4>🔍 Sering dipake</h4>\n      <pre class=\"codeblock\"><code><span class=\"kw\">const</span> email <span class=\"nm\">=</span> <span class=\"st\">\"Bang@Email.com\"</span>;\n<span class=\"fn\">console.log</span>(email.length);           <span class=\"cm\">// 14 (berapa huruf)</span>\n<span class=\"fn\">console.log</span>(email.toUpperCase());    <span class=\"cm\">// BANG@EMAIL.COM</span>\n<span class=\"fn\">console.log</span>(email.toLowerCase());    <span class=\"cm\">// bang@email.com</span>\n<span class=\"fn\">console.log</span>(email.includes(<span class=\"st\">\"@\"</span>));  <span class=\"cm\">// true — ada @ gak?</span>\n<span class=\"fn\">console.log</span>(email.trim());           <span class=\"cm\">// hapus spasi di ujung</span></code></pre>\n\n      <div class=\"note\">📌 <b>Inget gini aja:</b> titik <code class=\"inline\">.</code> itu \"punya\". <code class=\"inline\">email.length</code> = \"email punya panjang\". Gampang kan?</div>\n    ",
+    "body": "\n      <h4>✂️ Potong &amp; gabung teks</h4>\n      <pre class=\"codeblock\"><code><span class=\"kw\">const</span> nama <span class=\"nm\">=</span> <span class=\"st\">\"Supriyanto\"</span>;\n<span class=\"kw\">const</span> sapaan <span class=\"nm\">=</span> <span class=\"st\">\"Halo \"</span> + nama;      <span class=\"cm\">// cara jadul</span>\n<span class=\"fn\">console.log</span>(sapaan);                    <span class=\"cm\">// Halo Supriyanto</span>\n\n<span class=\"cm\">// Cara modern (TEMPLATE LITERAL) — pake backtick</span>\n<span class=\"kw\">const</span> sapaan2 <span class=\"nm\">=</span> <span class=\"st\">`Halo ${nama}!`</span>;\n<span class=\"fn\">console.log</span>(sapaan2);                   <span class=\"cm\">// Halo Supriyanto!</span></code></pre>\n\n      <div class=\"tip\">💡 <b>Template literal</b> (<code class=\"inline\">`...${var}...`</code>) itu cara paling gampang masukin variabel ke teks. Hafalin, pasti kepake tiap hari.</div>\n\n      <h4>🔍 Sering dipake</h4>\n      <pre class=\"codeblock\"><code><span class=\"kw\">const</span> email <span class=\"nm\">=</span> <span class=\"st\">\"Supriyanto@Email.com\"</span>;\n<span class=\"fn\">console.log</span>(email.length);           <span class=\"cm\">// 14 (berapa huruf)</span>\n<span class=\"fn\">console.log</span>(email.toUpperCase());    <span class=\"cm\">// SUPRIYANTO@EMAIL.COM</span>\n<span class=\"fn\">console.log</span>(email.toLowerCase());    <span class=\"cm\">// Supriyanto@email.com</span>\n<span class=\"fn\">console.log</span>(email.includes(<span class=\"st\">\"@\"</span>));  <span class=\"cm\">// true — ada @ gak?</span>\n<span class=\"fn\">console.log</span>(email.trim());           <span class=\"cm\">// hapus spasi di ujung</span></code></pre>\n\n      <div class=\"note\">📌 <b>Inget gini aja:</b> titik <code class=\"inline\">.</code> itu \"punya\". <code class=\"inline\">email.length</code> = \"email punya panjang\". Gampang kan?</div>\n    ",
     "quiz": {
      "q": "Template literal di JavaScript pakai tanda...",
      "opts": [
@@ -73,7 +73,7 @@ const TRACKS = [
     "level": "Pemula",
     "desc": "if, else if, else — komputer mutusin jalan berdasarkan kondisi.",
     "intro": "Komputer itu kayak <b>lampu lalu lintas</b>: merah berhenti, hijau jalan. <code class=\"inline\">if</code> = \"kalau begini, kerjain ini\".",
-    "body": "\n      <h4>🚦 Struktur dasar</h4>\n      <pre class=\"codeblock\"><code><span class=\"kw\">const</span> umur <span class=\"nm\">=</span> <span class=\"nm\">17</span>;\n\n<span class=\"kw\">if</span> (umur &gt;= <span class=\"nm\">18</span>) {\n  <span class=\"fn\">console.log</span>(<span class=\"st\">\"Dewasa\"</span>);\n} <span class=\"kw\">else if</span> (umur &gt;= <span class=\"nm\">13</span>) {\n  <span class=\"fn\">console.log</span>(<span class=\"st\">\"Remaja\"</span>);\n} <span class=\"kw\">else</span> {\n  <span class=\"fn\">console.log</span>(<span class=\"st\">\"Anak-anak\"</span>);\n}</code></pre>\n      <p>Programnya: cek umur &gt;= 18? Gak. Cek umur &gt;= 13? Iya → jalanin blok itu. Sisanya di-skip.</p>\n\n      <h4>🎯 Ternary: if singkat</h4>\n      <pre class=\"codeblock\"><code><span class=\"cm\">// if biasa</span>\n<span class=\"kw\">let</span> status;\n<span class=\"kw\">if</span> (umur &gt;= <span class=\"nm\">18</span>) { status <span class=\"nm\">=</span> <span class=\"st\">\"Dewasa\"</span>; }\n<span class=\"kw\">else</span> { status <span class=\"nm\">=</span> <span class=\"st\">\"Bocil\"</span>; }\n\n<span class=\"cm\">// ternary — 1 baris, sama persis</span>\n<span class=\"kw\">const</span> status2 <span class=\"nm\">=</span> umur &gt;= <span class=\"nm\">18</span> ? <span class=\"st\">\"Dewasa\"</span> : <span class=\"st\">\"Bocil\"</span>;</code></pre>\n\n      <div class=\"tip\">💡 Baca ternary: <code class=\"inline\">kondisi ? ini : itu</code> → \"kalau iya, ambil ini; kalau enggak, ambil itu\".</div>\n\n      <h4>👮 Switch: banyak pilihan</h4>\n      <pre class=\"codeblock\"><code><span class=\"kw\">const</span> hari <span class=\"nm\">=</span> <span class=\"st\">\"senin\"</span>;\n<span class=\"kw\">switch</span> (hari) {\n  <span class=\"kw\">case</span> <span class=\"st\">\"senin\"</span>: <span class=\"fn\">console.log</span>(<span class=\"st\">\"Ngoding\"</span>); <span class=\"kw\">break</span>;\n  <span class=\"kw\">case</span> <span class=\"st\">\"selasa\"</span>: <span class=\"fn\">console.log</span>(<span class=\"st\">\"Belajar\"</span>); <span class=\"kw\">break</span>;\n  <span class=\"kw\">default</span>: <span class=\"fn\">console.log</span>(<span class=\"st\">\"Santai\"</span>);\n}</code></pre>\n\n      <div class=\"note\">📌 <b>Inget gini aja:</b> <code class=\"inline\">if</code> = \"kalau\", <code class=\"inline\">else</code> = \"kalau enggak\". Logika sehari-hari, tinggal tulis.</div>\n    ",
+    "body": "\n      <h4>🚦 Struktur dasar</h4>\n      <pre class=\"codeblock\"><code><span class=\"kw\">const</span> umur <span class=\"nm\">=</span> <span class=\"nm\">17</span>;\n\n<span class=\"kw\">if</span> (umur &gt;= <span class=\"nm\">18</span>) {\n  <span class=\"fn\">console.log</span>(<span class=\"st\">\"Dewasa\"</span>);\n} <span class=\"kw\">else if</span> (umur &gt;= <span class=\"nm\">13</span>) {\n  <span class=\"fn\">console.log</span>(<span class=\"st\">\"Remaja\"</span>);\n} <span class=\"kw\">else</span> {\n  <span class=\"fn\">console.log</span>(<span class=\"st\">\"Anak-anak\"</span>);\n}</code></pre>\n      <p>Programnya: cek umur &gt;= 18? Tidak. Cek umur &gt;= 13? <b>Ya</b> → jalankan blok itu. Sisanya dilewati.</p>\n\n      <h4>🎯 Ternary: if singkat</h4>\n      <pre class=\"codeblock\"><code><span class=\"cm\">// if biasa</span>\n<span class=\"kw\">let</span> status;\n<span class=\"kw\">if</span> (umur &gt;= <span class=\"nm\">18</span>) { status <span class=\"nm\">=</span> <span class=\"st\">\"Dewasa\"</span>; }\n<span class=\"kw\">else</span> { status <span class=\"nm\">=</span> <span class=\"st\">\"Bocil\"</span>; }\n\n<span class=\"cm\">// ternary — 1 baris, sama persis</span>\n<span class=\"kw\">const</span> status2 <span class=\"nm\">=</span> umur &gt;= <span class=\"nm\">18</span> ? <span class=\"st\">\"Dewasa\"</span> : <span class=\"st\">\"Bocil\"</span>;</code></pre>\n\n      <div class=\"tip\">💡 Baca ternary: <code class=\"inline\">kondisi ? ini : itu</code> → \"kalau iya, ambil ini; kalau enggak, ambil itu\".</div>\n\n      <h4>👮 Switch: banyak pilihan</h4>\n      <pre class=\"codeblock\"><code><span class=\"kw\">const</span> hari <span class=\"nm\">=</span> <span class=\"st\">\"senin\"</span>;\n<span class=\"kw\">switch</span> (hari) {\n  <span class=\"kw\">case</span> <span class=\"st\">\"senin\"</span>: <span class=\"fn\">console.log</span>(<span class=\"st\">\"Ngoding\"</span>); <span class=\"kw\">break</span>;\n  <span class=\"kw\">case</span> <span class=\"st\">\"selasa\"</span>: <span class=\"fn\">console.log</span>(<span class=\"st\">\"Belajar\"</span>); <span class=\"kw\">break</span>;\n  <span class=\"kw\">default</span>: <span class=\"fn\">console.log</span>(<span class=\"st\">\"Santai\"</span>);\n}</code></pre>\n\n      <div class=\"note\">📌 <b>Inget gini aja:</b> <code class=\"inline\">if</code> = \"kalau\", <code class=\"inline\">else</code> = \"kalau enggak\". Logika sehari-hari, tinggal tulis.</div>\n    ",
     "quiz": {
      "q": "Apa output dari: umur = 17; if (umur >= 18) \"Dewasa\" else \"Bocil\"?",
      "opts": [
@@ -93,7 +93,7 @@ const TRACKS = [
     "level": "Pemula",
     "desc": "Bikin kode sekali, panggil berkali-kali. Kayak resep yang bisa dipake ulang.",
     "intro": "Function itu kayak <b>resep masakan</b>: tulis langkahnya sekali, terus tinggal \"masak\" (panggil) kapan aja, pake bahan berbeda.",
-    "body": "\n      <h4>📝 Bikin &amp; panggil function</h4>\n      <pre class=\"codeblock\"><code><span class=\"cm\">// Bikin resep</span>\n<span class=\"kw\">function</span> <span class=\"fn\">sapa</span>(nama) {\n  <span class=\"kw\">return</span> <span class=\"st\">`Halo, ${nama}!`</span>;\n}\n\n<span class=\"cm\">// Panggil — bahan (argumen) beda</span>\n<span class=\"fn\">console.log</span>(<span class=\"fn\">sapa</span>(<span class=\"st\">\"Bang\"</span>));    <span class=\"cm\">// Halo, Bang!</span>\n<span class=\"fn\">console.log</span>(<span class=\"fn\">sapa</span>(<span class=\"st\">\"Bos\"</span>));    <span class=\"cm\">// Halo, Bos!</span></code></pre>\n      <p><code class=\"inline\">nama</code> = bahan (parameter). <code class=\"inline\">return</code> = hasil masakan yang dikeluarin.</p>\n\n      <h4>⚡ Arrow function (cara modern)</h4>\n      <pre class=\"codeblock\"><code><span class=\"cm\">// Cara lama</span>\n<span class=\"kw\">function</span> kali(a, b) { <span class=\"kw\">return</span> a * b; }\n\n<span class=\"cm\">// Arrow — lebih pendek, ini yg dipake di dunia kerja</span>\n<span class=\"kw\">const</span> kali <span class=\"nm\">=</span> (a, b) <span class=\"nm\">=&gt;</span> a * b;\n\n<span class=\"fn\">console.log</span>(<span class=\"fn\">kali</span>(<span class=\"nm\">4</span>, <span class=\"nm\">5</span>));  <span class=\"cm\">// 20</span></code></pre>\n\n      <div class=\"tip\">💡 <b>Hafalin bentuk ini:</b> <code class=\"inline\">const nama = (input) =&gt; hasil</code>. Kalau cuma 1 baris, gak perlu <code class=\"inline\">return</code> &amp; kurung kurawal.</div>\n\n      <div class=\"note\">📌 <b>Inget gini aja:</b> function = resep. <code class=\"inline\">function</code> bikin, <code class=\"inline\">()</code> bahan, <code class=\"inline\">return</code> hasil. Tulis sekali, pake selamanya.</div>\n    ",
+    "body": "\n      <h4>📝 Bikin &amp; panggil function</h4>\n      <pre class=\"codeblock\"><code><span class=\"cm\">// Bikin resep</span>\n<span class=\"kw\">function</span> <span class=\"fn\">sapa</span>(nama) {\n  <span class=\"kw\">return</span> <span class=\"st\">`Halo, ${nama}!`</span>;\n}\n\n<span class=\"cm\">// Panggil — bahan (argumen) beda</span>\n<span class=\"fn\">console.log</span>(<span class=\"fn\">sapa</span>(<span class=\"st\">\"Supriyanto\"</span>));    <span class=\"cm\">// Halo, Supriyanto!</span>\n<span class=\"fn\">console.log</span>(<span class=\"fn\">sapa</span>(<span class=\"st\">\"Bos\"</span>));    <span class=\"cm\">// Halo, Bos!</span></code></pre>\n      <p><code class=\"inline\">nama</code> = bahan (parameter). <code class=\"inline\">return</code> = hasil masakan yang dikeluarin.</p>\n\n      <h4>⚡ Arrow function (cara modern)</h4>\n      <pre class=\"codeblock\"><code><span class=\"cm\">// Cara lama</span>\n<span class=\"kw\">function</span> kali(a, b) { <span class=\"kw\">return</span> a * b; }\n\n<span class=\"cm\">// Arrow — lebih pendek, ini yg dipake di dunia kerja</span>\n<span class=\"kw\">const</span> kali <span class=\"nm\">=</span> (a, b) <span class=\"nm\">=&gt;</span> a * b;\n\n<span class=\"fn\">console.log</span>(<span class=\"fn\">kali</span>(<span class=\"nm\">4</span>, <span class=\"nm\">5</span>));  <span class=\"cm\">// 20</span></code></pre>\n\n      <div class=\"tip\">💡 <b>Hafalin bentuk ini:</b> <code class=\"inline\">const nama = (input) =&gt; hasil</code>. Kalau cuma 1 baris, gak perlu <code class=\"inline\">return</code> &amp; kurung kurawal.</div>\n\n      <div class=\"note\">📌 <b>Inget gini aja:</b> function = resep. <code class=\"inline\">function</code> bikin, <code class=\"inline\">()</code> bahan, <code class=\"inline\">return</code> hasil. Tulis sekali, pake selamanya.</div>\n    ",
     "quiz": {
      "q": "Apa output dari: const kali = (a,b) => a*b; console.log(kali(4,5));",
      "opts": [
@@ -133,9 +133,9 @@ const TRACKS = [
     "level": "Pemula",
     "desc": "Simpan data kompleks: nama, umur, alamat dalam satu objek.",
     "intro": "Object itu kayak <b>KTP digital</b>: satu orang punya banyak data — nama, umur, alamat — dikumpulin jadi satu.",
-    "body": "\n      <h4>🪪 Bikin object</h4>\n      <pre class=\"codeblock\"><code><span class=\"kw\">const</span> user <span class=\"nm\">=</span> {\n  nama: <span class=\"st\">\"Bang\"</span>,\n  umur: <span class=\"nm\">25</span>,\n  kota: <span class=\"st\">\"Jakarta\"</span>,\n  <span class=\"fn\">sapa</span>() { <span class=\"kw\">return</span> <span class=\"st\">`Halo, aku ${<span class=\"kw\">this</span>.nama}`</span>; }\n};\n\n<span class=\"fn\">console.log</span>(user.nama);        <span class=\"cm\">// Bang — pake titik</span>\n<span class=\"fn\">console.log</span>(user[<span class=\"st\">\"kota\"</span>]);    <span class=\"cm\">// Jakarta — pake kurung</span>\n<span class=\"fn\">console</span>.<span class=\"fn\">log</span>(user.<span class=\"fn\">sapa</span>());      <span class=\"cm\">// Halo, aku Bang</span></code></pre>\n\n      <h4>🔄 Ubah &amp; tambah data</h4>\n      <pre class=\"codeblock\"><code>user.umur <span class=\"nm\">=</span> <span class=\"nm\">26</span>;              <span class=\"cm\">// ubah</span>\nuser.hobi <span class=\"nm\">=</span> [<span class=\"st\">\"ngoding\"</span>, <span class=\"st\">\"trading\"</span>];  <span class=\"cm\">// tambah baru</span>\n<span class=\"kw\">delete</span> user.kota;           <span class=\"cm\">// hapus</span></code></pre>\n\n      <h4>🗃️ Object di dalem array (POLA PALING SERING)</h4>\n      <pre class=\"codeblock\"><code><span class=\"kw\">const</span> users <span class=\"nm\">=</span> [\n  { nama: <span class=\"st\">\"Bang\"</span>, umur: <span class=\"nm\">25</span> },\n  { nama: <span class=\"st\">\"Boss\"</span>, umur: <span class=\"nm\">30</span> }\n];\n\n<span class=\"cm\">// Ambil semua nama — map + object = combo andalan</span>\n<span class=\"kw\">const</span> namaSemua <span class=\"nm\">=</span> users.<span class=\"fn\">map</span>(u <span class=\"nm\">=&gt;</span> u.nama);\n<span class=\"fn\">console.log</span>(namaSemua);   <span class=\"cm\">// [\"Bang\",\"Boss\"]</span></code></pre>\n\n      <div class=\"tip\">💡 <b>Ini pola paling umum di dunia nyata:</b> array of objects. Data dari API (backend) hampir selalu berbentuk array of objects. Hafalin kombinasi <code class=\"inline\">array.map(u =&gt; u.nama)</code>.</div>\n\n      <div class=\"note\">📌 <b>Inget gini aja:</b> object = KTP. <code class=\"inline\">user.nama</code> = \"user punya nama\". Titik itu \"punya\".</div>\n    ",
+    "body": "\n      <h4>🪪 Bikin object</h4>\n      <pre class=\"codeblock\"><code><span class=\"kw\">const</span> user <span class=\"nm\">=</span> {\n  nama: <span class=\"st\">\"Supriyanto\"</span>,\n  umur: <span class=\"nm\">25</span>,\n  kota: <span class=\"st\">\"Jakarta\"</span>,\n  <span class=\"fn\">sapa</span>() { <span class=\"kw\">return</span> <span class=\"st\">`Halo, aku ${<span class=\"kw\">this</span>.nama}`</span>; }\n};\n\n<span class=\"fn\">console.log</span>(user.nama);        <span class=\"cm\">// Supriyanto — pake titik</span>\n<span class=\"fn\">console.log</span>(user[<span class=\"st\">\"kota\"</span>]);    <span class=\"cm\">// Jakarta — pake kurung</span>\n<span class=\"fn\">console</span>.<span class=\"fn\">log</span>(user.<span class=\"fn\">sapa</span>());      <span class=\"cm\">// Halo, aku Supriyanto</span></code></pre>\n\n      <h4>🔄 Ubah &amp; tambah data</h4>\n      <pre class=\"codeblock\"><code>user.umur <span class=\"nm\">=</span> <span class=\"nm\">26</span>;              <span class=\"cm\">// ubah</span>\nuser.hobi <span class=\"nm\">=</span> [<span class=\"st\">\"ngoding\"</span>, <span class=\"st\">\"trading\"</span>];  <span class=\"cm\">// tambah baru</span>\n<span class=\"kw\">delete</span> user.kota;           <span class=\"cm\">// hapus</span></code></pre>\n\n      <h4>🗃️ Object di dalem array (POLA PALING SERING)</h4>\n      <pre class=\"codeblock\"><code><span class=\"kw\">const</span> users <span class=\"nm\">=</span> [\n  { nama: <span class=\"st\">\"Supriyanto\"</span>, umur: <span class=\"nm\">25</span> },\n  { nama: <span class=\"st\">\"Boss\"</span>, umur: <span class=\"nm\">30</span> }\n];\n\n<span class=\"cm\">// Ambil semua nama — map + object = combo andalan</span>\n<span class=\"kw\">const</span> namaSemua <span class=\"nm\">=</span> users.<span class=\"fn\">map</span>(u <span class=\"nm\">=&gt;</span> u.nama);\n<span class=\"fn\">console.log</span>(namaSemua);   <span class=\"cm\">// [\"Supriyanto\",\"Boss\"]</span></code></pre>\n\n      <div class=\"tip\">💡 <b>Ini pola paling umum di dunia nyata:</b> array of objects. Data dari API (backend) hampir selalu berbentuk array of objects. Hafalkan kombinasi <code class=\"inline\">array.map(u =&gt; u.nama)</code>.</div>\n\n      <div class=\"note\">📌 <b>Inget gini aja:</b> object = KTP. <code class=\"inline\">user.nama</code> = \"user punya nama\". Titik itu \"punya\".</div>\n    ",
     "quiz": {
-     "q": "Bagaimana mengambil nilai \"umur\" dari const user = {nama:\"Bang\", umur:25}?",
+     "q": "Bagaimana mengambil nilai \"umur\" dari const user = {nama:\"Supriyanto\", umur:25}?",
      "opts": [
       "user[umur]",
       "user.umur",
@@ -151,9 +151,9 @@ const TRACKS = [
     "num": "08",
     "title": "Loop — Ulang Tanpa Capek",
     "level": "Menengah",
-    "desc": "for, while, forEach — jalanin hal yang sama berulang-ulang otomatis.",
-    "intro": "Loop itu kayak <b>mesin cuci</b>: sekali pencet, dia puter-puter sendiri sampai bersih. Lo gak usah cuci manual 20x.",
-    "body": "\n      <h4>🔁 for — ulang dengan hitungan</h4>\n      <pre class=\"codeblock\"><code><span class=\"cm\">// Mulai dari 1, selama i <= 3, tiap putaran i + 1</span>\n<span class=\"kw\">for</span> (<span class=\"kw\">let</span> i <span class=\"nm\">=</span> <span class=\"nm\">1</span>; i <span class=\"nm\">&lt;=</span> <span class=\"nm\">3</span>; i++) {\n  <span class=\"fn\">console.log</span>(<span class=\"st\">`Putaran ke-${i}`</span>);\n}\n<span class=\"cm\">// Putaran ke-1 / ke-2 / ke-3</span></code></pre>\n      <p>Tiga bagian: <b>mulai</b> (<code class=\"inline\">i = 1</code>), <b>syarat</b> (<code class=\"inline\">i &lt;= 3</code>), <b>langkah</b> (<code class=\"inline\">i++</code>).</p>\n\n      <h4>📋 Loop array pake for...of</h4>\n      <pre class=\"codeblock\"><code><span class=\"kw\">const</span> buah <span class=\"nm\">=</span> [<span class=\"st\">\"apel\"</span>, <span class=\"st\">\"mangga\"</span>];\n<span class=\"kw\">for</span> (<span class=\"kw\">const</span> b <span class=\"kw\">of</span> buah) {\n  <span class=\"fn\">console.log</span>(b);\n}\n<span class=\"cm\">// apel, mangga — lebih gampang daripada for biasa</span></code></pre>\n\n      <h4>🎯 forEach — andalan buat daftar</h4>\n      <pre class=\"codeblock\"><code>buah.<span class=\"fn\">forEach</span>((b, index) <span class=\"nm\">=&gt;</span> {\n  <span class=\"fn\">console.log</span>(index + <span class=\"st\">\": \"</span> + b);\n});\n<span class=\"cm\">// 0: apel, 1: mangga</span></code></pre>\n\n      <div class=\"warn\">⚠️ <b>Bahaya loop tak berujung:</b> kalau syaratnya gak pernah salah (misal lupa <code class=\"inline\">i++</code>), program hang. Selalu pastikan ada jalan keluar!</div>\n\n      <div class=\"note\">📌 <b>Inget gini aja:</b> <code class=\"inline\">for</code> = ulang dengan hitungan, <code class=\"inline\">for...of</code> = jalanin semua isi daftar, <code class=\"inline\">forEach</code> = versi singkatnya.</div>\n    ",
+    "desc": "for, while, forEach — jalankan hal yang sama berulang-ulang otomatis.",
+    "intro": "Loop itu kayak <b>mesin cuci</b>: sekali pencet, dia puter-puter sendiri sampai bersih. kamu gak usah cuci manual 20x.",
+    "body": "\n      <h4>🔁 for — ulang dengan hitungan</h4>\n      <pre class=\"codeblock\"><code><span class=\"cm\">// Mulai dari 1, selama i <= 3, tiap putaran i + 1</span>\n<span class=\"kw\">for</span> (<span class=\"kw\">let</span> i <span class=\"nm\">=</span> <span class=\"nm\">1</span>; i <span class=\"nm\">&lt;=</span> <span class=\"nm\">3</span>; i++) {\n  <span class=\"fn\">console.log</span>(<span class=\"st\">`Putaran ke-${i}`</span>);\n}\n<span class=\"cm\">// Putaran ke-1 / ke-2 / ke-3</span></code></pre>\n      <p>Tiga bagian: <b>mulai</b> (<code class=\"inline\">i = 1</code>), <b>syarat</b> (<code class=\"inline\">i &lt;= 3</code>), <b>langkah</b> (<code class=\"inline\">i++</code>).</p>\n\n      <h4>📋 Loop array pake for...of</h4>\n      <pre class=\"codeblock\"><code><span class=\"kw\">const</span> buah <span class=\"nm\">=</span> [<span class=\"st\">\"apel\"</span>, <span class=\"st\">\"mangga\"</span>];\n<span class=\"kw\">for</span> (<span class=\"kw\">const</span> b <span class=\"kw\">of</span> buah) {\n  <span class=\"fn\">console.log</span>(b);\n}\n<span class=\"cm\">// apel, mangga — lebih gampang daripada for biasa</span></code></pre>\n\n      <h4>🎯 forEach — andalan buat daftar</h4>\n      <pre class=\"codeblock\"><code>buah.<span class=\"fn\">forEach</span>((b, index) <span class=\"nm\">=&gt;</span> {\n  <span class=\"fn\">console.log</span>(index + <span class=\"st\">\": \"</span> + b);\n});\n<span class=\"cm\">// 0: apel, 1: mangga</span></code></pre>\n\n      <div class=\"warn\">⚠️ <b>Bahaya loop tak berujung:</b> kalau syaratnya gak pernah salah (misal lupa <code class=\"inline\">i++</code>), program hang. Selalu pastikan ada jalan keluar!</div>\n\n      <div class=\"note\">📌 <b>Inget gini aja:</b> <code class=\"inline\">for</code> = ulang dengan hitungan, <code class=\"inline\">for...of</code> = jalankan semua isi daftar, <code class=\"inline\">forEach</code> = versi singkatnya.</div>\n    ",
     "quiz": {
      "q": "Berapa kali loop ini jalan: for (let i = 0; i < 3; i++)",
      "opts": [
@@ -172,8 +172,8 @@ const TRACKS = [
     "title": "DOM — Mainan Website",
     "level": "Menengah",
     "desc": "Ubah isi website langsung dari JS. Inilah inti JavaScript di browser!",
-    "intro": "DOM itu kayak <b>remote TV</b>: website itu TV-nya, JS itu remote-nya. Lo pencet tombol → TV langsung berubah. Gak perlu reload.",
-    "body": "\n      <div class=\"note\">🧪 <b>Cobain sekarang:</b> buka Playground di atas, ganti kode jadi di bawah, jalanin. Lo bakal liat kotak \"play\" berubah!</div>\n\n      <h4>🎯 Ambil elemen</h4>\n      <pre class=\"codeblock\"><code><span class=\"cm\">// Cari elemen</span>\n<span class=\"kw\">const</span> judul <span class=\"nm\">=</span> document.<span class=\"fn\">querySelector</span>(<span class=\"st\">\"h1\"</span>);\n<span class=\"kw\">const</span> tombol <span class=\"nm\">=</span> document.<span class=\"fn\">getElementById</span>(<span class=\"st\">\"btnLogin\"</span>);\n<span class=\"kw\">const</span> semua <span class=\"nm\">=</span> document.<span class=\"fn\">querySelectorAll</span>(<span class=\"st\">\".card\"</span>);</code></pre>\n\n      <h4>✍️ Ubah isi &amp; gaya</h4>\n      <pre class=\"codeblock\"><code>judul.textContent <span class=\"nm\">=</span> <span class=\"st\">\"Judul Baru\"</span>;      <span class=\"cm\">// ganti teks</span>\njudul.style.color <span class=\"nm\">=</span> <span class=\"st\">\"tomato\"</span>;         <span class=\"cm\">// ganti warna</span>\njudul.classList.<span class=\"fn\">add</span>(<span class=\"st\">\"aktif\"</span>);        <span class=\"cm\">// tambah class CSS</span>\njudul.classList.<span class=\"fn\">remove</span>(<span class=\"st\">\"aktif\"</span>);     <span class=\"cm\">// hapus class</span></code></pre>\n\n      <h4>👂 Dengerin klik (event)</h4>\n      <pre class=\"codeblock\"><code><span class=\"kw\">const</span> btn <span class=\"nm\">=</span> document.<span class=\"fn\">querySelector</span>(<span class=\"st\">\"#btnLogin\"</span>);\nbtn.<span class=\"fn\">addEventListener</span>(<span class=\"st\">\"click\"</span>, () <span class=\"nm\">=&gt;</span> {\n  <span class=\"fn\">alert</span>(<span class=\"st\">\"Tombol diklik!\"</span>);\n});</code></pre>\n\n      <div class=\"tip\">💡 <b>Rumus hidup:</b> <code class=\"inline\">ambil elemen → ubah / dengerin</code>. Itu 90% kerjaan JS di website. <code class=\"inline\">querySelector</code> pakai selector CSS (sama kayak CSS).</div>\n\n      <div class=\"note\">📌 <b>Inget gini aja:</b> DOM = remote TV. <code class=\"inline\">querySelector</code> = cari tombolnya, <code class=\"inline\">textContent</code> = ganti tulisannya, <code class=\"inline\">addEventListener</code> = pasang sensor klik.</div>\n    ",
+    "intro": "DOM itu kayak <b>remote TV</b>: website itu TV-nya, JS itu remote-nya. kamu pencet tombol → TV langsung berubah. Gak perlu reload.",
+    "body": "\n      <div class=\"note\">🧪 <b>Cobain sekarang:</b> buka Playground di atas, ganti kode jadi di bawah, jalankan. kamu bakal liat kotak \"play\" berubah!</div>\n\n      <h4>🎯 Ambil elemen</h4>\n      <pre class=\"codeblock\"><code><span class=\"cm\">// Cari elemen</span>\n<span class=\"kw\">const</span> judul <span class=\"nm\">=</span> document.<span class=\"fn\">querySelector</span>(<span class=\"st\">\"h1\"</span>);\n<span class=\"kw\">const</span> tombol <span class=\"nm\">=</span> document.<span class=\"fn\">getElementById</span>(<span class=\"st\">\"btnLogin\"</span>);\n<span class=\"kw\">const</span> semua <span class=\"nm\">=</span> document.<span class=\"fn\">querySelectorAll</span>(<span class=\"st\">\".card\"</span>);</code></pre>\n\n      <h4>✍️ Ubah isi &amp; gaya</h4>\n      <pre class=\"codeblock\"><code>judul.textContent <span class=\"nm\">=</span> <span class=\"st\">\"Judul Baru\"</span>;      <span class=\"cm\">// ganti teks</span>\njudul.style.color <span class=\"nm\">=</span> <span class=\"st\">\"tomato\"</span>;         <span class=\"cm\">// ganti warna</span>\njudul.classList.<span class=\"fn\">add</span>(<span class=\"st\">\"aktif\"</span>);        <span class=\"cm\">// tambah class CSS</span>\njudul.classList.<span class=\"fn\">remove</span>(<span class=\"st\">\"aktif\"</span>);     <span class=\"cm\">// hapus class</span></code></pre>\n\n      <h4>👂 Dengerin klik (event)</h4>\n      <pre class=\"codeblock\"><code><span class=\"kw\">const</span> btn <span class=\"nm\">=</span> document.<span class=\"fn\">querySelector</span>(<span class=\"st\">\"#btnLogin\"</span>);\nbtn.<span class=\"fn\">addEventListener</span>(<span class=\"st\">\"click\"</span>, () <span class=\"nm\">=&gt;</span> {\n  <span class=\"fn\">alert</span>(<span class=\"st\">\"Tombol diklik!\"</span>);\n});</code></pre>\n\n      <div class=\"tip\">💡 <b>Rumus hidup:</b> <code class=\"inline\">ambil elemen → ubah / dengerin</code>. Itu 90% kerjaan JS di website. <code class=\"inline\">querySelector</code> pakai selector CSS (sama kayak CSS).</div>\n\n      <div class=\"note\">📌 <b>Inget gini aja:</b> DOM = remote TV. <code class=\"inline\">querySelector</code> = cari tombolnya, <code class=\"inline\">textContent</code> = ganti tulisannya, <code class=\"inline\">addEventListener</code> = pasang sensor klik.</div>\n    ",
     "quiz": {
      "q": "Fungsi mana yang dipakai untuk MENGAMBIL elemen berdasarkan ID?",
      "opts": [
@@ -193,17 +193,17 @@ const TRACKS = [
     "level": "Menengah",
     "desc": "Ambil data dari object/array dalam sekali baris. Kode jadi pendek & bersih.",
     "intro": "Destructure itu kayak <b>bongkar kardus</b>: buka box, langsung keluarin semua isinya ke tangan, tanpa ambil satu-satu.",
-    "body": "\n      <h4>📦 Bongkar object</h4>\n      <pre class=\"codeblock\"><code><span class=\"kw\">const</span> user <span class=\"nm\">=</span> { nama: <span class=\"st\">\"Bang\"</span>, umur: <span class=\"nm\">25</span>, kota: <span class=\"st\">\"Jakarta\"</span> };\n\n<span class=\"cm\">// Cara lama — ambil satu-satu</span>\n<span class=\"kw\">const</span> nama1 <span class=\"nm\">=</span> user.nama;\n<span class=\"kw\">const</span> umur1 <span class=\"nm\">=</span> user.umur;\n\n<span class=\"cm\">// Destructure — bongkar sekaligus 💥</span>\n<span class=\"kw\">const</span> { nama, umur } <span class=\"nm\">=</span> user;\n<span class=\"fn\">console.log</span>(nama, umur);   <span class=\"cm\">// Bang 25</span></code></pre>\n\n      <h4>📋 Bongkar array</h4>\n      <pre class=\"codeblock\"><code><span class=\"kw\">const</span> warna <span class=\"nm\">=</span> [<span class=\"st\">\"merah\"</span>, <span class=\"st\">\"kuning\"</span>, <span class=\"st\">\"hijau\"</span>];\n<span class=\"kw\">const</span> [pertama, kedua] <span class=\"nm\">=</span> warna;\n<span class=\"fn\">console.log</span>(pertama);   <span class=\"cm\">// merah</span>\n<span class=\"fn\">console.log</span>(kedua);     <span class=\"cm\">// kuning</span>\n\n<span class=\"cm\">// Skip satu posisi</span>\n<span class=\"kw\">const</span> [a, , c] <span class=\"nm\">=</span> warna;\n<span class=\"fn\">console.log</span>(c);        <span class=\"cm\">// hijau</span></code></pre>\n\n      <h4>⚡ Paling sering kepake: destructure di parameter function</h4>\n      <pre class=\"codeblock\"><code><span class=\"kw\">const</span> user <span class=\"nm\">=</span> { nama: <span class=\"st\">\"Bang\"</span>, umur: <span class=\"nm\">25</span> };\n\n<span class=\"cm\">// Terima langsung propertinya</span>\n<span class=\"kw\">function</span> <span class=\"fn\">kenalin</span>({ nama, umur }) {\n  <span class=\"kw\">return</span> <span class=\"st\">`${nama} umur ${umur}`</span>;\n}\n<span class=\"fn\">console.log</span>(<span class=\"fn\">kenalin</span>(user));   <span class=\"cm\">// Bang umur 25</span></code></pre>\n\n      <div class=\"tip\">💡 <b>Ini wajib hafal buat kerjaan React/API:</b> data dari API dikirim sebagai object → langsung bongkar pas di parameter.</div>\n\n      <div class=\"note\">📌 <b>Inget gini aja:</b> <code class=\"inline\">{ nama, umur } = user</code> → \"keluarin nama &amp; umur dari user\". Kurung kurawal = object, kurung siku = array.</div>\n    ",
+    "body": "\n      <h4>📦 Bongkar object</h4>\n      <pre class=\"codeblock\"><code><span class=\"kw\">const</span> user <span class=\"nm\">=</span> { nama: <span class=\"st\">\"Supriyanto\"</span>, umur: <span class=\"nm\">25</span>, kota: <span class=\"st\">\"Jakarta\"</span> };\n\n<span class=\"cm\">// Cara lama — ambil satu-satu</span>\n<span class=\"kw\">const</span> nama1 <span class=\"nm\">=</span> user.nama;\n<span class=\"kw\">const</span> umur1 <span class=\"nm\">=</span> user.umur;\n\n<span class=\"cm\">// Destructure — bongkar sekaligus 💥</span>\n<span class=\"kw\">const</span> { nama, umur } <span class=\"nm\">=</span> user;\n<span class=\"fn\">console.log</span>(nama, umur);   <span class=\"cm\">// Supriyanto 25</span></code></pre>\n\n      <h4>📋 Bongkar array</h4>\n      <pre class=\"codeblock\"><code><span class=\"kw\">const</span> warna <span class=\"nm\">=</span> [<span class=\"st\">\"merah\"</span>, <span class=\"st\">\"kuning\"</span>, <span class=\"st\">\"hijau\"</span>];\n<span class=\"kw\">const</span> [pertama, kedua] <span class=\"nm\">=</span> warna;\n<span class=\"fn\">console.log</span>(pertama);   <span class=\"cm\">// merah</span>\n<span class=\"fn\">console.log</span>(kedua);     <span class=\"cm\">// kuning</span>\n\n<span class=\"cm\">// Skip satu posisi</span>\n<span class=\"kw\">const</span> [a, , c] <span class=\"nm\">=</span> warna;\n<span class=\"fn\">console.log</span>(c);        <span class=\"cm\">// hijau</span></code></pre>\n\n      <h4>⚡ Paling sering kepake: destructure di parameter function</h4>\n      <pre class=\"codeblock\"><code><span class=\"kw\">const</span> user <span class=\"nm\">=</span> { nama: <span class=\"st\">\"Supriyanto\"</span>, umur: <span class=\"nm\">25</span> };\n\n<span class=\"cm\">// Terima langsung propertinya</span>\n<span class=\"kw\">function</span> <span class=\"fn\">kenalin</span>({ nama, umur }) {\n  <span class=\"kw\">return</span> <span class=\"st\">`${nama} umur ${umur}`</span>;\n}\n<span class=\"fn\">console.log</span>(<span class=\"fn\">kenalin</span>(user));   <span class=\"cm\">// Supriyanto umur 25</span></code></pre>\n\n      <div class=\"tip\">💡 <b>Ini wajib hafal buat kerjaan React/API:</b> data dari API dikirim sebagai object → langsung bongkar pas di parameter.</div>\n\n      <div class=\"note\">📌 <b>Inget gini aja:</b> <code class=\"inline\">{ nama, umur } = user</code> → \"keluarin nama &amp; umur dari user\". Kurung kurawal = object, kurung siku = array.</div>\n    ",
     "quiz": {
-     "q": "const {nama} = {nama:\"Bang\", umur:25}; console.log(nama) — outputnya?",
+     "q": "const {nama} = {nama:\"Supriyanto\", umur:25}; console.log(nama) — outputnya?",
      "opts": [
-      "{nama: \"Bang\"}",
-      "Bang",
+      "{nama: \"Supriyanto\"}",
+      "Supriyanto",
       "umur 25",
       "Error"
      ],
      "ans": 1,
-     "why": "Destructure mengambil properti nama saja dari object → nilainya \"Bang\"."
+     "why": "Destructure mengambil properti nama saja dari object → nilainya \"Supriyanto\"."
     }
    },
    {
@@ -212,7 +212,7 @@ const TRACKS = [
     "title": "Async/Await — Tunggu Data",
     "level": "Profesional",
     "desc": "Fetch data dari server tanpa nge-freeze aplikasi.",
-    "intro": "Async itu kayak <b>pesan go-food</b>: lo order (request), sambil nunggu, lo bisa main HP (aplikasi tetep jalan). Dateng? Tinggal ambil.",
+    "intro": "Async itu kayak <b>pesan go-food</b>: kamu order (request), sambil nunggu, kamu bisa main HP (aplikasi tetep jalan). Dateng? Tinggal ambil.",
     "body": "\n      <h4>☕ Kenapa perlu async?</h4>\n      <p>Kalau kode jalan sinkron (antri), loading data dari server bisa bikin aplikasi <b>macet</b> kayak layar loading tak berujung. Async = jangan nunggu, lanjutin yang lain.</p>\n\n      <h4>📦 Fetch data dari API</h4>\n      <pre class=\"codeblock\"><code><span class=\"kw\">async function</span> <span class=\"fn\">ambilUser</span>() {\n  <span class=\"kw\">const</span> res <span class=\"nm\">=</span> <span class=\"kw\">await</span> <span class=\"fn\">fetch</span>(<span class=\"st\">\"https://api.example.com/user\"</span>);\n  <span class=\"kw\">const</span> data <span class=\"nm\">=</span> <span class=\"kw\">await</span> res.<span class=\"fn\">json</span>();\n  <span class=\"fn\">console.log</span>(data.nama);\n}</code></pre>\n      <p><code class=\"inline\">await</code> = \"tungguin ini dulu\". <code class=\"inline\">fetch</code> = minta data ke server. Sesimpel itu.</p>\n\n      <h4>🛡️ Tangkap error — jangan lupa!</h4>\n      <pre class=\"codeblock\"><code><span class=\"kw\">async function</span> <span class=\"fn\">ambilUser</span>() {\n  <span class=\"kw\">try</span> {\n    <span class=\"kw\">const</span> res <span class=\"nm\">=</span> <span class=\"kw\">await</span> <span class=\"fn\">fetch</span>(url);\n    <span class=\"kw\">if</span> (!res.ok) <span class=\"kw\">throw new</span> Error(<span class=\"st\">\"Gagal ambil\"</span>);\n    <span class=\"kw\">const</span> data <span class=\"nm\">=</span> <span class=\"kw\">await</span> res.<span class=\"fn\">json</span>();\n    <span class=\"kw\">return</span> data;\n  } <span class=\"kw\">catch</span> (err) {\n    <span class=\"fn\">console.error</span>(<span class=\"st\">\"Error:\"</span>, err.message);\n  }\n}</code></pre>\n\n      <div class=\"warn\">⚠️ <b>Aturan emas:</b> <code class=\"inline\">await</code> cuma boleh di dalam function yang di-cap <code class=\"inline\">async</code>. Lupa? Error seger.</div>\n\n      <div class=\"tip\">💡 <b>Urutan baca:</b> <code class=\"inline\">async function</code> = deklarasi \"ini function yang bisa nunggu\", <code class=\"inline\">await fetch()</code> = \"minta data &amp; tunggu sampe dateng\", <code class=\"inline\">try/catch</code> = \"kalau gagal, jangan panik, tangkap errornya\".</div>\n\n      <div class=\"note\">📌 <b>Inget gini aja:</b> async/await = go-food. Fetch = order. Await = nunggu. Try/catch = komplain kalau salah. Aplikasi tetep ngebut, gak nunggu makan.</div>\n    ",
     "quiz": {
      "q": "Apa gunanya kata kunci \"await\" dalam async function?",
@@ -231,9 +231,9 @@ const TRACKS = [
     "num": "12",
     "title": "Closure & this — Level Profesional",
     "level": "Profesional",
-    "desc": "Dua konsep yang membedakan junior vs senior. Paham ini, lo naik level.",
+    "desc": "Dua konsep yang membedakan junior vs senior. Paham ini, kamu naik level.",
     "intro": "Closure itu kayak <b>memori tersembunyi</b>: function yang \"inget\" lingkungan tempat dia lahir, walau sudah dipindah kemana-mana.",
-    "body": "\n      <h4>🔒 Closure: function yang inget masa lalu</h4>\n      <pre class=\"codeblock\"><code><span class=\"kw\">function</span> <span class=\"fn\">buatCounter</span>() {\n  <span class=\"kw\">let</span> hitung <span class=\"nm\">=</span> <span class=\"nm\">0</span>;   <span class=\"cm\">// \"memori\" si function</span>\n  <span class=\"kw\">return</span> () <span class=\"nm\">=&gt;</span> {\n    hitung++;\n    <span class=\"kw\">return</span> hitung;\n  };\n}\n\n<span class=\"kw\">const</span> counter <span class=\"nm\">=</span> <span class=\"fn\">buatCounter</span>();\n<span class=\"fn\">console.log</span>(<span class=\"fn\">counter</span>());  <span class=\"cm\">// 1</span>\n<span class=\"fn\">console.log</span>(<span class=\"fn\">counter</span>());  <span class=\"cm\">// 2 — masih inget!</span>\n<span class=\"fn\">console.log</span>(<span class=\"fn\">counter</span>());  <span class=\"cm\">// 3</span></code></pre>\n      <p>Variabel <code class=\"inline\">hitung</code> itu privat — gak bisa disentuh dari luar, tapi si function bisa ngakses dan \"mengingatnya\". Itu closure.</p>\n\n      <h4>🎯 this: siapa yang manggil?</h4>\n      <pre class=\"codeblock\"><code><span class=\"kw\">const</span> user <span class=\"nm\">=</span> {\n  nama: <span class=\"st\">\"Bang\"</span>,\n  <span class=\"fn\">sapa</span>() { <span class=\"kw\">return</span> <span class=\"st\">`Halo ${<span class=\"kw\">this</span>.nama}`</span>; }\n};\n<span class=\"fn\">console.log</span>(user.<span class=\"fn\">sapa</span>());  <span class=\"cm\">// Halo Bang — this = user</span></code></pre>\n      <p><code class=\"inline\">this</code> = \"siapa pemilik function ini\". Di object, <code class=\"inline\">this</code> = object-nya. Gampang.</p>\n\n      <div class=\"warn\">⚠️ <b>Jebakan arrow function:</b> arrow function <b>gak punya <code class=\"inline\">this</code> sendiri</b> — dia pinjam dari lingkungan luar. Function biasa punya <code class=\"inline\">this</code> sendiri. Ini sumber bug klasik!</div>\n\n      <div class=\"tip\">💡 <b>React/class pake ini terus:</b> <code class=\"inline\">this.setState</code>, <code class=\"inline\">this.props</code>. Pahamin <code class=\"inline\">this</code> = si pemanggil, hidup lo jauh lebih tenang.</div>\n\n      <div class=\"note\">📌 <b>Inget gini aja:</b> closure = function + ingatan. <code class=\"inline\">this</code> = si empunya. Dua-duanya gampang kalo lo tau pola di atas.</div>\n    ",
+    "body": "\n      <h4>🔒 Closure: function yang inget masa lalu</h4>\n      <pre class=\"codeblock\"><code><span class=\"kw\">function</span> <span class=\"fn\">buatCounter</span>() {\n  <span class=\"kw\">let</span> hitung <span class=\"nm\">=</span> <span class=\"nm\">0</span>;   <span class=\"cm\">// \"memori\" si function</span>\n  <span class=\"kw\">return</span> () <span class=\"nm\">=&gt;</span> {\n    hitung++;\n    <span class=\"kw\">return</span> hitung;\n  };\n}\n\n<span class=\"kw\">const</span> counter <span class=\"nm\">=</span> <span class=\"fn\">buatCounter</span>();\n<span class=\"fn\">console.log</span>(<span class=\"fn\">counter</span>());  <span class=\"cm\">// 1</span>\n<span class=\"fn\">console.log</span>(<span class=\"fn\">counter</span>());  <span class=\"cm\">// 2 — masih inget!</span>\n<span class=\"fn\">console.log</span>(<span class=\"fn\">counter</span>());  <span class=\"cm\">// 3</span></code></pre>\n      <p>Variabel <code class=\"inline\">hitung</code> itu privat — gak bisa disentuh dari luar, tapi si function bisa ngakses dan \"mengingatnya\". Itu closure.</p>\n\n      <h4>🎯 this: siapa yang manggil?</h4>\n      <pre class=\"codeblock\"><code><span class=\"kw\">const</span> user <span class=\"nm\">=</span> {\n  nama: <span class=\"st\">\"Supriyanto\"</span>,\n  <span class=\"fn\">sapa</span>() { <span class=\"kw\">return</span> <span class=\"st\">`Halo ${<span class=\"kw\">this</span>.nama}`</span>; }\n};\n<span class=\"fn\">console.log</span>(user.<span class=\"fn\">sapa</span>());  <span class=\"cm\">// Halo Supriyanto — this = user</span></code></pre>\n      <p><code class=\"inline\">this</code> = \"siapa pemilik function ini\". Di object, <code class=\"inline\">this</code> = object-nya. Gampang.</p>\n\n      <div class=\"warn\">⚠️ <b>Jebakan arrow function:</b> arrow function <b>gak punya <code class=\"inline\">this</code> sendiri</b> — dia pinjam dari lingkungan luar. Function biasa punya <code class=\"inline\">this</code> sendiri. Ini sumber bug klasik!</div>\n\n      <div class=\"tip\">💡 <b>React/class pake ini terus:</b> <code class=\"inline\">this.setState</code>, <code class=\"inline\">this.props</code>. Pahamin <code class=\"inline\">this</code> = si pemanggil, hidup kamu jauh lebih tenang.</div>\n\n      <div class=\"note\">📌 <b>Inget gini aja:</b> closure = function + ingatan. <code class=\"inline\">this</code> = si empunya. Dua-duanya gampang kalo kamu tau pola di atas.</div>\n    ",
     "quiz": {
      "q": "Function di bawah \"mengingat\" variabel mana? function buatCounter() { let hitung = 0; return () => hitung++; }",
      "opts": [
@@ -335,6 +335,254 @@ const TRACKS = [
     "body": "\n\n      <h4>📌 Arsitektur Jenkins + Playwright</h4>\n      <p>Jenkins adalah automation server open-source yang paling populer untuk CI/CD. Dalam pipeline Playwright, Jenkins berperan sebagai <strong>orchestrator</strong> — menjalankan test secara otomatis setiap kali ada commit baru ke repository.</p>\n      <ul>\n        <li><strong>Jenkins Master (Controller)</strong> — Mengelola pipeline, menjadwalkan job, dan mendistribusikan task ke agent</li>\n        <li><strong>Jenkins Agent (Node)</strong> — Mesin yang benar-benar menjalankan test (bisa Linux, Windows, Docker container)</li>\n        <li><strong>Jenkinsfile</strong> — File konfigurasi pipeline yang disimpan di dalam repository (Pipeline as Code)</li>\n        <li><strong>Alur kerja</strong> — Developer push code → GitHub webhook trigger Jenkins → Jenkins clone repo → Install deps → Run Playwright test → Publish report</li>\n      </ul>\n\n      <div class=\"tip-box\">\n        <div class=\"tip-box-icon\">💡</div>\n        <div><strong>Playwright vs Jenkins:</strong> Jenkins mengatur <em>kapan</em> test berjalan (trigger, schedule). Playwright mengurus <em>bagaimana</em> test berjalan. Keduanya bekerja bersama via Jenkinsfile.</div>\n      </div>\n\n      <h4>📌 Instalasi Playwright di Jenkins Agent</h4>\n      <p>Jenkins agent (node) yang menjalankan test Playwright perlu memiliki Node.js dan dependency browser. Ada dua pendekatan utama:</p>\n\n      <div class=\"keyword-card\">\n        <div class=\"keyword-card-header\">\n          <span class=\"keyword-name\">Pendekatan 1: Node.js Langsung di Agent</span>\n          <span class=\"keyword-badge\">Bare Metal</span>\n        </div>\n        <div class=\"keyword-desc\">Install Node.js dan Playwright browser di mesin Jenkins agent. Cocok untuk dedicated agent atau on-premise Jenkins.</div>\n        <div class=\"code-block\"><span class=\"cm\"># Di Jenkins Agent (Ubuntu/Debian)</span>\n\n<span class=\"cm\"># 1. Install Node.js via nvm</span>\ncurl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash\nnvm install 20\nnvm use 20\n\n<span class=\"cm\"># 2. Install project dependencies</span>\nnpm ci\n\n<span class=\"cm\"># 3. Install Playwright browsers + OS dependencies</span>\nnpx playwright install --with-deps\n\n<span class=\"cm\"># 4. Jalankan test</span>\nnpx playwright test</div>\n      </div>\n\n      <div class=\"keyword-card\">\n        <div class=\"keyword-card-header\">\n          <span class=\"keyword-name\">Pendekatan 2: Docker Container sebagai Agent</span>\n          <span class=\"keyword-badge\">Docker</span>\n        </div>\n        <div class=\"keyword-desc\">Gunakan Docker image resmi Playwright sebagai agent. Ini memastikan environment konsisten di mana pun Jenkins berjalan — tidak ada \"works on my machine\".</div>\n        <div class=\"code-block\"><span class=\"cm\"># Gunakan official Playwright Docker image</span>\n<span class=\"cm\"># Image ini sudah include Node.js + semua browser + dependencies</span>\n\ndocker pull mcr.microsoft.com/playwright:v1.44.0-jammy\n\n<span class=\"cm\"># Run test di dalam container</span>\ndocker run --rm \\\n  -v $(pwd):/work \\\n  -w /work \\\n  mcr.microsoft.com/playwright:v1.44.0-jammy \\\n  npx playwright test</div>\n      </div>\n\n      <h4>📌 Menulis Jenkinsfile (Declarative Pipeline)</h4>\n      <p>Jenkinsfile adalah file yang mendefinisikan pipeline CI/CD menggunakan <strong>Declarative Pipeline syntax</strong>. File ini disimpan di root repository (bersama <code>package.json</code>) sehingga konfigurasi pipeline ikut di-version control.</p>\n\n      <div class=\"keyword-card\">\n        <div class=\"keyword-card-header\">\n          <span class=\"keyword-name\">Jenkinsfile — Pipeline Dasar</span>\n          <span class=\"keyword-badge\">Pipeline as Code</span>\n        </div>\n        <div class=\"keyword-desc\">Struktur dasar Jenkinsfile declarative: pipeline → agent → stages → stage → steps. Setiap stage mewakili satu fase dalam CI/CD.</div>\n        <div class=\"code-block\"><span class=\"cm\">// Jenkinsfile (simpan di root project)</span>\n\npipeline {\n  agent any  <span class=\"cm\">// Jalankan di agent mana saja yang tersedia</span>\n\n  <span class=\"cm\">// Tools yang dibutuhkan (konfigurasi di Jenkins Global Tools)</span>\n  tools {\n    nodejs <span class=\"st\">'NodeJS-20'</span>  <span class=\"cm\">// Nama tool yang dikonfigurasi di Jenkins</span>\n  }\n\n  <span class=\"cm\">// Environment variables global</span>\n  environment {\n    CI = <span class=\"st\">'true'</span>\n    PLAYWRIGHT_BROWSERS_PATH = <span class=\"st\">'0'</span>  <span class=\"cm\">// Gunakan browser yang sudah ada</span>\n  }\n\n  stages {\n    stage(<span class=\"st\">'Checkout'</span>) {\n      steps {\n        checkout scm  <span class=\"cm\">// Clone repository dari SCM (Git)</span>\n      }\n    }\n\n    stage(<span class=\"st\">'Install Dependencies'</span>) {\n      steps {\n        sh <span class=\"st\">'npm ci'</span>  <span class=\"cm\">// Install dari package-lock.json (deterministik)</span>\n      }\n    }\n\n    stage(<span class=\"st\">'Install Playwright Browsers'</span>) {\n      steps {\n        sh <span class=\"st\">'npx playwright install --with-deps'</span>\n      }\n    }\n\n    stage(<span class=\"st\">'Run Playwright Tests'</span>) {\n      steps {\n        sh <span class=\"st\">'npx playwright test'</span>\n      }\n    }\n  }\n\n  post {\n    always {\n      <span class=\"cm\">// Publish HTML report selalu, bahkan jika test gagal</span>\n      publishHTML(target: [\n        allowMissing: <span class=\"kw\">false</span>,\n        alwaysLinkToLastBuild: <span class=\"kw\">true</span>,\n        keepAll: <span class=\"kw\">true</span>,\n        reportDir: <span class=\"st\">'playwright-report'</span>,\n        reportFiles: <span class=\"st\">'index.html'</span>,\n        reportName: <span class=\"st\">'Playwright HTML Report'</span>\n      ])\n    }\n    success {\n      echo <span class=\"st\">'✅ Semua test PASSED!'</span>\n    }\n    failure {\n      echo <span class=\"st\">'❌ Ada test yang FAILED. Cek report!'</span>\n      <span class=\"cm\">// Bisa tambahkan: emailext, Slack notification, dll</span>\n    }\n  }\n}</div>\n      </div>\n\n      <h4>📌 Parallel Execution di Jenkins</h4>\n      <p>Untuk mempercepat eksekusi, jalankan test secara paralel di beberapa browser sekaligus menggunakan <code>parallel</code> block di Jenkinsfile. Jenkins akan mendistribusikan ke beberapa agent secara bersamaan.</p>\n\n      <div class=\"keyword-card\">\n        <div class=\"keyword-card-header\">\n          <span class=\"keyword-name\">parallel { } — Multi-browser Testing</span>\n          <span class=\"keyword-badge\">Performance</span>\n        </div>\n        <div class=\"keyword-desc\">Jalankan test di Chromium, Firefox, dan WebKit secara paralel, bukan berurutan. Ini bisa mempersingkat total waktu eksekusi hingga 3x lipat.</div>\n        <div class=\"code-block\">stage(<span class=\"st\">'Run Tests - All Browsers'</span>) {\n  parallel {\n    stage(<span class=\"st\">'Chromium'</span>) {\n      steps {\n        sh <span class=\"st\">'npx playwright test --project=chromium'</span>\n      }\n      post {\n        always {\n          archiveArtifacts artifacts: <span class=\"st\">'playwright-report/**'</span>, fingerprint: <span class=\"kw\">true</span>\n        }\n      }\n    }\n    stage(<span class=\"st\">'Firefox'</span>) {\n      steps {\n        sh <span class=\"st\">'npx playwright test --project=firefox'</span>\n      }\n    }\n    stage(<span class=\"st\">'WebKit'</span>) {\n      steps {\n        sh <span class=\"st\">'npx playwright test --project=webkit'</span>\n      }\n    }\n  }\n}\n\n<span class=\"cm\">// Atau gunakan sharding — split test ke beberapa shard</span>\nstage(<span class=\"st\">'Shard 1/3'</span>) { steps { sh <span class=\"st\">'npx playwright test --shard=1/3'</span> } }\nstage(<span class=\"st\">'Shard 2/3'</span>) { steps { sh <span class=\"st\">'npx playwright test --shard=2/3'</span> } }\nstage(<span class=\"st\">'Shard 3/3'</span>) { steps { sh <span class=\"st\">'npx playwright test --shard=3/3'</span> } }</div>\n      </div>\n\n      <h4>📌 Mengelola Environment Variables & Secrets di Jenkins</h4>\n      <p>Test otomatis sering membutuhkan credentials (username, password, API key). <strong>JANGAN</strong> hardcode di Jenkinsfile — gunakan Jenkins Credentials Manager.</p>\n\n      <div class=\"keyword-card\">\n        <div class=\"keyword-card-header\">\n          <span class=\"keyword-name\">withCredentials { } — Injeksi Secret</span>\n          <span class=\"keyword-badge\">Security</span>\n        </div>\n        <div class=\"keyword-desc\">Jenkins Credentials Manager menyimpan secret terenkripsi. Gunakan withCredentials() untuk menginjeksikan secret sebagai environment variable ke dalam pipeline.</div>\n        <div class=\"code-block\"><span class=\"cm\">// Di Jenkins UI:</span>\n<span class=\"cm\">// Dashboard → Manage Jenkins → Credentials → Add Credentials</span>\n<span class=\"cm\">// Kind: Username with password, ID: staging-credentials</span>\n\n<span class=\"cm\">// Di Jenkinsfile — injeksi secret sebagai env var</span>\nstage(<span class=\"st\">'Run Tests'</span>) {\n  steps {\n    withCredentials([\n      usernamePassword(\n        credentialsId: <span class=\"st\">'staging-credentials'</span>,\n        usernameVariable: <span class=\"st\">'TEST_USERNAME'</span>,\n        passwordVariable: <span class=\"st\">'TEST_PASSWORD'</span>\n      )\n    ]) {\n      <span class=\"cm\">// Secret tersedia sebagai env var: $TEST_USERNAME, $TEST_PASSWORD</span>\n      sh <span class=\"st\">'''</span>\n<span class=\"st\">        BASE_URL=https://staging.myapp.com \\\n        AUTH_USER=$TEST_USERNAME \\\n        AUTH_PASS=$TEST_PASSWORD \\\n        npx playwright test\n      '''</span>\n    }\n  }\n}\n\n<span class=\"cm\">// Di playwright.config.js — baca dari process.env</span>\nmodule.exports = {\n  use: {\n    baseURL: process.env.BASE_URL || <span class=\"st\">'http://localhost:3000'</span>,\n  },\n};</div>\n      </div>\n\n      <div class=\"keyword-card\">\n        <div class=\"keyword-card-header\">\n          <span class=\"keyword-name\">parameters { } — Pipeline Parameterization</span>\n          <span class=\"keyword-badge\">Flexibility</span>\n        </div>\n        <div class=\"keyword-desc\">Buat pipeline yang fleksibel — user bisa memilih browser, environment, atau test yang dijalankan saat trigger manual.</div>\n        <div class=\"code-block\">pipeline {\n  agent any\n\n  parameters {\n    choice(\n      name: <span class=\"st\">'BROWSER'</span>,\n      choices: [<span class=\"st\">'chromium'</span>, <span class=\"st\">'firefox'</span>, <span class=\"st\">'webkit'</span>, <span class=\"st\">'all'</span>],\n      description: <span class=\"st\">'Pilih browser untuk testing'</span>\n    )\n    choice(\n      name: <span class=\"st\">'ENV'</span>,\n      choices: [<span class=\"st\">'staging'</span>, <span class=\"st\">'production'</span>],\n      description: <span class=\"st\">'Target environment'</span>\n    )\n    booleanParam(\n      name: <span class=\"st\">'RUN_ALL'</span>,\n      defaultValue: <span class=\"kw\">false</span>,\n      description: <span class=\"st\">'Jalankan semua test (termasuk slow tests)'</span>\n    )\n  }\n\n  stages {\n    stage(<span class=\"st\">'Run Tests'</span>) {\n      steps {\n        script {\n          def browser = params.BROWSER == <span class=\"st\">'all'</span> ? <span class=\"st\">''</span> : <span class=\"st\">\"--project=${params.BROWSER}\"</span>\n          sh <span class=\"st\">\"BASE_URL=https://${params.ENV}.app.com npx playwright test ${browser}\"</span>\n        }\n      }\n    }\n  }\n}</div>\n      </div>\n\n      <h4>📌 Blue Ocean & HTML Report di Jenkins</h4>\n      <p>Jenkins memiliki plugin <strong>Blue Ocean</strong> yang menyediakan UI modern untuk visualisasi pipeline, dan plugin <strong>HTML Publisher</strong> untuk menampilkan Playwright HTML report langsung di dashboard Jenkins.</p>\n\n      <div class=\"keyword-card\">\n        <div class=\"keyword-card-header\">\n          <span class=\"keyword-name\">playwright.config.js — Konfigurasi untuk Jenkins</span>\n          <span class=\"keyword-badge\">Config</span>\n        </div>\n        <div class=\"keyword-desc\">Konfigurasi Playwright yang dioptimalkan untuk environment Jenkins CI — menggunakan junit reporter agar Jenkins bisa membaca hasil test, dan merekam trace/screenshot saat gagal.</div>\n        <div class=\"code-block\"><span class=\"cm\">// playwright.config.js — versi untuk Jenkins CI</span>\nconst { defineConfig, devices } = require(<span class=\"st\">'@playwright/test'</span>);\n\nmodule.exports = defineConfig({\n  testDir: <span class=\"st\">'./tests'</span>,\n  fullyParallel: <span class=\"kw\">true</span>,\n  forbidOnly: !!process.env.CI,  <span class=\"cm\">// Fail jika ada test.only di CI</span>\n  retries: process.env.CI ? 2 : 0,  <span class=\"cm\">// Retry 2x di CI, 0 di lokal</span>\n  workers: process.env.CI ? 4 : undefined,\n\n  reporter: [\n    [<span class=\"st\">'html'</span>, { outputFolder: <span class=\"st\">'playwright-report'</span>, open: <span class=\"st\">'never'</span> }],\n    [<span class=\"st\">'junit'</span>, { outputFile: <span class=\"st\">'test-results/junit.xml'</span> }],  <span class=\"cm\">// Untuk Jenkins JUnit plugin</span>\n    [<span class=\"st\">'list'</span>],  <span class=\"cm\">// Console output untuk Jenkins log</span>\n  ],\n\n  use: {\n    baseURL: process.env.BASE_URL || <span class=\"st\">'http://localhost:3000'</span>,\n    trace: <span class=\"st\">'on-first-retry'</span>,\n    screenshot: <span class=\"st\">'only-on-failure'</span>,\n    video: <span class=\"st\">'retain-on-failure'</span>,\n  },\n\n  projects: [\n    { name: <span class=\"st\">'chromium'</span>, use: { ...devices[<span class=\"st\">'Desktop Chrome'</span>] } },\n    { name: <span class=\"st\">'firefox'</span>, use: { ...devices[<span class=\"st\">'Desktop Firefox'</span>] } },\n  ],\n});</div>\n      </div>\n\n      <div class=\"tip-box\">\n        <div class=\"tip-box-icon\">💡</div>\n        <div><strong>Plugin Jenkins yang direkomendasikan:</strong><br>\n          • <strong>NodeJS Plugin</strong> — Manage instalasi Node.js dari Jenkins UI<br>\n          • <strong>HTML Publisher Plugin</strong> — Tampilkan Playwright HTML report di dashboard<br>\n          • <strong>JUnit Plugin</strong> — Visualisasi test results sebagai bar chart<br>\n          • <strong>Blue Ocean</strong> — UI pipeline yang modern dan intuitif<br>\n          • <strong>Git Plugin</strong> — Integrasi dengan GitHub/GitLab/Bitbucket\n        </div>\n      </div>\n\n      <div class=\"tip-box warning\">\n        <div class=\"tip-box-icon\">⚠️</div>\n        <div><strong>CSP Issue di HTML Report:</strong> Jenkins secara default memblokir inline script di HTML report (Content Security Policy). Tambahkan ini di Jenkins Script Console untuk mengizinkan: <code>System.setProperty(\"hudson.model.DirectoryBrowserSupport.CSP\", \"\")</code></div>\n      </div>\n\n    "
    }
   ]
+ },
+ {
+  "id": "mojo",
+  "title": "Mojo 🔥",
+  "subtitle": "Bahasa AI Modern: Sintaks Python, Performa C++, SIMD & Neural Network",
+  "accent": "orange",
+  "lessons": [
+   {
+    "id": "mojo-01",
+    "num": "01",
+    "title": "Pengenalan & Filosofi Mojo",
+    "level": "Pemula",
+    "desc": "Mengapa dunia AI membutuhkan bahasa baru yang secepat C++ dan semudah Python.",
+    "intro": "Mojo diciptakan oleh Chris Lattner (pencipta LLVM, Clang, dan Swift) untuk menyelesaikan dilema terbesar AI: Python sangat ramah developer tapi lambat, sedangkan C++ sangat cepat tapi rumit dan rawan error memori.",
+    "body": "\n      <h4>🏎️ Analogi Mobil Balap Supercar</h4>\n      <p>Bayangkan <b>Python</b> adalah mobil keluarga yang sangat nyaman, empuk, dan mudah dikendarai siapa saja — tapi jika dipaksa balapan di sirkuit (komputasi AI beban tinggi), mesinnya cepat panas dan lambat. Di sisi lain, <b>C++</b> adalah mobil balap F1 yang super kencang, tetapi setirnya sangat keras, tidak ada fitur keselamatan otomatis, dan jika salah sedikit bisa langsung celaka (memory crash / segfault).</p>\n      <p><b>Mojo</b> adalah supercar modern: kemudi dan kenyamanan dashboard-nya ramah seperti Python, tetapi mesin pacu di dalamnya berkecepatan mobil balap F1 tanpa kompromi.</p>\n\n      <div class=\"tip-box\">\n        <span class=\"tip-box-icon\">🔥</span>\n        <div><b>Fakta Kunci:</b> Ekstensi file Mojo bisa menggunakan <code class=\"inline\">.mojo</code> atau simbol api <code class=\"inline\">.🔥</code>. Mojo kompatibel penuh dengan Python, namun mampu berjalan hingga <b>35.000x - 68.000x lebih cepat</b> untuk operasi matriks dan AI.</div>\n      </div>\n\n      <h4>📝 Program Pertama: Halo Supriyanto</h4>\n      <p>Di Mojo, Anda bisa memulai fungsi utama dengan kata kunci <code class=\"inline\">fn main()</code>:</p>\n      <div class=\"code-block\"><span class=\"kw\">fn</span> <span class=\"fn\">main</span>():\n    <span class=\"cm\"># Mencetak teks ke layar</span>\n    <span class=\"fn\">print</span>(<span class=\"st\">\"Halo Supriyanto! Selamat datang di dunia Mojo 🔥\"</span>)\n    \n    <span class=\"kw\">let</span> pesan = <span class=\"st\">\"Mojo menggabungkan kemudahan Python dengan kecepatan C++\"</span>\n    <span class=\"fn\">print</span>(pesan)</div>\n\n      <h4>⚡ Mengapa AI Sangat Membutuhkan Mojo?</h4>\n      <p>Model AI modern (seperti ChatGPT, model penglihatan komputer, dan pengenal suara) melakukan miliaran operasi matematika setiap detik. Python murni tidak sanggup melakukannya langsung di CPU/GPU tanpa bantuan library C++/CUDA di belakang layar. Mojo menyatukan seluruh tumpukan teknologi tersebut menjadi satu bahasa tunggal.</p>\n    ",
+    "quiz": {
+     "q": "Siapa tokoh di balik penciptaan bahasa pemrograman Mojo?",
+     "opts": [
+      "Chris Lattner (pencipta LLVM & Swift)",
+      "Guido van Rossum",
+      "Brendan Eich",
+      "James Gosling"
+     ],
+     "ans": 0,
+     "why": "Mojo dirancang oleh Chris Lattner bersama tim Modular untuk menyatukan ekosistem AI dan komputasi performa tinggi."
+    }
+   },
+   {
+    "id": "mojo-02",
+    "num": "02",
+    "title": "Variabel let vs var & Strict Typing",
+    "level": "Pemula",
+    "desc": "Memahami imutabilitas, efisiensi alokasi memori, dan deklarasi tipe data.",
+    "intro": "Mojo memperkenalkan kata kunci let dan var untuk membedakan data yang permanen (konstan) dan data yang boleh diubah. Ini memberi tahu kompiler cara mengalokasikan memori seefisien mungkin.",
+    "body": "\n      <h4>🗿 Analogi Ukiran Batu vs Papan Tulis</h4>\n      <p>Di Mojo:</p>\n      <ul>\n        <li><code class=\"inline\">let</code> seperti <b>memahat di atas batu</b>: sekali nilai diukir, nilai tersebut permanen dan tidak bisa diubah lagi (*immutable*). Kompiler sangat menyukai <code class=\"inline\">let</code> karena bisa melakukan optimasi memori secara agresif.</li>\n        <li><code class=\"inline\">var</code> seperti <b>menulis di papan tulis</b>: nilainya fleksibel dan bisa dihapus lalu diganti kapan saja (*mutable*).</li>\n      </ul>\n\n      <h4>📦 Deklarasi Tipe Data Primitif</h4>\n      <div class=\"code-block\"><span class=\"kw\">fn</span> <span class=\"fn\">main</span>():\n    <span class=\"cm\"># Deklarasi nilai konstan (let)</span>\n    <span class=\"kw\">let</span> nama_pengguna: String = <span class=\"st\">\"Supriyanto\"</span>\n    <span class=\"kw\">let</span> dimensi_tensor: Int = <span class=\"nm\">512</span>\n    \n    <span class=\"cm\"># Deklarasi variabel yang bisa diubah (var)</span>\n    <span class=\"kw\">var</span> skor_akurasi: Float64 = <span class=\"nm\">0.85</span>\n    <span class=\"fn\">print</span>(<span class=\"st\">\"Akurasi awal Supriyanto:\"</span>, skor_akurasi)\n    \n    <span class=\"cm\"># Memperbarui nilai variabel</span>\n    skor_akurasi = <span class=\"nm\">0.96</span>\n    <span class=\"fn\">print</span>(<span class=\"st\">\"Akurasi setelah training:\"</span>, skor_akurasi)</div>\n\n      <div class=\"note\">\n        <b>Mengapa Tipe Data Ketat Penting untuk AI?</b> Saat komputer tahu pasti bahwa suatu data adalah <code class=\"inline\">Float32</code> atau <code class=\"inline\">Int</code>, komputer tidak perlu memeriksa ulang tipe data tersebut saat melakukan miliaran perhitungan matriks di GPU.\n      </div>\n    ",
+    "quiz": {
+     "q": "Apa perbedaan mendasar antara kata kunci 'let' dan 'var' di Mojo?",
+     "opts": [
+      "let bersifat konstan (immutable), sedangkan var bisa diubah (mutable)",
+      "let hanya untuk angka, sedangkan var hanya untuk teks",
+      "let lebih lambat daripada var",
+      "let wajib di dalam class, var di luar class"
+     ],
+     "ans": 0,
+     "why": "Di Mojo, 'let' mendeklarasikan nilai konstan yang tidak dapat diubah (immutable), sedangkan 'var' mendeklarasikan variabel yang nilainya bisa diubah (mutable)."
+    }
+   },
+   {
+    "id": "mojo-03",
+    "num": "03",
+    "title": "Fungsi fn vs def — Fleksibel vs Performa Maksimal",
+    "level": "Pemula",
+    "desc": "Memilih antara fungsi dinamis ala Python atau fungsi terkompilasi super cepat.",
+    "intro": "Mojo memberi kebebasan: Anda bisa menulis fungsi santai ala Python dengan def, atau fungsi berkecepatan native dengan fn.",
+    "body": "\n      <h4>🧑‍🍳 Analogi Koki Santai vs Pabrik Berstandar ISO</h4>\n      <p>Bayangkan dua cara membuat makanan:</p>\n      <ul>\n        <li><code class=\"inline\">def</code> seperti <b>koki freestyle di dapur rumah</b>: Anda bisa memasukkan bahan apa saja tanpa timbangan ketat (argumen opsional & dinamis). Cepat dibuat untuk eksperimen, tetapi butuh waktu memeriksa bahan saat proses memasak.</li>\n        <li><code class=\"inline\">fn</code> seperti <b>pabrik makanan berstandar presisi tinggi</b>: semua takaran bahan, suhu, dan wadah diperiksa ketat sejak awal sebelum mesin berjalan. Hasilnya: jutaan porsi diproduksi dalam hitungan detik tanpa ada cacat (*type-safe & zero-overhead*).</li>\n      </ul>\n\n      <h4>🛠️ Contoh Kode: def vs fn</h4>\n      <div class=\"code-block\"><span class=\"cm\"># 1. Gaya dinamis (def) — mirip Python murni</span>\n<span class=\"kw\">def</span> <span class=\"fn\">sapa_pengguna</span>(nama):\n    <span class=\"fn\">print</span>(<span class=\"st\">\"Halo, \"</span> + nama)\n\n<span class=\"cm\"># 2. Gaya ketat performa tinggi (fn) — dikompilasi ke kode mesin langsung</span>\n<span class=\"kw\">fn</span> <span class=\"fn\">hitung_bobot_ai</span>(bobot: Float32, input_val: Float32) -&gt; Float32:\n    <span class=\"kw\">let</span> bias: Float32 = <span class=\"nm\">0.05</span>\n    <span class=\"kw\">let</span> hasil = (bobot * input_val) + bias\n    <span class=\"kw\">return</span> hasil\n\n<span class=\"kw\">fn</span> <span class=\"fn\">main</span>():\n    sapa_pengguna(<span class=\"st\">\"Supriyanto\"</span>)\n    <span class=\"kw\">let</span> sinyal = hitung_bobot_ai(<span class=\"nm\">0.8</span>, <span class=\"nm\">1.5</span>)\n    <span class=\"fn\">print</span>(<span class=\"st\">\"Sinyal neuron AI:\"</span>, sinyal)</div>\n\n      <div class=\"tip\">\n        <b>Rekomendasi Praktik Terbaik:</b> Gunakan <code class=\"inline\">fn</code> untuk semua fungsi yang memproses komputasi matematika, pemrosesan data, dan inferensi model AI. Gunakan <code class=\"inline\">def</code> saat membuat prototype atau berinteraksi dengan library Python.\n      </div>\n    ",
+    "quiz": {
+     "q": "Kapan sebaiknya kita menggunakan kata kunci 'fn' dibandingkan 'def' di Mojo?",
+     "opts": [
+      "Ketika menginginkan performa maksimal, keamanan tipe data, dan kompilasi native langsung ke mesin",
+      "Hanya saat menulis kode HTML",
+      "Hanya ketika mengimpor library JavaScript",
+      "Ketika tidak ingin menentukan tipe data sama sekali"
+     ],
+     "ans": 0,
+     "why": "'fn' menerapkan aturan ketat (strict typing & memory safety) sehingga kompiler Mojo dapat menghasilkan kode mesin yang berjalan dengan kecepatan native."
+    }
+   },
+   {
+    "id": "mojo-04",
+    "num": "04",
+    "title": "Struktur Data & struct",
+    "level": "Menengah",
+    "desc": "Membuat tipe data kustom berkinerja tinggi tanpa beban alokasi dinamis.",
+    "intro": "Di Python kita biasa menggunakan class. Di Mojo, struct adalah tulang punggung struktur data berkecepatan tinggi tanpa overhead memori.",
+    "body": "\n      <h4>📐 Analogi Cetak Biru Lemari Presisi</h4>\n      <p>Jika <code class=\"inline\">class</code> di Python seperti kardus besar yang dilapisi banyak plastik pembungkus dan label pelacak (banyak memori terbuang untuk *dynamic dispatch*), maka <code class=\"inline\">struct</code> di Mojo adalah <b>laci kayu jati yang dipotong presisi milimeter</b>: setiap slot data tersusun rapat langsung di memori RAM.</p>\n\n      <h4>🏗️ Membuat struct untuk Entitas Data & AI</h4>\n      <div class=\"code-block\"><span class=\"kw\">struct</span> <span class=\"fn\">ProfilPengguna</span>:\n    <span class=\"kw\">var</span> nama: String\n    <span class=\"kw\">var</span> id_klien: Int\n    <span class=\"kw\">var</span> skor_kredit: Float32\n\n    <span class=\"cm\"># Konstruktor penginisialisasi</span>\n    <span class=\"kw\">fn</span> <span class=\"fn\">__init__</span>(<span class=\"kw\">inout</span> self, nama: String, id_klien: Int, skor_kredit: Float32):\n        self.nama = nama\n        self.id_klien = id_klien\n        self.skor_kredit = skor_kredit\n\n    <span class=\"cm\"># Method untuk cek kelayakan AI</span>\n    <span class=\"kw\">fn</span> <span class=\"fn\">apakah_layak_ai</span>(self) -&gt; Bool:\n        <span class=\"kw\">return</span> self.skor_kredit &gt;= <span class=\"nm\">75.0</span>\n\n<span class=\"kw\">fn</span> <span class=\"fn\">main</span>():\n    <span class=\"kw\">var</span> user = ProfilPengguna(<span class=\"st\">\"Supriyanto\"</span>, <span class=\"nm\">1029</span>, <span class=\"nm\">88.5</span>)\n    <span class=\"fn\">print</span>(<span class=\"st\">\"Nama:\"</span>, user.nama)\n    <span class=\"fn\">print</span>(<span class=\"st\">\"Status Verifikasi AI:\"</span>, user.apakah_layak_ai())</div>\n\n      <div class=\"note\">\n        <b>Keunggulan struct di Mojo:</b> Semua field dialokasikan secara *inline* di stack, sehingga CPU cache dapat membaca data berturut-turut tanpa jeda *pointer chasing*.\n      </div>\n    ",
+    "quiz": {
+     "q": "Mengapa 'struct' di Mojo jauh lebih cepat dibandingkan 'class' dinamis pada bahasa tradisional?",
+     "opts": [
+      "Karena struct memiliki tata letak memori statis/inline tanpa overhead garbage collection dan dynamic dispatch",
+      "Karena struct tidak bisa menyimpan data angka",
+      "Karena struct hanya bisa dijalankan di peramban web",
+      "Karena struct otomatis menghapus semua file di harddisk"
+     ],
+     "ans": 0,
+     "why": "struct di Mojo menyusun data secara rapat (memory inline) tanpa overhead objek dinamis, membuatnya ideal untuk struktur data AI."
+    }
+   },
+   {
+    "id": "mojo-05",
+    "num": "05",
+    "title": "Manajemen Memori: Ownership & Borrowing",
+    "level": "Menengah",
+    "desc": "borrowed, inout, dan owned — kontrol hak milik memori tanpa jeda Garbage Collector.",
+    "intro": "Mojo menggunakan sistem kepemilikan memori (mirip Rust) yang menjamin keamanan memori tanpa perlu Garbage Collector yang memperlambat pemrosesan AI.",
+    "body": "\n      <h4>📖 Analogi Buku Catatan Supriyanto</h4>\n      <p>Bayangkan Supriyanto memiliki sebuah buku catatan penting. Ada 3 cara meminjamkannya ke rekan kerja:</p>\n\n      <div class=\"cards\">\n        <div class=\"keyword-card\">\n          <div class=\"keyword-card-header\">\n            <span class=\"keyword-name\">borrowed (Pinjam Baca)</span>\n            <span class=\"keyword-badge\">DEFAULT</span>\n          </div>\n          <div class=\"keyword-desc\">\n            Rekan hanya boleh membaca buku catatan Supriyanto. Tidak boleh mencoret, menambah, atau merusak isinya.\n          </div>\n        </div>\n\n        <div class=\"keyword-card\">\n          <div class=\"keyword-card-header\">\n            <span class=\"keyword-name\">inout (Pinjam Ubah)</span>\n            <span class=\"keyword-badge\">MUTABLE REF</span>\n          </div>\n          <div class=\"keyword-desc\">\n            Rekan meminjam formulir untuk mengisi nilainya secara langsung, lalu formulir tersebut dikembalikan ke Supriyanto.\n          </div>\n        </div>\n\n        <div class=\"keyword-card\">\n          <div class=\"keyword-card-header\">\n            <span class=\"keyword-name\">owned &amp; ^ (Pindah Hak Milik)</span>\n            <span class=\"keyword-badge\">TRANSFER</span>\n          </div>\n          <div class=\"keyword-desc\">\n            Supriyanto menyerahkan sertifikat secara permanen kepada orang lain menggunakan operator <code class=\"inline\">^</code>. Supriyanto tidak boleh mengaksesnya lagi.\n          </div>\n        </div>\n      </div>\n\n      <h4>🛠️ Contoh Kode: borrowed vs inout</h4>\n      <div class=\"code-block\"><span class=\"cm\"># borrowed: hanya membaca data tanpa menduplikat ke memori baru</span>\n<span class=\"kw\">fn</span> <span class=\"fn\">tampilkan_info</span>(<span class=\"kw\">borrowed</span> nama: String):\n    <span class=\"fn\">print</span>(<span class=\"st\">\"Data pengguna:\"</span>, nama)\n\n<span class=\"cm\"># inout: memodifikasi data asli di tempat (in-place modification)</span>\n<span class=\"kw\">fn</span> <span class=\"fn\">tambah_bonus_skor</span>(<span class=\"kw\">inout</span> skor: Float32, bonus: Float32):\n    skor = skor + bonus\n\n<span class=\"kw\">fn</span> <span class=\"fn\">main</span>():\n    <span class=\"kw\">let</span> nama_karyawan: String = <span class=\"st\">\"Supriyanto\"</span>\n    tampilkan_info(nama_karyawan)\n    \n    <span class=\"kw\">var</span> skor_ai: Float32 = <span class=\"nm\">80.0</span>\n    tambah_bonus_skor(skor_ai, <span class=\"nm\">15.0</span>)\n    <span class=\"fn\">print</span>(<span class=\"st\">\"Skor final Supriyanto:\"</span>, skor_ai) <span class=\"cm\"># 95.0</span></div>\n    ",
+    "quiz": {
+     "q": "Jika Anda ingin sebuah fungsi dapat mengubah nilai variabel asli tanpa membuat salinan memori baru, argumen apa yang digunakan di Mojo?",
+     "opts": [
+      "inout",
+      "borrowed",
+      "copy_only",
+      "static"
+     ],
+     "ans": 0,
+     "why": "'inout' memberikan referensi yang dapat dimodifikasi (mutable reference) ke data asli sehingga perubahan langsung tercermin pada pemanggil."
+    }
+   },
+   {
+    "id": "mojo-06",
+    "num": "06",
+    "title": "Interoperabilitas dengan Python",
+    "level": "Menengah",
+    "desc": "Memanggil library raksasa Python (NumPy, PyTorch, Pandas, Matplotlib) langsung dari Mojo.",
+    "intro": "Anda tidak perlu menulis ulang ekosistem AI dari nol. Mojo memiliki jembatan tanpa hambatan ke Python.",
+    "body": "\n      <h4>🌉 Analogi Jembatan Tol Antar-Kota</h4>\n      <p>Bayangkan Anda tinggal di kota modern berkecepatan tinggi (Mojo), tetapi Anda memiliki <b>jembatan tol bebas hambatan</b> menuju pasar terbesar dunia (ekosistem Python). Anda bisa memesan sayur, bumbu, dan alat dapur apa pun dari pasar tersebut (seperti NumPy, Pandas, atau PyTorch) hanya dalam satu panggilan telepon.</p>\n\n      <h4>🐍 Mengimpor Library Python di Dalam Mojo</h4>\n      <div class=\"code-block\"><span class=\"kw\">from</span> <span class=\"st\">python</span> <span class=\"kw\">import</span> Python\n\n<span class=\"kw\">fn</span> <span class=\"fn\">main</span>() <span class=\"kw\">raises</span>:\n    <span class=\"cm\"># Mengimpor modul Python langsung ke Mojo</span>\n    <span class=\"kw\">let</span> np = Python.import_module(<span class=\"st\">\"numpy\"</span>)\n    <span class=\"kw\">let</span> math = Python.import_module(<span class=\"st\">\"math\"</span>)\n    \n    <span class=\"cm\"># Membuat array NumPy dari Mojo</span>\n    <span class=\"kw\">let</span> data_supriyanto = np.array([<span class=\"nm\">10</span>, <span class=\"nm\">25</span>, <span class=\"nm\">40</span>, <span class=\"nm\">85</span>])\n    <span class=\"kw\">let</span> rata_rata = np.mean(data_supriyanto)\n    \n    <span class=\"fn\">print</span>(<span class=\"st\">\"Array NumPy:\"</span>, data_supriyanto)\n    <span class=\"fn\">print</span>(<span class=\"st\">\"Rata-rata data Supriyanto:\"</span>, rata_rata)\n    <span class=\"fn\">print</span>(<span class=\"st\">\"Akar kuadrat 144 via math Python:\"</span>, math.sqrt(<span class=\"nm\">144</span>))</div>\n\n      <div class=\"tip-box\">\n        <span class=\"tip-box-icon\">💡</span>\n        <div><b>Strategi Juara:</b> Gunakan library Python untuk bagian input/output dan plotting grafik, lalu gunakan Mojo murni untuk algoritma komputasi berat agar kecepatan naik ribuan kali lipat!</div>\n      </div>\n    ",
+    "quiz": {
+     "q": "Bagaimana cara mengimpor library Python seperti NumPy dari dalam kode Mojo?",
+     "opts": [
+      "from python import Python, lalu panggil Python.import_module(\"numpy\")",
+      "import numpy.js",
+      "#include <numpy.h>",
+      "require('numpy')"
+     ],
+     "ans": 0,
+     "why": "Mojo menyediakan modul bawaan 'from python import Python' dengan metode 'Python.import_module()' untuk mengimpor package Python apa pun secara mulus."
+    }
+   },
+   {
+    "id": "mojo-07",
+    "num": "07",
+    "title": "Vektorisasi Hardware & SIMD",
+    "level": "Lanjutan",
+    "desc": "Memanfaatkan register prosesor modern untuk komputasi paralel hardware.",
+    "intro": "SIMD (Single Instruction, Multiple Data) adalah rahasia mengapa komputasi AI di Mojo bisa berjalan puluhan ribu kali lebih kencang.",
+    "body": "\n      <h4>🛒 Analogi Kasir Super dengan 8 Tangan</h4>\n      <p>Dalam prosesor komputer tradisional:</p>\n      <ul>\n        <li><b>Non-SIMD (Skalar):</b> Seperti 1 kasir melayani pembeli satu per satu. Untuk menghitung 8 pasang angka, kasir harus memprosesnya dalam 8 langkah antrean berturut-turut.</li>\n        <li><b>SIMD (Vektor):</b> Seperti 1 kasir super mutan yang punya 8 tangan. Dalam <b>1 kali detak jam</b>, kasir tersebut langsung menjumlahkan 8 pasang angka sekaligus secara serentak di register CPU!</li>\n      </ul>\n\n      <h4>⚡ Contoh SIMD di Mojo</h4>\n      <div class=\"code-block\"><span class=\"kw\">fn</span> <span class=\"fn\">main</span>():\n    <span class=\"cm\"># SIMD dengan 4 elemen Float32 sekaligus dalam 1 register CPU</span>\n    <span class=\"kw\">let</span> vektor_a = SIMD[DType.float32, <span class=\"nm\">4</span>](<span class=\"nm\">1.0</span>, <span class=\"nm\">2.0</span>, <span class=\"nm\">3.0</span>, <span class=\"nm\">4.0</span>)\n    <span class=\"kw\">let</span> vektor_b = SIMD[DType.float32, <span class=\"nm\">4</span>](<span class=\"nm\">10.0</span>, <span class=\"nm\">20.0</span>, <span class=\"nm\">30.0</span>, <span class=\"nm\">40.0</span>)\n    \n    <span class=\"cm\"># Menjumlahkan 4 pasang angka dalam SATU siklus instruksi CPU</span>\n    <span class=\"kw\">let</span> hasil = vektor_a + vektor_b\n    <span class=\"fn\">print</span>(<span class=\"st\">\"Hasil penjumlahan vektor SIMD Supriyanto:\"</span>, hasil)\n    <span class=\"cm\"># Output: [11.0, 22.0, 33.0, 44.0]</span>\n    \n    <span class=\"cm\"># Perkalian elemen sekaligus (FMA - Fused Multiply-Add)</span>\n    <span class=\"kw\">let</span> perkalian = vektor_a * <span class=\"nm\">2.5</span>\n    <span class=\"fn\">print</span>(<span class=\"st\">\"Hasil perkalian skala SIMD:\"</span>, perkalian)</div>\n\n      <div class=\"note\">\n        <b>Dukungan Lebar Vektor:</b> Mojo mendukung SIMD 4, 8, 16, hingga 64 jalur (AVX-512, ARM Neon, dan Apple Silicon AMX).\n      </div>\n    ",
+    "quiz": {
+     "q": "Apa kepanjangan dari SIMD dan bagaimana cara kerjanya?",
+     "opts": [
+      "Single Instruction, Multiple Data — mengeksekusi satu instruksi matematika pada banyak data sekaligus dalam satu siklus CPU",
+      "Simple Input Memory Device — alat penyimpan memori flash",
+      "Sequential Instruction Multi Device — eksekusi kode baris demi baris secara lambat",
+      "Standard Internet Module Data — protokol transfer data internet"
+     ],
+     "ans": 0,
+     "why": "SIMD adalah teknologi akselerasi hardware di mana satu instruksi prosesor mengeksekusi operasi matematika pada sekumpulan data (vektor) secara serentak."
+    }
+   },
+   {
+    "id": "mojo-08",
+    "num": "08",
+    "title": "Multi-Threading & Tiling CPU",
+    "level": "Lanjutan",
+    "desc": "Membagi beban kerja komputasi ke seluruh core CPU dan mengoptimalkan Cache L1/L2.",
+    "intro": "Prosesor modern memiliki banyak core (8, 16, hingga 128 core). Mojo menyediakan fungsi parallelize untuk memanfaatkan semua tenaga prosesor tersebut secara otomatis.",
+    "body": "\n      <h4>🍞 Analogi Memotong 10.000 Roti</h4>\n      <p>Jika Supriyanto harus memotong 10.000 potong roti sendirian (single core), butuh waktu seharian. Namun jika Supriyanto mempekerjakan 8 koki (8 CPU Cores) dan membagi adonan ke dalam nampan-nampan kecil berukuran pas meja (*Tiling*), 10.000 roti selesai hanya dalam beberapa menit.</p>\n\n      <h4>🚀 Contoh Paralelisasi dengan parallelize</h4>\n      <div class=\"code-block\"><span class=\"kw\">from</span> <span class=\"st\">algorithm</span> <span class=\"kw\">import</span> parallelize\n\n<span class=\"kw\">fn</span> <span class=\"fn\">proses_baris_data</span>(nomor_core: Int):\n    <span class=\"cm\"># Logika yang dijalankan serentak oleh masing-masing worker core</span>\n    <span class=\"kw\">let</span> offset = nomor_core * <span class=\"nm\">1000</span>\n    <span class=\"fn\">print</span>(<span class=\"st\">\"Core\"</span>, nomor_core, <span class=\"st\">\"memproses data Supriyanto batch:\"</span>, offset)\n\n<span class=\"kw\">fn</span> <span class=\"fn\">main</span>():\n    <span class=\"kw\">let</span> total_pekerjaan = <span class=\"nm\">8</span>\n    <span class=\"cm\"># Menjalankan fungsi di 8 thread CPU secara paralel</span>\n    parallelize[proses_baris_data](total_pekerjaan)\n    <span class=\"fn\">print</span>(<span class=\"st\">\"Semua pekerjaan multi-threading selesai!\"</span>)</div>\n\n      <div class=\"tip\">\n        <b>Konsep Tiling:</b> Data dipecah menjadi blok-blok kecil seukuran L1 Cache (misal 32KB atau 64KB) agar CPU tidak perlu menunggu transfer data lambat dari RAM utama.\n      </div>\n    ",
+    "quiz": {
+     "q": "Apa fungsi utama dari paket 'algorithm.parallelize' di Mojo?",
+     "opts": [
+      "Mengeksekusi tugas secara paralel di seluruh core prosesor (multi-threading) secara otomatis",
+      "Menyambungkan laptop ke printer bluetooth",
+      "Mengubah tema web menjadi gelap",
+      "Menghapus cache browser"
+     ],
+     "ans": 0,
+     "why": "parallelize di Mojo membagi iterasi komputasi ke beberapa thread CPU worker sehingga seluruh core prosesor bekerja bersamaan secara maksimal."
+    }
+   },
+   {
+    "id": "mojo-09",
+    "num": "09",
+    "title": "Fondasi AI: Operasi Matriks & Tensor",
+    "level": "Mahir",
+    "desc": "Membangun operasi inti perkalian matriks (Matrix Multiplication) berkecepatan tinggi.",
+    "intro": "Seluruh kecerdasan buatan (Large Language Model, Computer Vision, Audio) pada intinya adalah operasi perkalian tabel angka berukuran besar (Matriks & Tensor).",
+    "body": "\n      <h4>📊 Analogi Tabel Komposisi Bumbu Resep</h4>\n      <p>Bayangkan Anda memiliki <b>Tabel Bahan Makanan</b> (Matriks A) dan <b>Tabel Resep Masakan Supriyanto</b> (Matriks B). Operasi Matrix Multiplication ($C = A \\times B$) mengalikan setiap baris bahan dengan setiap kolom resep untuk menghasilkan takaran rasa baru secara massal.</p>\n\n      <h4>🧮 Perkalian Matriks Cepat dengan SIMD di Mojo</h4>\n      <div class=\"code-block\"><span class=\"kw\">struct</span> <span class=\"fn\">Matrix2x2</span>:\n    <span class=\"kw\">var</span> data: SIMD[DType.float32, <span class=\"nm\">4</span>] <span class=\"cm\"># Menyimpan 4 angka [a00, a01, a10, a11]</span>\n\n    <span class=\"kw\">fn</span> <span class=\"fn\">__init__</span>(<span class=\"kw\">inout</span> self, v0: Float32, v1: Float32, v2: Float32, v3: Float32):\n        self.data = SIMD[DType.float32, <span class=\"nm\">4</span>](v0, v1, v2, v3)\n\n    <span class=\"cm\"># Perkalian matriks dengan vektor input AI</span>\n    <span class=\"kw\">fn</span> <span class=\"fn\">kali_vektor</span>(self, vec: SIMD[DType.float32, <span class=\"nm\">2</span>]) -&gt; SIMD[DType.float32, <span class=\"nm\">2</span>]:\n        <span class=\"kw\">let</span> r0 = (self.data[<span class=\"nm\">0</span>] * vec[<span class=\"nm\">0</span>]) + (self.data[<span class=\"nm\">1</span>] * vec[<span class=\"nm\">1</span>])\n        <span class=\"kw\">let</span> r1 = (self.data[<span class=\"nm\">2</span>] * vec[<span class=\"nm\">0</span>]) + (self.data[<span class=\"nm\">3</span>] * vec[<span class=\"nm\">1</span>])\n        <span class=\"kw\">return</span> SIMD[DType.float32, <span class=\"nm\">2</span>](r0, r1)\n\n<span class=\"kw\">fn</span> <span class=\"fn\">main</span>():\n    <span class=\"cm\"># Bobot jaringan saraf tiruan (Weights Matrix)</span>\n    <span class=\"kw\">let</span> bobot_ai = Matrix2x2(<span class=\"nm\">0.5</span>, <span class=\"nm\">1.2</span>, <span class=\"nm\">-0.8</span>, <span class=\"nm\">2.0</span>)\n    <span class=\"cm\"># Data fitur input Supriyanto [umur, skor]</span>\n    <span class=\"kw\">let</span> input_supriyanto = SIMD[DType.float32, <span class=\"nm\">2</span>](<span class=\"nm\">2.0</span>, <span class=\"nm\">3.0</span>)\n    \n    <span class=\"kw\">let</span> output_tensor = bobot_ai.kali_vektor(input_supriyanto)\n    <span class=\"fn\">print</span>(<span class=\"st\">\"Hasil Output Linear Layer AI:\"</span>, output_tensor)</div>\n\n      <div class=\"note\">\n        <b>Dari 2x2 ke 4096x4096:</b> Prinsip matematika yang sama diterapkan pada model AI raksasa seperti LLM (Llama, GPT), hanya saja ukurannya mencapai ribuan dimensi.\n      </div>\n    ",
+    "quiz": {
+     "q": "Mengapa operasi Matrix Multiplication menjadi jantung dari komputasi model AI modern?",
+     "opts": [
+      "Karena seluruh transformasi data fitur input dan bobot neuron dihitung melalui perkalian matriks (Linear Layer)",
+      "Hanya untuk menampilkan warna di layar",
+      "Hanya untuk menghitung jumlah baris file teks",
+      "Karena matriks membuat ukuran file teks jadi lebih kecil"
+     ],
+     "ans": 0,
+     "why": "Di dalam neural network dan deep learning, layer linier (Dense/Attention) memproses data input melalui perkalian matriks bobot (Weights x Inputs + Bias)."
+    }
+   },
+   {
+    "id": "mojo-10",
+    "num": "10",
+    "title": "Fungsi Aktivasi AI (ReLU & Sigmoid)",
+    "level": "Mahir",
+    "desc": "Mengimplementasikan fungsi aktivasi non-linier neuron AI berkecepatan tinggi.",
+    "intro": "Tanpa fungsi aktivasi, jaringan saraf tiruan hanyalah regresi linier biasa. Fungsi aktivasi bertindak sebagai saklar keputusan neuron.",
+    "body": "\n      <h4>💡 Analogi Saklar Lampu Otomatis</h4>\n      <p>Neuron di otak buatan membutuhkan aturan:</p>\n      <ul>\n        <li><b>ReLU (Rectified Linear Unit):</b> Seperti sensor lampu otomatis. Jika sinyal informasi positif ($x > 0$), lampu menyala proporsional sebesar sinyal tersebut. Jika sinyalnya negatif ($x \\le 0$), lampu mati total ($0$). Rumusnya sangat simpel: $f(x) = \\max(0, x)$.</li>\n        <li><b>Sigmoid:</b> Menekan angka berapa pun (dari minus tak hingga sampai plus tak hingga) menjadi rentang probabilitas antara <b>0.0 (0%) hingga 1.0 (100%)</b>.</li>\n      </ul>\n\n      <h4>⚡ Implementasi ReLU Berbasis SIMD Vektor</h4>\n      <div class=\"code-block\"><span class=\"kw\">fn</span> <span class=\"fn\">relu_simd</span>(tensor: SIMD[DType.float32, <span class=\"nm\">4</span>]) -&gt; SIMD[DType.float32, <span class=\"nm\">4</span>]:\n    <span class=\"kw\">let</span> nol = SIMD[DType.float32, <span class=\"nm\">4</span>](<span class=\"nm\">0.0</span>, <span class=\"nm\">0.0</span>, <span class=\"nm\">0.0</span>, <span class=\"nm\">0.0</span>)\n    <span class=\"cm\"># Jika nilai negatif, ubah jadi 0. Jika positif, pertahankan</span>\n    <span class=\"kw\">return</span> (tensor &gt; nol).select(tensor, nol)\n\n<span class=\"kw\">fn</span> <span class=\"fn\">sigmoid_sederhana</span>(x: Float32) -&gt; Float32:\n    <span class=\"cm\"># Pendekatan komputasi probabilitas</span>\n    <span class=\"kw\">return</span> <span class=\"nm\">1.0</span> / (<span class=\"nm\">1.0</span> + <span class=\"nm\">2.7182818</span> ** (-x))\n\n<span class=\"kw\">fn</span> <span class=\"fn\">main</span>():\n    <span class=\"cm\"># Contoh data sinyal neuron Supriyanto (ada yang negatif dan positif)</span>\n    <span class=\"kw\">let</span> sinyal_mentah = SIMD[DType.float32, <span class=\"nm\">4</span>](<span class=\"nm\">-3.5</span>, <span class=\"nm\">1.8</span>, <span class=\"nm\">-0.2</span>, <span class=\"nm\">4.2</span>)\n    <span class=\"kw\">let</span> hasil_aktivasi = relu_simd(sinyal_mentah)\n    \n    <span class=\"fn\">print</span>(<span class=\"st\">\"Sinyal sebelum aktivasi:\"</span>, sinyal_mentah)\n    <span class=\"fn\">print</span>(<span class=\"st\">\"Sinyal setelah ReLU AI:\"</span>, hasil_aktivasi)\n    <span class=\"cm\"># Output: [0.0, 1.8, 0.0, 4.2]</span>\n    \n    <span class=\"kw\">let</span> probabilitas = sigmoid_sederhana(<span class=\"nm\">2.5</span>)\n    <span class=\"fn\">print</span>(<span class=\"st\">\"Probabilitas kelulusan Supriyanto:\"</span>, probabilitas * <span class=\"nm\">100</span>, <span class=\"st\">\"%\"</span>)</div>\n    ",
+    "quiz": {
+     "q": "Apa yang dilakukan fungsi aktivasi ReLU terhadap nilai input negatif?",
+     "opts": [
+      "Mengubah seluruh nilai negatif menjadi nol (0)",
+      "Mengalikan nilai negatif dengan minus satu",
+      "Menghapus memori RAM",
+      "Menambah nilai negatif sebesar 100"
+     ],
+     "ans": 0,
+     "why": "ReLU (Rectified Linear Unit) mengembalikan f(x) = max(0, x), yang berarti semua nilai negatif dipotong menjadi nol (0)."
+    }
+   },
+   {
+    "id": "mojo-11",
+    "num": "11",
+    "title": "Implementasi AI: Mini Neural Network Inference",
+    "level": "Mahir",
+    "desc": "Membangun Jaringan Saraf Tiruan lengkap untuk inferensi dan prediksi data.",
+    "intro": "Sekarang kita gabungkan semua materi: Struct, Linear Layer, SIMD, dan ReLU untuk membuat model AI prediksi dari nol.",
+    "body": "\n      <h4>🧠 Arsitektur Jaringan Saraf Tiruan (Neural Network)</h4>\n      <p>Kita akan membuat model AI mini untuk memprediksi apakah permohonan analisis data <b>Supriyanto</b> disetujui atau ditolak berdasarkan 2 parameter input: <code class=\"inline\">[skor_kemampuan, skor_kecepatan]</code>.</p>\n      \n      <p><b>Alur Kerja AI:</b></p>\n      <p><code class=\"inline\">Input Layer (2 fitur) → Hidden Dense Layer (Bobot &amp; Bias) → Aktivasi ReLU → Output Layer (Prediksi)</code></p>\n\n      <h4>🤖 Kode Lengkap Model AI di Mojo</h4>\n      <div class=\"code-block\"><span class=\"kw\">struct</span> <span class=\"fn\">DenseLayer</span>:\n    <span class=\"kw\">var</span> w0: Float32\n    <span class=\"kw\">var</span> w1: Float32\n    <span class=\"kw\">var</span> bias: Float32\n\n    <span class=\"kw\">fn</span> <span class=\"fn\">__init__</span>(<span class=\"kw\">inout</span> self, w0: Float32, w1: Float32, bias: Float32):\n        self.w0 = w0\n        self.w1 = w1\n        self.bias = bias\n\n    <span class=\"cm\"># Forward Pass neuron</span>\n    <span class=\"kw\">fn</span> <span class=\"fn\">forward</span>(self, x0: Float32, x1: Float32) -&gt; Float32:\n        <span class=\"kw\">let</span> linear_out = (x0 * self.w0) + (x1 * self.w1) + self.bias\n        <span class=\"cm\"># Terapkan aktivasi ReLU: max(0, x)</span>\n        <span class=\"kw\">if</span> linear_out &gt; <span class=\"nm\">0.0</span>:\n            <span class=\"kw\">return</span> linear_out\n        <span class=\"kw\">return</span> <span class=\"nm\">0.0</span>\n\n<span class=\"kw\">fn</span> <span class=\"fn\">main</span>():\n    <span class=\"cm\"># 1. Inisialisasi model neuron terlatih (Trained Weights)</span>\n    <span class=\"kw\">let</span> neuron_keputusan = DenseLayer(<span class=\"nm\">0.65</span>, <span class=\"nm\">0.85</span>, <span class=\"nm\">-0.5</span>)\n    \n    <span class=\"cm\"># 2. Data input Supriyanto: [Kemampuan=0.9, Kecepatan=0.8]</span>\n    <span class=\"kw\">let</span> fitur_kemampuan: Float32 = <span class=\"nm\">0.9</span>\n    <span class=\"kw\">let</span> fitur_kecepatan: Float32 = <span class=\"nm\">0.8</span>\n    \n    <span class=\"cm\"># 3. Jalankan inferensi AI</span>\n    <span class=\"kw\">let</span> skor_prediksi = neuron_keputusan.forward(fitur_kemampuan, fitur_kecepatan)\n    \n    <span class=\"fn\">print</span>(<span class=\"st\">\"=== HASIL INFERENSI MODEL AI MOJO ===\"</span>)\n    <span class=\"fn\">print</span>(<span class=\"st\">\"Kandidat:\"</span>, <span class=\"st\">\"Supriyanto\"</span>)\n    <span class=\"fn\">print</span>(<span class=\"st\">\"Skor Aktivasi Output:\"</span>, skor_prediksi)\n    \n    <span class=\"kw\">if</span> skor_prediksi &gt; <span class=\"nm\">0.5</span>:\n        <span class=\"fn\">print</span>(<span class=\"st\">\"Status AI: REKOMENDASI DITERIMA ✅\"</span>)\n    <span class=\"kw\">else</span>:\n        <span class=\"fn\">print</span>(<span class=\"st\">\"Status AI: PERLU REVIEW ULANG ⚠️\"</span>)</div>\n\n      <div class=\"tip-box\">\n        <span class=\"tip-box-icon\">⚡</span>\n        <div><b>Performa Luar Biasa:</b> Kode inferensi di atas berjalan tanpa overhead interpreter Python, langsung dieksekusi di register CPU dalam hitungan nanodetik.</div>\n      </div>\n    ",
+    "quiz": {
+     "q": "Apa yang dimaksud dengan proses 'Forward Pass' pada inferensi Neural Network?",
+     "opts": [
+      "Proses mengalirkan data input melalui bobot layer dan fungsi aktivasi untuk menghasilkan output prediksi",
+      "Proses mematikan komputer setelah selesai coding",
+      "Proses backup database ke cloud",
+      "Proses mengirim email otomatis"
+     ],
+     "ans": 0,
+     "why": "Forward Pass adalah perhitungan berurutan dari layer input ke layer output untuk menghasilkan nilai prediksi model AI."
+    }
+   },
+   {
+    "id": "mojo-12",
+    "num": "12",
+    "title": "Masa Depan AI, MAX Engine & Akselerasi GPU",
+    "level": "Mahir",
+    "desc": "Mengenal ekosistem Modular MAX dan deployment model AI tingkat produksi.",
+    "intro": "Mojo bukan sekadar bahasa baru, melainkan fondasi ekosistem AI generasi masa depan untuk deployment model LLM dan akselerasi GPU.",
+    "body": "\n      <h4>🚀 Analogi Roket Pendorong Luar Angkasa</h4>\n      <p>Jika kode Mojo yang Anda tulis adalah kapsul pesawat luar angkasa, maka <b>MAX Engine (Modular Acceleration Engine)</b> adalah roket pendorong raksasa yang memungkinkan model AI Anda meluncur di berbagai jenis hardware: <b>NVIDIA CUDA GPU, AMD ROCm, Apple Silicon (M1/M2/M3/M4), hingga server CPU cloud</b> tanpa perlu mengubah satu baris kode pun!</p>\n\n      <h4>🌟 3 Pilar Utama Ekosistem Mojo &amp; MAX</h4>\n      <div class=\"cards\">\n        <div class=\"keyword-card\">\n          <div class=\"keyword-card-header\">\n            <span class=\"keyword-name\">1. MAX Serving</span>\n            <span class=\"keyword-badge\">PRODUCTION</span>\n          </div>\n          <div class=\"keyword-desc\">\n            Infrastruktur penyedia API inferensi untuk model LLM (seperti Llama 3, Mistral) dengan throughput hingga 3x lipat lebih tinggi dan konsumsi RAM jauh lebih hemat.\n          </div>\n        </div>\n\n        <div class=\"keyword-card\">\n          <div class=\"keyword-card-header\">\n            <span class=\"keyword-name\">2. MAX Graph &amp; Kernels</span>\n            <span class=\"keyword-badge\">HARDWARE</span>\n          </div>\n          <div class=\"keyword-desc\">\n            Menulis custom kernel AI langsung menggunakan sintaks Mojo tanpa harus mempelajari bahasa rumit seperti CUDA C++.\n          </div>\n        </div>\n      </div>\n\n      <h4>🏆 Rangkuman Perjalanan Belajar</h4>\n      <p>Selamat! Supriyanto telah mempelajari fondasi lengkap bahasa Mojo dari tingkat Pemula hingga Mahir:</p>\n      <ul>\n        <li>✅ Filosofi kecepatan Mojo &amp; sintaks <code class=\"inline\">fn</code> vs <code class=\"inline\">def</code></li>\n        <li>✅ Struktur data <code class=\"inline\">struct</code> &amp; manajemen memori <code class=\"inline\">borrowed / inout</code></li>\n        <li>✅ Interoperabilitas mulus dengan ekosistem Python</li>\n        <li>✅ Vektorisasi hardware SIMD &amp; multi-threading parallelize</li>\n        <li>✅ Pembuatan layer AI, perkalian matriks, dan inferensi Neural Network</li>\n      </ul>\n\n      <div class=\"tip-box\">\n        <span class=\"tip-box-icon\">🎉</span>\n        <div><b>Langkah Selanjutnya:</b> Uji pemahaman Anda dengan mengikuti <b>Quiz Mojo</b> pada menu navigasi!</div>\n      </div>\n    ",
+    "quiz": {
+     "q": "Apa keunggulan utama dari Modular MAX Engine saat menjalankan model AI di tingkat produksi?",
+     "opts": [
+      "Mampu mengoptimalkan dan mengompilasi model AI ke berbagai hardware (NVIDIA GPU, AMD, Apple Silicon, CPU) dengan throughput tinggi dan hemat memori",
+      "Hanya bisa berjalan di handphone jadul",
+      "Membuat ukuran font editor menjadi lebih besar",
+      "Otomatis mematikan koneksi internet"
+     ],
+     "ans": 0,
+     "why": "MAX Engine mengoptimalkan eksekusi model AI lintas berbagai akselerator hardware dengan efisiensi memori dan throughput komputasi tertinggi."
+    }
+   }
+  ]
  }
 ];
 
@@ -344,10 +592,10 @@ const QUIZ_BANK = [
   "topic": "Variabel — Kotak Penyimpanan",
   "q": "Manakah yang benar untuk membuat variabel yang nilainya TIDAK BISA diubah?",
   "opts": [
-   "let nama = \"Bang\"",
-   "const nama = \"Bang\"",
-   "var nama = \"Bang\"",
-   "nama = \"Bang\""
+   "let nama = \"Supriyanto\"",
+   "const nama = \"Supriyanto\"",
+   "var nama = \"Supriyanto\"",
+   "nama = \"Supriyanto\""
   ],
   "ans": 1,
   "why": "const artinya konstan = tetap. Sekali diisi, tidak bisa diubah."
@@ -420,7 +668,7 @@ const QUIZ_BANK = [
  {
   "track": "js",
   "topic": "Object — Kartu Identitas Data",
-  "q": "Bagaimana mengambil nilai \"umur\" dari const user = {nama:\"Bang\", umur:25}?",
+  "q": "Bagaimana mengambil nilai \"umur\" dari const user = {nama:\"Supriyanto\", umur:25}?",
   "opts": [
    "user[umur]",
    "user.umur",
@@ -459,15 +707,15 @@ const QUIZ_BANK = [
  {
   "track": "js",
   "topic": "Destructure — Bongkar Cepat",
-  "q": "const {nama} = {nama:\"Bang\", umur:25}; console.log(nama) — outputnya?",
+  "q": "const {nama} = {nama:\"Supriyanto\", umur:25}; console.log(nama) — outputnya?",
   "opts": [
-   "{nama: \"Bang\"}",
-   "Bang",
+   "{nama: \"Supriyanto\"}",
+   "Supriyanto",
    "umur 25",
    "Error"
   ],
   "ans": 1,
-  "why": "Destructure mengambil properti nama saja dari object → nilainya \"Bang\"."
+  "why": "Destructure mengambil properti nama saja dari object → nilainya \"Supriyanto\"."
  },
  {
   "track": "js",
@@ -949,5 +1197,161 @@ const QUIZ_BANK = [
   ],
   "ans": 1,
   "why": "Docker image resmi Playwright sudah include Node.js + semua browser + dependency OS. Environment di setiap run dijamin identik — menghilangkan masalah \"works on my machine\" yang umum terjadi saat setup manual."
+ },
+ {
+  "track": "mojo",
+  "topic": "Pengenalan & Filosofi Mojo",
+  "q": "Siapa tokoh di balik penciptaan bahasa pemrograman Mojo?",
+  "opts": [
+   "Chris Lattner (pencipta LLVM & Swift)",
+   "Guido van Rossum",
+   "Brendan Eich",
+   "James Gosling"
+  ],
+  "ans": 0,
+  "why": "Mojo dirancang oleh Chris Lattner bersama tim Modular untuk menyatukan ekosistem AI dan komputasi performa tinggi."
+ },
+ {
+  "track": "mojo",
+  "topic": "Variabel let vs var & Strict Typing",
+  "q": "Apa perbedaan mendasar antara kata kunci 'let' dan 'var' di Mojo?",
+  "opts": [
+   "let bersifat konstan (immutable), sedangkan var bisa diubah (mutable)",
+   "let hanya untuk angka, sedangkan var hanya untuk teks",
+   "let lebih lambat daripada var",
+   "let wajib di dalam class, var di luar class"
+  ],
+  "ans": 0,
+  "why": "Di Mojo, 'let' mendeklarasikan nilai konstan yang tidak dapat diubah (immutable), sedangkan 'var' mendeklarasikan variabel yang nilainya bisa diubah (mutable)."
+ },
+ {
+  "track": "mojo",
+  "topic": "Fungsi fn vs def — Fleksibel vs Performa Maksimal",
+  "q": "Kapan sebaiknya kita menggunakan kata kunci 'fn' dibandingkan 'def' di Mojo?",
+  "opts": [
+   "Ketika menginginkan performa maksimal, keamanan tipe data, dan kompilasi native langsung ke mesin",
+   "Hanya saat menulis kode HTML",
+   "Hanya ketika mengimpor library JavaScript",
+   "Ketika tidak ingin menentukan tipe data sama sekali"
+  ],
+  "ans": 0,
+  "why": "'fn' menerapkan aturan ketat (strict typing & memory safety) sehingga kompiler Mojo dapat menghasilkan kode mesin yang berjalan dengan kecepatan native."
+ },
+ {
+  "track": "mojo",
+  "topic": "Struktur Data & struct",
+  "q": "Mengapa 'struct' di Mojo jauh lebih cepat dibandingkan 'class' dinamis pada bahasa tradisional?",
+  "opts": [
+   "Karena struct memiliki tata letak memori statis/inline tanpa overhead garbage collection dan dynamic dispatch",
+   "Karena struct tidak bisa menyimpan data angka",
+   "Karena struct hanya bisa dijalankan di peramban web",
+   "Karena struct otomatis menghapus semua file di harddisk"
+  ],
+  "ans": 0,
+  "why": "struct di Mojo menyusun data secara rapat (memory inline) tanpa overhead objek dinamis, membuatnya ideal untuk struktur data AI."
+ },
+ {
+  "track": "mojo",
+  "topic": "Manajemen Memori: Ownership & Borrowing",
+  "q": "Jika Anda ingin sebuah fungsi dapat mengubah nilai variabel asli tanpa membuat salinan memori baru, argumen apa yang digunakan di Mojo?",
+  "opts": [
+   "inout",
+   "borrowed",
+   "copy_only",
+   "static"
+  ],
+  "ans": 0,
+  "why": "'inout' memberikan referensi yang dapat dimodifikasi (mutable reference) ke data asli sehingga perubahan langsung tercermin pada pemanggil."
+ },
+ {
+  "track": "mojo",
+  "topic": "Interoperabilitas dengan Python",
+  "q": "Bagaimana cara mengimpor library Python seperti NumPy dari dalam kode Mojo?",
+  "opts": [
+   "from python import Python, lalu panggil Python.import_module(\"numpy\")",
+   "import numpy.js",
+   "#include <numpy.h>",
+   "require('numpy')"
+  ],
+  "ans": 0,
+  "why": "Mojo menyediakan modul bawaan 'from python import Python' dengan metode 'Python.import_module()' untuk mengimpor package Python apa pun secara mulus."
+ },
+ {
+  "track": "mojo",
+  "topic": "Vektorisasi Hardware & SIMD",
+  "q": "Apa kepanjangan dari SIMD dan bagaimana cara kerjanya?",
+  "opts": [
+   "Single Instruction, Multiple Data — mengeksekusi satu instruksi matematika pada banyak data sekaligus dalam satu siklus CPU",
+   "Simple Input Memory Device — alat penyimpan memori flash",
+   "Sequential Instruction Multi Device — eksekusi kode baris demi baris secara lambat",
+   "Standard Internet Module Data — protokol transfer data internet"
+  ],
+  "ans": 0,
+  "why": "SIMD adalah teknologi akselerasi hardware di mana satu instruksi prosesor mengeksekusi operasi matematika pada sekumpulan data (vektor) secara serentak."
+ },
+ {
+  "track": "mojo",
+  "topic": "Multi-Threading & Tiling CPU",
+  "q": "Apa fungsi utama dari paket 'algorithm.parallelize' di Mojo?",
+  "opts": [
+   "Mengeksekusi tugas secara paralel di seluruh core prosesor (multi-threading) secara otomatis",
+   "Menyambungkan laptop ke printer bluetooth",
+   "Mengubah tema web menjadi gelap",
+   "Menghapus cache browser"
+  ],
+  "ans": 0,
+  "why": "parallelize di Mojo membagi iterasi komputasi ke beberapa thread CPU worker sehingga seluruh core prosesor bekerja bersamaan secara maksimal."
+ },
+ {
+  "track": "mojo",
+  "topic": "Fondasi AI: Operasi Matriks & Tensor",
+  "q": "Mengapa operasi Matrix Multiplication menjadi jantung dari komputasi model AI modern?",
+  "opts": [
+   "Karena seluruh transformasi data fitur input dan bobot neuron dihitung melalui perkalian matriks (Linear Layer)",
+   "Hanya untuk menampilkan warna di layar",
+   "Hanya untuk menghitung jumlah baris file teks",
+   "Karena matriks membuat ukuran file teks jadi lebih kecil"
+  ],
+  "ans": 0,
+  "why": "Di dalam neural network dan deep learning, layer linier (Dense/Attention) memproses data input melalui perkalian matriks bobot (Weights x Inputs + Bias)."
+ },
+ {
+  "track": "mojo",
+  "topic": "Fungsi Aktivasi AI (ReLU & Sigmoid)",
+  "q": "Apa yang dilakukan fungsi aktivasi ReLU terhadap nilai input negatif?",
+  "opts": [
+   "Mengubah seluruh nilai negatif menjadi nol (0)",
+   "Mengalikan nilai negatif dengan minus satu",
+   "Menghapus memori RAM",
+   "Menambah nilai negatif sebesar 100"
+  ],
+  "ans": 0,
+  "why": "ReLU (Rectified Linear Unit) mengembalikan f(x) = max(0, x), yang berarti semua nilai negatif dipotong menjadi nol (0)."
+ },
+ {
+  "track": "mojo",
+  "topic": "Implementasi AI: Mini Neural Network Inference",
+  "q": "Apa yang dimaksud dengan proses 'Forward Pass' pada inferensi Neural Network?",
+  "opts": [
+   "Proses mengalirkan data input melalui bobot layer dan fungsi aktivasi untuk menghasilkan output prediksi",
+   "Proses mematikan komputer setelah selesai coding",
+   "Proses backup database ke cloud",
+   "Proses mengirim email otomatis"
+  ],
+  "ans": 0,
+  "why": "Forward Pass adalah perhitungan berurutan dari layer input ke layer output untuk menghasilkan nilai prediksi model AI."
+ },
+ {
+  "track": "mojo",
+  "topic": "Masa Depan AI, MAX Engine & Akselerasi GPU",
+  "q": "Apa keunggulan utama dari Modular MAX Engine saat menjalankan model AI di tingkat produksi?",
+  "opts": [
+   "Mampu mengoptimalkan dan mengompilasi model AI ke berbagai hardware (NVIDIA GPU, AMD, Apple Silicon, CPU) dengan throughput tinggi dan hemat memori",
+   "Hanya bisa berjalan di handphone jadul",
+   "Membuat ukuran font editor menjadi lebih besar",
+   "Otomatis mematikan koneksi internet"
+  ],
+  "ans": 0,
+  "why": "MAX Engine mengoptimalkan eksekusi model AI lintas berbagai akselerator hardware dengan efisiensi memori dan throughput komputasi tertinggi."
  }
 ];

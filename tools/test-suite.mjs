@@ -1,4 +1,4 @@
-﻿import { spawn } from 'child_process';
+import { spawn } from 'child_process';
 import http from 'http';
 import path from 'path';
 
@@ -84,73 +84,76 @@ async function runTests() {
     // Test 1: Data integrity & Branding
     const lessonCount = await evaluate('return ALL.length;');
     const quizCount = await evaluate('return QUIZ_BANK.length;');
+    const trackCount = await evaluate('return TRACKS.length;');
     const brandText = await evaluate('return document.querySelector(".brand-text").textContent;');
-    console.log(`[PASS] Data integrity: ${lessonCount} lessons, ${quizCount} quiz questions, Brand: "${brandText}"`);
-    if (lessonCount !== 22 || quizCount !== 47 || !brandText.includes('RB Learning')) throw new Error('Invalid count or brand');
+    console.log(`[PASS] Data integrity: ${lessonCount} lessons, ${quizCount} quiz questions, ${trackCount} tracks, Brand: "${brandText}"`);
+    if (lessonCount !== 34 || quizCount !== 59 || trackCount !== 3 || !brandText.includes('RB Learning')) throw new Error('Invalid count or brand');
 
-    // Test 2: Search functionality
+    // Test 2: Search functionality with "Supriyanto" and "mojo"
     await evaluate(`
       const input = document.querySelector('#searchInput');
-      input.value = 'array';
+      input.value = 'supriyanto';
       input.dispatchEvent(new Event('input'));
     `);
     await sleep(200);
     const visibleItems = await evaluate(`
       return Array.from(document.querySelectorAll('#sideNav .side-item[data-id]')).map(el => el.textContent.trim());
     `);
-    console.log('[PASS] Search results for "array":', visibleItems.length, 'lessons found');
-    if (visibleItems.length === 0) throw new Error('Search failed');
+    console.log('[PASS] Search results for "supriyanto":', visibleItems.length, 'lessons found');
+    if (visibleItems.length === 0) throw new Error('Search failed for Supriyanto');
 
-    // Test 3: Clear search & Collapsible groups
+    // Test 3: Collapsible group for Mojo track
     await evaluate(`
       const input = document.querySelector('#searchInput');
       input.value = '';
       input.dispatchEvent(new Event('input'));
     `);
     await sleep(200);
-    const jsGroupBefore = await evaluate(`return document.querySelector('.side-group[data-track="js"]').classList.contains('collapsed');`);
-    await evaluate(`toggleGroup('js');`);
-    const jsGroupAfter = await evaluate(`return document.querySelector('.side-group[data-track="js"]').classList.contains('collapsed');`);
+    const mojoGroupBefore = await evaluate(`return document.querySelector('.side-group[data-track="mojo"]').classList.contains('collapsed');`);
+    await evaluate(`toggleGroup('mojo');`);
+    const mojoGroupAfter = await evaluate(`return document.querySelector('.side-group[data-track="mojo"]').classList.contains('collapsed');`);
     const storedCollapsed = await evaluate(`return localStorage.getItem('rblearn:collapsed');`);
-    console.log(`[PASS] Collapsible group: before=${jsGroupBefore}, after=${jsGroupAfter}, stored=${storedCollapsed}`);
-    if (jsGroupAfter === jsGroupBefore) throw new Error('Toggle group failed');
+    console.log(`[PASS] Collapsible Mojo group: before=${mojoGroupBefore}, after=${mojoGroupAfter}, stored=${storedCollapsed}`);
+    if (mojoGroupAfter === mojoGroupBefore) throw new Error('Toggle Mojo group failed');
 
-    // Re-open JS group
-    await evaluate(`toggleGroup('js');`);
+    // Re-open Mojo group
+    await evaluate(`toggleGroup('mojo');`);
 
-    // Test 4: Lesson navigation & Progress marking
-    await cdp.send('Page.navigate', { url: BASE_URL + '/#/m/js-array' });
+    // Test 4: Mojo Lesson navigation & AI implementation (mojo-11: Mini Neural Network)
+    await cdp.send('Page.navigate', { url: BASE_URL + '/#/m/mojo-11' });
     await sleep(400);
     const title = await evaluate(`return document.querySelector('.lesson-title').textContent;`);
-    console.log(`[PASS] Lesson navigation to js-array: "${title}"`);
+    const hasAIContent = await evaluate(`return document.querySelector('.lesson-body').textContent.includes('Neural Network');`);
+    console.log(`[PASS] Lesson navigation to mojo-11: "${title}", hasAIContent=${hasAIContent}`);
+    if (!hasAIContent) throw new Error('Mojo AI content missing in mojo-11');
 
-    // Mark done
+    // Mark done on Mojo lesson
     await evaluate(`document.querySelector('#btnDone').click();`);
     await sleep(200);
-    const isDoneStored = await evaluate(`return JSON.parse(localStorage.getItem('rblearn:progress')).includes('js-array');`);
+    const isDoneStored = await evaluate(`return JSON.parse(localStorage.getItem('rblearn:progress')).includes('mojo-11');`);
     const pctText = await evaluate(`return document.querySelector('#spPct').textContent;`);
-    console.log(`[PASS] Progress marked: inStorage=${isDoneStored}, UI pct=${pctText}`);
+    console.log(`[PASS] Progress marked for mojo-11: inStorage=${isDoneStored}, UI pct=${pctText}`);
     if (!isDoneStored) throw new Error('Progress saving failed');
 
-    // Test 5: Playground execution
+    // Test 5: Playground execution with Supriyanto
     await cdp.send('Page.navigate', { url: BASE_URL + '/#/playground' });
     await sleep(400);
     await evaluate(`
-      document.querySelector('#pgCode').value = 'console.log("TEST_OK", 123 + 456);';
+      document.querySelector('#pgCode').value = 'const nama = "Supriyanto"; console.log("Halo, " + nama);';
       runPlayground();
     `);
     const pgOutput = await evaluate(`return document.querySelector('#pgOut').textContent;`);
     console.log(`[PASS] Playground execution output: "${pgOutput.trim()}"`);
-    if (!pgOutput.includes('TEST_OK 579')) throw new Error('Playground execution failed');
+    if (!pgOutput.includes('Halo, Supriyanto')) throw new Error('Playground execution failed');
 
-    // Test 6: Quiz workflow
+    // Test 6: Quiz workflow with Mojo filter
     await cdp.send('Page.navigate', { url: BASE_URL + '/#/quiz' });
     await sleep(400);
-    await evaluate(`startQuiz('pw');`);
+    await evaluate(`startQuiz('mojo');`);
     await sleep(200);
     const quizQuestion = await evaluate(`return document.querySelector('.quiz-q').textContent;`);
     const optsCount = await evaluate(`return document.querySelectorAll('.quiz-opt').length;`);
-    console.log(`[PASS] Quiz started: "${quizQuestion.slice(0, 40)}...", ${optsCount} options`);
+    console.log(`[PASS] Mojo Quiz started: "${quizQuestion.slice(0, 45)}...", ${optsCount} options`);
     if (optsCount < 2) throw new Error('Quiz options missing');
 
     // Answer first question

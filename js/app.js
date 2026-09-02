@@ -211,10 +211,9 @@ function viewHome() {
   $('#view').innerHTML = `
     <div class="home-hero">
       <div class="home-kicker">RB Learning · Materi Lengkap Bahasa Indonesia</div>
-      <h1>Dua skill, satu alur: <em>JavaScript</em> lalu <em>Playwright</em>.</h1>
-      <p>Kuasai fondasi bahasa — variabel sampai async/await — lalu lanjut ke automation testing:
-         locator, assertion, Page Object Model, sampai pipeline Jenkins. Setiap materi punya contoh,
-         bisa ditandai selesai, dan diakhiri quiz.</p>
+      <h1>Tiga skill modern: <em>JavaScript</em>, <em>Playwright</em>, dan <em>Mojo 🔥</em>.</h1>
+      <p>Kuasai fondasi web JavaScript, automation testing Playwright, hingga bahasa AI modern berkecepatan tinggi Mojo:
+         SIMD, tensor matriks, dan inferensi neural network. Setiap materi memiliki contoh nyata dan kuis pemahaman interaktif.</p>
       <div class="home-actions">
         <a class="btn btn-primary" href="#/m/${next.id}">Lanjutkan: ${esc(next.title)}</a>
         <a class="btn btn-ghost" href="#/quiz">Uji pemahaman</a>
@@ -294,7 +293,7 @@ function viewPlayground() {
 
   const saved = localStorage.getItem(LS.code);
   const starter = saved ?? `// Tulis kode, lalu klik Jalankan (atau Ctrl+Enter)
-const nama = "Bang";
+const nama = "Supriyanto";
 console.log("Halo, " + nama + "!");
 
 const harga = [10000, 20000, 5000];
@@ -390,6 +389,7 @@ function renderQuizStart() {
     { id: 'all', label: 'Semua' },
     { id: 'js', label: 'JavaScript' },
     { id: 'pw', label: 'Playwright' },
+    { id: 'mojo', label: 'Mojo 🔥' },
   ];
   $('#view').innerHTML = `
     <div class="quiz-head">
