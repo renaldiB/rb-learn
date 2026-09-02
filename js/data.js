@@ -1,0 +1,953 @@
+/* Data materi gabungan — dihasilkan dari modul "Learn JS" + "Learn Playwright". */
+const TRACKS = [
+ {
+  "id": "js",
+  "title": "JavaScript",
+  "subtitle": "Fondasi bahasa: dari variabel sampai async/await",
+  "accent": "amber",
+  "lessons": [
+   {
+    "id": "js-variabel",
+    "num": "01",
+    "title": "Variabel — Kotak Penyimpanan",
+    "level": "Pemula",
+    "desc": "let, const, var — cara nyimpen data biar bisa dipake ulang.",
+    "intro": "Variabel itu kayak <b>kotak berlabel</b>. Lo taro barang (nilai) di dalam, kasih label (nama), tinggal panggil kapan aja.",
+    "body": "\n      <h4>📦 Cara bikin kotak</h4>\n      <p>Tiga kata kunci: <code class=\"inline\">let</code> (bisa diubah), <code class=\"inline\">const</code> (sekali isi, gak bisa diubah), <code class=\"inline\">var</code> (jadul, hindarin).</p>\n      <pre class=\"codeblock\"><code><span class=\"kw\">let</span> umur <span class=\"nm\">=</span> <span class=\"nm\">25</span>;\n<span class=\"kw\">const</span> nama <span class=\"nm\">=</span> <span class=\"st\">\"Bang\"</span>;  <span class=\"cm\">// const: gak bisa diubah</span>\numur <span class=\"nm\">=</span> <span class=\"nm\">26</span>;              <span class=\"cm\">// let: boleh diubah ✔</span>\n\n<span class=\"fn\">console.log</span>(umur);  <span class=\"cm\">// 26</span>\n<span class=\"fn\">console.log</span>(nama);  <span class=\"cm\">// Bang</span></code></pre>\n\n      <div class=\"tip\">💡 <b>Aturan jempol:</b> pake <code class=\"inline\">const</code> selalu. Ganti ke <code class=\"inline\">let</code> cuma kalo emang nilainya bakal berubah.</div>\n\n      <h4>🧩 Tipe data dasar</h4>\n      <ul>\n        <li><code class=\"inline\">\"teks\"</code> — string (kata/kalimat)</li>\n        <li><code class=\"inline\">42</code> — number (angka)</li>\n        <li><code class=\"inline\">true/false</code> — boolean (iya/tidak)</li>\n        <li><code class=\"inline\">[\"a\",\"b\"]</code> — array (daftar)</li>\n        <li><code class=\"inline\">{nama:\"Bang\"}</code> — object (kumpulan data)</li>\n      </ul>\n\n      <pre class=\"codeblock\"><code><span class=\"kw\">let</span> daftarBelanja <span class=\"nm\">=</span> [<span class=\"st\">\"telur\"</span>, <span class=\"st\">\"nasi\"</span>, <span class=\"st\">\"ayam\"</span>];\n<span class=\"kw\">let</span> user <span class=\"nm\">=</span> { nama: <span class=\"st\">\"Bang\"</span>, umur: <span class=\"nm\">25</span> };\n<span class=\"fn\">console.log</span>(user.nama);   <span class=\"cm\">// Bang</span></code></pre>\n\n      <div class=\"note\">📌 <b>Inget gini aja:</b> variabel = kotak, <code class=\"inline\">=</code> = masukin barang ke kotak, nama = label kotak.</div>\n    ",
+    "quiz": {
+     "q": "Manakah yang benar untuk membuat variabel yang nilainya TIDAK BISA diubah?",
+     "opts": [
+      "let nama = \"Bang\"",
+      "const nama = \"Bang\"",
+      "var nama = \"Bang\"",
+      "nama = \"Bang\""
+     ],
+     "ans": 1,
+     "why": "const artinya konstan = tetap. Sekali diisi, tidak bisa diubah."
+    }
+   },
+   {
+    "id": "js-operator",
+    "num": "02",
+    "title": "Operator — Mesin Hitung & Logika",
+    "level": "Pemula",
+    "desc": "+, -, *, / buat hitung; ===, &gt; buat bandingin.",
+    "intro": "Operator itu kayak <b>mesin</b>: masukin angka/kata, keluar hasil. Dua jenis utama: <b>hitung</b> dan <b>bandingin</b>.",
+    "body": "\n      <h4>🧮 Operator hitung</h4>\n      <pre class=\"codeblock\"><code><span class=\"fn\">console.log</span>(<span class=\"nm\">10</span> + <span class=\"nm\">5</span>);   <span class=\"cm\">// 15</span>\n<span class=\"fn\">console.log</span>(<span class=\"nm\">10</span> - <span class=\"nm\">5</span>);   <span class=\"cm\">// 5</span>\n<span class=\"fn\">console.log</span>(<span class=\"nm\">10</span> * <span class=\"nm\">5</span>);   <span class=\"cm\">// 50</span>\n<span class=\"fn\">console.log</span>(<span class=\"nm\">10</span> / <span class=\"nm\">5</span>);   <span class=\"cm\">// 2</span>\n<span class=\"fn\">console.log</span>(<span class=\"nm\">10</span> % <span class=\"nm\">3</span>);   <span class=\"cm\">// 1 (sisa bagi)</span></code></pre>\n\n      <h4>⚖️ Operator bandingin (hasilnya true/false)</h4>\n      <pre class=\"codeblock\"><code><span class=\"fn\">console.log</span>(<span class=\"nm\">5</span> === <span class=\"st\">\"5\"</span>);  <span class=\"cm\">// false — beda tipe!</span>\n<span class=\"fn\">console.log</span>(<span class=\"nm\">5</span> == <span class=\"st\">\"5\"</span>);   <span class=\"cm\">// true — tapi jangan dipake</span>\n<span class=\"fn\">console.log</span>(<span class=\"nm\">10</span> &gt; <span class=\"nm\">5</span>);    <span class=\"cm\">// true</span>\n<span class=\"fn\">console.log</span>(<span class=\"nm\">10</span> !== <span class=\"nm\">5</span>);   <span class=\"cm\">// true — tidak sama</span></code></pre>\n\n      <div class=\"warn\">⚠️ <b>Selalu pake <code class=\"inline\">===</code></b> (tiga sama dengan). <code class=\"inline\">==</code> (dua) bisa ngebandingin beda tipe dan bikin bug gak jelas.</div>\n\n      <h4>🔗 Operator logika</h4>\n      <pre class=\"codeblock\"><code><span class=\"kw\">let</span> punyaUang <span class=\"nm\">=</span> <span class=\"kw\">true</span>;\n<span class=\"kw\">let</span> hariLibur <span class=\"nm\">=</span> <span class=\"kw\">false</span>;\n<span class=\"fn\">console.log</span>(punyaUang <span class=\"nm\">&amp;&amp;</span> hariLibur);  <span class=\"cm\">// false (DAN)</span>\n<span class=\"fn\">console.log</span>(punyaUang <span class=\"nm\">||</span> hariLibur);  <span class=\"cm\">// true (ATAU)</span>\n<span class=\"fn\">console.log</span>(!hariLibur);              <span class=\"cm\">// true (KEBALIKAN)</span></code></pre>\n\n      <div class=\"note\">📌 <b>Inget gini aja:</b> <code class=\"inline\">&amp;&amp;</code> = dua-duanya harus benar. <code class=\"inline\">||</code> = salah satu benar aja cukup.</div>\n    ",
+    "quiz": {
+     "q": "Hasil dari 10 % 3 adalah...",
+     "opts": [
+      "3",
+      "1",
+      "0",
+      "10 / 3"
+     ],
+     "ans": 1,
+     "why": "% itu sisa bagi. 10 dibagi 3 = 3 sisa 1. Jadi hasilnya 1."
+    }
+   },
+   {
+    "id": "js-string",
+    "num": "03",
+    "title": "String — Ngobrol Sama Teks",
+    "level": "Pemula",
+    "desc": "Gabung teks, template literal, dan trik string yang sering kepake.",
+    "intro": "String = <b>teks</b>. Antara pake tanda kutip: <code class=\"inline\">\"...\"</code>, <code class=\"inline\">'...'</code>, atau backtick <code class=\"inline\">`...`</code> (paling keren).",
+    "body": "\n      <h4>✂️ Potong &amp; gabung teks</h4>\n      <pre class=\"codeblock\"><code><span class=\"kw\">const</span> nama <span class=\"nm\">=</span> <span class=\"st\">\"Bang\"</span>;\n<span class=\"kw\">const</span> sapaan <span class=\"nm\">=</span> <span class=\"st\">\"Halo \"</span> + nama;      <span class=\"cm\">// cara jadul</span>\n<span class=\"fn\">console.log</span>(sapaan);                    <span class=\"cm\">// Halo Bang</span>\n\n<span class=\"cm\">// Cara modern (TEMPLATE LITERAL) — pake backtick</span>\n<span class=\"kw\">const</span> sapaan2 <span class=\"nm\">=</span> <span class=\"st\">`Halo ${nama}!`</span>;\n<span class=\"fn\">console.log</span>(sapaan2);                   <span class=\"cm\">// Halo Bang!</span></code></pre>\n\n      <div class=\"tip\">💡 <b>Template literal</b> (<code class=\"inline\">`...${var}...`</code>) itu cara paling gampang masukin variabel ke teks. Hafalin, pasti kepake tiap hari.</div>\n\n      <h4>🔍 Sering dipake</h4>\n      <pre class=\"codeblock\"><code><span class=\"kw\">const</span> email <span class=\"nm\">=</span> <span class=\"st\">\"Bang@Email.com\"</span>;\n<span class=\"fn\">console.log</span>(email.length);           <span class=\"cm\">// 14 (berapa huruf)</span>\n<span class=\"fn\">console.log</span>(email.toUpperCase());    <span class=\"cm\">// BANG@EMAIL.COM</span>\n<span class=\"fn\">console.log</span>(email.toLowerCase());    <span class=\"cm\">// bang@email.com</span>\n<span class=\"fn\">console.log</span>(email.includes(<span class=\"st\">\"@\"</span>));  <span class=\"cm\">// true — ada @ gak?</span>\n<span class=\"fn\">console.log</span>(email.trim());           <span class=\"cm\">// hapus spasi di ujung</span></code></pre>\n\n      <div class=\"note\">📌 <b>Inget gini aja:</b> titik <code class=\"inline\">.</code> itu \"punya\". <code class=\"inline\">email.length</code> = \"email punya panjang\". Gampang kan?</div>\n    ",
+    "quiz": {
+     "q": "Template literal di JavaScript pakai tanda...",
+     "opts": [
+      "\"kutip dua\"",
+      "'kutip satu'",
+      "`backtick`",
+      "(kurung)"
+     ],
+     "ans": 2,
+     "why": "Template literal pakai backtick (`...`), bukan kutip biasa. Contoh: `Halo ${nama}`."
+    }
+   },
+   {
+    "id": "js-condition",
+    "num": "04",
+    "title": "If/Else — Jalan Bercabang",
+    "level": "Pemula",
+    "desc": "if, else if, else — komputer mutusin jalan berdasarkan kondisi.",
+    "intro": "Komputer itu kayak <b>lampu lalu lintas</b>: merah berhenti, hijau jalan. <code class=\"inline\">if</code> = \"kalau begini, kerjain ini\".",
+    "body": "\n      <h4>🚦 Struktur dasar</h4>\n      <pre class=\"codeblock\"><code><span class=\"kw\">const</span> umur <span class=\"nm\">=</span> <span class=\"nm\">17</span>;\n\n<span class=\"kw\">if</span> (umur &gt;= <span class=\"nm\">18</span>) {\n  <span class=\"fn\">console.log</span>(<span class=\"st\">\"Dewasa\"</span>);\n} <span class=\"kw\">else if</span> (umur &gt;= <span class=\"nm\">13</span>) {\n  <span class=\"fn\">console.log</span>(<span class=\"st\">\"Remaja\"</span>);\n} <span class=\"kw\">else</span> {\n  <span class=\"fn\">console.log</span>(<span class=\"st\">\"Anak-anak\"</span>);\n}</code></pre>\n      <p>Programnya: cek umur &gt;= 18? Gak. Cek umur &gt;= 13? Iya → jalanin blok itu. Sisanya di-skip.</p>\n\n      <h4>🎯 Ternary: if singkat</h4>\n      <pre class=\"codeblock\"><code><span class=\"cm\">// if biasa</span>\n<span class=\"kw\">let</span> status;\n<span class=\"kw\">if</span> (umur &gt;= <span class=\"nm\">18</span>) { status <span class=\"nm\">=</span> <span class=\"st\">\"Dewasa\"</span>; }\n<span class=\"kw\">else</span> { status <span class=\"nm\">=</span> <span class=\"st\">\"Bocil\"</span>; }\n\n<span class=\"cm\">// ternary — 1 baris, sama persis</span>\n<span class=\"kw\">const</span> status2 <span class=\"nm\">=</span> umur &gt;= <span class=\"nm\">18</span> ? <span class=\"st\">\"Dewasa\"</span> : <span class=\"st\">\"Bocil\"</span>;</code></pre>\n\n      <div class=\"tip\">💡 Baca ternary: <code class=\"inline\">kondisi ? ini : itu</code> → \"kalau iya, ambil ini; kalau enggak, ambil itu\".</div>\n\n      <h4>👮 Switch: banyak pilihan</h4>\n      <pre class=\"codeblock\"><code><span class=\"kw\">const</span> hari <span class=\"nm\">=</span> <span class=\"st\">\"senin\"</span>;\n<span class=\"kw\">switch</span> (hari) {\n  <span class=\"kw\">case</span> <span class=\"st\">\"senin\"</span>: <span class=\"fn\">console.log</span>(<span class=\"st\">\"Ngoding\"</span>); <span class=\"kw\">break</span>;\n  <span class=\"kw\">case</span> <span class=\"st\">\"selasa\"</span>: <span class=\"fn\">console.log</span>(<span class=\"st\">\"Belajar\"</span>); <span class=\"kw\">break</span>;\n  <span class=\"kw\">default</span>: <span class=\"fn\">console.log</span>(<span class=\"st\">\"Santai\"</span>);\n}</code></pre>\n\n      <div class=\"note\">📌 <b>Inget gini aja:</b> <code class=\"inline\">if</code> = \"kalau\", <code class=\"inline\">else</code> = \"kalau enggak\". Logika sehari-hari, tinggal tulis.</div>\n    ",
+    "quiz": {
+     "q": "Apa output dari: umur = 17; if (umur >= 18) \"Dewasa\" else \"Bocil\"?",
+     "opts": [
+      "Dewasa",
+      "Bocil",
+      "Error",
+      "17"
+     ],
+     "ans": 1,
+     "why": "17 tidak >= 18, jadi cabang else jalan: \"Bocil\"."
+    }
+   },
+   {
+    "id": "js-function",
+    "num": "05",
+    "title": "Function — Resep Masakan",
+    "level": "Pemula",
+    "desc": "Bikin kode sekali, panggil berkali-kali. Kayak resep yang bisa dipake ulang.",
+    "intro": "Function itu kayak <b>resep masakan</b>: tulis langkahnya sekali, terus tinggal \"masak\" (panggil) kapan aja, pake bahan berbeda.",
+    "body": "\n      <h4>📝 Bikin &amp; panggil function</h4>\n      <pre class=\"codeblock\"><code><span class=\"cm\">// Bikin resep</span>\n<span class=\"kw\">function</span> <span class=\"fn\">sapa</span>(nama) {\n  <span class=\"kw\">return</span> <span class=\"st\">`Halo, ${nama}!`</span>;\n}\n\n<span class=\"cm\">// Panggil — bahan (argumen) beda</span>\n<span class=\"fn\">console.log</span>(<span class=\"fn\">sapa</span>(<span class=\"st\">\"Bang\"</span>));    <span class=\"cm\">// Halo, Bang!</span>\n<span class=\"fn\">console.log</span>(<span class=\"fn\">sapa</span>(<span class=\"st\">\"Bos\"</span>));    <span class=\"cm\">// Halo, Bos!</span></code></pre>\n      <p><code class=\"inline\">nama</code> = bahan (parameter). <code class=\"inline\">return</code> = hasil masakan yang dikeluarin.</p>\n\n      <h4>⚡ Arrow function (cara modern)</h4>\n      <pre class=\"codeblock\"><code><span class=\"cm\">// Cara lama</span>\n<span class=\"kw\">function</span> kali(a, b) { <span class=\"kw\">return</span> a * b; }\n\n<span class=\"cm\">// Arrow — lebih pendek, ini yg dipake di dunia kerja</span>\n<span class=\"kw\">const</span> kali <span class=\"nm\">=</span> (a, b) <span class=\"nm\">=&gt;</span> a * b;\n\n<span class=\"fn\">console.log</span>(<span class=\"fn\">kali</span>(<span class=\"nm\">4</span>, <span class=\"nm\">5</span>));  <span class=\"cm\">// 20</span></code></pre>\n\n      <div class=\"tip\">💡 <b>Hafalin bentuk ini:</b> <code class=\"inline\">const nama = (input) =&gt; hasil</code>. Kalau cuma 1 baris, gak perlu <code class=\"inline\">return</code> &amp; kurung kurawal.</div>\n\n      <div class=\"note\">📌 <b>Inget gini aja:</b> function = resep. <code class=\"inline\">function</code> bikin, <code class=\"inline\">()</code> bahan, <code class=\"inline\">return</code> hasil. Tulis sekali, pake selamanya.</div>\n    ",
+    "quiz": {
+     "q": "Apa output dari: const kali = (a,b) => a*b; console.log(kali(4,5));",
+     "opts": [
+      "9",
+      "45",
+      "20",
+      "kali"
+     ],
+     "ans": 2,
+     "why": "Arrow function mengembalikan hasil a*b = 4*5 = 20."
+    }
+   },
+   {
+    "id": "js-array",
+    "num": "06",
+    "title": "Array — Daftar Belanja Code",
+    "level": "Pemula",
+    "desc": "push, pop, map, filter — ngelola daftar data yang gede.",
+    "intro": "Array itu <b>daftar</b>. Kayak daftar belanja: ada isi, ada urutan, bisa ditambah &amp; diambil. Nomor urutnya mulai dari <b>0</b> (bukan 1!).",
+    "body": "\n      <h4>🗂️ Bikin &amp; akses daftar</h4>\n      <pre class=\"codeblock\"><code><span class=\"kw\">const</span> buah <span class=\"nm\">=</span> [<span class=\"st\">\"apel\"</span>, <span class=\"st\">\"mangga\"</span>, <span class=\"st\">\"pisang\"</span>];\n<span class=\"fn\">console.log</span>(buah[<span class=\"nm\">0</span>]);       <span class=\"cm\">// apel  (index 0 = pertama)</span>\n<span class=\"fn\">console.log</span>(buah.length);    <span class=\"cm\">// 3 (berapa isi)</span>\n<span class=\"fn\">console.log</span>(buah[buah.length - <span class=\"nm\">1</span>]);  <span class=\"cm\">// pisang (terakhir)</span></code></pre>\n\n      <h4>➕➖ Nambah &amp; ngurangin</h4>\n      <pre class=\"codeblock\"><code>buah.<span class=\"fn\">push</span>(<span class=\"st\">\"jeruk\"</span>);     <span class=\"cm\">// tambah di belakang</span>\nbuah.<span class=\"fn\">pop</span>();            <span class=\"cm\">// hapus yang belakang</span>\nbuah.<span class=\"fn\">shift</span>();          <span class=\"cm\">// hapus yang depan</span>\nbuah.<span class=\"fn\">unshift</span>(<span class=\"st\">\"durian\"</span>); <span class=\"cm\">// tambah di depan</span></code></pre>\n\n      <h4>🔥 Map = ubah semua, Filter = saring</h4>\n      <pre class=\"codeblock\"><code><span class=\"kw\">const</span> harga <span class=\"nm\">=</span> [<span class=\"nm\">10000</span>, <span class=\"nm\">20000</span>, <span class=\"nm\">5000</span>];\n\n<span class=\"cm\">// map: ubah SEMUA → tambah pajak 10%</span>\n<span class=\"kw\">const</span> pakePajak <span class=\"nm\">=</span> harga.<span class=\"fn\">map</span>(h <span class=\"nm\">=&gt;</span> h * <span class=\"nm\">1.1</span>);\n<span class=\"cm\">// [11000, 22000, 5500]</span>\n\n<span class=\"cm\">// filter: saring → ambil yang di atas 6000</span>\n<span class=\"kw\">const</span> mahal <span class=\"nm\">=</span> harga.<span class=\"fn\">filter</span>(h <span class=\"nm\">=&gt;</span> h &gt; <span class=\"nm\">6000</span>);\n<span class=\"cm\">// [10000, 20000]</span></code></pre>\n\n      <div class=\"tip\">💡 <b>map/filter itu WAJIB hafal</b> buat kerja. Dua-duanya gak ngubah daftar asli — hasilnya daftar baru. Copy-paste kode di atas ke Playground, ubah-ubah, liat hasilnya.</div>\n\n      <div class=\"note\">📌 <b>Inget gini aja:</b> <code class=\"inline\">map</code> = transformasi 1-ke-1 (daftar 3 → daftar 3). <code class=\"inline\">filter</code> = saringan (daftar 3 → bisa jadi 2).</div>\n    ",
+    "quiz": {
+     "q": "const buah = [\"apel\",\"mangga\",\"pisang\"]; console.log(buah[1]); — outputnya?",
+     "opts": [
+      "apel",
+      "mangga",
+      "pisang",
+      "Error"
+     ],
+     "ans": 1,
+     "why": "Index dimulai dari 0. buah[0]=apel, buah[1]=mangga."
+    }
+   },
+   {
+    "id": "js-object",
+    "num": "07",
+    "title": "Object — Kartu Identitas Data",
+    "level": "Pemula",
+    "desc": "Simpan data kompleks: nama, umur, alamat dalam satu objek.",
+    "intro": "Object itu kayak <b>KTP digital</b>: satu orang punya banyak data — nama, umur, alamat — dikumpulin jadi satu.",
+    "body": "\n      <h4>🪪 Bikin object</h4>\n      <pre class=\"codeblock\"><code><span class=\"kw\">const</span> user <span class=\"nm\">=</span> {\n  nama: <span class=\"st\">\"Bang\"</span>,\n  umur: <span class=\"nm\">25</span>,\n  kota: <span class=\"st\">\"Jakarta\"</span>,\n  <span class=\"fn\">sapa</span>() { <span class=\"kw\">return</span> <span class=\"st\">`Halo, aku ${<span class=\"kw\">this</span>.nama}`</span>; }\n};\n\n<span class=\"fn\">console.log</span>(user.nama);        <span class=\"cm\">// Bang — pake titik</span>\n<span class=\"fn\">console.log</span>(user[<span class=\"st\">\"kota\"</span>]);    <span class=\"cm\">// Jakarta — pake kurung</span>\n<span class=\"fn\">console</span>.<span class=\"fn\">log</span>(user.<span class=\"fn\">sapa</span>());      <span class=\"cm\">// Halo, aku Bang</span></code></pre>\n\n      <h4>🔄 Ubah &amp; tambah data</h4>\n      <pre class=\"codeblock\"><code>user.umur <span class=\"nm\">=</span> <span class=\"nm\">26</span>;              <span class=\"cm\">// ubah</span>\nuser.hobi <span class=\"nm\">=</span> [<span class=\"st\">\"ngoding\"</span>, <span class=\"st\">\"trading\"</span>];  <span class=\"cm\">// tambah baru</span>\n<span class=\"kw\">delete</span> user.kota;           <span class=\"cm\">// hapus</span></code></pre>\n\n      <h4>🗃️ Object di dalem array (POLA PALING SERING)</h4>\n      <pre class=\"codeblock\"><code><span class=\"kw\">const</span> users <span class=\"nm\">=</span> [\n  { nama: <span class=\"st\">\"Bang\"</span>, umur: <span class=\"nm\">25</span> },\n  { nama: <span class=\"st\">\"Boss\"</span>, umur: <span class=\"nm\">30</span> }\n];\n\n<span class=\"cm\">// Ambil semua nama — map + object = combo andalan</span>\n<span class=\"kw\">const</span> namaSemua <span class=\"nm\">=</span> users.<span class=\"fn\">map</span>(u <span class=\"nm\">=&gt;</span> u.nama);\n<span class=\"fn\">console.log</span>(namaSemua);   <span class=\"cm\">// [\"Bang\",\"Boss\"]</span></code></pre>\n\n      <div class=\"tip\">💡 <b>Ini pola paling umum di dunia nyata:</b> array of objects. Data dari API (backend) hampir selalu berbentuk array of objects. Hafalin kombinasi <code class=\"inline\">array.map(u =&gt; u.nama)</code>.</div>\n\n      <div class=\"note\">📌 <b>Inget gini aja:</b> object = KTP. <code class=\"inline\">user.nama</code> = \"user punya nama\". Titik itu \"punya\".</div>\n    ",
+    "quiz": {
+     "q": "Bagaimana mengambil nilai \"umur\" dari const user = {nama:\"Bang\", umur:25}?",
+     "opts": [
+      "user[umur]",
+      "user.umur",
+      "user->umur",
+      "umur.user"
+     ],
+     "ans": 1,
+     "why": "Untuk akses properti object pakai titik: user.umur = 25."
+    }
+   },
+   {
+    "id": "js-loop",
+    "num": "08",
+    "title": "Loop — Ulang Tanpa Capek",
+    "level": "Menengah",
+    "desc": "for, while, forEach — jalanin hal yang sama berulang-ulang otomatis.",
+    "intro": "Loop itu kayak <b>mesin cuci</b>: sekali pencet, dia puter-puter sendiri sampai bersih. Lo gak usah cuci manual 20x.",
+    "body": "\n      <h4>🔁 for — ulang dengan hitungan</h4>\n      <pre class=\"codeblock\"><code><span class=\"cm\">// Mulai dari 1, selama i <= 3, tiap putaran i + 1</span>\n<span class=\"kw\">for</span> (<span class=\"kw\">let</span> i <span class=\"nm\">=</span> <span class=\"nm\">1</span>; i <span class=\"nm\">&lt;=</span> <span class=\"nm\">3</span>; i++) {\n  <span class=\"fn\">console.log</span>(<span class=\"st\">`Putaran ke-${i}`</span>);\n}\n<span class=\"cm\">// Putaran ke-1 / ke-2 / ke-3</span></code></pre>\n      <p>Tiga bagian: <b>mulai</b> (<code class=\"inline\">i = 1</code>), <b>syarat</b> (<code class=\"inline\">i &lt;= 3</code>), <b>langkah</b> (<code class=\"inline\">i++</code>).</p>\n\n      <h4>📋 Loop array pake for...of</h4>\n      <pre class=\"codeblock\"><code><span class=\"kw\">const</span> buah <span class=\"nm\">=</span> [<span class=\"st\">\"apel\"</span>, <span class=\"st\">\"mangga\"</span>];\n<span class=\"kw\">for</span> (<span class=\"kw\">const</span> b <span class=\"kw\">of</span> buah) {\n  <span class=\"fn\">console.log</span>(b);\n}\n<span class=\"cm\">// apel, mangga — lebih gampang daripada for biasa</span></code></pre>\n\n      <h4>🎯 forEach — andalan buat daftar</h4>\n      <pre class=\"codeblock\"><code>buah.<span class=\"fn\">forEach</span>((b, index) <span class=\"nm\">=&gt;</span> {\n  <span class=\"fn\">console.log</span>(index + <span class=\"st\">\": \"</span> + b);\n});\n<span class=\"cm\">// 0: apel, 1: mangga</span></code></pre>\n\n      <div class=\"warn\">⚠️ <b>Bahaya loop tak berujung:</b> kalau syaratnya gak pernah salah (misal lupa <code class=\"inline\">i++</code>), program hang. Selalu pastikan ada jalan keluar!</div>\n\n      <div class=\"note\">📌 <b>Inget gini aja:</b> <code class=\"inline\">for</code> = ulang dengan hitungan, <code class=\"inline\">for...of</code> = jalanin semua isi daftar, <code class=\"inline\">forEach</code> = versi singkatnya.</div>\n    ",
+    "quiz": {
+     "q": "Berapa kali loop ini jalan: for (let i = 0; i < 3; i++)",
+     "opts": [
+      "2 kali",
+      "3 kali",
+      "4 kali",
+      "Tak berujung"
+     ],
+     "ans": 1,
+     "why": "i berjalan 0,1,2 → 3 kali. Saat i=3, syarat i<3 salah, loop berhenti."
+    }
+   },
+   {
+    "id": "js-dom",
+    "num": "09",
+    "title": "DOM — Mainan Website",
+    "level": "Menengah",
+    "desc": "Ubah isi website langsung dari JS. Inilah inti JavaScript di browser!",
+    "intro": "DOM itu kayak <b>remote TV</b>: website itu TV-nya, JS itu remote-nya. Lo pencet tombol → TV langsung berubah. Gak perlu reload.",
+    "body": "\n      <div class=\"note\">🧪 <b>Cobain sekarang:</b> buka Playground di atas, ganti kode jadi di bawah, jalanin. Lo bakal liat kotak \"play\" berubah!</div>\n\n      <h4>🎯 Ambil elemen</h4>\n      <pre class=\"codeblock\"><code><span class=\"cm\">// Cari elemen</span>\n<span class=\"kw\">const</span> judul <span class=\"nm\">=</span> document.<span class=\"fn\">querySelector</span>(<span class=\"st\">\"h1\"</span>);\n<span class=\"kw\">const</span> tombol <span class=\"nm\">=</span> document.<span class=\"fn\">getElementById</span>(<span class=\"st\">\"btnLogin\"</span>);\n<span class=\"kw\">const</span> semua <span class=\"nm\">=</span> document.<span class=\"fn\">querySelectorAll</span>(<span class=\"st\">\".card\"</span>);</code></pre>\n\n      <h4>✍️ Ubah isi &amp; gaya</h4>\n      <pre class=\"codeblock\"><code>judul.textContent <span class=\"nm\">=</span> <span class=\"st\">\"Judul Baru\"</span>;      <span class=\"cm\">// ganti teks</span>\njudul.style.color <span class=\"nm\">=</span> <span class=\"st\">\"tomato\"</span>;         <span class=\"cm\">// ganti warna</span>\njudul.classList.<span class=\"fn\">add</span>(<span class=\"st\">\"aktif\"</span>);        <span class=\"cm\">// tambah class CSS</span>\njudul.classList.<span class=\"fn\">remove</span>(<span class=\"st\">\"aktif\"</span>);     <span class=\"cm\">// hapus class</span></code></pre>\n\n      <h4>👂 Dengerin klik (event)</h4>\n      <pre class=\"codeblock\"><code><span class=\"kw\">const</span> btn <span class=\"nm\">=</span> document.<span class=\"fn\">querySelector</span>(<span class=\"st\">\"#btnLogin\"</span>);\nbtn.<span class=\"fn\">addEventListener</span>(<span class=\"st\">\"click\"</span>, () <span class=\"nm\">=&gt;</span> {\n  <span class=\"fn\">alert</span>(<span class=\"st\">\"Tombol diklik!\"</span>);\n});</code></pre>\n\n      <div class=\"tip\">💡 <b>Rumus hidup:</b> <code class=\"inline\">ambil elemen → ubah / dengerin</code>. Itu 90% kerjaan JS di website. <code class=\"inline\">querySelector</code> pakai selector CSS (sama kayak CSS).</div>\n\n      <div class=\"note\">📌 <b>Inget gini aja:</b> DOM = remote TV. <code class=\"inline\">querySelector</code> = cari tombolnya, <code class=\"inline\">textContent</code> = ganti tulisannya, <code class=\"inline\">addEventListener</code> = pasang sensor klik.</div>\n    ",
+    "quiz": {
+     "q": "Fungsi mana yang dipakai untuk MENGAMBIL elemen berdasarkan ID?",
+     "opts": [
+      "querySelector(\"#id\")",
+      "getElementById(\"id\")",
+      "Keduanya benar",
+      "classList.add(\"id\")"
+     ],
+     "ans": 2,
+     "why": "getElementById(\"id\") dan querySelector(\"#id\") sama-sama bisa mengambil elemen berdasarkan ID."
+    }
+   },
+   {
+    "id": "js-destructure",
+    "num": "10",
+    "title": "Destructure — Bongkar Cepat",
+    "level": "Menengah",
+    "desc": "Ambil data dari object/array dalam sekali baris. Kode jadi pendek & bersih.",
+    "intro": "Destructure itu kayak <b>bongkar kardus</b>: buka box, langsung keluarin semua isinya ke tangan, tanpa ambil satu-satu.",
+    "body": "\n      <h4>📦 Bongkar object</h4>\n      <pre class=\"codeblock\"><code><span class=\"kw\">const</span> user <span class=\"nm\">=</span> { nama: <span class=\"st\">\"Bang\"</span>, umur: <span class=\"nm\">25</span>, kota: <span class=\"st\">\"Jakarta\"</span> };\n\n<span class=\"cm\">// Cara lama — ambil satu-satu</span>\n<span class=\"kw\">const</span> nama1 <span class=\"nm\">=</span> user.nama;\n<span class=\"kw\">const</span> umur1 <span class=\"nm\">=</span> user.umur;\n\n<span class=\"cm\">// Destructure — bongkar sekaligus 💥</span>\n<span class=\"kw\">const</span> { nama, umur } <span class=\"nm\">=</span> user;\n<span class=\"fn\">console.log</span>(nama, umur);   <span class=\"cm\">// Bang 25</span></code></pre>\n\n      <h4>📋 Bongkar array</h4>\n      <pre class=\"codeblock\"><code><span class=\"kw\">const</span> warna <span class=\"nm\">=</span> [<span class=\"st\">\"merah\"</span>, <span class=\"st\">\"kuning\"</span>, <span class=\"st\">\"hijau\"</span>];\n<span class=\"kw\">const</span> [pertama, kedua] <span class=\"nm\">=</span> warna;\n<span class=\"fn\">console.log</span>(pertama);   <span class=\"cm\">// merah</span>\n<span class=\"fn\">console.log</span>(kedua);     <span class=\"cm\">// kuning</span>\n\n<span class=\"cm\">// Skip satu posisi</span>\n<span class=\"kw\">const</span> [a, , c] <span class=\"nm\">=</span> warna;\n<span class=\"fn\">console.log</span>(c);        <span class=\"cm\">// hijau</span></code></pre>\n\n      <h4>⚡ Paling sering kepake: destructure di parameter function</h4>\n      <pre class=\"codeblock\"><code><span class=\"kw\">const</span> user <span class=\"nm\">=</span> { nama: <span class=\"st\">\"Bang\"</span>, umur: <span class=\"nm\">25</span> };\n\n<span class=\"cm\">// Terima langsung propertinya</span>\n<span class=\"kw\">function</span> <span class=\"fn\">kenalin</span>({ nama, umur }) {\n  <span class=\"kw\">return</span> <span class=\"st\">`${nama} umur ${umur}`</span>;\n}\n<span class=\"fn\">console.log</span>(<span class=\"fn\">kenalin</span>(user));   <span class=\"cm\">// Bang umur 25</span></code></pre>\n\n      <div class=\"tip\">💡 <b>Ini wajib hafal buat kerjaan React/API:</b> data dari API dikirim sebagai object → langsung bongkar pas di parameter.</div>\n\n      <div class=\"note\">📌 <b>Inget gini aja:</b> <code class=\"inline\">{ nama, umur } = user</code> → \"keluarin nama &amp; umur dari user\". Kurung kurawal = object, kurung siku = array.</div>\n    ",
+    "quiz": {
+     "q": "const {nama} = {nama:\"Bang\", umur:25}; console.log(nama) — outputnya?",
+     "opts": [
+      "{nama: \"Bang\"}",
+      "Bang",
+      "umur 25",
+      "Error"
+     ],
+     "ans": 1,
+     "why": "Destructure mengambil properti nama saja dari object → nilainya \"Bang\"."
+    }
+   },
+   {
+    "id": "js-async",
+    "num": "11",
+    "title": "Async/Await — Tunggu Data",
+    "level": "Profesional",
+    "desc": "Fetch data dari server tanpa nge-freeze aplikasi.",
+    "intro": "Async itu kayak <b>pesan go-food</b>: lo order (request), sambil nunggu, lo bisa main HP (aplikasi tetep jalan). Dateng? Tinggal ambil.",
+    "body": "\n      <h4>☕ Kenapa perlu async?</h4>\n      <p>Kalau kode jalan sinkron (antri), loading data dari server bisa bikin aplikasi <b>macet</b> kayak layar loading tak berujung. Async = jangan nunggu, lanjutin yang lain.</p>\n\n      <h4>📦 Fetch data dari API</h4>\n      <pre class=\"codeblock\"><code><span class=\"kw\">async function</span> <span class=\"fn\">ambilUser</span>() {\n  <span class=\"kw\">const</span> res <span class=\"nm\">=</span> <span class=\"kw\">await</span> <span class=\"fn\">fetch</span>(<span class=\"st\">\"https://api.example.com/user\"</span>);\n  <span class=\"kw\">const</span> data <span class=\"nm\">=</span> <span class=\"kw\">await</span> res.<span class=\"fn\">json</span>();\n  <span class=\"fn\">console.log</span>(data.nama);\n}</code></pre>\n      <p><code class=\"inline\">await</code> = \"tungguin ini dulu\". <code class=\"inline\">fetch</code> = minta data ke server. Sesimpel itu.</p>\n\n      <h4>🛡️ Tangkap error — jangan lupa!</h4>\n      <pre class=\"codeblock\"><code><span class=\"kw\">async function</span> <span class=\"fn\">ambilUser</span>() {\n  <span class=\"kw\">try</span> {\n    <span class=\"kw\">const</span> res <span class=\"nm\">=</span> <span class=\"kw\">await</span> <span class=\"fn\">fetch</span>(url);\n    <span class=\"kw\">if</span> (!res.ok) <span class=\"kw\">throw new</span> Error(<span class=\"st\">\"Gagal ambil\"</span>);\n    <span class=\"kw\">const</span> data <span class=\"nm\">=</span> <span class=\"kw\">await</span> res.<span class=\"fn\">json</span>();\n    <span class=\"kw\">return</span> data;\n  } <span class=\"kw\">catch</span> (err) {\n    <span class=\"fn\">console.error</span>(<span class=\"st\">\"Error:\"</span>, err.message);\n  }\n}</code></pre>\n\n      <div class=\"warn\">⚠️ <b>Aturan emas:</b> <code class=\"inline\">await</code> cuma boleh di dalam function yang di-cap <code class=\"inline\">async</code>. Lupa? Error seger.</div>\n\n      <div class=\"tip\">💡 <b>Urutan baca:</b> <code class=\"inline\">async function</code> = deklarasi \"ini function yang bisa nunggu\", <code class=\"inline\">await fetch()</code> = \"minta data &amp; tunggu sampe dateng\", <code class=\"inline\">try/catch</code> = \"kalau gagal, jangan panik, tangkap errornya\".</div>\n\n      <div class=\"note\">📌 <b>Inget gini aja:</b> async/await = go-food. Fetch = order. Await = nunggu. Try/catch = komplain kalau salah. Aplikasi tetep ngebut, gak nunggu makan.</div>\n    ",
+    "quiz": {
+     "q": "Apa gunanya kata kunci \"await\" dalam async function?",
+     "opts": [
+      "Menghentikan program",
+      "Menunggu hasil Promise selesai",
+      "Membuat kode lebih cepat",
+      "Menghapus data"
+     ],
+     "ans": 1,
+     "why": "await membuat JS menunggu Promise (misal fetch) selesai sebelum lanjut ke baris berikutnya."
+    }
+   },
+   {
+    "id": "js-clousure",
+    "num": "12",
+    "title": "Closure & this — Level Profesional",
+    "level": "Profesional",
+    "desc": "Dua konsep yang membedakan junior vs senior. Paham ini, lo naik level.",
+    "intro": "Closure itu kayak <b>memori tersembunyi</b>: function yang \"inget\" lingkungan tempat dia lahir, walau sudah dipindah kemana-mana.",
+    "body": "\n      <h4>🔒 Closure: function yang inget masa lalu</h4>\n      <pre class=\"codeblock\"><code><span class=\"kw\">function</span> <span class=\"fn\">buatCounter</span>() {\n  <span class=\"kw\">let</span> hitung <span class=\"nm\">=</span> <span class=\"nm\">0</span>;   <span class=\"cm\">// \"memori\" si function</span>\n  <span class=\"kw\">return</span> () <span class=\"nm\">=&gt;</span> {\n    hitung++;\n    <span class=\"kw\">return</span> hitung;\n  };\n}\n\n<span class=\"kw\">const</span> counter <span class=\"nm\">=</span> <span class=\"fn\">buatCounter</span>();\n<span class=\"fn\">console.log</span>(<span class=\"fn\">counter</span>());  <span class=\"cm\">// 1</span>\n<span class=\"fn\">console.log</span>(<span class=\"fn\">counter</span>());  <span class=\"cm\">// 2 — masih inget!</span>\n<span class=\"fn\">console.log</span>(<span class=\"fn\">counter</span>());  <span class=\"cm\">// 3</span></code></pre>\n      <p>Variabel <code class=\"inline\">hitung</code> itu privat — gak bisa disentuh dari luar, tapi si function bisa ngakses dan \"mengingatnya\". Itu closure.</p>\n\n      <h4>🎯 this: siapa yang manggil?</h4>\n      <pre class=\"codeblock\"><code><span class=\"kw\">const</span> user <span class=\"nm\">=</span> {\n  nama: <span class=\"st\">\"Bang\"</span>,\n  <span class=\"fn\">sapa</span>() { <span class=\"kw\">return</span> <span class=\"st\">`Halo ${<span class=\"kw\">this</span>.nama}`</span>; }\n};\n<span class=\"fn\">console.log</span>(user.<span class=\"fn\">sapa</span>());  <span class=\"cm\">// Halo Bang — this = user</span></code></pre>\n      <p><code class=\"inline\">this</code> = \"siapa pemilik function ini\". Di object, <code class=\"inline\">this</code> = object-nya. Gampang.</p>\n\n      <div class=\"warn\">⚠️ <b>Jebakan arrow function:</b> arrow function <b>gak punya <code class=\"inline\">this</code> sendiri</b> — dia pinjam dari lingkungan luar. Function biasa punya <code class=\"inline\">this</code> sendiri. Ini sumber bug klasik!</div>\n\n      <div class=\"tip\">💡 <b>React/class pake ini terus:</b> <code class=\"inline\">this.setState</code>, <code class=\"inline\">this.props</code>. Pahamin <code class=\"inline\">this</code> = si pemanggil, hidup lo jauh lebih tenang.</div>\n\n      <div class=\"note\">📌 <b>Inget gini aja:</b> closure = function + ingatan. <code class=\"inline\">this</code> = si empunya. Dua-duanya gampang kalo lo tau pola di atas.</div>\n    ",
+    "quiz": {
+     "q": "Function di bawah \"mengingat\" variabel mana? function buatCounter() { let hitung = 0; return () => hitung++; }",
+     "opts": [
+      "Tidak ada",
+      "hitung",
+      "buatCounter",
+      "return"
+     ],
+     "ans": 1,
+     "why": "Closure membuat function dalam mengingat variabel hitung (milik function luar) walau sudah dikembalikan."
+    }
+   }
+  ]
+ },
+ {
+  "id": "pw",
+  "title": "Playwright",
+  "subtitle": "Automation testing: locator, action, assertion, sampai CI/CD",
+  "accent": "green",
+  "lessons": [
+   {
+    "id": "pw-01",
+    "num": "01",
+    "title": "Persiapan & Environment Setup",
+    "level": "Pemula",
+    "desc": "4 sub-topik",
+    "body": "\n\n      <h4>📌 Instalasi Node.js & VS Code</h4>\n      <p>Playwright membutuhkan Node.js sebagai runtime. Download <strong>Node.js LTS</strong> (minimal v18) dari nodejs.org dan <strong>VS Code</strong> dari code.visualstudio.com.</p>\n      <div class=\"code-block\"><span class=\"cm\"># Verifikasi instalasi</span>\nnode -v    <span class=\"cm\"># Contoh output: v20.11.0</span>\nnpm -v     <span class=\"cm\"># Contoh output: 10.2.4</span></div>\n      <p>Install extension <strong>\"Playwright Test for VS Code\"</strong> dari marketplace untuk fitur run/debug test langsung dari editor.</p>\n\n      <h4>📌 Inisialisasi Project Playwright</h4>\n      <p>Buat project baru dengan satu perintah:</p>\n      <div class=\"code-block\">mkdir playwright-demo\ncd playwright-demo\n<span class=\"fn\">npm</span> init playwright@latest</div>\n      <p>Perintah ini akan menginstall Playwright, membuat konfigurasi, dan mendownload browser (Chromium, Firefox, WebKit).</p>\n\n      <h4>📌 Struktur Project</h4>\n      <div class=\"code-block\">📁 playwright-demo/\n├── 📁 tests/\n│   └── example.spec.js     <span class=\"cm\">← File test</span>\n├── 📄 playwright.config.js  <span class=\"cm\">← Konfigurasi utama</span>\n├── 📄 package.json\n└── 📄 package-lock.json</div>\n\n      <h4>📌 Menjalankan Test Pertama</h4>\n      <div class=\"keyword-card\">\n        <div class=\"keyword-card-header\">\n          <span class=\"keyword-name\">npx playwright test</span>\n          <span class=\"keyword-badge\">CLI</span>\n        </div>\n        <div class=\"keyword-desc\">Menjalankan semua test file di folder <code>tests/</code>.</div>\n        <div class=\"code-block\"><span class=\"cm\"># Jalankan semua test</span>\nnpx playwright test\n\n<span class=\"cm\"># Jalankan test tertentu</span>\nnpx playwright test tests/login.spec.js\n\n<span class=\"cm\"># Jalankan dalam mode UI (visual)</span>\nnpx playwright test --ui\n\n<span class=\"cm\"># Jalankan dengan browser terlihat (headed)</span>\nnpx playwright test --headed\n\n<span class=\"cm\"># Generate test otomatis via recording</span>\nnpx playwright codegen https://example.com</div>\n      </div>\n\n      <div class=\"tip-box\">\n        <div class=\"tip-box-icon\">💡</div>\n        <div>Gunakan <code>npx playwright codegen</code> untuk merekam interaksi di browser dan otomatis menghasilkan kode test. Sangat cocok untuk pemula!</div>\n      </div>\n\n    "
+   },
+   {
+    "id": "pw-02",
+    "num": "02",
+    "title": "Mengenal Syntax Dasar Playwright",
+    "level": "Pemula",
+    "desc": "9 keyword",
+    "body": "\n\n      <h4>📌 Dasar Penulisan Test di Playwright</h4>\n      <p>Setiap keyword di bawah ini adalah building block untuk menulis test Playwright. Pahami masing-masing fungsinya.</p>\n\n      <!-- test() -->\n      <div class=\"keyword-card\">\n        <div class=\"keyword-card-header\">\n          <span class=\"keyword-name\">test()</span>\n          <span class=\"keyword-badge\">Core</span>\n        </div>\n        <div class=\"keyword-desc\">Blok utama untuk mendefinisikan satu test case. Parameter pertama adalah nama test (string), parameter kedua adalah fungsi async yang menerima fixture <code>{ page }</code>.</div>\n        <div class=\"code-block\"><span class=\"kw\">import</span> { test, expect } <span class=\"kw\">from</span> <span class=\"st\">'@playwright/test'</span>;\n\ntest(<span class=\"st\">'halaman utama punya judul yang benar'</span>, <span class=\"kw\">async</span> ({ page }) => {\n  <span class=\"kw\">await</span> page.<span class=\"fn\">goto</span>(<span class=\"st\">'https://example.com'</span>);\n  <span class=\"kw\">await</span> <span class=\"fn\">expect</span>(page).<span class=\"fn\">toHaveTitle</span>(<span class=\"st\">'Example Domain'</span>);\n});</div>\n      </div>\n\n      <!-- test.describe() -->\n      <div class=\"keyword-card\">\n        <div class=\"keyword-card-header\">\n          <span class=\"keyword-name\">test.describe()</span>\n          <span class=\"keyword-badge\">Grouping</span>\n        </div>\n        <div class=\"keyword-desc\">Mengelompokkan beberapa test yang berhubungan ke dalam satu blok. Berguna untuk mengorganisir test berdasarkan fitur atau halaman.</div>\n        <div class=\"code-block\">test.<span class=\"fn\">describe</span>(<span class=\"st\">'Halaman Login'</span>, () => {\n\n  test(<span class=\"st\">'form login tampil dengan benar'</span>, <span class=\"kw\">async</span> ({ page }) => {\n    <span class=\"kw\">await</span> page.<span class=\"fn\">goto</span>(<span class=\"st\">'/login'</span>);\n    <span class=\"kw\">await</span> <span class=\"fn\">expect</span>(page.<span class=\"fn\">getByLabel</span>(<span class=\"st\">'Email'</span>)).<span class=\"fn\">toBeVisible</span>();\n  });\n\n  test(<span class=\"st\">'error muncul jika password kosong'</span>, <span class=\"kw\">async</span> ({ page }) => {\n    <span class=\"kw\">await</span> page.<span class=\"fn\">goto</span>(<span class=\"st\">'/login'</span>);\n    <span class=\"kw\">await</span> page.<span class=\"fn\">getByRole</span>(<span class=\"st\">'button'</span>, { name: <span class=\"st\">'Login'</span> }).<span class=\"fn\">click</span>();\n    <span class=\"kw\">await</span> <span class=\"fn\">expect</span>(page.<span class=\"fn\">getByText</span>(<span class=\"st\">'Password wajib diisi'</span>)).<span class=\"fn\">toBeVisible</span>();\n  });\n\n});</div>\n      </div>\n\n      <!-- test.beforeEach() -->\n      <div class=\"keyword-card\">\n        <div class=\"keyword-card-header\">\n          <span class=\"keyword-name\">test.beforeEach()</span>\n          <span class=\"keyword-badge\">Hook</span>\n        </div>\n        <div class=\"keyword-desc\">Dijalankan <strong>sebelum setiap</strong> test dalam blok describe. Biasa digunakan untuk navigasi ke halaman atau setup data awal.</div>\n        <div class=\"code-block\">test.<span class=\"fn\">describe</span>(<span class=\"st\">'Dashboard'</span>, () => {\n\n  test.<span class=\"fn\">beforeEach</span>(<span class=\"kw\">async</span> ({ page }) => {\n    <span class=\"cm\">// Buka halaman dashboard sebelum setiap test</span>\n    <span class=\"kw\">await</span> page.<span class=\"fn\">goto</span>(<span class=\"st\">'/dashboard'</span>);\n  });\n\n  test(<span class=\"st\">'menampilkan welcome message'</span>, <span class=\"kw\">async</span> ({ page }) => {\n    <span class=\"kw\">await</span> <span class=\"fn\">expect</span>(page.<span class=\"fn\">getByText</span>(<span class=\"st\">'Selamat datang'</span>)).<span class=\"fn\">toBeVisible</span>();\n  });\n\n});</div>\n      </div>\n\n      <!-- test.afterEach() -->\n      <div class=\"keyword-card\">\n        <div class=\"keyword-card-header\">\n          <span class=\"keyword-name\">test.afterEach()</span>\n          <span class=\"keyword-badge\">Hook</span>\n        </div>\n        <div class=\"keyword-desc\">Dijalankan <strong>setelah setiap</strong> test. Berguna untuk cleanup data atau mengambil screenshot setelah test gagal.</div>\n        <div class=\"code-block\">test.<span class=\"fn\">afterEach</span>(<span class=\"kw\">async</span> ({ page }, testInfo) => {\n  <span class=\"kw\">if</span> (testInfo.status === <span class=\"st\">'failed'</span>) {\n    <span class=\"cm\">// Ambil screenshot jika test gagal</span>\n    <span class=\"kw\">await</span> page.<span class=\"fn\">screenshot</span>({ path: <span class=\"st\">`screenshots/${testInfo.title}.png`</span> });\n  }\n});</div>\n      </div>\n\n      <!-- test.beforeAll() / test.afterAll() -->\n      <div class=\"keyword-card\">\n        <div class=\"keyword-card-header\">\n          <span class=\"keyword-name\">test.beforeAll() / test.afterAll()</span>\n          <span class=\"keyword-badge\">Hook</span>\n        </div>\n        <div class=\"keyword-desc\">Dijalankan <strong>sekali saja</strong> sebelum/sesudah seluruh test dalam blok describe. Cocok untuk setup/teardown yang berat seperti membuat data di database.</div>\n        <div class=\"code-block\">test.<span class=\"fn\">beforeAll</span>(<span class=\"kw\">async</span> () => {\n  console.log(<span class=\"st\">'Setup: berjalan sekali sebelum semua test'</span>);\n});\n\ntest.<span class=\"fn\">afterAll</span>(<span class=\"kw\">async</span> () => {\n  console.log(<span class=\"st\">'Teardown: berjalan sekali setelah semua test'</span>);\n});</div>\n      </div>\n\n      <!-- test.skip() -->\n      <div class=\"keyword-card\">\n        <div class=\"keyword-card-header\">\n          <span class=\"keyword-name\">test.skip()</span>\n          <span class=\"keyword-badge\">Modifier</span>\n        </div>\n        <div class=\"keyword-desc\">Melewati test tertentu agar tidak dijalankan. Test yang di-skip akan ditandai di report tetapi tidak dihitung gagal.</div>\n        <div class=\"code-block\"><span class=\"cm\">// Skip test secara langsung</span>\ntest.<span class=\"fn\">skip</span>(<span class=\"st\">'fitur belum selesai'</span>, <span class=\"kw\">async</span> ({ page }) => {\n  <span class=\"cm\">// Test ini tidak akan dijalankan</span>\n});\n\n<span class=\"cm\">// Skip berdasarkan kondisi</span>\ntest(<span class=\"st\">'hanya jalan di desktop'</span>, <span class=\"kw\">async</span> ({ page, isMobile }) => {\n  test.<span class=\"fn\">skip</span>(isMobile, <span class=\"st\">'Fitur ini tidak ada di mobile'</span>);\n  <span class=\"cm\">// ... test code</span>\n});</div>\n      </div>\n\n      <!-- test.only() -->\n      <div class=\"keyword-card\">\n        <div class=\"keyword-card-header\">\n          <span class=\"keyword-name\">test.only()</span>\n          <span class=\"keyword-badge\">Modifier</span>\n        </div>\n        <div class=\"keyword-desc\">Hanya menjalankan test tertentu dan mengabaikan test lainnya. Sangat berguna saat debugging satu test spesifik.</div>\n        <div class=\"code-block\"><span class=\"cm\">// Hanya test ini yang akan berjalan di file ini</span>\ntest.<span class=\"fn\">only</span>(<span class=\"st\">'focus debug test ini saja'</span>, <span class=\"kw\">async</span> ({ page }) => {\n  <span class=\"kw\">await</span> page.<span class=\"fn\">goto</span>(<span class=\"st\">'/debug'</span>);\n  <span class=\"cm\">// ... debugging code</span>\n});</div>\n      </div>\n\n      <!-- test.fixme() -->\n      <div class=\"keyword-card\">\n        <div class=\"keyword-card-header\">\n          <span class=\"keyword-name\">test.fixme()</span>\n          <span class=\"keyword-badge\">Modifier</span>\n        </div>\n        <div class=\"keyword-desc\">Menandai test yang diketahui gagal dan perlu diperbaiki. Mirip <code>test.skip()</code> tetapi dengan semantik \"perlu diperbaiki\".</div>\n        <div class=\"code-block\">test.<span class=\"fn\">fixme</span>(<span class=\"st\">'bug #1234 - tombol tidak bisa diklik'</span>, <span class=\"kw\">async</span> ({ page }) => {\n  <span class=\"cm\">// Test ini akan di-skip, ditandai sebagai \"fixme\" di report</span>\n});</div>\n      </div>\n\n      <!-- test.step() -->\n      <div class=\"keyword-card\">\n        <div class=\"keyword-card-header\">\n          <span class=\"keyword-name\">test.step()</span>\n          <span class=\"keyword-badge\">Utility</span>\n        </div>\n        <div class=\"keyword-desc\">Membagi test menjadi langkah-langkah bernama. Setiap step muncul terpisah di report, memudahkan debugging ketika satu langkah gagal.</div>\n        <div class=\"code-block\">test(<span class=\"st\">'checkout flow lengkap'</span>, <span class=\"kw\">async</span> ({ page }) => {\n\n  <span class=\"kw\">await</span> test.<span class=\"fn\">step</span>(<span class=\"st\">'Buka halaman produk'</span>, <span class=\"kw\">async</span> () => {\n    <span class=\"kw\">await</span> page.<span class=\"fn\">goto</span>(<span class=\"st\">'/products'</span>);\n  });\n\n  <span class=\"kw\">await</span> test.<span class=\"fn\">step</span>(<span class=\"st\">'Tambah ke keranjang'</span>, <span class=\"kw\">async</span> () => {\n    <span class=\"kw\">await</span> page.<span class=\"fn\">getByRole</span>(<span class=\"st\">'button'</span>, { name: <span class=\"st\">'Add to Cart'</span> }).<span class=\"fn\">click</span>();\n  });\n\n  <span class=\"kw\">await</span> test.<span class=\"fn\">step</span>(<span class=\"st\">'Verifikasi keranjang'</span>, <span class=\"kw\">async</span> () => {\n    <span class=\"kw\">await</span> <span class=\"fn\">expect</span>(page.<span class=\"fn\">getByTestId</span>(<span class=\"st\">'cart-count'</span>)).<span class=\"fn\">toHaveText</span>(<span class=\"st\">'1'</span>);\n  });\n\n});</div>\n      </div>\n\n      <div class=\"tip-box\">\n        <div class=\"tip-box-icon\">💡</div>\n        <div><strong>Ingat:</strong> Setiap fungsi test menerima <strong>fixtures</strong> sebagai parameter: <code>{ page }</code> untuk UI testing, <code>{ request }</code> untuk API testing, <code>{ browser }</code> untuk kontrol browser manual.</div>\n      </div>\n\n    "
+   },
+   {
+    "id": "pw-03",
+    "num": "03",
+    "title": "Locators — Menemukan Elemen di Halaman",
+    "level": "Pemula",
+    "desc": "11 locator",
+    "body": "\n\n      <h4>📌 Apa itu Locator?</h4>\n      <p>Locator adalah cara Playwright \"menemukan\" elemen HTML di halaman. Playwright merekomendasikan locator yang <strong>user-facing</strong> (berdasarkan apa yang dilihat pengguna) agar test lebih stabil.</p>\n\n      <div class=\"keyword-card\">\n        <div class=\"keyword-card-header\">\n          <span class=\"keyword-name\">page.getByRole()</span>\n          <span class=\"keyword-badge\">⭐ Paling Direkomendasikan</span>\n        </div>\n        <div class=\"keyword-desc\">Menemukan elemen berdasarkan <strong>ARIA role</strong>-nya (button, link, heading, textbox, checkbox, dll). Ini adalah locator paling direkomendasikan karena paling stabil dan aksesibel.</div>\n        <div class=\"code-block\"><span class=\"cm\">// Tombol dengan teks \"Submit\"</span>\n<span class=\"kw\">await</span> page.<span class=\"fn\">getByRole</span>(<span class=\"st\">'button'</span>, { name: <span class=\"st\">'Submit'</span> }).<span class=\"fn\">click</span>();\n\n<span class=\"cm\">// Link navigasi</span>\n<span class=\"kw\">await</span> page.<span class=\"fn\">getByRole</span>(<span class=\"st\">'link'</span>, { name: <span class=\"st\">'Home'</span> }).<span class=\"fn\">click</span>();\n\n<span class=\"cm\">// Heading h1</span>\n<span class=\"kw\">await</span> <span class=\"fn\">expect</span>(page.<span class=\"fn\">getByRole</span>(<span class=\"st\">'heading'</span>, { level: 1 })).<span class=\"fn\">toBeVisible</span>();\n\n<span class=\"cm\">// Checkbox</span>\n<span class=\"kw\">await</span> page.<span class=\"fn\">getByRole</span>(<span class=\"st\">'checkbox'</span>, { name: <span class=\"st\">'Setuju'</span> }).<span class=\"fn\">check</span>();\n\n<span class=\"cm\">// Input text (textbox)</span>\n<span class=\"kw\">await</span> page.<span class=\"fn\">getByRole</span>(<span class=\"st\">'textbox'</span>, { name: <span class=\"st\">'Username'</span> }).<span class=\"fn\">fill</span>(<span class=\"st\">'john'</span>);\n\n<span class=\"cm\">// Dropdown (combobox)</span>\n<span class=\"kw\">await</span> page.<span class=\"fn\">getByRole</span>(<span class=\"st\">'combobox'</span>).<span class=\"fn\">selectOption</span>(<span class=\"st\">'Jakarta'</span>);</div>\n      </div>\n\n      <div class=\"keyword-card\">\n        <div class=\"keyword-card-header\">\n          <span class=\"keyword-name\">page.getByLabel()</span>\n          <span class=\"keyword-badge\">Form</span>\n        </div>\n        <div class=\"keyword-desc\">Menemukan input form berdasarkan teks <code>&lt;label&gt;</code> yang terhubung dengannya. Sangat cocok untuk form yang punya label yang jelas.</div>\n        <div class=\"code-block\"><span class=\"cm\">// HTML: &lt;label for=\"email\"&gt;Alamat Email&lt;/label&gt;</span>\n<span class=\"cm\">//       &lt;input id=\"email\" type=\"email\"&gt;</span>\n\n<span class=\"kw\">await</span> page.<span class=\"fn\">getByLabel</span>(<span class=\"st\">'Alamat Email'</span>).<span class=\"fn\">fill</span>(<span class=\"st\">'user@test.com'</span>);\n<span class=\"kw\">await</span> page.<span class=\"fn\">getByLabel</span>(<span class=\"st\">'Password'</span>).<span class=\"fn\">fill</span>(<span class=\"st\">'secret123'</span>);\n<span class=\"kw\">await</span> page.<span class=\"fn\">getByLabel</span>(<span class=\"st\">'Ingat saya'</span>).<span class=\"fn\">check</span>();</div>\n      </div>\n\n      <div class=\"keyword-card\">\n        <div class=\"keyword-card-header\">\n          <span class=\"keyword-name\">page.getByPlaceholder()</span>\n          <span class=\"keyword-badge\">Form</span>\n        </div>\n        <div class=\"keyword-desc\">Menemukan input berdasarkan atribut <code>placeholder</code>-nya. Berguna jika input tidak memiliki label.</div>\n        <div class=\"code-block\"><span class=\"cm\">// HTML: &lt;input placeholder=\"Cari produk...\"&gt;</span>\n\n<span class=\"kw\">await</span> page.<span class=\"fn\">getByPlaceholder</span>(<span class=\"st\">'Cari produk...'</span>).<span class=\"fn\">fill</span>(<span class=\"st\">'Laptop'</span>);\n<span class=\"kw\">await</span> page.<span class=\"fn\">getByPlaceholder</span>(<span class=\"st\">'Masukkan nama'</span>).<span class=\"fn\">fill</span>(<span class=\"st\">'Budi'</span>);</div>\n      </div>\n\n      <div class=\"keyword-card\">\n        <div class=\"keyword-card-header\">\n          <span class=\"keyword-name\">page.getByText()</span>\n          <span class=\"keyword-badge\">Teks</span>\n        </div>\n        <div class=\"keyword-desc\">Menemukan elemen berdasarkan <strong>teks yang terlihat</strong> di halaman. Bisa exact match atau partial match.</div>\n        <div class=\"code-block\"><span class=\"cm\">// Exact match (default: substring match)</span>\n<span class=\"kw\">await</span> page.<span class=\"fn\">getByText</span>(<span class=\"st\">'Selamat datang'</span>);\n\n<span class=\"cm\">// Exact match — harus persis sama</span>\n<span class=\"kw\">await</span> page.<span class=\"fn\">getByText</span>(<span class=\"st\">'Selamat datang, Budi!'</span>, { exact: <span class=\"kw\">true</span> });\n\n<span class=\"cm\">// Menggunakan regex</span>\n<span class=\"kw\">await</span> page.<span class=\"fn\">getByText</span>(<span class=\"st\">/selamat datang/i</span>);</div>\n      </div>\n\n      <div class=\"keyword-card\">\n        <div class=\"keyword-card-header\">\n          <span class=\"keyword-name\">page.getByTestId()</span>\n          <span class=\"keyword-badge\">Testing</span>\n        </div>\n        <div class=\"keyword-desc\">Menemukan elemen berdasarkan atribut <code>data-testid</code>. Direkomendasikan saat tidak ada locator user-facing yang cocok.</div>\n        <div class=\"code-block\"><span class=\"cm\">// HTML: &lt;button data-testid=\"submit-order\"&gt;Pesan&lt;/button&gt;</span>\n\n<span class=\"kw\">await</span> page.<span class=\"fn\">getByTestId</span>(<span class=\"st\">'submit-order'</span>).<span class=\"fn\">click</span>();\n<span class=\"kw\">await</span> <span class=\"fn\">expect</span>(page.<span class=\"fn\">getByTestId</span>(<span class=\"st\">'cart-count'</span>)).<span class=\"fn\">toHaveText</span>(<span class=\"st\">'3'</span>);</div>\n      </div>\n\n      <div class=\"keyword-card\">\n        <div class=\"keyword-card-header\">\n          <span class=\"keyword-name\">page.getByAltText()</span>\n          <span class=\"keyword-badge\">Media</span>\n        </div>\n        <div class=\"keyword-desc\">Menemukan elemen (biasanya gambar) berdasarkan atribut <code>alt</code>.</div>\n        <div class=\"code-block\"><span class=\"cm\">// HTML: &lt;img alt=\"Logo Perusahaan\" src=\"logo.png\"&gt;</span>\n\n<span class=\"kw\">await</span> <span class=\"fn\">expect</span>(page.<span class=\"fn\">getByAltText</span>(<span class=\"st\">'Logo Perusahaan'</span>)).<span class=\"fn\">toBeVisible</span>();\n<span class=\"kw\">await</span> page.<span class=\"fn\">getByAltText</span>(<span class=\"st\">'Foto Profil'</span>).<span class=\"fn\">click</span>();</div>\n      </div>\n\n      <div class=\"keyword-card\">\n        <div class=\"keyword-card-header\">\n          <span class=\"keyword-name\">page.getByTitle()</span>\n          <span class=\"keyword-badge\">Atribut</span>\n        </div>\n        <div class=\"keyword-desc\">Menemukan elemen berdasarkan atribut <code>title</code> (tooltip).</div>\n        <div class=\"code-block\"><span class=\"cm\">// HTML: &lt;button title=\"Hapus item\"&gt;🗑️&lt;/button&gt;</span>\n\n<span class=\"kw\">await</span> page.<span class=\"fn\">getByTitle</span>(<span class=\"st\">'Hapus item'</span>).<span class=\"fn\">click</span>();</div>\n      </div>\n\n      <div class=\"keyword-card\">\n        <div class=\"keyword-card-header\">\n          <span class=\"keyword-name\">page.locator()</span>\n          <span class=\"keyword-badge\">CSS / XPath</span>\n        </div>\n        <div class=\"keyword-desc\">Menemukan elemen menggunakan <strong>CSS selector</strong> atau <strong>XPath</strong>. Gunakan sebagai pilihan terakhir jika tidak ada locator user-facing yang cocok.</div>\n        <div class=\"code-block\"><span class=\"cm\">// CSS Selector</span>\n<span class=\"kw\">await</span> page.<span class=\"fn\">locator</span>(<span class=\"st\">'button.btn-primary'</span>).<span class=\"fn\">click</span>();\n<span class=\"kw\">await</span> page.<span class=\"fn\">locator</span>(<span class=\"st\">'#sidebar .menu-item'</span>).<span class=\"fn\">first</span>().<span class=\"fn\">click</span>();\n\n<span class=\"cm\">// XPath</span>\n<span class=\"kw\">await</span> page.<span class=\"fn\">locator</span>(<span class=\"st\">'xpath=//div[@class=\"card\"]//button'</span>).<span class=\"fn\">click</span>();\n\n<span class=\"cm\">// Kombinasi — text + CSS</span>\n<span class=\"kw\">await</span> page.<span class=\"fn\">locator</span>(<span class=\"st\">'article'</span>).<span class=\"fn\">filter</span>({ hasText: <span class=\"st\">'Playwright'</span> }).<span class=\"fn\">click</span>();</div>\n      </div>\n\n      <div class=\"keyword-card\">\n        <div class=\"keyword-card-header\">\n          <span class=\"keyword-name\">page.frameLocator()</span>\n          <span class=\"keyword-badge\">iFrame</span>\n        </div>\n        <div class=\"keyword-desc\">Menemukan elemen di dalam <code>&lt;iframe&gt;</code>. Harus digunakan karena elemen di dalam iframe tidak bisa diakses langsung.</div>\n        <div class=\"code-block\"><span class=\"cm\">// Akses elemen di dalam iframe</span>\n<span class=\"kw\">const</span> frame = page.<span class=\"fn\">frameLocator</span>(<span class=\"st\">'iframe#payment-form'</span>);\n<span class=\"kw\">await</span> frame.<span class=\"fn\">getByLabel</span>(<span class=\"st\">'Card Number'</span>).<span class=\"fn\">fill</span>(<span class=\"st\">'4242424242424242'</span>);\n<span class=\"kw\">await</span> frame.<span class=\"fn\">getByRole</span>(<span class=\"st\">'button'</span>, { name: <span class=\"st\">'Pay'</span> }).<span class=\"fn\">click</span>();</div>\n      </div>\n\n      <div class=\"keyword-card\">\n        <div class=\"keyword-card-header\">\n          <span class=\"keyword-name\">locator.filter()</span>\n          <span class=\"keyword-badge\">Filter</span>\n        </div>\n        <div class=\"keyword-desc\">Mempersempit hasil locator berdasarkan teks atau child locator tertentu.</div>\n        <div class=\"code-block\"><span class=\"cm\">// Filter berdasarkan teks</span>\n<span class=\"kw\">await</span> page.<span class=\"fn\">locator</span>(<span class=\"st\">'.product-card'</span>)\n  .<span class=\"fn\">filter</span>({ hasText: <span class=\"st\">'Laptop Pro'</span> })\n  .<span class=\"fn\">getByRole</span>(<span class=\"st\">'button'</span>, { name: <span class=\"st\">'Beli'</span> })\n  .<span class=\"fn\">click</span>();\n\n<span class=\"cm\">// Filter berdasarkan child element</span>\n<span class=\"kw\">await</span> page.<span class=\"fn\">locator</span>(<span class=\"st\">'tr'</span>)\n  .<span class=\"fn\">filter</span>({ has: page.<span class=\"fn\">getByText</span>(<span class=\"st\">'Active'</span>) })\n  .<span class=\"fn\">getByRole</span>(<span class=\"st\">'button'</span>, { name: <span class=\"st\">'Edit'</span> })\n  .<span class=\"fn\">click</span>();</div>\n      </div>\n\n      <div class=\"keyword-card\">\n        <div class=\"keyword-card-header\">\n          <span class=\"keyword-name\">locator.first() / .last() / .nth()</span>\n          <span class=\"keyword-badge\">Indexing</span>\n        </div>\n        <div class=\"keyword-desc\">Memilih elemen spesifik dari sekumpulan hasil locator berdasarkan urutan.</div>\n        <div class=\"code-block\"><span class=\"cm\">// Ambil elemen pertama dari daftar</span>\n<span class=\"kw\">await</span> page.<span class=\"fn\">locator</span>(<span class=\"st\">'.item'</span>).<span class=\"fn\">first</span>().<span class=\"fn\">click</span>();\n\n<span class=\"cm\">// Ambil elemen terakhir</span>\n<span class=\"kw\">await</span> page.<span class=\"fn\">locator</span>(<span class=\"st\">'.item'</span>).<span class=\"fn\">last</span>().<span class=\"fn\">click</span>();\n\n<span class=\"cm\">// Ambil elemen ke-3 (index mulai dari 0)</span>\n<span class=\"kw\">await</span> page.<span class=\"fn\">locator</span>(<span class=\"st\">'.item'</span>).<span class=\"fn\">nth</span>(2).<span class=\"fn\">click</span>();\n\n<span class=\"cm\">// Hitung jumlah elemen</span>\n<span class=\"kw\">await</span> <span class=\"fn\">expect</span>(page.<span class=\"fn\">locator</span>(<span class=\"st\">'.item'</span>)).<span class=\"fn\">toHaveCount</span>(5);</div>\n      </div>\n\n      <div class=\"tip-box\">\n        <div class=\"tip-box-icon\">💡</div>\n        <div><strong>Prioritas Locator:</strong> <code>getByRole</code> → <code>getByLabel</code> → <code>getByPlaceholder</code> → <code>getByText</code> → <code>getByTestId</code> → <code>locator(css)</code>. Semakin kiri semakin stabil dan direkomendasikan.</div>\n      </div>\n\n    "
+   },
+   {
+    "id": "pw-04",
+    "num": "04",
+    "title": "Actions — Melakukan Aksi pada Elemen",
+    "level": "Pemula",
+    "desc": "14 action",
+    "body": "\n\n      <h4>📌 Aksi yang Bisa Dilakukan pada Elemen</h4>\n      <p>Setelah menemukan elemen dengan locator, langkah berikutnya adalah melakukan aksi. Playwright otomatis menunggu elemen siap sebelum melakukan aksi (<strong>auto-waiting</strong>).</p>\n\n      <div class=\"keyword-card\">\n        <div class=\"keyword-card-header\"><span class=\"keyword-name\">click()</span><span class=\"keyword-badge\">Mouse</span></div>\n        <div class=\"keyword-desc\">Mengklik elemen. Playwright otomatis menunggu elemen terlihat, enabled, dan stabil sebelum mengklik.</div>\n        <div class=\"code-block\"><span class=\"kw\">await</span> page.<span class=\"fn\">getByRole</span>(<span class=\"st\">'button'</span>, { name: <span class=\"st\">'Simpan'</span> }).<span class=\"fn\">click</span>();\n\n<span class=\"cm\">// Klik kanan</span>\n<span class=\"kw\">await</span> page.<span class=\"fn\">getByText</span>(<span class=\"st\">'File'</span>).<span class=\"fn\">click</span>({ button: <span class=\"st\">'right'</span> });\n\n<span class=\"cm\">// Klik dengan modifier key (Ctrl+Click)</span>\n<span class=\"kw\">await</span> page.<span class=\"fn\">getByRole</span>(<span class=\"st\">'link'</span>).<span class=\"fn\">click</span>({ modifiers: [<span class=\"st\">'Control'</span>] });\n\n<span class=\"cm\">// Force click (skip visibility check)</span>\n<span class=\"kw\">await</span> page.<span class=\"fn\">locator</span>(<span class=\"st\">'.hidden-btn'</span>).<span class=\"fn\">click</span>({ force: <span class=\"kw\">true</span> });</div>\n      </div>\n\n      <div class=\"keyword-card\">\n        <div class=\"keyword-card-header\"><span class=\"keyword-name\">dblclick()</span><span class=\"keyword-badge\">Mouse</span></div>\n        <div class=\"keyword-desc\">Melakukan double-click pada elemen.</div>\n        <div class=\"code-block\"><span class=\"kw\">await</span> page.<span class=\"fn\">getByText</span>(<span class=\"st\">'Edit teks ini'</span>).<span class=\"fn\">dblclick</span>();</div>\n      </div>\n\n      <div class=\"keyword-card\">\n        <div class=\"keyword-card-header\"><span class=\"keyword-name\">fill()</span><span class=\"keyword-badge\">Input</span></div>\n        <div class=\"keyword-desc\">Mengisi input field. <strong>Menghapus isi sebelumnya</strong> lalu mengisi dengan nilai baru. Lebih cepat dari <code>type()</code>.</div>\n        <div class=\"code-block\"><span class=\"kw\">await</span> page.<span class=\"fn\">getByLabel</span>(<span class=\"st\">'Nama'</span>).<span class=\"fn\">fill</span>(<span class=\"st\">'Budi Santoso'</span>);\n<span class=\"kw\">await</span> page.<span class=\"fn\">getByLabel</span>(<span class=\"st\">'Email'</span>).<span class=\"fn\">fill</span>(<span class=\"st\">'budi@mail.com'</span>);\n\n<span class=\"cm\">// Kosongkan input</span>\n<span class=\"kw\">await</span> page.<span class=\"fn\">getByLabel</span>(<span class=\"st\">'Nama'</span>).<span class=\"fn\">fill</span>(<span class=\"st\">''</span>);</div>\n      </div>\n\n      <div class=\"keyword-card\">\n        <div class=\"keyword-card-header\"><span class=\"keyword-name\">type()</span><span class=\"keyword-badge\">Input</span></div>\n        <div class=\"keyword-desc\">Mengetik teks karakter per karakter, mensimulasikan penekanan keyboard nyata. Lebih lambat dari <code>fill()</code> tapi berguna jika ada event handler per keystroke.</div>\n        <div class=\"code-block\"><span class=\"cm\">// Ketik karakter satu per satu (trigger keydown/keyup events)</span>\n<span class=\"kw\">await</span> page.<span class=\"fn\">getByLabel</span>(<span class=\"st\">'Search'</span>).<span class=\"fn\">pressSequentially</span>(<span class=\"st\">'playwright'</span>, { delay: 100 });</div>\n      </div>\n\n      <div class=\"keyword-card\">\n        <div class=\"keyword-card-header\"><span class=\"keyword-name\">clear()</span><span class=\"keyword-badge\">Input</span></div>\n        <div class=\"keyword-desc\">Menghapus semua isi dari input field.</div>\n        <div class=\"code-block\"><span class=\"kw\">await</span> page.<span class=\"fn\">getByLabel</span>(<span class=\"st\">'Nama'</span>).<span class=\"fn\">clear</span>();\n<span class=\"kw\">await</span> <span class=\"fn\">expect</span>(page.<span class=\"fn\">getByLabel</span>(<span class=\"st\">'Nama'</span>)).<span class=\"fn\">toBeEmpty</span>();</div>\n      </div>\n\n      <div class=\"keyword-card\">\n        <div class=\"keyword-card-header\"><span class=\"keyword-name\">press()</span><span class=\"keyword-badge\">Keyboard</span></div>\n        <div class=\"keyword-desc\">Menekan tombol keyboard tertentu. Bisa satu tombol atau kombinasi (shortcut).</div>\n        <div class=\"code-block\"><span class=\"cm\">// Tekan Enter</span>\n<span class=\"kw\">await</span> page.<span class=\"fn\">getByLabel</span>(<span class=\"st\">'Search'</span>).<span class=\"fn\">press</span>(<span class=\"st\">'Enter'</span>);\n\n<span class=\"cm\">// Tekan Escape</span>\n<span class=\"kw\">await</span> page.<span class=\"fn\">locator</span>(<span class=\"st\">'body'</span>).<span class=\"fn\">press</span>(<span class=\"st\">'Escape'</span>);\n\n<span class=\"cm\">// Shortcut keyboard (Ctrl+A, lalu Ctrl+C)</span>\n<span class=\"kw\">await</span> page.<span class=\"fn\">locator</span>(<span class=\"st\">'textarea'</span>).<span class=\"fn\">press</span>(<span class=\"st\">'Control+a'</span>);\n<span class=\"kw\">await</span> page.<span class=\"fn\">locator</span>(<span class=\"st\">'textarea'</span>).<span class=\"fn\">press</span>(<span class=\"st\">'Control+c'</span>);\n\n<span class=\"cm\">// Tab untuk pindah field</span>\n<span class=\"kw\">await</span> page.<span class=\"fn\">getByLabel</span>(<span class=\"st\">'Email'</span>).<span class=\"fn\">press</span>(<span class=\"st\">'Tab'</span>);</div>\n      </div>\n\n      <div class=\"keyword-card\">\n        <div class=\"keyword-card-header\"><span class=\"keyword-name\">check() / uncheck()</span><span class=\"keyword-badge\">Checkbox</span></div>\n        <div class=\"keyword-desc\">Mencentang atau menghilangkan centang pada checkbox/radio button.</div>\n        <div class=\"code-block\"><span class=\"kw\">await</span> page.<span class=\"fn\">getByLabel</span>(<span class=\"st\">'Setuju dengan syarat'</span>).<span class=\"fn\">check</span>();\n<span class=\"kw\">await</span> page.<span class=\"fn\">getByLabel</span>(<span class=\"st\">'Terima newsletter'</span>).<span class=\"fn\">uncheck</span>();\n\n<span class=\"cm\">// Verifikasi status checked</span>\n<span class=\"kw\">await</span> <span class=\"fn\">expect</span>(page.<span class=\"fn\">getByLabel</span>(<span class=\"st\">'Setuju dengan syarat'</span>)).<span class=\"fn\">toBeChecked</span>();</div>\n      </div>\n\n      <div class=\"keyword-card\">\n        <div class=\"keyword-card-header\"><span class=\"keyword-name\">selectOption()</span><span class=\"keyword-badge\">Dropdown</span></div>\n        <div class=\"keyword-desc\">Memilih opsi dari <code>&lt;select&gt;</code> dropdown. Bisa berdasarkan value, label, atau index.</div>\n        <div class=\"code-block\"><span class=\"cm\">// Berdasarkan label (teks yang terlihat)</span>\n<span class=\"kw\">await</span> page.<span class=\"fn\">getByLabel</span>(<span class=\"st\">'Kota'</span>).<span class=\"fn\">selectOption</span>(<span class=\"st\">'Jakarta'</span>);\n\n<span class=\"cm\">// Berdasarkan value</span>\n<span class=\"kw\">await</span> page.<span class=\"fn\">getByLabel</span>(<span class=\"st\">'Kota'</span>).<span class=\"fn\">selectOption</span>({ value: <span class=\"st\">'jkt'</span> });\n\n<span class=\"cm\">// Multiple select</span>\n<span class=\"kw\">await</span> page.<span class=\"fn\">getByLabel</span>(<span class=\"st\">'Skill'</span>).<span class=\"fn\">selectOption</span>([<span class=\"st\">'JavaScript'</span>, <span class=\"st\">'Python'</span>]);</div>\n      </div>\n\n      <div class=\"keyword-card\">\n        <div class=\"keyword-card-header\"><span class=\"keyword-name\">hover()</span><span class=\"keyword-badge\">Mouse</span></div>\n        <div class=\"keyword-desc\">Mengarahkan kursor mouse ke atas elemen (hover). Berguna untuk memunculkan dropdown menu atau tooltip.</div>\n        <div class=\"code-block\"><span class=\"cm\">// Hover untuk memunculkan dropdown menu</span>\n<span class=\"kw\">await</span> page.<span class=\"fn\">getByText</span>(<span class=\"st\">'Produk'</span>).<span class=\"fn\">hover</span>();\n<span class=\"kw\">await</span> page.<span class=\"fn\">getByText</span>(<span class=\"st\">'Kategori Elektronik'</span>).<span class=\"fn\">click</span>();</div>\n      </div>\n\n      <div class=\"keyword-card\">\n        <div class=\"keyword-card-header\"><span class=\"keyword-name\">focus() / blur()</span><span class=\"keyword-badge\">Focus</span></div>\n        <div class=\"keyword-desc\">Memberikan atau menghilangkan fokus pada elemen. Berguna untuk memicu validasi form yang terjadi saat elemen kehilangan fokus.</div>\n        <div class=\"code-block\"><span class=\"kw\">await</span> page.<span class=\"fn\">getByLabel</span>(<span class=\"st\">'Email'</span>).<span class=\"fn\">focus</span>();\n<span class=\"kw\">await</span> page.<span class=\"fn\">getByLabel</span>(<span class=\"st\">'Email'</span>).<span class=\"fn\">blur</span>();\n<span class=\"cm\">// Setelah blur, validasi error mungkin muncul</span>\n<span class=\"kw\">await</span> <span class=\"fn\">expect</span>(page.<span class=\"fn\">getByText</span>(<span class=\"st\">'Email tidak valid'</span>)).<span class=\"fn\">toBeVisible</span>();</div>\n      </div>\n\n      <div class=\"keyword-card\">\n        <div class=\"keyword-card-header\"><span class=\"keyword-name\">setInputFiles()</span><span class=\"keyword-badge\">Upload</span></div>\n        <div class=\"keyword-desc\">Meng-upload file ke input bertipe <code>file</code>.</div>\n        <div class=\"code-block\"><span class=\"cm\">// Upload satu file</span>\n<span class=\"kw\">await</span> page.<span class=\"fn\">getByLabel</span>(<span class=\"st\">'Upload Avatar'</span>).<span class=\"fn\">setInputFiles</span>(<span class=\"st\">'./avatar.png'</span>);\n\n<span class=\"cm\">// Upload multiple files</span>\n<span class=\"kw\">await</span> page.<span class=\"fn\">getByLabel</span>(<span class=\"st\">'Lampiran'</span>).<span class=\"fn\">setInputFiles</span>([<span class=\"st\">'./doc1.pdf'</span>, <span class=\"st\">'./doc2.pdf'</span>]);\n\n<span class=\"cm\">// Hapus file yang di-upload</span>\n<span class=\"kw\">await</span> page.<span class=\"fn\">getByLabel</span>(<span class=\"st\">'Upload Avatar'</span>).<span class=\"fn\">setInputFiles</span>([]);</div>\n      </div>\n\n      <div class=\"keyword-card\">\n        <div class=\"keyword-card-header\"><span class=\"keyword-name\">dragTo()</span><span class=\"keyword-badge\">Mouse</span></div>\n        <div class=\"keyword-desc\">Melakukan drag & drop dari satu elemen ke elemen tujuan.</div>\n        <div class=\"code-block\"><span class=\"kw\">await</span> page.<span class=\"fn\">locator</span>(<span class=\"st\">'#item-a'</span>).<span class=\"fn\">dragTo</span>(page.<span class=\"fn\">locator</span>(<span class=\"st\">'#drop-zone'</span>));</div>\n      </div>\n\n      <div class=\"keyword-card\">\n        <div class=\"keyword-card-header\"><span class=\"keyword-name\">screenshot()</span><span class=\"keyword-badge\">Utility</span></div>\n        <div class=\"keyword-desc\">Mengambil screenshot halaman atau elemen spesifik.</div>\n        <div class=\"code-block\"><span class=\"cm\">// Screenshot seluruh halaman</span>\n<span class=\"kw\">await</span> page.<span class=\"fn\">screenshot</span>({ path: <span class=\"st\">'halaman.png'</span> });\n\n<span class=\"cm\">// Screenshot full page (termasuk area scroll)</span>\n<span class=\"kw\">await</span> page.<span class=\"fn\">screenshot</span>({ path: <span class=\"st\">'full.png'</span>, fullPage: <span class=\"kw\">true</span> });\n\n<span class=\"cm\">// Screenshot elemen tertentu</span>\n<span class=\"kw\">await</span> page.<span class=\"fn\">locator</span>(<span class=\"st\">'.hero'</span>).<span class=\"fn\">screenshot</span>({ path: <span class=\"st\">'hero.png'</span> });</div>\n      </div>\n\n      <div class=\"keyword-card\">\n        <div class=\"keyword-card-header\"><span class=\"keyword-name\">scrollIntoViewIfNeeded()</span><span class=\"keyword-badge\">Scroll</span></div>\n        <div class=\"keyword-desc\">Scroll halaman agar elemen terlihat di viewport.</div>\n        <div class=\"code-block\"><span class=\"kw\">await</span> page.<span class=\"fn\">locator</span>(<span class=\"st\">'#footer'</span>).<span class=\"fn\">scrollIntoViewIfNeeded</span>();</div>\n      </div>\n\n      <div class=\"tip-box\">\n        <div class=\"tip-box-icon\">💡</div>\n        <div><strong>Auto-waiting:</strong> Playwright secara otomatis menunggu elemen visible, enabled, dan stabil sebelum melakukan aksi. Tidak perlu <code>sleep()</code> atau <code>waitFor()</code> manual!</div>\n      </div>\n\n    "
+   },
+   {
+    "id": "pw-05",
+    "num": "05",
+    "title": "Assertions — Memverifikasi Hasil",
+    "level": "Pemula",
+    "desc": "16 assertion",
+    "body": "\n\n      <h4>📌 Apa itu Assertion?</h4>\n      <p>Assertion adalah cara memverifikasi bahwa kondisi yang diharapkan benar-benar terjadi. Jika assertion gagal, test akan ditandai sebagai <strong>FAILED</strong>. Playwright menggunakan <code>expect()</code> dengan <strong>auto-retry</strong> — ia akan menunggu kondisi terpenuhi sebelum timeout.</p>\n\n      <div class=\"keyword-card\">\n        <div class=\"keyword-card-header\"><span class=\"keyword-name\">toBeVisible()</span><span class=\"keyword-badge\">Visibility</span></div>\n        <div class=\"keyword-desc\">Memverifikasi elemen terlihat di halaman (rendered dan tidak tersembunyi).</div>\n        <div class=\"code-block\"><span class=\"kw\">await</span> <span class=\"fn\">expect</span>(page.<span class=\"fn\">getByText</span>(<span class=\"st\">'Selamat datang'</span>)).<span class=\"fn\">toBeVisible</span>();\n\n<span class=\"cm\">// Negasi — pastikan TIDAK terlihat</span>\n<span class=\"kw\">await</span> <span class=\"fn\">expect</span>(page.<span class=\"fn\">getByText</span>(<span class=\"st\">'Loading...'</span>)).not.<span class=\"fn\">toBeVisible</span>();</div>\n      </div>\n\n      <div class=\"keyword-card\">\n        <div class=\"keyword-card-header\"><span class=\"keyword-name\">toBeHidden()</span><span class=\"keyword-badge\">Visibility</span></div>\n        <div class=\"keyword-desc\">Memverifikasi elemen tersembunyi atau tidak ada di DOM.</div>\n        <div class=\"code-block\"><span class=\"kw\">await</span> <span class=\"fn\">expect</span>(page.<span class=\"fn\">getByTestId</span>(<span class=\"st\">'modal'</span>)).<span class=\"fn\">toBeHidden</span>();</div>\n      </div>\n\n      <div class=\"keyword-card\">\n        <div class=\"keyword-card-header\"><span class=\"keyword-name\">toBeEnabled()</span><span class=\"keyword-badge\">State</span></div>\n        <div class=\"keyword-desc\">Memverifikasi elemen dalam kondisi aktif (bisa diklik/diisi). Kebalikan dari disabled.</div>\n        <div class=\"code-block\"><span class=\"kw\">await</span> <span class=\"fn\">expect</span>(page.<span class=\"fn\">getByRole</span>(<span class=\"st\">'button'</span>, { name: <span class=\"st\">'Submit'</span> })).<span class=\"fn\">toBeEnabled</span>();</div>\n      </div>\n\n      <div class=\"keyword-card\">\n        <div class=\"keyword-card-header\"><span class=\"keyword-name\">toBeDisabled()</span><span class=\"keyword-badge\">State</span></div>\n        <div class=\"keyword-desc\">Memverifikasi elemen dalam kondisi non-aktif (disabled).</div>\n        <div class=\"code-block\"><span class=\"cm\">// Tombol disabled sebelum form diisi</span>\n<span class=\"kw\">await</span> <span class=\"fn\">expect</span>(page.<span class=\"fn\">getByRole</span>(<span class=\"st\">'button'</span>, { name: <span class=\"st\">'Kirim'</span> })).<span class=\"fn\">toBeDisabled</span>();\n\n<span class=\"cm\">// Isi form, lalu pastikan tombol jadi enabled</span>\n<span class=\"kw\">await</span> page.<span class=\"fn\">getByLabel</span>(<span class=\"st\">'Nama'</span>).<span class=\"fn\">fill</span>(<span class=\"st\">'Budi'</span>);\n<span class=\"kw\">await</span> <span class=\"fn\">expect</span>(page.<span class=\"fn\">getByRole</span>(<span class=\"st\">'button'</span>, { name: <span class=\"st\">'Kirim'</span> })).<span class=\"fn\">toBeEnabled</span>();</div>\n      </div>\n\n      <div class=\"keyword-card\">\n        <div class=\"keyword-card-header\"><span class=\"keyword-name\">toBeChecked()</span><span class=\"keyword-badge\">Checkbox</span></div>\n        <div class=\"keyword-desc\">Memverifikasi checkbox atau radio button dalam kondisi tercentang.</div>\n        <div class=\"code-block\"><span class=\"kw\">await</span> page.<span class=\"fn\">getByLabel</span>(<span class=\"st\">'Setuju'</span>).<span class=\"fn\">check</span>();\n<span class=\"kw\">await</span> <span class=\"fn\">expect</span>(page.<span class=\"fn\">getByLabel</span>(<span class=\"st\">'Setuju'</span>)).<span class=\"fn\">toBeChecked</span>();\n\n<span class=\"cm\">// Pastikan TIDAK tercentang</span>\n<span class=\"kw\">await</span> <span class=\"fn\">expect</span>(page.<span class=\"fn\">getByLabel</span>(<span class=\"st\">'Newsletter'</span>)).not.<span class=\"fn\">toBeChecked</span>();</div>\n      </div>\n\n      <div class=\"keyword-card\">\n        <div class=\"keyword-card-header\"><span class=\"keyword-name\">toHaveText()</span><span class=\"keyword-badge\">Teks</span></div>\n        <div class=\"keyword-desc\">Memverifikasi elemen memiliki teks tertentu (exact match secara default).</div>\n        <div class=\"code-block\"><span class=\"kw\">await</span> <span class=\"fn\">expect</span>(page.<span class=\"fn\">getByTestId</span>(<span class=\"st\">'status'</span>)).<span class=\"fn\">toHaveText</span>(<span class=\"st\">'Berhasil'</span>);\n\n<span class=\"cm\">// Menggunakan regex</span>\n<span class=\"kw\">await</span> <span class=\"fn\">expect</span>(page.<span class=\"fn\">getByTestId</span>(<span class=\"st\">'price'</span>)).<span class=\"fn\">toHaveText</span>(<span class=\"st\">/Rp \\d+/</span>);</div>\n      </div>\n\n      <div class=\"keyword-card\">\n        <div class=\"keyword-card-header\"><span class=\"keyword-name\">toContainText()</span><span class=\"keyword-badge\">Teks</span></div>\n        <div class=\"keyword-desc\">Memverifikasi elemen <strong>mengandung</strong> teks tertentu (tidak harus exact match, cukup substring).</div>\n        <div class=\"code-block\"><span class=\"cm\">// Elemen berisi \"Halo Budi, selamat datang!\"</span>\n<span class=\"kw\">await</span> <span class=\"fn\">expect</span>(page.<span class=\"fn\">locator</span>(<span class=\"st\">'.greeting'</span>)).<span class=\"fn\">toContainText</span>(<span class=\"st\">'Budi'</span>);</div>\n      </div>\n\n      <div class=\"keyword-card\">\n        <div class=\"keyword-card-header\"><span class=\"keyword-name\">toHaveValue()</span><span class=\"keyword-badge\">Input</span></div>\n        <div class=\"keyword-desc\">Memverifikasi nilai (value) dari input field.</div>\n        <div class=\"code-block\"><span class=\"kw\">await</span> page.<span class=\"fn\">getByLabel</span>(<span class=\"st\">'Email'</span>).<span class=\"fn\">fill</span>(<span class=\"st\">'user@test.com'</span>);\n<span class=\"kw\">await</span> <span class=\"fn\">expect</span>(page.<span class=\"fn\">getByLabel</span>(<span class=\"st\">'Email'</span>)).<span class=\"fn\">toHaveValue</span>(<span class=\"st\">'user@test.com'</span>);</div>\n      </div>\n\n      <div class=\"keyword-card\">\n        <div class=\"keyword-card-header\"><span class=\"keyword-name\">toHaveAttribute()</span><span class=\"keyword-badge\">Atribut</span></div>\n        <div class=\"keyword-desc\">Memverifikasi elemen memiliki atribut HTML tertentu dengan nilai tertentu.</div>\n        <div class=\"code-block\"><span class=\"kw\">await</span> <span class=\"fn\">expect</span>(page.<span class=\"fn\">getByRole</span>(<span class=\"st\">'link'</span>, { name: <span class=\"st\">'Docs'</span> }))\n  .<span class=\"fn\">toHaveAttribute</span>(<span class=\"st\">'href'</span>, <span class=\"st\">'https://playwright.dev'</span>);\n\n<span class=\"kw\">await</span> <span class=\"fn\">expect</span>(page.<span class=\"fn\">getByRole</span>(<span class=\"st\">'img'</span>))\n  .<span class=\"fn\">toHaveAttribute</span>(<span class=\"st\">'src'</span>, <span class=\"st\">/logo\\.png/</span>);</div>\n      </div>\n\n      <div class=\"keyword-card\">\n        <div class=\"keyword-card-header\"><span class=\"keyword-name\">toHaveURL()</span><span class=\"keyword-badge\">Page</span></div>\n        <div class=\"keyword-desc\">Memverifikasi URL halaman saat ini.</div>\n        <div class=\"code-block\"><span class=\"kw\">await</span> page.<span class=\"fn\">getByRole</span>(<span class=\"st\">'link'</span>, { name: <span class=\"st\">'Dashboard'</span> }).<span class=\"fn\">click</span>();\n<span class=\"kw\">await</span> <span class=\"fn\">expect</span>(page).<span class=\"fn\">toHaveURL</span>(<span class=\"st\">'/dashboard'</span>);\n<span class=\"kw\">await</span> <span class=\"fn\">expect</span>(page).<span class=\"fn\">toHaveURL</span>(<span class=\"st\">/.*dashboard.*/</span>);</div>\n      </div>\n\n      <div class=\"keyword-card\">\n        <div class=\"keyword-card-header\"><span class=\"keyword-name\">toHaveTitle()</span><span class=\"keyword-badge\">Page</span></div>\n        <div class=\"keyword-desc\">Memverifikasi judul (title) halaman.</div>\n        <div class=\"code-block\"><span class=\"kw\">await</span> <span class=\"fn\">expect</span>(page).<span class=\"fn\">toHaveTitle</span>(<span class=\"st\">'Dashboard - MyApp'</span>);\n<span class=\"kw\">await</span> <span class=\"fn\">expect</span>(page).<span class=\"fn\">toHaveTitle</span>(<span class=\"st\">/Dashboard/</span>);</div>\n      </div>\n\n      <div class=\"keyword-card\">\n        <div class=\"keyword-card-header\"><span class=\"keyword-name\">toHaveCount()</span><span class=\"keyword-badge\">Count</span></div>\n        <div class=\"keyword-desc\">Memverifikasi jumlah elemen yang cocok dengan locator.</div>\n        <div class=\"code-block\"><span class=\"cm\">// Pastikan ada 5 item di list</span>\n<span class=\"kw\">await</span> <span class=\"fn\">expect</span>(page.<span class=\"fn\">locator</span>(<span class=\"st\">'.product-card'</span>)).<span class=\"fn\">toHaveCount</span>(5);\n\n<span class=\"cm\">// Pastikan tidak ada error message</span>\n<span class=\"kw\">await</span> <span class=\"fn\">expect</span>(page.<span class=\"fn\">locator</span>(<span class=\"st\">'.error'</span>)).<span class=\"fn\">toHaveCount</span>(0);</div>\n      </div>\n\n      <div class=\"keyword-card\">\n        <div class=\"keyword-card-header\"><span class=\"keyword-name\">toHaveClass()</span><span class=\"keyword-badge\">CSS</span></div>\n        <div class=\"keyword-desc\">Memverifikasi elemen memiliki class CSS tertentu.</div>\n        <div class=\"code-block\"><span class=\"kw\">await</span> <span class=\"fn\">expect</span>(page.<span class=\"fn\">locator</span>(<span class=\"st\">'.alert'</span>)).<span class=\"fn\">toHaveClass</span>(<span class=\"st\">/alert-success/</span>);</div>\n      </div>\n\n      <div class=\"keyword-card\">\n        <div class=\"keyword-card-header\"><span class=\"keyword-name\">toBeEmpty()</span><span class=\"keyword-badge\">State</span></div>\n        <div class=\"keyword-desc\">Memverifikasi elemen input kosong (tidak ada value).</div>\n        <div class=\"code-block\"><span class=\"kw\">await</span> page.<span class=\"fn\">getByLabel</span>(<span class=\"st\">'Nama'</span>).<span class=\"fn\">clear</span>();\n<span class=\"kw\">await</span> <span class=\"fn\">expect</span>(page.<span class=\"fn\">getByLabel</span>(<span class=\"st\">'Nama'</span>)).<span class=\"fn\">toBeEmpty</span>();</div>\n      </div>\n\n      <div class=\"keyword-card\">\n        <div class=\"keyword-card-header\"><span class=\"keyword-name\">toBeFocused()</span><span class=\"keyword-badge\">Focus</span></div>\n        <div class=\"keyword-desc\">Memverifikasi elemen sedang dalam kondisi fokus (active element).</div>\n        <div class=\"code-block\"><span class=\"kw\">await</span> page.<span class=\"fn\">getByLabel</span>(<span class=\"st\">'Email'</span>).<span class=\"fn\">click</span>();\n<span class=\"kw\">await</span> <span class=\"fn\">expect</span>(page.<span class=\"fn\">getByLabel</span>(<span class=\"st\">'Email'</span>)).<span class=\"fn\">toBeFocused</span>();</div>\n      </div>\n\n      <div class=\"keyword-card\">\n        <div class=\"keyword-card-header\"><span class=\"keyword-name\">toHaveScreenshot()</span><span class=\"keyword-badge\">Visual</span></div>\n        <div class=\"keyword-desc\">Perbandingan visual — mengambil screenshot dan membandingkannya dengan screenshot referensi. Berguna untuk visual regression testing.</div>\n        <div class=\"code-block\"><span class=\"cm\">// Pertama kali dijalankan → membuat referensi</span>\n<span class=\"cm\">// Selanjutnya → membandingkan dengan referensi</span>\n<span class=\"kw\">await</span> <span class=\"fn\">expect</span>(page).<span class=\"fn\">toHaveScreenshot</span>(<span class=\"st\">'homepage.png'</span>);\n\n<span class=\"cm\">// Screenshot elemen spesifik</span>\n<span class=\"kw\">await</span> <span class=\"fn\">expect</span>(page.<span class=\"fn\">locator</span>(<span class=\"st\">'.navbar'</span>)).<span class=\"fn\">toHaveScreenshot</span>(<span class=\"st\">'navbar.png'</span>);</div>\n      </div>\n\n      <div class=\"tip-box\">\n        <div class=\"tip-box-icon\">💡</div>\n        <div><strong>Auto-retry:</strong> Semua assertion Playwright otomatis me-retry hingga timeout (default 5 detik). Jadi <code>toBeVisible()</code> akan menunggu elemen muncul, bukan langsung gagal. Gunakan <code>.not</code> untuk negasi: <code>expect(locator).not.toBeVisible()</code>.</div>\n      </div>\n\n    "
+   },
+   {
+    "id": "pw-06",
+    "num": "06",
+    "title": "Navigation & Page Methods",
+    "level": "Menengah",
+    "desc": "8 method",
+    "body": "\n\n      <h4>📌 Navigasi & Kontrol Halaman</h4>\n      <p>Method-method untuk berpindah halaman, menunggu kondisi, dan mengontrol dialog browser.</p>\n\n      <div class=\"keyword-card\">\n        <div class=\"keyword-card-header\"><span class=\"keyword-name\">page.goto()</span><span class=\"keyword-badge\">Navigasi</span></div>\n        <div class=\"keyword-desc\">Membuka URL tertentu. Menunggu halaman selesai loading sebelum lanjut.</div>\n        <div class=\"code-block\"><span class=\"kw\">await</span> page.<span class=\"fn\">goto</span>(<span class=\"st\">'https://example.com'</span>);\n\n<span class=\"cm\">// Dengan opsi — tunggu sampai network idle</span>\n<span class=\"kw\">await</span> page.<span class=\"fn\">goto</span>(<span class=\"st\">'/login'</span>, { waitUntil: <span class=\"st\">'networkidle'</span> });\n\n<span class=\"cm\">// Tunggu sampai DOM content loaded</span>\n<span class=\"kw\">await</span> page.<span class=\"fn\">goto</span>(<span class=\"st\">'/dashboard'</span>, { waitUntil: <span class=\"st\">'domcontentloaded'</span> });</div>\n      </div>\n\n      <div class=\"keyword-card\">\n        <div class=\"keyword-card-header\"><span class=\"keyword-name\">page.goBack() / page.goForward()</span><span class=\"keyword-badge\">Navigasi</span></div>\n        <div class=\"keyword-desc\">Navigasi mundur (back) atau maju (forward) di history browser.</div>\n        <div class=\"code-block\"><span class=\"kw\">await</span> page.<span class=\"fn\">goto</span>(<span class=\"st\">'/page-1'</span>);\n<span class=\"kw\">await</span> page.<span class=\"fn\">goto</span>(<span class=\"st\">'/page-2'</span>);\n\n<span class=\"kw\">await</span> page.<span class=\"fn\">goBack</span>();     <span class=\"cm\">// Kembali ke /page-1</span>\n<span class=\"kw\">await</span> page.<span class=\"fn\">goForward</span>();  <span class=\"cm\">// Maju ke /page-2</span></div>\n      </div>\n\n      <div class=\"keyword-card\">\n        <div class=\"keyword-card-header\"><span class=\"keyword-name\">page.reload()</span><span class=\"keyword-badge\">Navigasi</span></div>\n        <div class=\"keyword-desc\">Me-refresh/reload halaman saat ini.</div>\n        <div class=\"code-block\"><span class=\"kw\">await</span> page.<span class=\"fn\">reload</span>();\n<span class=\"kw\">await</span> page.<span class=\"fn\">reload</span>({ waitUntil: <span class=\"st\">'networkidle'</span> });</div>\n      </div>\n\n      <div class=\"keyword-card\">\n        <div class=\"keyword-card-header\"><span class=\"keyword-name\">page.waitForURL()</span><span class=\"keyword-badge\">Wait</span></div>\n        <div class=\"keyword-desc\">Menunggu sampai URL halaman berubah ke URL tertentu.</div>\n        <div class=\"code-block\"><span class=\"kw\">await</span> page.<span class=\"fn\">getByRole</span>(<span class=\"st\">'button'</span>, { name: <span class=\"st\">'Login'</span> }).<span class=\"fn\">click</span>();\n<span class=\"kw\">await</span> page.<span class=\"fn\">waitForURL</span>(<span class=\"st\">'**/dashboard'</span>);\n<span class=\"cm\">// Sekarang pasti sudah di halaman dashboard</span></div>\n      </div>\n\n      <div class=\"keyword-card\">\n        <div class=\"keyword-card-header\"><span class=\"keyword-name\">page.waitForSelector()</span><span class=\"keyword-badge\">Wait</span></div>\n        <div class=\"keyword-desc\">Menunggu sampai elemen tertentu muncul/hilang di DOM.</div>\n        <div class=\"code-block\"><span class=\"cm\">// Tunggu elemen muncul</span>\n<span class=\"kw\">await</span> page.<span class=\"fn\">waitForSelector</span>(<span class=\"st\">'.loading-spinner'</span>, { state: <span class=\"st\">'hidden'</span> });\n\n<span class=\"cm\">// Tunggu elemen ada di DOM</span>\n<span class=\"kw\">await</span> page.<span class=\"fn\">waitForSelector</span>(<span class=\"st\">'#result'</span>, { state: <span class=\"st\">'attached'</span> });</div>\n      </div>\n\n      <div class=\"keyword-card\">\n        <div class=\"keyword-card-header\"><span class=\"keyword-name\">page.waitForLoadState()</span><span class=\"keyword-badge\">Wait</span></div>\n        <div class=\"keyword-desc\">Menunggu halaman mencapai state loading tertentu.</div>\n        <div class=\"code-block\"><span class=\"kw\">await</span> page.<span class=\"fn\">waitForLoadState</span>(<span class=\"st\">'networkidle'</span>);\n<span class=\"kw\">await</span> page.<span class=\"fn\">waitForLoadState</span>(<span class=\"st\">'domcontentloaded'</span>);</div>\n      </div>\n\n      <div class=\"keyword-card\">\n        <div class=\"keyword-card-header\"><span class=\"keyword-name\">page.waitForTimeout()</span><span class=\"keyword-badge\">Wait</span></div>\n        <div class=\"keyword-desc\">Menunggu selama durasi tertentu (dalam milidetik). <strong>HINDARI penggunaan ini</strong> — gunakan assertion auto-retry atau waitFor sebagai gantinya.</div>\n        <div class=\"code-block\"><span class=\"cm\">// ⚠️ Gunakan hanya untuk debugging, JANGAN di production test</span>\n<span class=\"kw\">await</span> page.<span class=\"fn\">waitForTimeout</span>(2000); <span class=\"cm\">// Tunggu 2 detik</span></div>\n      </div>\n\n      <div class=\"keyword-card\">\n        <div class=\"keyword-card-header\"><span class=\"keyword-name\">page.on('dialog')</span><span class=\"keyword-badge\">Event</span></div>\n        <div class=\"keyword-desc\">Menangani dialog bawaan browser: alert, confirm, dan prompt.</div>\n        <div class=\"code-block\"><span class=\"cm\">// Pasang handler SEBELUM aksi yang memicu dialog</span>\npage.<span class=\"fn\">on</span>(<span class=\"st\">'dialog'</span>, <span class=\"kw\">async</span> dialog => {\n  console.log(dialog.<span class=\"fn\">type</span>());     <span class=\"cm\">// 'alert', 'confirm', 'prompt'</span>\n  console.log(dialog.<span class=\"fn\">message</span>());  <span class=\"cm\">// Teks dialog</span>\n  <span class=\"kw\">await</span> dialog.<span class=\"fn\">accept</span>();          <span class=\"cm\">// Klik OK</span>\n  <span class=\"cm\">// atau dialog.dismiss()        // Klik Cancel</span>\n  <span class=\"cm\">// atau dialog.accept('input')  // Isi prompt lalu OK</span>\n});\n\n<span class=\"cm\">// Aksi yang memicu dialog</span>\n<span class=\"kw\">await</span> page.<span class=\"fn\">getByRole</span>(<span class=\"st\">'button'</span>, { name: <span class=\"st\">'Hapus'</span> }).<span class=\"fn\">click</span>();</div>\n      </div>\n\n      <div class=\"tip-box warning\">\n        <div class=\"tip-box-icon\">⚠️</div>\n        <div><strong>Hindari</strong> <code>waitForTimeout()</code> di test production. Ini membuat test lambat dan flaky. Sebagai gantinya, gunakan assertion yang auto-retry atau <code>waitForSelector()</code>.</div>\n      </div>\n\n    "
+   },
+   {
+    "id": "pw-07",
+    "num": "07",
+    "title": "Page Object Model (POM)",
+    "level": "Menengah",
+    "desc": "4 sub-topik",
+    "body": "\n\n      <h4>📌 Apa itu Page Object Model?</h4>\n      <p>POM adalah design pattern yang memisahkan <strong>locator & aksi halaman</strong> dari <strong>logika test</strong>. Setiap halaman web direpresentasikan sebagai sebuah class. Jika UI berubah, cukup update satu file saja.</p>\n\n      <h4>📌 Membuat Page Object</h4>\n      <div class=\"code-block\"><span class=\"cm\">// ===== pages/LoginPage.js =====</span>\n<span class=\"kw\">class</span> <span class=\"vr\">LoginPage</span> {\n  <span class=\"fn\">constructor</span>(page) {\n    <span class=\"kw\">this</span>.page = page;\n    <span class=\"kw\">this</span>.emailInput = page.<span class=\"fn\">getByLabel</span>(<span class=\"st\">'Email'</span>);\n    <span class=\"kw\">this</span>.passwordInput = page.<span class=\"fn\">getByLabel</span>(<span class=\"st\">'Password'</span>);\n    <span class=\"kw\">this</span>.loginBtn = page.<span class=\"fn\">getByRole</span>(<span class=\"st\">'button'</span>, { name: <span class=\"st\">'Login'</span> });\n    <span class=\"kw\">this</span>.errorMsg = page.<span class=\"fn\">getByTestId</span>(<span class=\"st\">'error-message'</span>);\n  }\n\n  <span class=\"kw\">async</span> <span class=\"fn\">goto</span>() {\n    <span class=\"kw\">await</span> <span class=\"kw\">this</span>.page.<span class=\"fn\">goto</span>(<span class=\"st\">'/login'</span>);\n  }\n\n  <span class=\"kw\">async</span> <span class=\"fn\">login</span>(email, password) {\n    <span class=\"kw\">await</span> <span class=\"kw\">this</span>.emailInput.<span class=\"fn\">fill</span>(email);\n    <span class=\"kw\">await</span> <span class=\"kw\">this</span>.passwordInput.<span class=\"fn\">fill</span>(password);\n    <span class=\"kw\">await</span> <span class=\"kw\">this</span>.loginBtn.<span class=\"fn\">click</span>();\n  }\n}\nmodule.exports = { <span class=\"vr\">LoginPage</span> };</div>\n\n      <h4>📌 Menggunakan POM di Test</h4>\n      <div class=\"code-block\"><span class=\"kw\">const</span> { <span class=\"vr\">LoginPage</span> } = require(<span class=\"st\">'../pages/LoginPage'</span>);\n\ntest(<span class=\"st\">'login berhasil'</span>, <span class=\"kw\">async</span> ({ page }) => {\n  <span class=\"kw\">const</span> loginPage = <span class=\"kw\">new</span> <span class=\"vr\">LoginPage</span>(page);\n  <span class=\"kw\">await</span> loginPage.<span class=\"fn\">goto</span>();\n  <span class=\"kw\">await</span> loginPage.<span class=\"fn\">login</span>(<span class=\"st\">'user@test.com'</span>, <span class=\"st\">'secret'</span>);\n  <span class=\"kw\">await</span> <span class=\"fn\">expect</span>(page).<span class=\"fn\">toHaveURL</span>(<span class=\"st\">'/dashboard'</span>);\n});\n\ntest(<span class=\"st\">'error muncul jika password salah'</span>, <span class=\"kw\">async</span> ({ page }) => {\n  <span class=\"kw\">const</span> loginPage = <span class=\"kw\">new</span> <span class=\"vr\">LoginPage</span>(page);\n  <span class=\"kw\">await</span> loginPage.<span class=\"fn\">goto</span>();\n  <span class=\"kw\">await</span> loginPage.<span class=\"fn\">login</span>(<span class=\"st\">'user@test.com'</span>, <span class=\"st\">'wrong'</span>);\n  <span class=\"kw\">await</span> <span class=\"fn\">expect</span>(loginPage.errorMsg).<span class=\"fn\">toBeVisible</span>();\n});</div>\n\n      <h4>📌 Test Data Management</h4>\n      <div class=\"code-block\"><span class=\"cm\">// ===== data/users.json =====</span>\n{\n  <span class=\"st\">\"validUser\"</span>: { <span class=\"st\">\"email\"</span>: <span class=\"st\">\"admin@co.com\"</span>, <span class=\"st\">\"password\"</span>: <span class=\"st\">\"P@ss123\"</span> },\n  <span class=\"st\">\"invalidUser\"</span>: { <span class=\"st\">\"email\"</span>: <span class=\"st\">\"wrong@co.com\"</span>, <span class=\"st\">\"password\"</span>: <span class=\"st\">\"nope\"</span> }\n}\n\n<span class=\"cm\">// ===== Di dalam test =====</span>\n<span class=\"kw\">const</span> users = require(<span class=\"st\">'../data/users.json'</span>);\n\ntest(<span class=\"st\">'login dengan data dari JSON'</span>, <span class=\"kw\">async</span> ({ page }) => {\n  <span class=\"kw\">const</span> loginPage = <span class=\"kw\">new</span> <span class=\"vr\">LoginPage</span>(page);\n  <span class=\"kw\">await</span> loginPage.<span class=\"fn\">goto</span>();\n  <span class=\"kw\">await</span> loginPage.<span class=\"fn\">login</span>(users.validUser.email, users.validUser.password);\n});</div>\n\n      <div class=\"tip-box\">\n        <div class=\"tip-box-icon\">💡</div>\n        <div><strong>Struktur folder POM:</strong> <code>📁 pages/</code> (Page Objects) · <code>📁 tests/</code> (Spec files) · <code>📁 data/</code> (Test data JSON) · <code>📁 utils/</code> (Helpers)</div>\n      </div>\n\n    "
+   },
+   {
+    "id": "pw-08",
+    "num": "08",
+    "title": "API & Network Testing",
+    "level": "Mahir",
+    "desc": "5 sub-topik",
+    "body": "\n\n      <h4>📌 API Testing — GET Request</h4>\n      <div class=\"keyword-card\">\n        <div class=\"keyword-card-header\"><span class=\"keyword-name\">request.get()</span><span class=\"keyword-badge\">HTTP</span></div>\n        <div class=\"keyword-desc\">Mengirim HTTP GET request untuk mengambil data dari API.</div>\n        <div class=\"code-block\">test(<span class=\"st\">'GET — ambil daftar user'</span>, <span class=\"kw\">async</span> ({ request }) => {\n  <span class=\"kw\">const</span> res = <span class=\"kw\">await</span> request.<span class=\"fn\">get</span>(<span class=\"st\">'https://reqres.in/api/users?page=1'</span>);\n\n  <span class=\"fn\">expect</span>(res.<span class=\"fn\">status</span>()).<span class=\"fn\">toBe</span>(200);\n  <span class=\"fn\">expect</span>(res.<span class=\"fn\">ok</span>()).<span class=\"fn\">toBeTruthy</span>();\n\n  <span class=\"kw\">const</span> body = <span class=\"kw\">await</span> res.<span class=\"fn\">json</span>();\n  <span class=\"fn\">expect</span>(body.data.length).<span class=\"fn\">toBeGreaterThan</span>(0);\n  <span class=\"fn\">expect</span>(body.data[0]).<span class=\"fn\">toHaveProperty</span>(<span class=\"st\">'email'</span>);\n});</div>\n      </div>\n\n      <h4>📌 API Testing — POST Request</h4>\n      <div class=\"keyword-card\">\n        <div class=\"keyword-card-header\"><span class=\"keyword-name\">request.post()</span><span class=\"keyword-badge\">HTTP</span></div>\n        <div class=\"keyword-desc\">Mengirim HTTP POST request untuk membuat data baru.</div>\n        <div class=\"code-block\">test(<span class=\"st\">'POST — buat user baru'</span>, <span class=\"kw\">async</span> ({ request }) => {\n  <span class=\"kw\">const</span> res = <span class=\"kw\">await</span> request.<span class=\"fn\">post</span>(<span class=\"st\">'https://reqres.in/api/users'</span>, {\n    data: { name: <span class=\"st\">'Budi'</span>, job: <span class=\"st\">'QA Engineer'</span> }\n  });\n  <span class=\"fn\">expect</span>(res.<span class=\"fn\">status</span>()).<span class=\"fn\">toBe</span>(201);\n  <span class=\"kw\">const</span> body = <span class=\"kw\">await</span> res.<span class=\"fn\">json</span>();\n  <span class=\"fn\">expect</span>(body.name).<span class=\"fn\">toBe</span>(<span class=\"st\">'Budi'</span>);\n});</div>\n      </div>\n\n      <h4>📌 PUT & DELETE Request</h4>\n      <div class=\"keyword-card\">\n        <div class=\"keyword-card-header\"><span class=\"keyword-name\">request.put() / request.delete()</span><span class=\"keyword-badge\">HTTP</span></div>\n        <div class=\"keyword-desc\">Update dan hapus data via API.</div>\n        <div class=\"code-block\"><span class=\"cm\">// PUT — Update data</span>\ntest(<span class=\"st\">'PUT — update user'</span>, <span class=\"kw\">async</span> ({ request }) => {\n  <span class=\"kw\">const</span> res = <span class=\"kw\">await</span> request.<span class=\"fn\">put</span>(<span class=\"st\">'https://reqres.in/api/users/2'</span>, {\n    data: { name: <span class=\"st\">'Budi Updated'</span>, job: <span class=\"st\">'Lead QA'</span> }\n  });\n  <span class=\"fn\">expect</span>(res.<span class=\"fn\">status</span>()).<span class=\"fn\">toBe</span>(200);\n});\n\n<span class=\"cm\">// DELETE — Hapus data</span>\ntest(<span class=\"st\">'DELETE — hapus user'</span>, <span class=\"kw\">async</span> ({ request }) => {\n  <span class=\"kw\">const</span> res = <span class=\"kw\">await</span> request.<span class=\"fn\">delete</span>(<span class=\"st\">'https://reqres.in/api/users/2'</span>);\n  <span class=\"fn\">expect</span>(res.<span class=\"fn\">status</span>()).<span class=\"fn\">toBe</span>(204);\n});</div>\n      </div>\n\n      <h4>📌 Hybrid API + UI Testing</h4>\n      <div class=\"code-block\">test(<span class=\"st\">'buat via API, verifikasi di UI'</span>, <span class=\"kw\">async</span> ({ page, request }) => {\n  <span class=\"cm\">// Step 1: Buat produk via API</span>\n  <span class=\"kw\">await</span> request.<span class=\"fn\">post</span>(<span class=\"st\">'/api/products'</span>, {\n    data: { name: <span class=\"st\">'Laptop'</span>, price: 15000000 }\n  });\n  <span class=\"cm\">// Step 2: Buka halaman dan verifikasi di UI</span>\n  <span class=\"kw\">await</span> page.<span class=\"fn\">goto</span>(<span class=\"st\">'/products'</span>);\n  <span class=\"kw\">await</span> <span class=\"fn\">expect</span>(page.<span class=\"fn\">getByText</span>(<span class=\"st\">'Laptop'</span>)).<span class=\"fn\">toBeVisible</span>();\n});</div>\n\n      <h4>📌 Network Mocking & Interception</h4>\n      <div class=\"keyword-card\">\n        <div class=\"keyword-card-header\"><span class=\"keyword-name\">page.route()</span><span class=\"keyword-badge\">Network</span></div>\n        <div class=\"keyword-desc\">Mencegat request jaringan dan memodifikasi response-nya. Berguna untuk mock API tanpa mengubah backend.</div>\n        <div class=\"code-block\"><span class=\"cm\">// Mock API response</span>\n<span class=\"kw\">await</span> page.<span class=\"fn\">route</span>(<span class=\"st\">'**/api/products'</span>, <span class=\"kw\">async</span> route => {\n  <span class=\"kw\">await</span> route.<span class=\"fn\">fulfill</span>({\n    status: 200,\n    contentType: <span class=\"st\">'application/json'</span>,\n    body: JSON.<span class=\"fn\">stringify</span>([{ id: 1, name: <span class=\"st\">'Mock Product'</span> }])\n  });\n});\n\n<span class=\"cm\">// Simulasi server error</span>\n<span class=\"kw\">await</span> page.<span class=\"fn\">route</span>(<span class=\"st\">'**/api/checkout'</span>, route =>\n  route.<span class=\"fn\">fulfill</span>({ status: 500 })\n);\n\n<span class=\"cm\">// Abort request (simulasi network error)</span>\n<span class=\"kw\">await</span> page.<span class=\"fn\">route</span>(<span class=\"st\">'**/*.png'</span>, route => route.<span class=\"fn\">abort</span>());</div>\n      </div>\n\n    "
+   },
+   {
+    "id": "pw-09",
+    "num": "09",
+    "title": "CI/CD & Reporting",
+    "level": "Mahir",
+    "desc": "4 sub-topik",
+    "body": "\n\n      <h4>📌 Cross-Browser Configuration</h4>\n      <div class=\"code-block\"><span class=\"cm\">// playwright.config.js</span>\nmodule.exports = {\n  projects: [\n    { name: <span class=\"st\">'chromium'</span>, use: { ...devices[<span class=\"st\">'Desktop Chrome'</span>] } },\n    { name: <span class=\"st\">'firefox'</span>,  use: { ...devices[<span class=\"st\">'Desktop Firefox'</span>] } },\n    { name: <span class=\"st\">'webkit'</span>,   use: { ...devices[<span class=\"st\">'Desktop Safari'</span>] } },\n    { name: <span class=\"st\">'mobile'</span>,   use: { ...devices[<span class=\"st\">'iPhone 13'</span>] } },\n  ],\n};</div>\n      <div class=\"code-block\"><span class=\"cm\"># Jalankan di browser tertentu</span>\nnpx playwright test --project=firefox\n\n<span class=\"cm\"># Jalankan di semua browser</span>\nnpx playwright test</div>\n\n      <h4>📌 Trace Viewer & Debugging</h4>\n      <div class=\"keyword-card\">\n        <div class=\"keyword-card-header\"><span class=\"keyword-name\">trace</span><span class=\"keyword-badge\">Config</span></div>\n        <div class=\"keyword-desc\">Trace Viewer merekam timeline lengkap test: setiap klik, navigasi, DOM snapshot, dan network request. Seperti \"time machine\" untuk debugging.</div>\n        <div class=\"code-block\"><span class=\"cm\">// playwright.config.js</span>\nmodule.exports = {\n  use: {\n    trace: <span class=\"st\">'on-first-retry'</span>,      <span class=\"cm\">// Rekam trace saat retry</span>\n    screenshot: <span class=\"st\">'only-on-failure'</span>, <span class=\"cm\">// Screenshot saat gagal</span>\n    video: <span class=\"st\">'retain-on-failure'</span>,    <span class=\"cm\">// Video saat gagal</span>\n  },\n};</div>\n        <div class=\"code-block\"><span class=\"cm\"># Buka trace viewer</span>\nnpx playwright show-trace trace.zip</div>\n      </div>\n\n      <h4>📌 HTML Reporting</h4>\n      <div class=\"code-block\"><span class=\"cm\">// playwright.config.js</span>\nmodule.exports = {\n  reporter: [\n    [<span class=\"st\">'html'</span>, { open: <span class=\"st\">'on-failure'</span> }],\n    [<span class=\"st\">'list'</span>],\n  ],\n};\n\n<span class=\"cm\"># Buka HTML report setelah test</span>\n<span class=\"cm\"># npx playwright show-report</span></div>\n\n      <h4>📌 GitHub Actions CI/CD</h4>\n      <div class=\"code-block\"><span class=\"cm\"># .github/workflows/playwright.yml</span>\nname: Playwright Tests\non:\n  push:\n    branches: [ main ]\n  pull_request:\n    branches: [ main ]\n\njobs:\n  test:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: actions/setup-node@v4\n        with:\n          node-version: 20\n      - run: npm ci\n      - run: npx playwright install --with-deps\n      - run: npx playwright test\n      - uses: actions/upload-artifact@v4\n        if: ${{ !cancelled() }}\n        with:\n          name: playwright-report\n          path: playwright-report/\n          retention-days: 30</div>\n\n      <div class=\"tip-box warning\">\n        <div class=\"tip-box-icon\">⚠️</div>\n        <div>Di CI, selalu gunakan <code>npx playwright install --with-deps</code> untuk install browser + dependency OS. Tanpa <code>--with-deps</code>, browser mungkin gagal di Linux.</div>\n      </div>\n\n      <div class=\"tip-box\">\n        <div class=\"tip-box-icon\">💡</div>\n        <div><strong>Authentication di CI:</strong> Gunakan <code>storageState</code> untuk menyimpan session login. Buat file <code>global-setup.js</code> yang login sekali, simpan cookies ke <code>auth.json</code>, lalu semua test menggunakan state tersebut.</div>\n      </div>\n\n    "
+   },
+   {
+    "id": "pw-10",
+    "num": "10",
+    "title": "Integrasi Jenkins CI/CD",
+    "level": "Mahir",
+    "desc": "6 sub-topik",
+    "body": "\n\n      <h4>📌 Arsitektur Jenkins + Playwright</h4>\n      <p>Jenkins adalah automation server open-source yang paling populer untuk CI/CD. Dalam pipeline Playwright, Jenkins berperan sebagai <strong>orchestrator</strong> — menjalankan test secara otomatis setiap kali ada commit baru ke repository.</p>\n      <ul>\n        <li><strong>Jenkins Master (Controller)</strong> — Mengelola pipeline, menjadwalkan job, dan mendistribusikan task ke agent</li>\n        <li><strong>Jenkins Agent (Node)</strong> — Mesin yang benar-benar menjalankan test (bisa Linux, Windows, Docker container)</li>\n        <li><strong>Jenkinsfile</strong> — File konfigurasi pipeline yang disimpan di dalam repository (Pipeline as Code)</li>\n        <li><strong>Alur kerja</strong> — Developer push code → GitHub webhook trigger Jenkins → Jenkins clone repo → Install deps → Run Playwright test → Publish report</li>\n      </ul>\n\n      <div class=\"tip-box\">\n        <div class=\"tip-box-icon\">💡</div>\n        <div><strong>Playwright vs Jenkins:</strong> Jenkins mengatur <em>kapan</em> test berjalan (trigger, schedule). Playwright mengurus <em>bagaimana</em> test berjalan. Keduanya bekerja bersama via Jenkinsfile.</div>\n      </div>\n\n      <h4>📌 Instalasi Playwright di Jenkins Agent</h4>\n      <p>Jenkins agent (node) yang menjalankan test Playwright perlu memiliki Node.js dan dependency browser. Ada dua pendekatan utama:</p>\n\n      <div class=\"keyword-card\">\n        <div class=\"keyword-card-header\">\n          <span class=\"keyword-name\">Pendekatan 1: Node.js Langsung di Agent</span>\n          <span class=\"keyword-badge\">Bare Metal</span>\n        </div>\n        <div class=\"keyword-desc\">Install Node.js dan Playwright browser di mesin Jenkins agent. Cocok untuk dedicated agent atau on-premise Jenkins.</div>\n        <div class=\"code-block\"><span class=\"cm\"># Di Jenkins Agent (Ubuntu/Debian)</span>\n\n<span class=\"cm\"># 1. Install Node.js via nvm</span>\ncurl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash\nnvm install 20\nnvm use 20\n\n<span class=\"cm\"># 2. Install project dependencies</span>\nnpm ci\n\n<span class=\"cm\"># 3. Install Playwright browsers + OS dependencies</span>\nnpx playwright install --with-deps\n\n<span class=\"cm\"># 4. Jalankan test</span>\nnpx playwright test</div>\n      </div>\n\n      <div class=\"keyword-card\">\n        <div class=\"keyword-card-header\">\n          <span class=\"keyword-name\">Pendekatan 2: Docker Container sebagai Agent</span>\n          <span class=\"keyword-badge\">Docker</span>\n        </div>\n        <div class=\"keyword-desc\">Gunakan Docker image resmi Playwright sebagai agent. Ini memastikan environment konsisten di mana pun Jenkins berjalan — tidak ada \"works on my machine\".</div>\n        <div class=\"code-block\"><span class=\"cm\"># Gunakan official Playwright Docker image</span>\n<span class=\"cm\"># Image ini sudah include Node.js + semua browser + dependencies</span>\n\ndocker pull mcr.microsoft.com/playwright:v1.44.0-jammy\n\n<span class=\"cm\"># Run test di dalam container</span>\ndocker run --rm \\\n  -v $(pwd):/work \\\n  -w /work \\\n  mcr.microsoft.com/playwright:v1.44.0-jammy \\\n  npx playwright test</div>\n      </div>\n\n      <h4>📌 Menulis Jenkinsfile (Declarative Pipeline)</h4>\n      <p>Jenkinsfile adalah file yang mendefinisikan pipeline CI/CD menggunakan <strong>Declarative Pipeline syntax</strong>. File ini disimpan di root repository (bersama <code>package.json</code>) sehingga konfigurasi pipeline ikut di-version control.</p>\n\n      <div class=\"keyword-card\">\n        <div class=\"keyword-card-header\">\n          <span class=\"keyword-name\">Jenkinsfile — Pipeline Dasar</span>\n          <span class=\"keyword-badge\">Pipeline as Code</span>\n        </div>\n        <div class=\"keyword-desc\">Struktur dasar Jenkinsfile declarative: pipeline → agent → stages → stage → steps. Setiap stage mewakili satu fase dalam CI/CD.</div>\n        <div class=\"code-block\"><span class=\"cm\">// Jenkinsfile (simpan di root project)</span>\n\npipeline {\n  agent any  <span class=\"cm\">// Jalankan di agent mana saja yang tersedia</span>\n\n  <span class=\"cm\">// Tools yang dibutuhkan (konfigurasi di Jenkins Global Tools)</span>\n  tools {\n    nodejs <span class=\"st\">'NodeJS-20'</span>  <span class=\"cm\">// Nama tool yang dikonfigurasi di Jenkins</span>\n  }\n\n  <span class=\"cm\">// Environment variables global</span>\n  environment {\n    CI = <span class=\"st\">'true'</span>\n    PLAYWRIGHT_BROWSERS_PATH = <span class=\"st\">'0'</span>  <span class=\"cm\">// Gunakan browser yang sudah ada</span>\n  }\n\n  stages {\n    stage(<span class=\"st\">'Checkout'</span>) {\n      steps {\n        checkout scm  <span class=\"cm\">// Clone repository dari SCM (Git)</span>\n      }\n    }\n\n    stage(<span class=\"st\">'Install Dependencies'</span>) {\n      steps {\n        sh <span class=\"st\">'npm ci'</span>  <span class=\"cm\">// Install dari package-lock.json (deterministik)</span>\n      }\n    }\n\n    stage(<span class=\"st\">'Install Playwright Browsers'</span>) {\n      steps {\n        sh <span class=\"st\">'npx playwright install --with-deps'</span>\n      }\n    }\n\n    stage(<span class=\"st\">'Run Playwright Tests'</span>) {\n      steps {\n        sh <span class=\"st\">'npx playwright test'</span>\n      }\n    }\n  }\n\n  post {\n    always {\n      <span class=\"cm\">// Publish HTML report selalu, bahkan jika test gagal</span>\n      publishHTML(target: [\n        allowMissing: <span class=\"kw\">false</span>,\n        alwaysLinkToLastBuild: <span class=\"kw\">true</span>,\n        keepAll: <span class=\"kw\">true</span>,\n        reportDir: <span class=\"st\">'playwright-report'</span>,\n        reportFiles: <span class=\"st\">'index.html'</span>,\n        reportName: <span class=\"st\">'Playwright HTML Report'</span>\n      ])\n    }\n    success {\n      echo <span class=\"st\">'✅ Semua test PASSED!'</span>\n    }\n    failure {\n      echo <span class=\"st\">'❌ Ada test yang FAILED. Cek report!'</span>\n      <span class=\"cm\">// Bisa tambahkan: emailext, Slack notification, dll</span>\n    }\n  }\n}</div>\n      </div>\n\n      <h4>📌 Parallel Execution di Jenkins</h4>\n      <p>Untuk mempercepat eksekusi, jalankan test secara paralel di beberapa browser sekaligus menggunakan <code>parallel</code> block di Jenkinsfile. Jenkins akan mendistribusikan ke beberapa agent secara bersamaan.</p>\n\n      <div class=\"keyword-card\">\n        <div class=\"keyword-card-header\">\n          <span class=\"keyword-name\">parallel { } — Multi-browser Testing</span>\n          <span class=\"keyword-badge\">Performance</span>\n        </div>\n        <div class=\"keyword-desc\">Jalankan test di Chromium, Firefox, dan WebKit secara paralel, bukan berurutan. Ini bisa mempersingkat total waktu eksekusi hingga 3x lipat.</div>\n        <div class=\"code-block\">stage(<span class=\"st\">'Run Tests - All Browsers'</span>) {\n  parallel {\n    stage(<span class=\"st\">'Chromium'</span>) {\n      steps {\n        sh <span class=\"st\">'npx playwright test --project=chromium'</span>\n      }\n      post {\n        always {\n          archiveArtifacts artifacts: <span class=\"st\">'playwright-report/**'</span>, fingerprint: <span class=\"kw\">true</span>\n        }\n      }\n    }\n    stage(<span class=\"st\">'Firefox'</span>) {\n      steps {\n        sh <span class=\"st\">'npx playwright test --project=firefox'</span>\n      }\n    }\n    stage(<span class=\"st\">'WebKit'</span>) {\n      steps {\n        sh <span class=\"st\">'npx playwright test --project=webkit'</span>\n      }\n    }\n  }\n}\n\n<span class=\"cm\">// Atau gunakan sharding — split test ke beberapa shard</span>\nstage(<span class=\"st\">'Shard 1/3'</span>) { steps { sh <span class=\"st\">'npx playwright test --shard=1/3'</span> } }\nstage(<span class=\"st\">'Shard 2/3'</span>) { steps { sh <span class=\"st\">'npx playwright test --shard=2/3'</span> } }\nstage(<span class=\"st\">'Shard 3/3'</span>) { steps { sh <span class=\"st\">'npx playwright test --shard=3/3'</span> } }</div>\n      </div>\n\n      <h4>📌 Mengelola Environment Variables & Secrets di Jenkins</h4>\n      <p>Test otomatis sering membutuhkan credentials (username, password, API key). <strong>JANGAN</strong> hardcode di Jenkinsfile — gunakan Jenkins Credentials Manager.</p>\n\n      <div class=\"keyword-card\">\n        <div class=\"keyword-card-header\">\n          <span class=\"keyword-name\">withCredentials { } — Injeksi Secret</span>\n          <span class=\"keyword-badge\">Security</span>\n        </div>\n        <div class=\"keyword-desc\">Jenkins Credentials Manager menyimpan secret terenkripsi. Gunakan withCredentials() untuk menginjeksikan secret sebagai environment variable ke dalam pipeline.</div>\n        <div class=\"code-block\"><span class=\"cm\">// Di Jenkins UI:</span>\n<span class=\"cm\">// Dashboard → Manage Jenkins → Credentials → Add Credentials</span>\n<span class=\"cm\">// Kind: Username with password, ID: staging-credentials</span>\n\n<span class=\"cm\">// Di Jenkinsfile — injeksi secret sebagai env var</span>\nstage(<span class=\"st\">'Run Tests'</span>) {\n  steps {\n    withCredentials([\n      usernamePassword(\n        credentialsId: <span class=\"st\">'staging-credentials'</span>,\n        usernameVariable: <span class=\"st\">'TEST_USERNAME'</span>,\n        passwordVariable: <span class=\"st\">'TEST_PASSWORD'</span>\n      )\n    ]) {\n      <span class=\"cm\">// Secret tersedia sebagai env var: $TEST_USERNAME, $TEST_PASSWORD</span>\n      sh <span class=\"st\">'''</span>\n<span class=\"st\">        BASE_URL=https://staging.myapp.com \\\n        AUTH_USER=$TEST_USERNAME \\\n        AUTH_PASS=$TEST_PASSWORD \\\n        npx playwright test\n      '''</span>\n    }\n  }\n}\n\n<span class=\"cm\">// Di playwright.config.js — baca dari process.env</span>\nmodule.exports = {\n  use: {\n    baseURL: process.env.BASE_URL || <span class=\"st\">'http://localhost:3000'</span>,\n  },\n};</div>\n      </div>\n\n      <div class=\"keyword-card\">\n        <div class=\"keyword-card-header\">\n          <span class=\"keyword-name\">parameters { } — Pipeline Parameterization</span>\n          <span class=\"keyword-badge\">Flexibility</span>\n        </div>\n        <div class=\"keyword-desc\">Buat pipeline yang fleksibel — user bisa memilih browser, environment, atau test yang dijalankan saat trigger manual.</div>\n        <div class=\"code-block\">pipeline {\n  agent any\n\n  parameters {\n    choice(\n      name: <span class=\"st\">'BROWSER'</span>,\n      choices: [<span class=\"st\">'chromium'</span>, <span class=\"st\">'firefox'</span>, <span class=\"st\">'webkit'</span>, <span class=\"st\">'all'</span>],\n      description: <span class=\"st\">'Pilih browser untuk testing'</span>\n    )\n    choice(\n      name: <span class=\"st\">'ENV'</span>,\n      choices: [<span class=\"st\">'staging'</span>, <span class=\"st\">'production'</span>],\n      description: <span class=\"st\">'Target environment'</span>\n    )\n    booleanParam(\n      name: <span class=\"st\">'RUN_ALL'</span>,\n      defaultValue: <span class=\"kw\">false</span>,\n      description: <span class=\"st\">'Jalankan semua test (termasuk slow tests)'</span>\n    )\n  }\n\n  stages {\n    stage(<span class=\"st\">'Run Tests'</span>) {\n      steps {\n        script {\n          def browser = params.BROWSER == <span class=\"st\">'all'</span> ? <span class=\"st\">''</span> : <span class=\"st\">\"--project=${params.BROWSER}\"</span>\n          sh <span class=\"st\">\"BASE_URL=https://${params.ENV}.app.com npx playwright test ${browser}\"</span>\n        }\n      }\n    }\n  }\n}</div>\n      </div>\n\n      <h4>📌 Blue Ocean & HTML Report di Jenkins</h4>\n      <p>Jenkins memiliki plugin <strong>Blue Ocean</strong> yang menyediakan UI modern untuk visualisasi pipeline, dan plugin <strong>HTML Publisher</strong> untuk menampilkan Playwright HTML report langsung di dashboard Jenkins.</p>\n\n      <div class=\"keyword-card\">\n        <div class=\"keyword-card-header\">\n          <span class=\"keyword-name\">playwright.config.js — Konfigurasi untuk Jenkins</span>\n          <span class=\"keyword-badge\">Config</span>\n        </div>\n        <div class=\"keyword-desc\">Konfigurasi Playwright yang dioptimalkan untuk environment Jenkins CI — menggunakan junit reporter agar Jenkins bisa membaca hasil test, dan merekam trace/screenshot saat gagal.</div>\n        <div class=\"code-block\"><span class=\"cm\">// playwright.config.js — versi untuk Jenkins CI</span>\nconst { defineConfig, devices } = require(<span class=\"st\">'@playwright/test'</span>);\n\nmodule.exports = defineConfig({\n  testDir: <span class=\"st\">'./tests'</span>,\n  fullyParallel: <span class=\"kw\">true</span>,\n  forbidOnly: !!process.env.CI,  <span class=\"cm\">// Fail jika ada test.only di CI</span>\n  retries: process.env.CI ? 2 : 0,  <span class=\"cm\">// Retry 2x di CI, 0 di lokal</span>\n  workers: process.env.CI ? 4 : undefined,\n\n  reporter: [\n    [<span class=\"st\">'html'</span>, { outputFolder: <span class=\"st\">'playwright-report'</span>, open: <span class=\"st\">'never'</span> }],\n    [<span class=\"st\">'junit'</span>, { outputFile: <span class=\"st\">'test-results/junit.xml'</span> }],  <span class=\"cm\">// Untuk Jenkins JUnit plugin</span>\n    [<span class=\"st\">'list'</span>],  <span class=\"cm\">// Console output untuk Jenkins log</span>\n  ],\n\n  use: {\n    baseURL: process.env.BASE_URL || <span class=\"st\">'http://localhost:3000'</span>,\n    trace: <span class=\"st\">'on-first-retry'</span>,\n    screenshot: <span class=\"st\">'only-on-failure'</span>,\n    video: <span class=\"st\">'retain-on-failure'</span>,\n  },\n\n  projects: [\n    { name: <span class=\"st\">'chromium'</span>, use: { ...devices[<span class=\"st\">'Desktop Chrome'</span>] } },\n    { name: <span class=\"st\">'firefox'</span>, use: { ...devices[<span class=\"st\">'Desktop Firefox'</span>] } },\n  ],\n});</div>\n      </div>\n\n      <div class=\"tip-box\">\n        <div class=\"tip-box-icon\">💡</div>\n        <div><strong>Plugin Jenkins yang direkomendasikan:</strong><br>\n          • <strong>NodeJS Plugin</strong> — Manage instalasi Node.js dari Jenkins UI<br>\n          • <strong>HTML Publisher Plugin</strong> — Tampilkan Playwright HTML report di dashboard<br>\n          • <strong>JUnit Plugin</strong> — Visualisasi test results sebagai bar chart<br>\n          • <strong>Blue Ocean</strong> — UI pipeline yang modern dan intuitif<br>\n          • <strong>Git Plugin</strong> — Integrasi dengan GitHub/GitLab/Bitbucket\n        </div>\n      </div>\n\n      <div class=\"tip-box warning\">\n        <div class=\"tip-box-icon\">⚠️</div>\n        <div><strong>CSP Issue di HTML Report:</strong> Jenkins secara default memblokir inline script di HTML report (Content Security Policy). Tambahkan ini di Jenkins Script Console untuk mengizinkan: <code>System.setProperty(\"hudson.model.DirectoryBrowserSupport.CSP\", \"\")</code></div>\n      </div>\n\n    "
+   }
+  ]
+ }
+];
+
+const QUIZ_BANK = [
+ {
+  "track": "js",
+  "topic": "Variabel — Kotak Penyimpanan",
+  "q": "Manakah yang benar untuk membuat variabel yang nilainya TIDAK BISA diubah?",
+  "opts": [
+   "let nama = \"Bang\"",
+   "const nama = \"Bang\"",
+   "var nama = \"Bang\"",
+   "nama = \"Bang\""
+  ],
+  "ans": 1,
+  "why": "const artinya konstan = tetap. Sekali diisi, tidak bisa diubah."
+ },
+ {
+  "track": "js",
+  "topic": "Operator — Mesin Hitung & Logika",
+  "q": "Hasil dari 10 % 3 adalah...",
+  "opts": [
+   "3",
+   "1",
+   "0",
+   "10 / 3"
+  ],
+  "ans": 1,
+  "why": "% itu sisa bagi. 10 dibagi 3 = 3 sisa 1. Jadi hasilnya 1."
+ },
+ {
+  "track": "js",
+  "topic": "String — Ngobrol Sama Teks",
+  "q": "Template literal di JavaScript pakai tanda...",
+  "opts": [
+   "\"kutip dua\"",
+   "'kutip satu'",
+   "`backtick`",
+   "(kurung)"
+  ],
+  "ans": 2,
+  "why": "Template literal pakai backtick (`...`), bukan kutip biasa. Contoh: `Halo ${nama}`."
+ },
+ {
+  "track": "js",
+  "topic": "If/Else — Jalan Bercabang",
+  "q": "Apa output dari: umur = 17; if (umur >= 18) \"Dewasa\" else \"Bocil\"?",
+  "opts": [
+   "Dewasa",
+   "Bocil",
+   "Error",
+   "17"
+  ],
+  "ans": 1,
+  "why": "17 tidak >= 18, jadi cabang else jalan: \"Bocil\"."
+ },
+ {
+  "track": "js",
+  "topic": "Function — Resep Masakan",
+  "q": "Apa output dari: const kali = (a,b) => a*b; console.log(kali(4,5));",
+  "opts": [
+   "9",
+   "45",
+   "20",
+   "kali"
+  ],
+  "ans": 2,
+  "why": "Arrow function mengembalikan hasil a*b = 4*5 = 20."
+ },
+ {
+  "track": "js",
+  "topic": "Array — Daftar Belanja Code",
+  "q": "const buah = [\"apel\",\"mangga\",\"pisang\"]; console.log(buah[1]); — outputnya?",
+  "opts": [
+   "apel",
+   "mangga",
+   "pisang",
+   "Error"
+  ],
+  "ans": 1,
+  "why": "Index dimulai dari 0. buah[0]=apel, buah[1]=mangga."
+ },
+ {
+  "track": "js",
+  "topic": "Object — Kartu Identitas Data",
+  "q": "Bagaimana mengambil nilai \"umur\" dari const user = {nama:\"Bang\", umur:25}?",
+  "opts": [
+   "user[umur]",
+   "user.umur",
+   "user->umur",
+   "umur.user"
+  ],
+  "ans": 1,
+  "why": "Untuk akses properti object pakai titik: user.umur = 25."
+ },
+ {
+  "track": "js",
+  "topic": "Loop — Ulang Tanpa Capek",
+  "q": "Berapa kali loop ini jalan: for (let i = 0; i < 3; i++)",
+  "opts": [
+   "2 kali",
+   "3 kali",
+   "4 kali",
+   "Tak berujung"
+  ],
+  "ans": 1,
+  "why": "i berjalan 0,1,2 → 3 kali. Saat i=3, syarat i<3 salah, loop berhenti."
+ },
+ {
+  "track": "js",
+  "topic": "DOM — Mainan Website",
+  "q": "Fungsi mana yang dipakai untuk MENGAMBIL elemen berdasarkan ID?",
+  "opts": [
+   "querySelector(\"#id\")",
+   "getElementById(\"id\")",
+   "Keduanya benar",
+   "classList.add(\"id\")"
+  ],
+  "ans": 2,
+  "why": "getElementById(\"id\") dan querySelector(\"#id\") sama-sama bisa mengambil elemen berdasarkan ID."
+ },
+ {
+  "track": "js",
+  "topic": "Destructure — Bongkar Cepat",
+  "q": "const {nama} = {nama:\"Bang\", umur:25}; console.log(nama) — outputnya?",
+  "opts": [
+   "{nama: \"Bang\"}",
+   "Bang",
+   "umur 25",
+   "Error"
+  ],
+  "ans": 1,
+  "why": "Destructure mengambil properti nama saja dari object → nilainya \"Bang\"."
+ },
+ {
+  "track": "js",
+  "topic": "Async/Await — Tunggu Data",
+  "q": "Apa gunanya kata kunci \"await\" dalam async function?",
+  "opts": [
+   "Menghentikan program",
+   "Menunggu hasil Promise selesai",
+   "Membuat kode lebih cepat",
+   "Menghapus data"
+  ],
+  "ans": 1,
+  "why": "await membuat JS menunggu Promise (misal fetch) selesai sebelum lanjut ke baris berikutnya."
+ },
+ {
+  "track": "js",
+  "topic": "Closure & this — Level Profesional",
+  "q": "Function di bawah \"mengingat\" variabel mana? function buatCounter() { let hitung = 0; return () => hitung++; }",
+  "opts": [
+   "Tidak ada",
+   "hitung",
+   "buatCounter",
+   "return"
+  ],
+  "ans": 1,
+  "why": "Closure membuat function dalam mengingat variabel hitung (milik function luar) walau sudah dikembalikan."
+ },
+ {
+  "track": "pw",
+  "topic": "Persiapan & Environment Setup",
+  "q": "Perintah apa yang digunakan untuk inisialisasi project Playwright baru?",
+  "opts": [
+   "npm install playwright",
+   "npm init playwright@latest",
+   "npx create-playwright-app",
+   "pip install playwright"
+  ],
+  "ans": 1,
+  "why": "Perintah resmi untuk inisialisasi project Playwright adalah npm init playwright@latest. Ini akan membuat konfigurasi, folder test, dan menginstall browser secara otomatis."
+ },
+ {
+  "track": "pw",
+  "topic": "Persiapan & Environment Setup",
+  "q": "Apa nama file konfigurasi utama Playwright?",
+  "opts": [
+   "config.js",
+   "playwright.json",
+   "playwright.config.js",
+   "test.config.js"
+  ],
+  "ans": 2,
+  "why": "File konfigurasi utama Playwright bernama playwright.config.js (atau .ts untuk TypeScript). Di sini kamu mengatur browser, timeout, reporter, base URL, dan lainnya."
+ },
+ {
+  "track": "pw",
+  "topic": "Persiapan & Environment Setup",
+  "q": "Perintah CLI mana yang membuka Playwright dalam mode visual interaktif?",
+  "opts": [
+   "npx playwright test --headed",
+   "npx playwright test --ui",
+   "npx playwright open",
+   "npx playwright test --visual"
+  ],
+  "ans": 1,
+  "why": "Flag --ui membuka UI Mode — dashboard visual interaktif untuk menjalankan, melihat timeline, dan debug test. Flag --headed hanya membuka browser saat test berjalan."
+ },
+ {
+  "track": "pw",
+  "topic": "Mengenal Syntax Dasar Playwright",
+  "q": "Apa fungsi dari test.describe()?",
+  "opts": [
+   "Menjalankan test secara paralel",
+   "Mengelompokkan beberapa test yang berhubungan",
+   "Men-skip test tertentu",
+   "Membuat variabel global"
+  ],
+  "ans": 1,
+  "why": "test.describe() digunakan untuk mengelompokkan (grouping) beberapa test yang berhubungan ke dalam satu blok. Ini membantu mengorganisir test berdasarkan fitur atau halaman."
+ },
+ {
+  "track": "pw",
+  "topic": "Mengenal Syntax Dasar Playwright",
+  "q": "Hook mana yang dijalankan SEBELUM SETIAP test case?",
+  "opts": [
+   "test.beforeAll()",
+   "test.beforeEach()",
+   "test.setup()",
+   "test.init()"
+  ],
+  "ans": 1,
+  "why": "test.beforeEach() dijalankan sebelum SETIAP test case di dalam blok describe. Sedangkan test.beforeAll() hanya dijalankan SEKALI sebelum semua test."
+ },
+ {
+  "track": "pw",
+  "topic": "Mengenal Syntax Dasar Playwright",
+  "q": "Apa beda test.skip() dan test.fixme()?",
+  "opts": [
+   "Tidak ada perbedaan",
+   "skip() menghapus test, fixme() tidak",
+   "fixme() menandai test yang perlu diperbaiki, skip() hanya melewati",
+   "fixme() membuat test gagal, skip() melewati"
+  ],
+  "ans": 2,
+  "why": "Keduanya sama-sama melewati test, tetapi test.fixme() memiliki semantik khusus: \"test ini diketahui rusak dan perlu diperbaiki\". Di report, keduanya ditandai berbeda sehingga tim tahu mana yang perlu ditindaklanjuti."
+ },
+ {
+  "track": "pw",
+  "topic": "Mengenal Syntax Dasar Playwright",
+  "q": "Apa kegunaan test.step()?",
+  "opts": [
+   "Membuat test berjalan lebih lambat",
+   "Membagi test menjadi langkah-langkah bernama di report",
+   "Menjalankan test secara berurutan",
+   "Mendefinisikan sub-test"
+  ],
+  "ans": 1,
+  "why": "test.step() membagi satu test menjadi langkah-langkah bernama. Setiap step muncul terpisah di report, memudahkan debugging ketika satu langkah tertentu gagal."
+ },
+ {
+  "track": "pw",
+  "topic": "Locators — Menemukan Elemen di Halaman",
+  "q": "Locator mana yang PALING direkomendasikan oleh Playwright?",
+  "opts": [
+   "page.locator(css)",
+   "page.getByText()",
+   "page.getByRole()",
+   "page.getByTestId()"
+  ],
+  "ans": 2,
+  "why": "getByRole() adalah locator paling direkomendasikan karena menggunakan ARIA role (button, link, heading, dll) yang paling stabil dan aksesibel. Test yang menggunakan getByRole() lebih tahan terhadap perubahan UI."
+ },
+ {
+  "track": "pw",
+  "topic": "Locators — Menemukan Elemen di Halaman",
+  "q": "Bagaimana cara mengakses elemen yang berada di dalam &lt;iframe&gt;?",
+  "opts": [
+   "page.locator(\"iframe\").getByText()",
+   "page.frameLocator(\"iframe#id\")",
+   "page.getByRole(\"iframe\")",
+   "page.switchToFrame(\"iframe\")"
+  ],
+  "ans": 1,
+  "why": "page.frameLocator() digunakan untuk mengakses elemen di dalam iframe. Elemen dalam iframe tidak bisa diakses langsung — harus melalui frameLocator terlebih dahulu."
+ },
+ {
+  "track": "pw",
+  "topic": "Locators — Menemukan Elemen di Halaman",
+  "q": "Method apa yang digunakan untuk mempersempit hasil locator?",
+  "opts": [
+   "locator.narrow()",
+   "locator.where()",
+   "locator.filter()",
+   "locator.find()"
+  ],
+  "ans": 2,
+  "why": "locator.filter() digunakan untuk mempersempit hasil. Bisa filter berdasarkan teks (hasText) atau child element (has). Contoh: page.locator(\".card\").filter({ hasText: \"Laptop\" })"
+ },
+ {
+  "track": "pw",
+  "topic": "Locators — Menemukan Elemen di Halaman",
+  "q": "Cara mengambil elemen ke-3 dari sekumpulan hasil locator?",
+  "opts": [
+   "locator.get(3)",
+   "locator.nth(2)",
+   "locator[2]",
+   "locator.index(3)"
+  ],
+  "ans": 1,
+  "why": "locator.nth(index) digunakan untuk mengambil elemen pada index tertentu (dimulai dari 0). Jadi nth(2) mengambil elemen ke-3. Ada juga .first() dan .last() untuk elemen pertama/terakhir."
+ },
+ {
+  "track": "pw",
+  "topic": "Actions — Melakukan Aksi pada Elemen",
+  "q": "Apa perbedaan utama antara fill() dan pressSequentially()?",
+  "opts": [
+   "Tidak ada perbedaan",
+   "fill() langsung set value, pressSequentially() ketik per karakter",
+   "fill() untuk password, pressSequentially() untuk teks biasa",
+   "fill() lebih lambat dari pressSequentially()"
+  ],
+  "ans": 1,
+  "why": "fill() langsung mengeset value input secara programatis (cepat). pressSequentially() mensimulasikan penekanan keyboard karakter per karakter (lambat, tapi memicu event keydown/keyup). Gunakan fill() secara default."
+ },
+ {
+  "track": "pw",
+  "topic": "Actions — Melakukan Aksi pada Elemen",
+  "q": "Method apa yang digunakan untuk upload file?",
+  "opts": [
+   "uploadFile()",
+   "setFile()",
+   "setInputFiles()",
+   "attachFile()"
+  ],
+  "ans": 2,
+  "why": "setInputFiles() digunakan untuk meng-upload file ke input bertipe file. Bisa upload satu file (string) atau multiple files (array). Untuk menghapus file, kirim array kosong: setInputFiles([])"
+ },
+ {
+  "track": "pw",
+  "topic": "Actions — Melakukan Aksi pada Elemen",
+  "q": "Fitur apa yang membuat kita TIDAK perlu menulis sleep() atau waitFor() manual?",
+  "opts": [
+   "Smart Loading",
+   "Auto-waiting",
+   "Lazy Execution",
+   "Pre-rendering"
+  ],
+  "ans": 1,
+  "why": "Playwright memiliki fitur Auto-waiting — setiap action (click, fill, dll) otomatis menunggu elemen visible, enabled, dan stabil sebelum berinteraksi. Ini menghilangkan kebutuhan sleep() manual."
+ },
+ {
+  "track": "pw",
+  "topic": "Actions — Melakukan Aksi pada Elemen",
+  "q": "Bagaimana cara melakukan klik kanan (right-click)?",
+  "opts": [
+   "rightClick()",
+   "click({ button: \"right\" })",
+   "contextMenu()",
+   "click({ type: \"context\" })"
+  ],
+  "ans": 1,
+  "why": "Gunakan click({ button: \"right\" }) untuk klik kanan. Playwright juga mendukung click({ button: \"middle\" }) untuk middle-click, dan click({ modifiers: [\"Control\"] }) untuk Ctrl+Click."
+ },
+ {
+  "track": "pw",
+  "topic": "Assertions — Memverifikasi Hasil",
+  "q": "Apa perbedaan toHaveText() dan toContainText()?",
+  "opts": [
+   "Tidak ada perbedaan",
+   "toHaveText() exact match, toContainText() cukup substring",
+   "toContainText() case-insensitive",
+   "toHaveText() untuk heading saja"
+  ],
+  "ans": 1,
+  "why": "toHaveText() memverifikasi teks secara exact (harus persis sama). toContainText() memverifikasi elemen MENGANDUNG teks tersebut (substring match). Gunakan toContainText() jika hanya ingin cek sebagian teks."
+ },
+ {
+  "track": "pw",
+  "topic": "Assertions — Memverifikasi Hasil",
+  "q": "Assertion apa untuk memverifikasi perbandingan visual (screenshot)?",
+  "opts": [
+   "toMatchImage()",
+   "toHaveScreenshot()",
+   "toCompareVisual()",
+   "toBePixelPerfect()"
+  ],
+  "ans": 1,
+  "why": "toHaveScreenshot() mengambil screenshot dan membandingkannya dengan screenshot referensi. Pertama kali dijalankan akan membuat referensi, selanjutnya akan membandingkan perubahan visual."
+ },
+ {
+  "track": "pw",
+  "topic": "Assertions — Memverifikasi Hasil",
+  "q": "Bagaimana cara membuat NEGASI assertion (memastikan sesuatu TIDAK terjadi)?",
+  "opts": [
+   "expect().toBeFalse()",
+   "expect().not.toBeVisible()",
+   "expectNot().toBeVisible()",
+   "expect(!locator).toBeVisible()"
+  ],
+  "ans": 1,
+  "why": "Gunakan .not sebelum assertion method: expect(locator).not.toBeVisible(). Ini berlaku untuk semua assertion: .not.toHaveText(), .not.toBeChecked(), dll."
+ },
+ {
+  "track": "pw",
+  "topic": "Assertions — Memverifikasi Hasil",
+  "q": "Semua assertion Playwright memiliki fitur apa?",
+  "opts": [
+   "Auto-close",
+   "Auto-retry (menunggu kondisi terpenuhi)",
+   "Auto-skip",
+   "Auto-fix"
+  ],
+  "ans": 1,
+  "why": "Assertion Playwright otomatis me-retry hingga timeout (default 5 detik). Jadi toBeVisible() akan menunggu elemen muncul sebelum menandai gagal, bukan langsung fail."
+ },
+ {
+  "track": "pw",
+  "topic": "Navigation & Page Methods",
+  "q": "Method apa yang digunakan untuk membuka URL halaman?",
+  "opts": [
+   "page.open()",
+   "page.navigate()",
+   "page.goto()",
+   "page.load()"
+  ],
+  "ans": 2,
+  "why": "page.goto(url) digunakan untuk membuka URL tertentu. Bisa menerima URL absolut atau relatif (jika baseURL dikonfigurasi di playwright.config.js)."
+ },
+ {
+  "track": "pw",
+  "topic": "Navigation & Page Methods",
+  "q": "Apa yang sebaiknya DIHINDARI di production test?",
+  "opts": [
+   "page.goto()",
+   "page.waitForURL()",
+   "page.waitForTimeout()",
+   "page.reload()"
+  ],
+  "ans": 2,
+  "why": "waitForTimeout() (hardcoded sleep) harus dihindari karena membuat test lambat dan flaky. Gunakan assertion auto-retry atau waitForSelector() yang menunggu kondisi spesifik."
+ },
+ {
+  "track": "pw",
+  "topic": "Navigation & Page Methods",
+  "q": "Bagaimana cara menangani dialog alert di browser?",
+  "opts": [
+   "page.handleAlert()",
+   "page.on(\"dialog\", handler)",
+   "page.acceptDialog()",
+   "page.getByRole(\"dialog\")"
+  ],
+  "ans": 1,
+  "why": "Gunakan page.on(\"dialog\", handler) untuk menangani dialog bawaan browser (alert, confirm, prompt). Handler harus dipasang SEBELUM aksi yang memicu dialog."
+ },
+ {
+  "track": "pw",
+  "topic": "Page Object Model (POM)",
+  "q": "Apa tujuan utama Page Object Model (POM)?",
+  "opts": [
+   "Mempercepat eksekusi test",
+   "Memisahkan locator/aksi halaman dari logika test",
+   "Menambahkan fitur visual testing",
+   "Menggantikan playwright.config.js"
+  ],
+  "ans": 1,
+  "why": "POM memisahkan \"BAGAIMANA berinteraksi dengan halaman\" (locator, aksi) dari \"APA yang diuji\" (logika test). Jika UI berubah, cukup update satu Page Object tanpa menyentuh file test."
+ },
+ {
+  "track": "pw",
+  "topic": "Page Object Model (POM)",
+  "q": "Di bagian mana locator biasanya didefinisikan di POM?",
+  "opts": [
+   "Di file test",
+   "Di playwright.config.js",
+   "Di constructor class Page Object",
+   "Di file JSON terpisah"
+  ],
+  "ans": 2,
+  "why": "Locator didefinisikan di constructor class Page Object. Constructor menerima parameter page, lalu mendefinisikan locator sebagai property: this.loginBtn = page.getByRole(\"button\", { name: \"Login\" })"
+ },
+ {
+  "track": "pw",
+  "topic": "Page Object Model (POM)",
+  "q": "Apa keuntungan utama POM saat UI berubah?",
+  "opts": [
+   "Test otomatis diperbarui",
+   "Cukup update 1 file Page Object",
+   "Tidak berpengaruh sama sekali",
+   "Harus buat POM baru"
+  ],
+  "ans": 1,
+  "why": "Ketika UI berubah (misal locator berubah), kamu hanya perlu mengupdate satu file Page Object. Semua test yang menggunakan Page Object tersebut otomatis mengikuti perubahan."
+ },
+ {
+  "track": "pw",
+  "topic": "API & Network Testing",
+  "q": "Fixture apa yang digunakan untuk API testing di Playwright?",
+  "opts": [
+   "{ api }",
+   "{ http }",
+   "{ request }",
+   "{ fetch }"
+  ],
+  "ans": 2,
+  "why": "Fixture { request } menyediakan APIRequestContext untuk mengirim HTTP request (GET, POST, PUT, DELETE) tanpa membuka browser. Tambahkan di parameter fungsi test: async ({ request }) => { ... }"
+ },
+ {
+  "track": "pw",
+  "topic": "API & Network Testing",
+  "q": "HTTP status code berapa yang menandakan resource berhasil dibuat (created)?",
+  "opts": [
+   "200",
+   "201",
+   "204",
+   "301"
+  ],
+  "ans": 1,
+  "why": "201 Created menandakan resource berhasil dibuat. 200 OK untuk sukses umum, 204 No Content untuk sukses tanpa body (biasa untuk DELETE), 301 untuk redirect."
+ },
+ {
+  "track": "pw",
+  "topic": "API & Network Testing",
+  "q": "Method apa untuk mock/intercept API response di Playwright?",
+  "opts": [
+   "page.mock()",
+   "page.intercept()",
+   "page.route()",
+   "page.proxy()"
+  ],
+  "ans": 2,
+  "why": "page.route(urlPattern, handler) mencegat request yang cocok dengan pattern dan memungkinkan kamu memodifikasi response (fulfill), membatalkan (abort), atau melanjutkan (continue)."
+ },
+ {
+  "track": "pw",
+  "topic": "CI/CD & Reporting",
+  "q": "Apa fungsi flag --with-deps saat install browser di CI?",
+  "opts": [
+   "Install dependency npm",
+   "Install dependency OS yang dibutuhkan browser",
+   "Install semua dev dependencies",
+   "Install Docker container"
+  ],
+  "ans": 1,
+  "why": "Flag --with-deps menginstall dependency OS (shared libraries) yang dibutuhkan browser untuk berjalan. Tanpa flag ini, browser mungkin gagal di Linux CI karena library tidak tersedia."
+ },
+ {
+  "track": "pw",
+  "topic": "CI/CD & Reporting",
+  "q": "Konfigurasi trace apa yang merekam trace HANYA saat test retry (gagal)?",
+  "opts": [
+   "\"always\"",
+   "\"on-first-retry\"",
+   "\"on-failure\"",
+   "\"never\""
+  ],
+  "ans": 1,
+  "why": "\"on-first-retry\" merekam trace hanya saat test dijalankan ulang (retry) setelah gagal. Ini adalah setting optimal — trace tersedia saat debugging gagal tanpa overhead saat test berhasil."
+ },
+ {
+  "track": "pw",
+  "topic": "CI/CD & Reporting",
+  "q": "Perintah apa untuk melihat HTML report setelah test selesai?",
+  "opts": [
+   "npx playwright open-report",
+   "npx playwright show-report",
+   "npx playwright report --html",
+   "npx playwright view"
+  ],
+  "ans": 1,
+  "why": "npx playwright show-report membuka HTML report di browser. Report ini menampilkan semua test results dengan detail, screenshot, trace, dan video (jika dikonfigurasi)."
+ },
+ {
+  "track": "pw",
+  "topic": "Integrasi Jenkins CI/CD",
+  "q": "Apa peran Jenkins dalam pipeline Playwright?",
+  "opts": [
+   "Menjalankan browser secara langsung",
+   "Orchestrator — mengatur kapan dan di mana test berjalan",
+   "Menggantikan playwright.config.js",
+   "Menyimpan test results di database"
+  ],
+  "ans": 1,
+  "why": "Jenkins berperan sebagai orchestrator: mengatur trigger (kapan test jalan), mendistribusikan ke agent (di mana test jalan), dan mengumpulkan hasil. Playwright yang mengurus bagaimana test dieksekusi."
+ },
+ {
+  "track": "pw",
+  "topic": "Integrasi Jenkins CI/CD",
+  "q": "Di mana sebaiknya Jenkinsfile disimpan?",
+  "opts": [
+   "Di server Jenkins",
+   "Di root repository bersama package.json",
+   "Di folder /etc/jenkins",
+   "Di database Jenkins"
+  ],
+  "ans": 1,
+  "why": "Jenkinsfile disimpan di root repository (bersama package.json). Ini disebut \"Pipeline as Code\" — konfigurasi CI ikut di-version control, sehingga history perubahan bisa dilacak dan dikolaborasi bersama tim."
+ },
+ {
+  "track": "pw",
+  "topic": "Integrasi Jenkins CI/CD",
+  "q": "Bagaimana cara yang BENAR untuk menyimpan password/API key di Jenkins?",
+  "opts": [
+   "Hardcode di Jenkinsfile",
+   "Simpan di file .env di server",
+   "Gunakan Jenkins Credentials Manager + withCredentials()",
+   "Kirim via environment variable saat build"
+  ],
+  "ans": 2,
+  "why": "Gunakan Jenkins Credentials Manager untuk menyimpan secret terenkripsi, lalu injeksikan ke pipeline menggunakan withCredentials(). JANGAN hardcode secret di Jenkinsfile atau file konfigurasi yang masuk ke repository."
+ },
+ {
+  "track": "pw",
+  "topic": "Integrasi Jenkins CI/CD",
+  "q": "Apa manfaat menggunakan Docker image resmi Playwright sebagai Jenkins agent?",
+  "opts": [
+   "Lebih murah dari server biasa",
+   "Environment konsisten, tidak ada masalah dependency di tiap mesin",
+   "Tidak perlu install Jenkins",
+   "Browser berjalan lebih cepat"
+  ],
+  "ans": 1,
+  "why": "Docker image resmi Playwright sudah include Node.js + semua browser + dependency OS. Environment di setiap run dijamin identik — menghilangkan masalah \"works on my machine\" yang umum terjadi saat setup manual."
+ }
+];

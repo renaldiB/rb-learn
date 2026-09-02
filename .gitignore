@@ -1,0 +1,8 @@
+﻿# Logs & Temporary files
+node_modules/
+*.log
+tools/shots/chrome-profile/
+
+# OS metadata
+.DS_Store
+Thumbs.db
