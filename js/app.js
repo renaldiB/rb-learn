@@ -1,30 +1,35 @@
-/* ============================================================
-   RB Learning — app
-   Router hash, sidebar + pencarian, progres, quiz, playground.
-   ============================================================ */
 'use strict';
 
-/* ---------- state ---------- */
 const LS = {
   progress: 'rblearn:progress',
   theme: 'rblearn:theme',
   code: 'rblearn:code',
+  bookmarks: 'rblearn:bookmarks',
+  notes: 'rblearn:notes',
+  collapsed: 'rblearn:collapsed'
 };
 
 const ALL = TRACKS.flatMap(t => t.lessons.map(l => ({ ...l, track: t })));
 const BY_ID = Object.fromEntries(ALL.map(l => [l.id, l]));
 
-let progress = new Set(JSON.parse(localStorage.getItem(LS.progress) || localStorage.getItem('kelaskode:progress') || '[]'));
-let searchIndex = null;   // id -> teks polos (dibangun malas)
-let quiz = null;          // state quiz aktif
+let progress = new Set(JSON.parse(localStorage.getItem(LS.progress) || '[]'));
+let bookmarks = new Set(JSON.parse(localStorage.getItem(LS.bookmarks) || '[]'));
+let notes = JSON.parse(localStorage.getItem(LS.notes) || '{}');
+let collapsed = new Set(JSON.parse(localStorage.getItem(LS.collapsed) || '[]'));
+let searchIndex = null;
+let quiz = null;
 
-/* ---------- util ---------- */
 const $ = (sel, el = document) => el.querySelector(sel);
-const esc = s => s.replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 
 function saveProgress() {
   localStorage.setItem(LS.progress, JSON.stringify([...progress]));
   updateProgressUI();
+}
+
+function saveBookmarks() {
+  localStorage.setItem(LS.bookmarks, JSON.stringify([...bookmarks]));
+  renderSidebar($('#searchInput') ? $('#searchInput').value : '');
 }
 
 function buildSearchIndex() {
@@ -37,25 +42,22 @@ function buildSearchIndex() {
   }
 }
 
-/* scroll instan ke atas (tanpa smooth, supaya tidak tertangkap di tengah jalan) */
 function scrollTop() {
   window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
 }
 
-/* ---------- sidebar ---------- */
-const LS_COLLAPSE = 'rblearn:collapsed';
-let collapsed = new Set(JSON.parse(localStorage.getItem(LS_COLLAPSE) || localStorage.getItem('kelaskode:collapsed') || '[]'));
-
 function toggleGroup(trackId) {
   collapsed.has(trackId) ? collapsed.delete(trackId) : collapsed.add(trackId);
-  localStorage.setItem(LS_COLLAPSE, JSON.stringify([...collapsed]));
+  localStorage.setItem(LS.collapsed, JSON.stringify([...collapsed]));
   renderSidebar($('#searchInput').value);
 }
 
 const CHEV = `<svg class="chev" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>`;
 const IC_HOME = `<svg class="tool-ic" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>`;
+const IC_STAR = `<svg class="tool-ic" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`;
 const IC_PLAY = `<svg class="tool-ic" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>`;
 const IC_QUIZ = `<svg class="tool-ic" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>`;
+const IC_CARD = `<svg class="tool-ic" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><line x1="3" y1="10" x2="21" y2="10"/></svg>`;
 
 function renderSidebar(filter = '') {
   const nav = $('#sideNav');
@@ -67,6 +69,7 @@ function renderSidebar(filter = '') {
 
   let html = `<div class="side-group">
     <a class="side-item" href="#/">${IC_HOME}<span class="t">Beranda</span></a>
+    <a class="side-item" href="#/bookmarks">${IC_STAR}<span class="t">Materi Favorit (${bookmarks.size})</span></a>
   </div>`;
 
   const renderTrackGroup = (t) => {
@@ -116,6 +119,7 @@ function renderSidebar(filter = '') {
     <div class="side-items">
       <a class="side-item" href="#/playground">${IC_PLAY}<span class="t">Playground</span></a>
       <a class="side-item" href="#/quiz">${IC_QUIZ}<span class="t">Quiz</span></a>
+      <a class="side-item" href="#/flashcard">${IC_CARD}<span class="t">Flashcard 🎴</span></a>
     </div>
   </div>`;
 
@@ -123,7 +127,6 @@ function renderSidebar(filter = '') {
   highlightActive();
 }
 
-/* klik / keyboard pada judul grup = buka-tutup bahasa */
 $('#sideNav').addEventListener('click', e => {
   const title = e.target.closest('.side-group-title:not(.static)');
   if (title) toggleGroup(title.closest('.side-group').dataset.track);
@@ -151,28 +154,25 @@ function updateProgressUI() {
   $('#spFill').style.width = pct + '%';
   $('#spPct').textContent = pct + '%';
   $('#spLabel').textContent = `${done} dari ${total} materi`;
-
-  // angka per track + status centang tiap item
   document.querySelectorAll('.side-item[data-id]').forEach(el => {
     el.classList.toggle('done', progress.has(el.dataset.id));
   });
-  const counts = document.querySelectorAll('#sideNav .side-group-title .count');
-  let i = 0;
   for (const t of TRACKS) {
-    if (!counts[i]) break;
-    const d = t.lessons.filter(l => progress.has(l.id)).length;
-    counts[i].textContent = `${d}/${t.lessons.length}`;
-    i++;
+    const grp = document.querySelector(`.side-group[data-track="${t.id}"]`);
+    if (grp) {
+      const c = grp.querySelector('.count');
+      if (c) {
+        const d = t.lessons.filter(l => progress.has(l.id)).length;
+        c.textContent = `${d}/${t.lessons.length}`;
+      }
+    }
   }
 }
 
-/* ---------- topbar ---------- */
-function setCrumbs(parts) {
-  $('#crumbs').innerHTML = parts
-    .map((p, i) => i < parts.length - 1
-      ? `<b>${esc(p)}</b><span class="sep">/</span>`
-      : `<span>${esc(p)}</span>`)
-    .join('');
+function setCrumbs(crumbs) {
+  $('#crumbs').innerHTML = crumbs.map((c, i) =>
+    i === 0 ? `<span class="crumb">${esc(c)}</span>` : `<span class="crumb-sep">/</span><span class="crumb">${esc(c)}</span>`
+  ).join('');
 }
 
 function setTopAction(html) {
@@ -181,22 +181,52 @@ function setTopAction(html) {
 
 function doneButton(l) {
   const isDone = progress.has(l.id);
-  return `<button class="btn ${isDone ? 'done-state' : 'btn-primary'}" id="btnDone">
-    ${isDone ? 'Selesai ✓' : 'Tandai selesai'}</button>`;
+  const isBm = bookmarks.has(l.id);
+  return `
+    <button class="bm-btn ${isBm ? 'active' : ''}" id="btnBookmark" title="Simpan ke Favorit">
+      <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+      <span>${isBm ? 'Favorit' : 'Simpan'}</span>
+    </button>
+    <button class="btn ${isDone ? 'btn-ghost done-state' : 'btn-primary'}" id="btnDone">
+      ${isDone ? 'Selesai ✓' : 'Tandai selesai'}
+    </button>`;
 }
 
 function wireDoneButton(l) {
   const btn = $('#btnDone');
-  if (!btn) return;
-  btn.addEventListener('click', () => {
-    progress.has(l.id) ? progress.delete(l.id) : progress.add(l.id);
-    saveProgress();
-    btn.className = 'btn ' + (progress.has(l.id) ? 'done-state' : 'btn-primary');
-    btn.textContent = progress.has(l.id) ? 'Selesai ✓' : 'Tandai selesai';
-  });
+  if (btn) {
+    btn.onclick = () => {
+      progress.has(l.id) ? progress.delete(l.id) : progress.add(l.id);
+      saveProgress();
+      setTopAction(doneButton(l));
+      wireDoneButton(l);
+    };
+  }
+  const bm = $('#btnBookmark');
+  if (bm) {
+    bm.onclick = () => {
+      bookmarks.has(l.id) ? bookmarks.delete(l.id) : bookmarks.add(l.id);
+      saveBookmarks();
+      setTopAction(doneButton(l));
+      wireDoneButton(l);
+    };
+  }
 }
 
-/* ---------- views ---------- */
+function speakText(text, lang = 'zh-CN') {
+  if (!('speechSynthesis' in window)) return;
+  try {
+    window.speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = lang;
+    u.rate = 0.82;
+    const voices = window.speechSynthesis.getVoices();
+    const voice = voices.find(v => v.lang && v.lang.startsWith(lang.slice(0, 2)));
+    if (voice) u.voice = voice;
+    window.speechSynthesis.speak(u);
+  } catch (err) {}
+}
+
 function viewHome() {
   setCrumbs(['Beranda']);
   setTopAction('');
@@ -243,11 +273,12 @@ function viewHome() {
       </div>
       <h1>Kuasai Skill <em>Software Engineering</em>, <em>AI</em> &amp; <em>Bahasa</em>.</h1>
       <p class="hero-desc">
-        Kurikulum praktis berbahasa Indonesia dengan analogi ramah orang awam. Dari fondasi web, testing, bahasa performa tinggi, machine learning, aplikasi mobile, hingga bahasa Mandarin — lengkap dengan kuis dan panduan bertahap.
+        Kurikulum praktis berbahasa Indonesia dengan analogi ramah pemula. Dari fondasi web, version control, database, testing, bahasa performa tinggi, machine learning, aplikasi mobile, hingga bahasa percakapan Mandarin, Korea, dan Jepang.
       </p>
       <div class="home-actions">
         <a class="btn btn-primary" href="#/m/${next.id}">▶ Lanjutkan: ${esc(next.title)}</a>
         <a class="btn btn-ghost" href="#/quiz">Uji Pemahaman (Quiz)</a>
+        <a class="btn btn-ghost" href="#/flashcard">Flashcard 🎴</a>
         <a class="btn btn-ghost" href="#/playground">Playground</a>
       </div>
 
@@ -298,22 +329,22 @@ function viewHome() {
         <div class="feature-card">
           <div class="feature-icon">💡</div>
           <div class="feature-title">Analogi Ramah Orang Awam</div>
-          <div class="feature-desc">Konsep teknis rumit (SIMD, OOP, Async, Matrix, Scikit-Learn) dijelaskan dengan perumpamaan sederhana Supriyanto yang sangat mudah dipahami.</div>
+          <div class="feature-desc">Konsep rumit dijelaskan dengan perumpamaan sederhana Supriyanto yang sangat mudah dipahami.</div>
         </div>
         <div class="feature-card">
           <div class="feature-icon">⚡</div>
-          <div class="feature-title">Playground Interaktif</div>
-          <div class="feature-desc">Eksperimen kode langsung dari peramban tanpa perlu konfigurasi environment rumit atau instalasi software tambahan di komputer.</div>
+          <div class="feature-title">Playground &amp; Flashcard</div>
+          <div class="feature-desc">Eksperimen kode dan latih hafalan kosakata bahasa asing langsung dari peramban secara interaktif.</div>
         </div>
         <div class="feature-card">
           <div class="feature-icon">🎯</div>
           <div class="feature-title">Kuis &amp; Pembahasan Detail</div>
-          <div class="feature-desc">Uji pemahaman di setiap akhir materi dengan bank soal berbobot, lengkap dengan penjelasan logis di balik setiap jawaban yang benar.</div>
+          <div class="feature-desc">Uji pemahaman di setiap akhir materi dengan bank soal berbobot, lengkap dengan penjelasan logis di balik setiap jawaban.</div>
         </div>
         <div class="feature-card">
           <div class="feature-icon">💾</div>
-          <div class="feature-title">Progres Tersimpan Otomatis</div>
-          <div class="feature-desc">Lacak capaian belajar secara mandiri. Seluruh progres belajar tersimpan aman dan persisten di browser kamu tanpa perlu registrasi berbelit.</div>
+          <div class="feature-title">Progres &amp; Catatan Mandiri</div>
+          <div class="feature-desc">Lacak capaian belajar, bookmark materi favorit, dan simpan catatan pribadi persisten di browser tanpa perlu registrasi.</div>
         </div>
       </div>
     </div>`;
@@ -333,23 +364,48 @@ function viewHome() {
   scrollTop();
 }
 
-function speakMandarin(text) {
-  if (!('speechSynthesis' in window)) {
-    console.warn('SpeechSynthesis API tidak didukung peramban.');
-    return;
+function viewBookmarks() {
+  setCrumbs(['Materi Favorit']);
+  setTopAction('');
+
+  const bmLessons = ALL.filter(l => bookmarks.has(l.id));
+
+  let itemsHtml = '';
+  if (bmLessons.length === 0) {
+    itemsHtml = `
+      <div class="quiz-card" style="text-align:center;padding:40px 20px">
+        <div style="font-size:2.8rem;margin-bottom:12px">⭐</div>
+        <h3>Belum Ada Materi Favorit</h3>
+        <p style="color:var(--ink-2);margin-bottom:20px">Buka materi apa saja dan klik tombol <b>⭐ Simpan</b> di bagian atas untuk menyimpan materi favorit Anda di sini.</p>
+        <a class="btn btn-primary" href="#/">Jelajahi Kurikulum →</a>
+      </div>`;
+  } else {
+    itemsHtml = `
+      <div class="track-cards">
+        ${bmLessons.map(l => `
+          <div class="track-card" style="--track:var(--${l.track.accent})">
+            <div class="tc-top">
+              <span class="tc-name"><span class="dot" style="background:var(--${l.track.accent})"></span>${l.track.title}</span>
+              <span class="tc-badge">Materi ${l.num}</span>
+            </div>
+            <div style="font-size:1.05rem;font-weight:600;color:var(--ink);margin:4px 0">${esc(l.title)}</div>
+            <div class="tc-sub">${esc(l.desc || l.intro || '')}</div>
+            <div class="tc-actions" style="margin-top:auto">
+              <a class="btn btn-primary" href="#/m/${l.id}" style="padding:6px 14px;font-size:.82rem">Buka Materi →</a>
+              <button class="btn btn-ghost" onclick="bookmarks.delete('${l.id}');saveBookmarks();viewBookmarks();" style="padding:6px 10px;font-size:.82rem">Hapus ⭐</button>
+            </div>
+          </div>`).join('')}
+      </div>`;
   }
-  try {
-    window.speechSynthesis.cancel();
-    const u = new SpeechSynthesisUtterance(text);
-    u.lang = 'zh-CN';
-    u.rate = 0.82; // Kecepatan ramah pemula
-    const voices = window.speechSynthesis.getVoices();
-    const zhVoice = voices.find(v => v.lang && (v.lang.startsWith('zh') || v.lang.includes('Chinese')));
-    if (zhVoice) u.voice = zhVoice;
-    window.speechSynthesis.speak(u);
-  } catch (err) {
-    console.error('TTS Error:', err);
-  }
+
+  $('#view').innerHTML = `
+    <div class="quiz-head">
+      <h2>⭐ Materi Favorit Saya</h2>
+      <p>Koleksi modul yang Anda tandai untuk dipelajari ulang secara cepat.</p>
+    </div>
+    ${itemsHtml}`;
+
+  scrollTop();
 }
 
 function viewLesson(id) {
@@ -366,11 +422,19 @@ function viewLesson(id) {
   wireDoneButton(l);
 
   const isMandarin = t.id === 'mandarin';
-  const audioBanner = isMandarin ? `
-    <div class="zh-audio-banner">
-      <span class="zh-audio-ic">🔊</span>
-      <div><b>Fitur Audio Interaktif:</b> Klik tombol speaker <button class="zh-speak-btn" style="pointer-events:none">🔊</button> atau klik langsung teks Hanzi warna merah di bawah untuk mendengarkan pengucapan penutur asli bahasa Mandarin!</div>
-    </div>` : '';
+  const isKorean = t.id === 'korean';
+  const isJapanese = t.id === 'japanese';
+  const isLang = t.category === 'lang';
+
+  let audioBanner = '';
+  if (isLang) {
+    const langName = isMandarin ? 'Mandarin' : isKorean ? 'Korea' : 'Jepang';
+    audioBanner = `
+      <div class="zh-audio-banner">
+        <span class="zh-audio-ic">🔊</span>
+        <div><b>Fitur Audio Interaktif:</b> Klik tombol speaker <button class="zh-speak-btn" style="pointer-events:none">🔊</button> atau klik langsung teks berhuruf tebal di bawah untuk mendengarkan pelafalan penutur asli bahasa ${langName}!</div>
+      </div>`;
+  }
 
   $('#view').innerHTML = `
     <article class="lesson" style="--track:var(--${t.accent})">
@@ -384,6 +448,15 @@ function viewLesson(id) {
       ${l.intro ? `<div class="lesson-callout">${l.intro}</div>` : ''}
       ${audioBanner}
       <div class="lesson-body">${l.body}</div>
+
+      <div class="lesson-notes">
+        <div class="notes-head">
+          <div class="notes-title">📝 Catatan Pribadi Saya</div>
+          <div class="notes-status" id="notesStatus">${notes[l.id] ? 'Tersimpan otomatis' : 'Belum ada catatan'}</div>
+        </div>
+        <textarea class="notes-area" id="notesArea" placeholder="Ketik rangkuman atau catatan penting materi ini... (tersimpan otomatis di browser)">${esc(notes[l.id] || '')}</textarea>
+      </div>
+
       <nav class="pager">
         ${prev
           ? `<a href="#/m/${prev.id}"><div class="pg-label">← Sebelumnya</div><div class="pg-title">${esc(prev.title)}</div></a>`
@@ -393,19 +466,45 @@ function viewLesson(id) {
           : `<a class="next placeholder"><div class="pg-label">—</div><div class="pg-title">—</div></a>`}
       </nav>
     </article>`;
+
   scrollTop();
   groupCards($('#view'));
   addCopyButtons($('#view'));
 
-  if (isMandarin) {
-    $('#view').querySelectorAll('.zh-char').forEach(el => {
-      const pureText = el.textContent.trim().replace(/[^\u4e00-\u9fa5，。！？、：；]/g, '');
+  let notesTimer;
+  const nArea = $('#notesArea');
+  if (nArea) {
+    nArea.addEventListener('input', e => {
+      const val = e.target.value;
+      const status = $('#notesStatus');
+      if (status) status.textContent = 'Menyimpan...';
+      clearTimeout(notesTimer);
+      notesTimer = setTimeout(() => {
+        if (val.trim()) {
+          notes[l.id] = val;
+        } else {
+          delete notes[l.id];
+        }
+        localStorage.setItem(LS.notes, JSON.stringify(notes));
+        if (status) status.textContent = 'Tersimpan otomatis';
+      }, 400);
+    });
+  }
+
+  if (isLang) {
+    const langCode = isMandarin ? 'zh-CN' : isKorean ? 'ko-KR' : 'ja-JP';
+    const charClass = isMandarin ? '.zh-char' : isKorean ? '.ko-char' : '.ja-char';
+
+    $('#view').querySelectorAll(charClass).forEach(el => {
+      const pureText = el.textContent.trim();
       if (pureText && !el.querySelector('.zh-speak-btn')) {
         el.dataset.speak = pureText;
+        el.dataset.lang = langCode;
         el.title = `Klik untuk mendengarkan "${pureText}"`;
         const btn = document.createElement('button');
         btn.className = 'zh-speak-btn';
         btn.dataset.speak = pureText;
+        btn.dataset.lang = langCode;
         btn.title = `Putar suara "${pureText}"`;
         btn.innerHTML = '🔊';
         el.appendChild(btn);
@@ -417,14 +516,16 @@ function viewLesson(id) {
       let changed = false;
       const newLines = lines.map(line => {
         const textOnly = line.replace(/<[^>]+>/g, '').trim();
-        if (!line.includes('dialog-speak-btn') && /[\u4e00-\u9fa5]/.test(textOnly)) {
-          // Strip speaker name (e.g. A:, B:, Supriyanto:, Penjual:, etc.)
-          let speechText = textOnly.replace(/^[A-Za-z0-9_\u4e00-\u9fa5\s]+[:：]\s*/, '');
-          // Strip trailing parens/translation if on same line
+        const hasAsianChars = isMandarin ? /[\u4e00-\u9fa5]/.test(textOnly)
+          : isKorean ? /[\uac00-\ud7af\u1100-\u11ff]/.test(textOnly)
+          : /[\u3040-\u309f\u30a0-\u30ff\u4e00-\u9fa5]/.test(textOnly);
+
+        if (!line.includes('dialog-speak-btn') && hasAsianChars) {
+          let speechText = textOnly.replace(/^[A-Za-z0-9_\u4e00-\u9fa5\uac00-\ud7af\s]+[:：]\s*/, '');
           speechText = speechText.replace(/\s*\([^)]*\)\s*$/, '').trim();
-          if (speechText && /[\u4e00-\u9fa5]/.test(speechText)) {
+          if (speechText) {
             changed = true;
-            return `${line} <button class="dialog-speak-btn" data-speak="${esc(speechText)}" title="Putar kalimat utuh: ${esc(speechText)}">🔊</button>`;
+            return `${line} <button class="dialog-speak-btn" data-speak="${esc(speechText)}" data-lang="${langCode}" title="Putar kalimat: ${esc(speechText)}">🔊</button>`;
           }
         }
         return line;
@@ -434,7 +535,6 @@ function viewLesson(id) {
   }
 }
 
-/* kelompokkan keyword-card berurutan menjadi grid 2 kolom di layar lebar */
 function groupCards(root) {
   const body = root.querySelector('.lesson-body');
   if (!body) return;
@@ -453,70 +553,50 @@ function groupCards(root) {
   }
 }
 
-/* ---------- playground ---------- */
 function viewPlayground() {
   setCrumbs(['Praktik', 'Playground']);
   setTopAction('');
 
-  const saved = localStorage.getItem(LS.code);
-  const starter = saved ?? `// Tulis kode, lalu klik Jalankan (atau Ctrl+Enter)
-const nama = "Supriyanto";
-console.log("Halo, " + nama + "!");
-
-const harga = [10000, 20000, 5000];
-console.log(harga.map(h => h * 1.1));
-console.log(harga.filter(h => h > 6000));`;
+  const saved = localStorage.getItem(LS.code) ||
+    'const daftar = ["Belajar", "Praktik", "Paham"];\\n' +
+    'const hasil = daftar.map((item, i) => (i + 1) + ". " + item + " bersama Supriyanto");\\n' +
+    'console.log(hasil);';
 
   $('#view').innerHTML = `
-    <div class="pg-wrap">
-      <div class="pg-head">
-        <h2>Playground</h2>
-        <p>Lab kecil untuk mencoba JavaScript langsung dari browser — hasil <code class="inline">console.log</code> muncul di panel kanan. Kode tersimpan otomatis.</p>
-      </div>
-      <div class="pg-grid">
-        <div class="pg-pane">
-          <div class="pg-pane-title">editor.js</div>
-          <textarea class="pg-editor" id="pgCode" spellcheck="false"></textarea>
+    <div class="pg-layout">
+      <div class="pg-editor">
+        <div class="pg-bar">
+          <span>JavaScript Playground</span>
+          <button class="btn btn-primary" id="pgRun">Jalankan (Ctrl+Enter) ▶</button>
         </div>
-        <div class="pg-pane">
-          <div class="pg-pane-title">output <span class="live"></span></div>
-          <div class="pg-output" id="pgOut"><div class="hint">Tekan Jalankan untuk melihat hasil…</div></div>
-        </div>
+        <textarea id="pgCode" spellcheck="false">${esc(saved)}</textarea>
       </div>
-      <div class="pg-actions">
-        <button class="btn btn-primary" id="pgRun">▶ Jalankan</button>
-        <button class="btn btn-ghost" id="pgReset">↩ Reset</button>
-        <span class="pg-note">Ctrl + Enter juga menjalankan kode.</span>
+      <div class="pg-console">
+        <div class="pg-bar">
+          <span>Console Output</span>
+          <button class="btn btn-ghost" id="pgClear">Bersihkan</button>
+        </div>
+        <div class="pg-output" id="pgOut"></div>
       </div>
     </div>`;
 
-  const ta = $('#pgCode');
-  ta.value = starter;
-  ta.addEventListener('input', () => localStorage.setItem(LS.code, ta.value));
-  ta.addEventListener('keydown', e => {
-    if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) { e.preventDefault(); runPlayground(); }
-    if (e.key === 'Tab') {
+  $('#pgRun').addEventListener('click', runPlayground);
+  $('#pgClear').addEventListener('click', () => { $('#pgOut').innerHTML = ''; });
+  $('#pgCode').addEventListener('keydown', e => {
+    if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
       e.preventDefault();
-      const s = ta.selectionStart;
-      ta.value = ta.value.slice(0, s) + '  ' + ta.value.slice(ta.selectionEnd);
-      ta.selectionStart = ta.selectionEnd = s + 2;
+      runPlayground();
     }
   });
-  $('#pgRun').addEventListener('click', runPlayground);
-  $('#pgReset').addEventListener('click', () => {
-    localStorage.removeItem(LS.code);
-    ta.value = starter;
-    $('#pgOut').innerHTML = '<div class="hint">Editor direset. Tekan Jalankan…</div>';
-  });
+
   scrollTop();
 }
 
 function fmt(v) {
-  if (typeof v === 'string') return v;
-  if (v === undefined) return 'undefined';
   if (v === null) return 'null';
-  if (typeof v === 'function') return '[function ' + (v.name || 'anonim') + ']';
-  try { return JSON.stringify(v, null, 1).replace(/\n\s*/g, ' '); }
+  if (v === undefined) return 'undefined';
+  if (typeof v === 'string') return v;
+  try { return JSON.stringify(v, null, 2); }
   catch { return String(v); }
 }
 
@@ -534,15 +614,117 @@ function runPlayground() {
            level === 'error' ? 'err' : 'ok', args);
   }
   try {
-    new Function('console', code)(fakeConsole);
+    const sandbox = new Function('console', 'window', 'document', 'localStorage', 'sessionStorage', 'fetch', 'XMLHttpRequest', code);
+    sandbox(fakeConsole, {}, {}, {}, {}, undefined, undefined);
   } catch (err) {
     lines.push(`<div class="line err"><span class="tag">✗</span>${esc(err.name + ': ' + err.message)}</div>`);
   }
-  out.innerHTML = lines.length ? lines.join('')
-    : '<div class="hint">Kode berjalan tanpa output — coba tambahkan console.log().</div>';
+  out.innerHTML = lines.join('');
+  localStorage.setItem(LS.code, code);
 }
 
-/* ---------- quiz ---------- */
+const FLASHCARDS = [
+  { char: '你好', pinyin: 'Nǐ hǎo', meaning: 'Halo / Salam sapaan', example: '你好！我是苏普扬托。 (Halo! Saya Supriyanto)', lang: 'zh-CN' },
+  { char: '谢谢', pinyin: 'Xièxie', meaning: 'Terima kasih', example: '非常感谢！ (Terima kasih banyak!)', lang: 'zh-CN' },
+  { char: '对不起', pinyin: 'Duìbuqǐ', meaning: 'Maaf / Permisi', example: '对不起，我来晚了。 (Maaf, saya datang terlambat)', lang: 'zh-CN' },
+  { char: '多少钱', pinyin: 'Duōshao qián', meaning: 'Berapa harganya?', example: '老板，这个多少钱？ (Pak Bos, ini berapa harganya?)', lang: 'zh-CN' },
+  { char: '太贵了', pinyin: 'Tài guì le', meaning: 'Terlalu mahal!', example: '太贵了！能便宜一点吗？ (Terlalu mahal! Bisa murah sedikit?)', lang: 'zh-CN' },
+  { char: '不要辣', pinyin: 'Bú yào là', meaning: 'Tolong jangan pedas', example: '服务员，这一份不要辣。 (Pelayan, porsi ini jangan pedas)', lang: 'zh-CN' },
+  { char: '买单', pinyin: 'Mǎidān', meaning: 'Minta bon / Tagihan', example: '服务员，买单！ (Pelayan, minta bon tagihan!)', lang: 'zh-CN' },
+  { char: '很高兴认识你', pinyin: 'Hěn gāoxìng rènshi nǐ', meaning: 'Senang berkenalan dengan Anda', example: '很高兴认识你，苏普扬托！ (Senang berkenalan denganmu, Supriyanto!)', lang: 'zh-CN' },
+  { char: '안녕하세요', pinyin: 'Annyeonghaseyo', meaning: 'Halo / Selamat pagi/siang/malam', example: '안녕하세요! 저는 수프리얀토예요. (Halo! Saya adalah Supriyanto)', lang: 'ko-KR' },
+  { char: '감사합니다', pinyin: 'Gamsahamnida', meaning: 'Terima kasih banyak', example: '도와주셔서 감사합니다. (Terima kasih atas bantuannya)', lang: 'ko-KR' },
+  { char: '얼마예요?', pinyin: 'Eolmayeyo?', meaning: 'Berapa harganya?', example: '이거 얼마예요? (Ini berapa harganya?)', lang: 'ko-KR' },
+  { char: '주세요', pinyin: 'Juseyo', meaning: 'Tolong berikan saya...', example: '물 좀 주세요. (Tolong minta air putih)', lang: 'ko-KR' },
+  { char: 'ありがとう', pinyin: 'Arigatou gozaimasu', meaning: 'Terima kasih banyak', example: 'ありがとうございます！ (Terima kasih banyak!)', lang: 'ja-JP' },
+  { char: 'すみません', pinyin: 'Sumimasen', meaning: 'Permisi / Maaf', example: 'すみません、トイレはどこですか？ (Permisi, toilet di mana ya?)', lang: 'ja-JP' },
+  { char: 'いくらですか', pinyin: 'Ikura desu ka?', meaning: 'Berapa harganya?', example: 'これはいくらですか？ (Ini berapa harganya?)', lang: 'ja-JP' },
+  { char: 'ごちそうさま', pinyin: 'Gochisousama deshita', meaning: 'Terima kasih atas hidangannya', example: 'とても美味しかったです！ (Sangat lezat sekali!)', lang: 'ja-JP' }
+];
+
+let fcIndex = 0;
+let fcDeck = [...FLASHCARDS];
+
+function viewFlashcard() {
+  setCrumbs(['Praktik', 'Flashcard Kosakata']);
+  setTopAction('');
+
+  const renderCard = () => {
+    const item = fcDeck[fcIndex];
+    return `
+      <div class="flashcard-view">
+        <div class="fc-head">
+          <h2>🎴 Flashcard Kosakata Multibahasa</h2>
+          <p>Latih daya ingat kosakata Mandarin, Korea, dan Jepang dengan kartu interaktif.</p>
+        </div>
+
+        <div class="fc-card-wrapper" id="fcCard">
+          <div class="fc-inner">
+            <div class="fc-front">
+              <span class="fc-counter">KARTU ${fcIndex + 1} / ${fcDeck.length}</span>
+              <div class="fc-char">${item.char}</div>
+              <button class="zh-speak-btn" data-speak="${item.char}" data-lang="${item.lang}" style="margin-bottom:12px">🔊 Putar Suara</button>
+              <div class="fc-hint">👆 Klik kartu untuk melihat arti &amp; contoh</div>
+            </div>
+            <div class="fc-back">
+              <span class="fc-counter">ARTI &amp; CONTOH KALIMAT</span>
+              <div class="fc-pinyin">${item.pinyin}</div>
+              <div class="fc-meaning">${item.meaning}</div>
+              <div class="fc-example">${item.example}</div>
+              <div class="fc-hint">👆 Klik kartu untuk kembali ke depan</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="fc-controls">
+          <button class="fc-btn" id="fcPrev">← Sebelumnya</button>
+          <button class="fc-btn" id="fcShuffle">🔀 Acak</button>
+          <button class="fc-btn primary" id="fcNext">Berikutnya →</button>
+        </div>
+      </div>`;
+  };
+
+  $('#view').innerHTML = renderCard();
+
+  const bindEvents = () => {
+    const card = $('#fcCard');
+    if (card) {
+      card.onclick = (e) => {
+        if (e.target.closest('button')) return;
+        card.classList.toggle('flipped');
+      };
+    }
+    const prev = $('#fcPrev');
+    if (prev) {
+      prev.onclick = () => {
+        fcIndex = (fcIndex - 1 + fcDeck.length) % fcDeck.length;
+        $('#view').innerHTML = renderCard();
+        bindEvents();
+      };
+    }
+    const next = $('#fcNext');
+    if (next) {
+      next.onclick = () => {
+        fcIndex = (fcIndex + 1) % fcDeck.length;
+        $('#view').innerHTML = renderCard();
+        bindEvents();
+      };
+    }
+    const shuffle = $('#fcShuffle');
+    if (shuffle) {
+      shuffle.onclick = () => {
+        fcDeck.sort(() => Math.random() - 0.5);
+        fcIndex = 0;
+        $('#view').innerHTML = renderCard();
+        bindEvents();
+      };
+    }
+  };
+
+  bindEvents();
+  scrollTop();
+}
+
 function viewQuiz() {
   setCrumbs(['Praktik', 'Quiz']);
   setTopAction('');
@@ -555,18 +737,22 @@ function renderQuizStart() {
   const filters = [
     { id: 'all', label: 'Semua' },
     { id: 'flutter', label: 'Flutter 💙' },
+    { id: 'git', label: 'Git & GitHub 🐙' },
     { id: 'js', label: 'JavaScript 🟨' },
     { id: 'mojo', label: 'Mojo 🔥' },
     { id: 'pw', label: 'Playwright 🎭' },
     { id: 'py', label: 'Python 🐍' },
     { id: 'rn', label: 'React Native 📱' },
+    { id: 'sql', label: 'SQL & DB 🗄️' },
+    { id: 'ts', label: 'TypeScript 🔷' },
     { id: 'mandarin', label: 'Mandarin 🇨🇳' },
+    { id: 'korean', label: 'Korea 🇰🇷' },
+    { id: 'japanese', label: 'Jepang 🇯🇵' }
   ];
   $('#view').innerHTML = `
     <div class="quiz-head">
       <h2>Quiz</h2>
-      <p>${QUIZ_BANK.length} soal dari seluruh materi. Pilih cakupan, jawab, dan baca penjelasannya
-         — boleh salah, justru di situ belajar.</p>
+      <p>${QUIZ_BANK.length} soal dari seluruh materi. Pilih cakupan materi, jawab, dan baca penjelasannya untuk mempertajam pemahaman.</p>
     </div>
     <div class="quiz-filter">
       ${filters.map(f => `<button class="filter-chip ${f.id === 'all' ? 'on' : ''}" data-f="${f.id}">${f.label}</button>`).join('')}
@@ -584,135 +770,137 @@ function renderQuizStart() {
   $('#quizStart').addEventListener('click', () => startQuiz(filter));
 }
 
-function startQuiz(filter) {
-  const pool = QUIZ_BANK.filter(q => filter === 'all' || q.track === filter);
-  const order = pool.map((_, i) => i);
-  for (let i = order.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [order[i], order[j]] = [order[j], order[i]];
+function startQuiz(trackId) {
+  const pool = trackId === 'all' ? QUIZ_BANK : QUIZ_BANK.filter(q => q.track === trackId);
+  if (!pool.length) {
+    $('#quizArea').innerHTML = '<div class="quiz-empty">Belum ada soal untuk track ini.</div>';
+    return;
   }
-  quiz = { pool, order, idx: 0, score: 0, answered: false };
-  renderQuizQuestion();
+  const shuffled = [...pool].sort(() => Math.random() - 0.5);
+  const selected = shuffled.slice(0, Math.min(10, shuffled.length));
+
+  quiz = {
+    trackId,
+    questions: selected,
+    idx: 0,
+    answers: [],
+    correctCount: 0
+  };
+  renderQuestion();
 }
 
-function renderQuizQuestion() {
-  const { pool, order, idx } = quiz;
-  const q = pool[order[idx]];
-  const total = order.length;
+function renderQuestion() {
+  const q = quiz.questions[quiz.idx];
+  const total = quiz.questions.length;
+  const current = quiz.idx + 1;
+
   $('#quizArea').innerHTML = `
     <div class="quiz-card">
+      <div class="quiz-progress-bar"><div class="quiz-pb-fill" style="width:${Math.round(current / total * 100)}%"></div></div>
       <div class="quiz-meta">
-        <span>Soal ${idx + 1} / ${total}</span>
+        <span class="quiz-step">Soal ${current} dari ${total}</span>
         <span class="quiz-topic">${esc(q.topic)}</span>
       </div>
       <div class="quiz-q">${esc(q.q)}</div>
       <div class="quiz-opts">
-        ${q.opts.map((o, i) => `
+        ${q.opts.map((opt, i) => `
           <button class="quiz-opt" data-i="${i}">
-            <span class="key">${String.fromCharCode(65 + i)}</span>
-            <span>${esc(o)}</span>
+            <span class="quiz-opt-key">${String.fromCharCode(65 + i)}</span>
+            <span class="quiz-opt-text">${esc(opt)}</span>
           </button>`).join('')}
       </div>
       <div class="quiz-why" id="quizWhy"></div>
-      <div class="quiz-foot">
-        <span class="quiz-score">Skor: ${quiz.score}</span>
-        <button class="btn btn-primary" id="quizNext" disabled style="opacity:.5">
-          ${idx + 1 === total ? 'Lihat hasil' : 'Soal berikutnya →'}
-        </button>
+      <div class="quiz-actions">
+        <button class="btn btn-primary" id="quizNext" disabled>Soal Berikutnya →</button>
       </div>
     </div>`;
 
   document.querySelectorAll('.quiz-opt').forEach(btn => {
-    btn.addEventListener('click', () => answerQuiz(parseInt(btn.dataset.i)));
+    btn.addEventListener('click', () => chooseAnswer(parseInt(btn.dataset.i, 10)));
   });
-  $('#quizNext').addEventListener('click', nextQuiz);
+  $('#quizNext').addEventListener('click', nextQuestion);
 }
 
-function answerQuiz(i) {
-  if (quiz.answered) return;
-  quiz.answered = true;
-  const q = quiz.pool[quiz.order[quiz.idx]];
-  const correct = i === q.ans;
-  if (correct) quiz.score++;
+function chooseAnswer(choice) {
+  const q = quiz.questions[quiz.idx];
+  quiz.answers[quiz.idx] = choice;
+  const isCorrect = choice === q.ans;
+  if (isCorrect) quiz.correctCount++;
 
-  document.querySelectorAll('.quiz-opt').forEach((btn, bi) => {
+  document.querySelectorAll('.quiz-opt').forEach((btn, i) => {
     btn.disabled = true;
-    if (bi === q.ans) btn.classList.add('correct');
-    else if (bi === i) btn.classList.add('wrong');
-    else btn.classList.add('dim');
+    if (i === q.ans) btn.classList.add('correct');
+    else if (i === choice) btn.classList.add('wrong');
   });
 
   const why = $('#quizWhy');
-  why.innerHTML = correct
-    ? `<b>Benar.</b> ${esc(q.why)}`
-    : `<b>Kurang tepat.</b> ${esc(q.why)}`;
+  why.innerHTML = `
+    <div class="why-badge ${isCorrect ? 'why-ok' : 'why-no'}">${isCorrect ? '✓ Benar!' : '✗ Kurang tepat'}</div>
+    <div class="why-body">${esc(q.why)}</div>`;
   why.classList.add('show');
-
-  const next = $('#quizNext');
-  next.disabled = false;
-  next.style.opacity = '1';
-  $('.quiz-score').textContent = 'Skor: ' + quiz.score;
+  $('#quizNext').disabled = false;
 }
 
-function nextQuiz() {
-  quiz.answered = false;
+function nextQuestion() {
   quiz.idx++;
-  if (quiz.idx >= quiz.order.length) { renderQuizEnd(); return; }
-  renderQuizQuestion();
+  if (quiz.idx < quiz.questions.length) {
+    renderQuestion();
+  } else {
+    renderQuizResult();
+  }
 }
 
-function renderQuizEnd() {
-  const total = quiz.order.length;
-  const pct = Math.round(quiz.score / total * 100);
-  const verdict =
-    pct === 100 ? 'Sempurna. Siap production.' :
-    pct >= 70   ? 'Kuat. Ulangi materi yang keliru, lalu coba lagi.' :
-    pct >= 40   ? 'Setengah jalan. Baca ulang materi bertanda biru di quiz ini.' :
-                  'Tidak apa-apa — mulai lagi dari materi pertama, pelan-pelan.';
+function renderQuizResult() {
+  const total = quiz.questions.length;
+  const score = Math.round(quiz.correctCount / total * 100);
+
   $('#quizArea').innerHTML = `
-    <div class="quiz-card quiz-end">
-      <div class="quiz-meta" style="justify-content:center"><span>Quiz selesai</span></div>
-      <div class="big">${quiz.score} / ${total}</div>
-      <p>${verdict}</p>
-      <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
-        <button class="btn btn-primary" id="quizAgain">↻ Coba lagi</button>
-        <a class="btn btn-ghost" href="#/">Kembali ke beranda</a>
+    <div class="quiz-card quiz-result">
+      <div class="qr-score">${score}%</div>
+      <div class="qr-label">${quiz.correctCount} dari ${total} jawaban benar</div>
+      <div class="qr-desc">
+        ${score === 100 ? 'Sempurna! Anda menguasai materi ini dengan sangat baik.' :
+          score >= 70 ? 'Bagus sekali! Pemahaman konsep Anda sudah sangat kokoh.' :
+          'Tetap semangat! Ulangi materi yang terlewat untuk memperkuat pemahaman.'}
+      </div>
+      <div class="qr-actions">
+        <button class="btn btn-primary" onclick="startQuiz('${quiz.trackId}')">Ulangi Quiz ↺</button>
+        <button class="btn btn-ghost" onclick="renderQuizStart()">Pilih Materi Lain</button>
       </div>
     </div>`;
-  $('#quizAgain').addEventListener('click', renderQuizStart);
 }
 
-/* ---------- tombol copy pada blok kode ---------- */
 function addCopyButtons(root) {
-  root.querySelectorAll('.code-block, pre.codeblock').forEach(block => {
-    if (block.querySelector('.copy-btn')) return;
+  root.querySelectorAll('.code-block').forEach(cb => {
+    if (cb.querySelector('.copy-btn')) return;
     const btn = document.createElement('button');
     btn.className = 'copy-btn';
-    btn.innerHTML = 'Salin';
-    btn.addEventListener('click', () => {
-      navigator.clipboard.writeText(block.textContent.trim()).then(() => {
-        btn.textContent = 'Tersalin ✓';
-        btn.classList.add('ok');
-        setTimeout(() => { btn.textContent = 'Salin'; btn.classList.remove('ok'); }, 1600);
+    btn.textContent = 'Salin';
+    btn.onclick = () => {
+      const clone = cb.cloneNode(true);
+      clone.querySelectorAll('.copy-btn, .dialog-speak-btn').forEach(el => el.remove());
+      navigator.clipboard.writeText(clone.textContent.trim()).then(() => {
+        btn.textContent = 'Tersalin!';
+        setTimeout(() => { btn.textContent = 'Salin'; }, 1500);
       });
-    });
-    block.appendChild(btn);
+    };
+    cb.appendChild(btn);
   });
 }
 
-/* ---------- tema ---------- */
 function applyTheme(theme) {
   document.documentElement.dataset.theme = theme;
   localStorage.setItem(LS.theme, theme);
 }
 
-/* ---------- router ---------- */
 function render() {
   const hash = location.hash || '#/';
   closeSidebar();
 
   if (hash === '#/' || hash === '#') { viewHome(); }
+  else if (hash === '#/bookmarks') { viewBookmarks(); }
   else if (hash === '#/playground') { viewPlayground(); }
+  else if (hash === '#/flashcard') { viewFlashcard(); }
   else if (hash === '#/quiz') { viewQuiz(); }
   else if (hash.startsWith('#/m/')) { viewLesson(hash.slice(4)); }
   else { location.hash = '#/'; }
@@ -720,7 +908,6 @@ function render() {
   highlightActive();
 }
 
-/* ---------- sidebar mobile ---------- */
 function openSidebar() {
   $('#sidebar').classList.add('open');
   $('#sidebarScrim').classList.add('show');
@@ -730,7 +917,6 @@ function closeSidebar() {
   $('#sidebarScrim').classList.remove('show');
 }
 
-/* ---------- init ---------- */
 applyTheme(localStorage.getItem(LS.theme) || 'light');
 renderSidebar();
 
@@ -746,9 +932,13 @@ $('#themeBtn').addEventListener('click', () => {
 });
 
 $('#resetBtn').addEventListener('click', () => {
-  if (confirm('Hapus semua progres belajar di browser ini?')) {
+  if (confirm('Hapus semua progres dan catatan di browser ini?')) {
     progress.clear();
+    bookmarks.clear();
+    notes = {};
     saveProgress();
+    saveBookmarks();
+    localStorage.removeItem(LS.notes);
     renderSidebar($('#searchInput').value);
     render();
   }
@@ -774,16 +964,15 @@ document.addEventListener('keydown', e => {
   }
 });
 
-/* ---------- audio speech mandarin click listener ---------- */
 document.addEventListener('click', e => {
   const target = e.target.closest('[data-speak]');
   if (target) {
     const text = target.dataset.speak;
+    const lang = target.dataset.lang || 'zh-CN';
     if (text) {
-      speakMandarin(text);
+      speakText(text, lang);
       target.classList.add('speaking');
       setTimeout(() => target.classList.remove('speaking'), 800);
     }
   }
 });
-

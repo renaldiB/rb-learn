@@ -6,6 +6,11 @@ import { fileURLToPath } from 'url';
 import { rnTrack } from './tracks/rn.mjs';
 import { flutterTrack } from './tracks/flutter.mjs';
 import { mandarinTrack } from './tracks/mandarin.mjs';
+import { gitTrack } from './tracks/git.mjs';
+import { sqlTrack } from './tracks/sql.mjs';
+import { tsTrack } from './tracks/ts.mjs';
+import { koreanTrack } from './tracks/korean.mjs';
+import { japaneseTrack } from './tracks/japanese.mjs';
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const JS_DIR = 'C:/Users/Z Series/MainRB/Code Project/Learn JS';
@@ -1388,29 +1393,70 @@ const flutterQuizBank = flutterTrack.lessons.map(l => ({
   track: 'flutter', topic: l.title, q: l.quiz.q, opts: l.quiz.opts, ans: l.quiz.ans, why: l.quiz.why,
 }));
 
+const gitQuizBank = gitTrack.lessons.map(l => ({
+  track: 'git', topic: l.title, q: l.quiz.q, opts: l.quiz.opts, ans: l.quiz.ans, why: l.quiz.why,
+}));
+
+const sqlQuizBank = sqlTrack.lessons.map(l => ({
+  track: 'sql', topic: l.title, q: l.quiz.q, opts: l.quiz.opts, ans: l.quiz.ans, why: l.quiz.why,
+}));
+
+const tsQuizBank = tsTrack.lessons.map(l => ({
+  track: 'ts', topic: l.title, q: l.quiz.q, opts: l.quiz.opts, ans: l.quiz.ans, why: l.quiz.why,
+}));
+
 const mandarinQuizBank = mandarinTrack.lessons.map(l => ({
   track: 'mandarin', topic: l.title, q: l.quiz.q, opts: l.quiz.opts, ans: l.quiz.ans, why: l.quiz.why,
 }));
 
-/* ---------- OUTPUT ---------- */
+const koreanQuizBank = koreanTrack.lessons.map(l => ({
+  track: 'korean', topic: l.title, q: l.quiz.q, opts: l.quiz.opts, ans: l.quiz.ans, why: l.quiz.why,
+}));
+
+const japaneseQuizBank = japaneseTrack.lessons.map(l => ({
+  track: 'japanese', topic: l.title, q: l.quiz.q, opts: l.quiz.opts, ans: l.quiz.ans, why: l.quiz.why,
+}));
+
+const ALL_TRACKS = [
+  flutterTrack,
+  gitTrack,
+  jsTrack,
+  mojoTrack,
+  pwTrack,
+  pythonTrack,
+  rnTrack,
+  sqlTrack,
+  tsTrack,
+  mandarinTrack,
+  koreanTrack,
+  japaneseTrack
+];
+
+const ALL_QUIZZES = [
+  ...flutterQuizBank,
+  ...gitQuizBank,
+  ...jsQuizBank,
+  ...mojoQuizBank,
+  ...pwQuizBank,
+  ...pythonQuizBank,
+  ...rnQuizBank,
+  ...sqlQuizBank,
+  ...tsQuizBank,
+  ...mandarinQuizBank,
+  ...koreanQuizBank,
+  ...japaneseQuizBank
+];
+
 mkdirSync(join(HERE, '..', 'js'), { recursive: true });
 writeFileSync(join(HERE, '..', 'js/data.js'),
-  '/* Data materi gabungan — dihasilkan dari modul JavaScript, Playwright, Mojo, Python, React Native, Flutter, dan Mandarin. */\n'
-  + 'const TRACKS = ' + JSON.stringify([flutterTrack, jsTrack, mojoTrack, pwTrack, pythonTrack, rnTrack, mandarinTrack], null, 1) + ';\n\n'
-  + 'const QUIZ_BANK = ' + JSON.stringify([...flutterQuizBank, ...jsQuizBank, ...mojoQuizBank, ...pwQuizBank, ...pythonQuizBank, ...rnQuizBank, ...mandarinQuizBank], null, 1) + ';\n'
+  'const TRACKS = ' + JSON.stringify(ALL_TRACKS, null, 1) + ';\n\n'
+  + 'const QUIZ_BANK = ' + JSON.stringify(ALL_QUIZZES, null, 1) + ';\n'
 );
 
-console.log('JS lessons:', jsTrack.lessons.length);
-console.log('PW lessons:', pwTrack.lessons.length);
-console.log('Mojo lessons:', mojoTrack.lessons.length);
-console.log('Python lessons:', pythonTrack.lessons.length);
-console.log('RN lessons:', rnTrack.lessons.length);
-console.log('Flutter lessons:', flutterTrack.lessons.length);
-console.log('Mandarin lessons:', mandarinTrack.lessons.length);
-const totalL = jsTrack.lessons.length + pwTrack.lessons.length + mojoTrack.lessons.length + pythonTrack.lessons.length + rnTrack.lessons.length + flutterTrack.lessons.length + mandarinTrack.lessons.length;
-const totalQ = jsQuizBank.length + pwQuizBank.length + mojoQuizBank.length + pythonQuizBank.length + rnQuizBank.length + flutterQuizBank.length + mandarinQuizBank.length;
+console.log('Total tracks:', ALL_TRACKS.length);
+const totalL = ALL_TRACKS.reduce((acc, t) => acc + t.lessons.length, 0);
 console.log('Total lessons:', totalL);
-console.log('Quiz total:', totalQ, `(js ${jsQuizBank.length} / pw ${pwQuizBank.length} / mojo ${mojoQuizBank.length} / py ${pythonQuizBank.length} / rn ${rnQuizBank.length} / flutter ${flutterQuizBank.length} / zh ${mandarinQuizBank.length})`);
+console.log('Quiz total:', ALL_QUIZZES.length);
 
 
 

@@ -1,4 +1,3 @@
-/* Data materi gabungan — dihasilkan dari modul JavaScript, Playwright, Mojo, Python, React Native, Flutter, dan Mandarin. */
 const TRACKS = [
  {
   "id": "flutter",
@@ -195,6 +194,243 @@ const TRACKS = [
      ],
      "ans": 0,
      "why": "Dart mendukung dua mode kompilasi: JIT untuk produktivitas pengembangan kilat dengan Hot Reload, dan AOT untuk kompilasi kode mesin native tanpa overhead runtime."
+    }
+   }
+  ]
+ },
+ {
+  "id": "git",
+  "title": "Git & GitHub 🐙",
+  "subtitle": "Version Control: Commit, Percabangan, Pull Request & Kolaborasi Tim Modern",
+  "accent": "orange",
+  "category": "it",
+  "lessons": [
+   {
+    "id": "git-01",
+    "num": "01",
+    "title": "Memahami Version Control: Snapshot vs Delta",
+    "level": "Pemula",
+    "intro": "Mengapa developer butuh Git dan bagaimana cara kerja snapshot di balik mesin waktu kode.",
+    "body": "\n        <h4>🎮 Analogi Save Game Petualangan Supriyanto</h4>\n        <p>Sebelum mengenal Git, Supriyanto sering menyimpan file proyek kodingannya dengan nama manual seperti:\n        <br><code>proyek_final.js</code> → <code>proyek_final_beneran.js</code> → <code>proyek_final_beneran_FIX_FINAL_banget.js</code>.</p>\n        <p>Pendekatan manual ini sangat kacau dan berbahaya. <b>Git adalah mesin waktu (Version Control System / VCS)</b> yang bekerja seperti fitur <i>Save Game</i> di game petualangan:\n        <ul>\n          <li>Setiap kali Anda mencapai checkpoint penting, Anda membuat satu rekaman keadaan (<b>Snapshot / Commit</b>).</li>\n          <li>Jika ada kode yang rusak atau bug fatal di masa depan, Supriyanto bisa dengan aman melompat kembali ke titik rekaman sebelumnya dalam hitungan detik tanpa takut kehilangan riwayat pekerjaan.</li>\n        </ul>\n        </p>\n\n        <h4>📸 Snapshot, Bukan Sekadar Delta Tambal Sulam</h4>\n        <p>Berbeda dengan sistem kontrol versi kuno yang hanya mencatat selisih baris (delta), Git memandang datanya sebagai <b>serangkaian snapshot foto utuh</b> dari seluruh file pada saat itu. Jika suatu file tidak mengalami perubahan, Git tidak menduplikasinya, melainkan hanya membuat tautan cerdas ke file identik sebelumnya sehingga prosesnya instan dan hemat memori penyimpanan.</p>\n\n        <div class=\"tip-box\">\n          <span class=\"tip-box-icon\">💡</span>\n          <div><b>Penting Dipahami:</b> Git berjalan 100% lokal di komputer Anda tanpa memerlukan koneksi internet sama sekali. Anda baru membutuhkan internet saat ingin menyinkronkan rekaman lokal tersebut ke platform cloud seperti GitHub atau GitLab.</div>\n        </div>\n      ",
+    "quiz": {
+     "q": "Bagaimana cara kerja Git dalam mencatat riwayat perubahan proyek?",
+     "opts": [
+      "Merekam snapshot kondisi seluruh file proyek pada setiap commit checkpoint",
+      "Mengirim file zip manual via email setiap jam",
+      "Menghapus kode lama dan hanya menyisakan kode terbaru",
+      "Mengunci file agar tidak bisa diedit oleh programmer lain"
+     ],
+     "ans": 0,
+     "why": "Git mencatat riwayat proyek sebagai serangkaian snapshot utuh (commit). Jika ada file yang tidak berubah, Git hanya membuat referensi ke file sebelumnya."
+    }
+   },
+   {
+    "id": "git-02",
+    "num": "02",
+    "title": "Inisialisasi Repositori: git init, status & .gitignore",
+    "level": "Pemula",
+    "intro": "Mengaktifkan radar pelacak Git pada folder proyek dan mengabaikan file sampah otomatis.",
+    "body": "\n        <h4>📁 Menghidupkan Radar Git: git init</h4>\n        <p>Untuk memberitahu Git agar mulai mengawasi sebuah folder proyek, jalankan perintah:</p>\n        <div class=\"code-block\"><span class=\"cm\"># Masuk ke folder proyek</span>\ncd proyek-supriyanto\n\n<span class=\"cm\"># Inisialisasi repositori Git baru</span>\ngit init</div>\n        <p>Perintah ini akan membuat folder tersembunyi bernama <code>.git</code>. Di dalam folder rahasia inilah seluruh database riwayat, commit, dan konfigurasi proyek Anda disimpan oleh Git.</p>\n\n        <h4>🕵️ Memeriksa Status Radar: git status</h4>\n        <p>Perintah paling sering diketik oleh developer di seluruh dunia adalah <code>git status</code>. Perintah ini memberi tahu Anda:\n        <ul>\n          <li>File mana yang baru dibuat tapi belum dilacak (<i>Untracked</i>).</li>\n          <li>File mana yang sudah dimodifikasi (<i>Modified</i>).</li>\n          <li>File mana yang sudah siap disimpan ke checkpoint (<i>Staged</i>).</li>\n        </ul>\n        </p>\n\n        <h4>🚫 Menjinakkan File Sampah dengan .gitignore</h4>\n        <p>Tidak semua file boleh masuk ke riwayat Git. File konfigurasi rahasia (seperti <code>.env</code> berisi password database), folder dependensi raksasa (<code>node_modules/</code>), atau file temporary OS (<code>.DS_Store</code>) wajib diabaikan agar repositori tetap bersih dan aman:</p>\n        <div class=\"code-block\"><span class=\"cm\"># Contoh isi file .gitignore di root proyek</span>\nnode_modules/\n.env\ndist/\n*.log\n.DS_Store</div>\n      ",
+    "quiz": {
+     "q": "File apakah yang digunakan untuk memberitahu Git agar mengabaikan file sensitif seperti password .env atau folder node_modules?",
+     "opts": [
+      ".gitignore",
+      ".gitkeep",
+      "package.json",
+      ".gitconfig"
+     ],
+     "ans": 0,
+     "why": "File .gitignore berisi pola daftar nama file atau direktori yang tidak boleh dilacak maupun dicatat oleh Git ke dalam repositori."
+    }
+   },
+   {
+    "id": "git-03",
+    "num": "03",
+    "title": "Tiga Area Git: Working Tree, Staging Area & Repository",
+    "level": "Pemula",
+    "intro": "Alur kerja sakral Git: mengedit di Working Tree, menata di Staging Area, dan menyimpan permanen di Commit.",
+    "body": "\n        <h4>📦 Analogi Meja Kerja, Kardus Paket & Brankas Arsip</h4>\n        <p>Banyak pemula bingung mengapa harus ada perintah <code>git add</code> sebelum <code>git commit</code>. Bayangkan alur pengiriman paket belanja toko Supriyanto:\n        <ol>\n          <li><b>Working Tree (Meja Kerja):</b> Tempat Anda mengetik dan mengedit kode. File di sini masih dalam keadaan mentah.</li>\n          <li><b>Staging Area (Kardus Paket / Keranjang):</b> Tempat Anda memilih barang apa saja yang ingin dikirim bersamaan. Perintah <code>git add</code> memasukkan file yang Anda pilih ke dalam kardus ini.</li>\n          <li><b>Repository (Brankas Arsip / Commit):</b> Kardus disegel rapat, diberi label pesan yang jelas (misal: 'fitur login selesai'), dan disimpan permanen ke dalam catatan sejarah proyek dengan <code>git commit</code>.</li>\n        </ol>\n        </p>\n\n        <h4>⌨️ Contoh Perintah Praktis</h4>\n        <div class=\"code-block\"><span class=\"cm\"># 1. Masukkan file index.html ke staging area</span>\ngit add index.html\n\n<span class=\"cm\"># Atau masukkan semua file yang diubah sekaligus</span>\ngit add .\n\n<span class=\"cm\"># 2. Simpan permanen ke riwayat dengan pesan commit deskriptif</span>\ngit commit -m \"Menambahkan formulir login dan validasi email Supriyanto\"</div>\n\n        <div class=\"tip-box\">\n          <span class=\"tip-box-icon\">💡</span>\n          <div><b>Pesan Commit yang Baik:</b> Gunakan kalimat aktif dan jelas. Hindari pesan asal-asalan seperti <i>\"update\"</i>, <i>\"fix bug\"</i>, atau <i>\"asdfg\"</i>. Tuliskan apa yang diubah agar rekan tim dan Anda di masa depan mengerti maksud perubahan tersebut!</div>\n        </div>\n      ",
+    "quiz": {
+     "q": "Perintah apa yang digunakan untuk memindahkan file dari Working Tree ke Staging Area sebelum di-commit?",
+     "opts": [
+      "git add <nama_file>",
+      "git push <nama_file>",
+      "git commit <nama_file>",
+      "git checkout <nama_file>"
+     ],
+     "ans": 0,
+     "why": "git add menyiapkan file yang sudah diedit ke Staging Area (area persiapan) sebelum nantinya dibungkus menjadi commit permanen."
+    }
+   },
+   {
+    "id": "git-04",
+    "num": "04",
+    "title": "Menjelajah Riwayat: git log, git diff & git checkout",
+    "level": "Pemula",
+    "intro": "Membaca buku catatan masa lalu, melihat selisih kode baris per baris, dan mengintip checkpoint sebelumnya.",
+    "body": "\n        <h4>📜 Membaca Buku Harian Proyek: git log</h4>\n        <p>Untuk melihat daftar seluruh checkpoint yang pernah dibuat, gunakan perintah:</p>\n        <div class=\"code-block\"><span class=\"cm\"># Melihat riwayat commit lengkap</span>\ngit log\n\n<span class=\"cm\"># Melihat ringkasan satu baris per commit (sangat rapi)</span>\ngit log --oneline --graph --all</div>\n        <p>Setiap commit memiliki nomor identitas unik 40 karakter heksadesimal yang disebut <b>Commit Hash (SHA-1)</b>, misalnya <code>7a3b8c2...</code>.</p>\n\n        <h4>🔍 Mengintip Selisih Perubahan: git diff</h4>\n        <p>Sebelum memasukkan file ke kardus staging, Anda sering ingin tahu: <i>\"Apa saja persisnya baris yang saya ubah tadi?\"</i></p>\n        <div class=\"code-block\"><span class=\"cm\"># Melihat perbedaan antara kode di meja kerja dengan commit terakhir</span>\ngit diff\n\n<span class=\"cm\"># Melihat perbedaan file yang sudah di-staging (git add)</span>\ngit diff --staged</div>\n        <p>Git akan menampilkan baris merah bertanda minus (<code>-</code>) untuk kode yang dihapus, dan baris hijau bertanda plus (<code>+</code>) untuk kode yang baru ditambahkan.</p>\n      ",
+    "quiz": {
+     "q": "Perintah apa yang menampilkan riwayat daftar commit secara ringkas dan satu baris per commit?",
+     "opts": [
+      "git log --oneline",
+      "git status --short",
+      "git diff --summary",
+      "git show --all"
+     ],
+     "ans": 0,
+     "why": "Opsi --oneline pada perintah git log menyajikan hash pendek beserta pesan commit dalam satu baris bersih, memudahkan pembacaan riwayat."
+    }
+   },
+   {
+    "id": "git-05",
+    "num": "05",
+    "title": "Percabangan Efektif: git branch & git switch",
+    "level": "Menengah",
+    "intro": "Mengisolasi fitur baru di semesta paralel tanpa mengganggu kode produksi yang sedang berjalan.",
+    "body": "\n        <h4>🌿 Analogi Dunia Paralel (Multiverse) Koding</h4>\n        <p>Bayangkan Supriyanto sedang memiliki website toko online yang sudah aktif digunakan pembeli di cabang utama (<b>main / master</b>). Supriyanto ingin mencoba fitur baru pembayaran QRIS, namun belum yakin apakah kodenya berhasil atau masih banyak bug.</p>\n        <p>Daripada langsung mengutak-atik kode produksi di cabang utama, Supriyanto membuat <b>Branch (Cabang) baru</b>. Branch adalah semesta paralel yang memungkinkan Anda bereksperimen bebas. Jika fiturnya sukses, branch tersebut digabungkan ke cabang utama. Jika gagal total, cukup hapus branch tersebut tanpa merusak cabang utama sama sekali!</p>\n\n        <h4>⌨️ Perintah Mengelola Branch</h4>\n        <div class=\"code-block\"><span class=\"cm\"># Melihat daftar branch yang ada</span>\ngit branch\n\n<span class=\"cm\"># Membuat branch baru dan langsung berpindah ke sana (Modern Git)</span>\ngit switch -c fitur-qris\n\n<span class=\"cm\"># Berpindah kembali ke cabang utama</span>\ngit switch main</div>\n      ",
+    "quiz": {
+     "q": "Apa keuntungan utama menggunakan fitur Branch (percabangan) di Git?",
+     "opts": [
+      "Mengisolasi pengembangan fitur baru agar tidak merusak kode utama yang stabil",
+      "Membuat ukuran file proyek menjadi dua kali lipat lebih kecil",
+      "Menghapus otomatis seluruh file JavaScript yang tidak terpakai",
+      "Mencegah developer lain melihat isi komputer kita"
+     ],
+     "ans": 0,
+     "why": "Branch memungkinkan eksperimen dan pengerjaan fitur berjalan terpisah secara aman tanpa mengganggu kode utama yang sedang berjalan stabil."
+    }
+   },
+   {
+    "id": "git-06",
+    "num": "06",
+    "title": "Menggabungkan Cabang: Fast-Forward vs 3-Way Merge",
+    "level": "Menengah",
+    "intro": "Menyatukan hasil kerja dari cabang eksperimen kembali ke cabang utama proyek.",
+    "body": "\n        <h4>🔀 Dua Tipe Penggabungan (git merge)</h4>\n        <p>Setelah fitur pembayaran QRIS diuji dan berjalan sempurna, Supriyanto ingin menyatukannya ke cabang <code>main</code>. Git memiliki 2 metode penggabungan otomatis:</p>\n        <ul>\n          <li><b>1. Fast-Forward Merge:</b> Terjadi jika cabang <code>main</code> tidak memiliki commit baru sama sekali sejak branch fitur dibuat. Git cukup memajukan pointer <code>main</code> lurus ke depan mengikuti commit terakhir branch fitur. Bersih dan tanpa commit tambahan!</li>\n          <li><b>2. 3-Way Merge:</b> Terjadi jika cabang <code>main</code> dan branch fitur sama-sama memiliki commit baru yang berbeda arah. Git akan membuat satu commit penggabungan khusus (<b>Merge Commit</b>) yang memiliki dua induk commit.</li>\n        </ul>\n\n        <h4>⌨️ Langkah Melakukan Merge</h4>\n        <div class=\"code-block\"><span class=\"cm\"># 1. Pindah dulu ke cabang tujuan (misal main)</span>\ngit switch main\n\n<span class=\"cm\"># 2. Gabungkan cabang fitur ke main</span>\ngit merge fitur-qris\n\n<span class=\"cm\"># 3. Hapus cabang fitur jika sudah tidak diperlukan lagi</span>\ngit branch -d fitur-qris</div>\n      ",
+    "quiz": {
+     "q": "Kapan situasi Fast-Forward merge dapat terjadi di Git?",
+     "opts": [
+      "Ketika cabang tujuan (main) belum memiliki commit baru sejak cabang fitur dibuat",
+      "Ketika terjadi tabrakan kode pada baris yang sama",
+      "Ketika koneksi internet sedang berkecepatan tinggi",
+      "Ketika ukuran file repositori di bawah 1 Megabyte"
+     ],
+     "ans": 0,
+     "why": "Fast-forward merge terjadi ketika garis riwayat linier tanpa percabangan ganda, sehingga Git cukup memajukan penunjuk cabang ke depan."
+    }
+   },
+   {
+    "id": "git-07",
+    "num": "07",
+    "title": "Menghadapi Merge Conflict dengan Tenang",
+    "level": "Menengah",
+    "intro": "Jangan panik ketika ada tabrakan kode di baris yang sama: cara membaca marker dan menyelesaikannya.",
+    "body": "\n        <h4>💥 Apa Penyebab Terjadinya Merge Conflict?</h4>\n        <p><b>Merge Conflict</b> terjadi ketika dua orang programmer (atau Anda di dua branch berbeda) <b>mengubah baris kode yang sama persis di file yang sama dengan isi berbeda</b>. Git tidak bisa menebak pikiran manusia: apakah kode programmer A yang benar, atau kode programmer B yang benar? Oleh karena itu, Git berhenti dan meminta bantuan Anda untuk memilih.</p>\n\n        <h4>🔎 Mengenal Marker Konflik Git</h4>\n        <p>Ketika konflik terjadi, Git akan menandai file tersebut dengan simbol khusus:</p>\n        <div class=\"code-block\">&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD\n<span class=\"cm\">// Kode versi cabang Anda saat ini</span>\nconst diskon = 0.15;\n=======\n<span class=\"cm\">// Kode versi cabang yang ingin Anda gabungkan</span>\nconst diskon = 0.20;\n&gt;&gt;&gt;&gt;&gt;&gt;&gt; fitur-promo</div>\n\n        <h4>🛠️ Tiga Langkah Mengatasi Konflik:</h4>\n        <ol>\n          <li>Buka file yang berkonflik di editor teks (VS Code).</li>\n          <li>Tentukan kode mana yang ingin dipertahankan, lalu <b>hapus simbol marker</b> (<code>&lt;&lt;&lt;&lt;&lt;&lt;&lt;</code>, <code>=======</code>, <code>&gt;&gt;&gt;&gt;&gt;&gt;&gt;</code>).</li>\n          <li>Jalankan <code>git add .</code> dan selesaikan dengan <code>git commit -m \"Menyelesaikan merge conflict diskon\"</code>.</li>\n        </ol>\n      ",
+    "quiz": {
+     "q": "Apa yang harus dilakukan developer saat terjadi Merge Conflict pada file kode?",
+     "opts": [
+      "Memilih kode yang benar, menghapus simbol marker konflik, lalu melakukan git add dan commit",
+      "Mematikan komputer dan menghapus seluruh folder proyek",
+      "Memaksa push dengan git push --force tanpa memeriksa kodenya",
+      "Mengganti ekstensi file menjadi file .txt"
+     ],
+     "ans": 0,
+     "why": "Menyelesaikan konflik dilakukan dengan mengedit file, memilih kode yang diinginkan, membersihkan marker Git, kemudian melakukan add dan commit penyelesaian."
+    }
+   },
+   {
+    "id": "git-08",
+    "num": "08",
+    "title": "Remote Repository: GitHub, git remote & git push",
+    "level": "Menengah",
+    "intro": "Mencadangkan repositori lokal ke cloud GitHub dan menyinkronkan checkpoint antar perangkat.",
+    "body": "\n        <h4>☁️ Menghubungkan Lokal ke Awan (GitHub)</h4>\n        <p>Setelah repositori lokal tersimpan rapi, saatnya mencadangkan dan membagikan proyek Anda ke platform cloud seperti <b>GitHub</b>:</p>\n        <div class=\"code-block\"><span class=\"cm\"># 1. Tambahkan alamat remote repository GitHub</span>\ngit remote add origin https://github.com/supriyanto/toko-online.git\n\n<span class=\"cm\"># 2. Verifikasi alamat remote yang terhubung</span>\ngit remote -v\n\n<span class=\"cm\"># 3. Unggah seluruh riwayat cabang main ke GitHub untuk pertama kali</span>\ngit push -u origin main</div>\n        <p>Parameter <code>-u</code> (upstream) memberitahu Git agar di masa mendatang Supriyanto cukup mengetik <code>git push</code> saja untuk memperbarui cabang <code>main</code> di cloud.</p>\n      ",
+    "quiz": {
+     "q": "Perintah apa yang digunakan untuk mengunggah commit dari repositori lokal ke server remote GitHub?",
+     "opts": [
+      "git push",
+      "git pull",
+      "git clone",
+      "git fetch"
+     ],
+     "ans": 0,
+     "why": "git push mentransfer dan menyinkronkan seluruh commit checkpoint dari repositori lokal ke repositori remote di server GitHub."
+    }
+   },
+   {
+    "id": "git-09",
+    "num": "09",
+    "title": "Kolaborasi Tim: git fetch, git pull & Pull Request (PR)",
+    "level": "Mahir",
+    "intro": "Menjemput pembaruan kode dari rekan tim dan etika review kode melalui Pull Request di GitHub.",
+    "body": "\n        <h4>🔄 Perbedaan git fetch vs git pull</h4>\n        <p>Ketika rekan tim Anda mengunggah kode baru ke GitHub, Anda perlu memperbarui repositori lokal Anda:\n        <ul>\n          <li><b>git fetch:</b> Mengunduh riwayat terbaru dari GitHub ke komputer Anda, tetapi <i>belum</i> menggabungkannya ke file yang sedang Anda kerjakan. Aman untuk memeriksa apa saja yang baru.</li>\n          <li><b>git pull:</b> Melakukan <code>git fetch</code> sekaligus langsung menggabungkan (<code>git merge</code>) perubahan tersebut ke branch Anda saat ini.</li>\n        </ul>\n        </p>\n\n        <h4>🤝 Seni Pull Request (PR)</h4>\n        <p>Di perusahaan teknologi profesional, developer dilarang keras langsung melakukan push ke branch <code>main</code>. Alur yang benar adalah:\n        <ol>\n          <li>Developer membuat branch fitur: <code>git switch -c fitur-keranjang</code>.</li>\n          <li>Selesaikan kodingan dan push branch tersebut ke GitHub: <code>git push origin fitur-keranjang</code>.</li>\n          <li>Buka <b>Pull Request (PR)</b> di halaman GitHub. Rekan tim dan Senior Engineer akan membaca baris kode Anda (<i>Code Review</i>), memberikan saran perbaikan, dan jika sudah lolos uji baru di-merge ke <code>main</code>!</li>\n        </ol>\n        </p>\n      ",
+    "quiz": {
+     "q": "Apa tujuan utama dibukanya Pull Request (PR) di platform GitHub dalam tim software engineering?",
+     "opts": [
+      "Memfasilitasi peninjauan kode (code review) oleh rekan tim sebelum kode digabung ke cabang utama",
+      "Membayar biaya langganan server GitHub",
+      "Mengompresi file gambar agar loading website lebih cepat",
+      "Mengunduh repositori ke flashdisk eksternal"
+     ],
+     "ans": 0,
+     "why": "Pull Request adalah sarana diskusi dan code review profesional untuk memastikan kualitas kode, keamanan, dan fungsionalitas sebelum digabungkan ke cabang utama."
+    }
+   },
+   {
+    "id": "git-10",
+    "num": "10",
+    "title": "Menyimpan Pekerjaan Sementara: git stash & pop",
+    "level": "Mahir",
+    "intro": "Menyelamatkan kodingan setengah matang ke laci rahasia saat harus segera beralih memperbaiki bug darurat.",
+    "body": "\n        <h4>🗄️ Analogi Laci Rahasia Darurat</h4>\n        <p>Bayangkan Supriyanto sedang asyik merombak halaman checkout toko online. Kodenya baru separuh jalan dan masih error jika di-commit. Tiba-tiba Manajer menghubungi: <i>'Supriyanto, ada bug fatal di halaman login, tolong perbaiki sekarang juga!'</i></p>\n        <p>Supriyanto tidak bisa pindah branch jika pekerjaannya masih berantakan. Solusinya adalah <b>git stash</b> (laci darurat):</p>\n        <div class=\"code-block\"><span class=\"cm\"># 1. Simpan seluruh editan setengah jalan ke laci rahasia</span>\ngit stash\n\n<span class=\"cm\"># 2. Sekarang meja kerja bersih, pindah dan perbaiki bug darurat di main</span>\ngit switch main\n<span class=\"cm\"># ... selesaikan bug, add, commit, dan push ...</span>\n\n<span class=\"cm\"># 3. Kembali ke branch checkout dan ambil kembali kerjaan dari laci</span>\ngit switch fitur-checkout\ngit stash pop</div>\n        <p>Perintah <code>git stash pop</code> mengeluarkan kembali seluruh kodingan yang tadi disimpan dan membersihkan laci rahasia tersebut.</p>\n      ",
+    "quiz": {
+     "q": "Perintah apa yang digunakan untuk mengembalikan pekerjaan yang sebelumnya disimpan via git stash kembali ke meja kerja?",
+     "opts": [
+      "git stash pop",
+      "git stash drop",
+      "git stash clear",
+      "git stash hide"
+     ],
+     "ans": 0,
+     "why": "git stash pop mengambil perubahan yang tersimpan paling atas di tumpukan stash, menerapkannya ke working tree, lalu menghapusnya dari daftar stash."
+    }
+   },
+   {
+    "id": "git-11",
+    "num": "11",
+    "title": "Perjalanan Waktu: git revert, reset & git commit --amend",
+    "level": "Mahir",
+    "intro": "Memperbaiki kesalahan masa lalu: membatalkan commit dengan aman di repositori publik vs lokal.",
+    "body": "\n        <h4>⏪ Tiga Jurus Pembatalan di Git</h4>\n        <p>Semua programmer pasti pernah berbuat salah. Git menyediakan tiga cara berbeda untuk memperbaikinya:</p>\n        <ul>\n          <li><b>1. git commit --amend:</b> Mengubah pesan commit terakhir atau menambahkan file yang kelupaan ke commit terakhir tanpa membuat commit baru.</li>\n          <li><b>2. git revert &lt;hash&gt;:</b> Cara paling aman di repositori tim/publik. Perintah ini membuat commit baru yang isinya adalah <i>kebalikan persis</i> dari commit yang salah, sehingga riwayat sejarah tetap utuh dan transparan.</li>\n          <li><b>3. git reset:</b> Menghapus commit dari riwayat. Ada dua mode:\n            <br>• <code>--soft</code>: Menghapus commit tapi membiarkan kodingan tetap ada di Staging Area.\n            <br>• <code>--hard</code>: <b>Berbahaya!</b> Menghapus commit sekaligus menghapus seluruh perubahan kode di file komputer Anda secara permanen.</li>\n        </ul>\n        <div class=\"tip-box\">\n          <span class=\"tip-box-icon\">⚠️</span>\n          <div><b>Aturan Emas:</b> Jangan pernah menggunakan <code>git reset --hard</code> pada commit yang sudah di-push ke GitHub cabang bersama, karena akan merusak sinkronisasi riwayat seluruh rekan tim Anda! Gunakanlah <code>git revert</code>.</div>\n        </div>\n      ",
+    "quiz": {
+     "q": "Manakah perintah yang paling aman digunakan untuk membatalkan commit yang sudah terlanjur di-push ke server GitHub bersama tim?",
+     "opts": [
+      "git revert <commit_hash>",
+      "git reset --hard HEAD~1",
+      "git clean -f -d",
+      "git branch -D main"
+     ],
+     "ans": 0,
+     "why": "git revert membuat commit baru yang membatalkan perubahan sebelumnya tanpa merusak atau menulis ulang riwayat commit rekan tim lain di server bersama."
+    }
+   },
+   {
+    "id": "git-12",
+    "num": "12",
+    "title": "Rebase vs Merge & Best Practice Alur Kerja Git Flow",
+    "level": "Expert",
+    "intro": "Menjaga riwayat pohon commit tetap lurus, bersih, dan mengadopsi standar alur kerja industri perangkat lunak.",
+    "body": "\n        <h4>📈 Git Rebase: Merapikan Pohon Sejarah</h4>\n        <p>Berbeda dengan <code>git merge</code> yang menghasilkan cabang bercabang-cabang dan merge commit tambahan, <b>git rebase</b> mencabut commit Anda dari titik cabang lama dan menanamkannya kembali di puncak commit terbaru cabang utama. Hasilnya adalah <b>garis riwayat yang lurus sempurna (linear history)</b> layaknya jalan tol tanpa persimpangan semrawut.</p>\n        <div class=\"code-block\"><span class=\"cm\"># Saat berada di branch fitur-baru, rebase ke main terbaru</span>\ngit switch fitur-baru\ngit rebase main</div>\n\n        <h4>🚀 Standar Git Flow Industri</h4>\n        <p>Dalam proyek enterprise modern, tim software engineer menerapkan konvensi cabang terstruktur:\n        <ul>\n          <li><b>main (production):</b> Kode stabil yang sedang live diakses pengguna.</li>\n          <li><b>develop (staging):</b> Tempat penggabungan fitur-fitur yang siap diuji sebelum rilis.</li>\n          <li><b>feature/* :</b> Cabang fitur spesifik (misal: <code>feature/login-google</code>).</li>\n          <li><b>hotfix/* :</b> Cabang darurat langsung dari main untuk menambal bug krusial di produksi.</li>\n        </ul>\n        </p>\n\n        <div class=\"tip-box\">\n          <span class=\"tip-box-icon\">🏆</span>\n          <div><b>Selamat!</b> Supriyanto telah menguasai seluruh siklus version control Git dan GitHub dari fondasi snapshot lokal hingga orkestrasi cabang tim profesional. Uji wawasan Anda di <b>Quiz Git</b>!</div>\n        </div>\n      ",
+    "quiz": {
+     "q": "Apa perbedaan visual utama antara hasil git rebase dibandingkan git merge?",
+     "opts": [
+      "git rebase menghasilkan riwayat commit linier lurus tanpa merge commit tambahan",
+      "git rebase menghapus seluruh file gambar dalam repositori",
+      "git merge hanya bisa dijalankan satu kali seumur hidup repositori",
+      "git rebase membutuhkan biaya langganan bulanan di GitHub"
+     ],
+     "ans": 0,
+     "why": "git rebase memindahkan basis commit cabang ke ujung cabang target, menghasilkan riwayat perubahan linier bersih tanpa percabangan ganda atau merge commit."
     }
    }
   ]
@@ -1235,6 +1471,480 @@ const TRACKS = [
   ]
  },
  {
+  "id": "sql",
+  "title": "SQL & Database 🗄️",
+  "subtitle": "Query Relasional: DDL, DML, Multi-table JOIN, Indexing, Transaksi ACID & Normalisasi",
+  "accent": "emerald",
+  "category": "it",
+  "lessons": [
+   {
+    "id": "sql-01",
+    "num": "01",
+    "title": "Fondasi Basis Data Relasional & RDBMS",
+    "level": "Pemula",
+    "intro": "Memahami mengapa spreadsheet Excel tidak cukup untuk aplikasi modern dan bagaimana tabel saling berhubungan.",
+    "body": "\n        <h4>🏪 Analogi Lemari Buku Toko Supriyanto</h4>\n        <p>Saat tokonya masih kecil, Supriyanto mencatat semua pesanan dan pelanggan di satu lemari buku catatan (layaknya lemari Excel). Namun ketika pembeli mencapai puluhan ribu orang, catatan tersebut mulai kacau: nama pelanggan tertulis berulang-ulang, salah ketik alamat, dan data rawan terhapus secara tidak sengaja.</p>\n        <p><b>RDBMS (Relational Database Management System)</b> seperti PostgreSQL, MySQL, dan SQLite memecahkan masalah ini dengan memisahkan data ke dalam tabel-tabel spesifik yang saling terhubung (berelasi):\n        <ul>\n          <li>Tabel <code>pelanggan</code>: Hanya menyimpan identitas unik pembeli.</li>\n          <li>Tabel <code>produk</code>: Menyimpan stok dan harga barang.</li>\n          <li>Tabel <code>pesanan</code>: Menghubungkan pembeli dengan produk yang dibeli melalui kunci penghubung.</li>\n        </ul>\n        </p>\n\n        <h4>🔑 Mengenal Primary Key & Foreign Key</h4>\n        <p>Agar tidak ada data yang tertukar, setiap baris tabel wajib memiliki <b>Primary Key (Kunci Utama)</b> — identitas unik seperti nomor KTP (misal: <code>id_pelanggan = 101</code>). Sedangkan <b>Foreign Key (Kunci Tamu)</b> adalah kolom di tabel lain yang merujuk kembali ke Primary Key tersebut.</p>\n      ",
+    "quiz": {
+     "q": "Apa fungsi utama dari Primary Key dalam tabel basis data relasional?",
+     "opts": [
+      "Sebagai identitas unik penanda setiap baris data agar tidak terjadi duplikasi",
+      "Untuk mengenkripsi password dengan teknologi blockchain",
+      "Untuk mengubah format angka menjadi mata uang rupiah secara otomatis",
+      "Membatasi ukuran tabel maksimal 10 Megabyte"
+     ],
+     "ans": 0,
+     "why": "Primary Key memastikan setiap baris (record) dalam tabel memiliki pengenal unik yang tidak boleh kosong (NOT NULL) dan tidak boleh bernilai ganda (UNIQUE)."
+    }
+   },
+   {
+    "id": "sql-02",
+    "num": "02",
+    "title": "DDL: Membuat & Mengelola Tabel (CREATE, ALTER, DROP)",
+    "level": "Pemula",
+    "intro": "Merancang cetak biru arsitektur tabel dengan tipe data dan aturan constraint yang kuat.",
+    "body": "\n        <h4>📐 Data Definition Language (DDL)</h4>\n        <p>DDL adalah sekumpulan perintah SQL untuk membangun, mengubah, atau meruntuhkan struktur fisik wadah data (tabel). Perintah DDL tidak memanipulasi isi baris data, melainkan kerangka bangunannya:</p>\n        <div class=\"code-block\"><span class=\"cm\">-- 1. Membuat tabel pelanggan baru milik Supriyanto</span>\n<span class=\"kw\">CREATE TABLE</span> pelanggan (\n  id <span class=\"kw\">SERIAL PRIMARY KEY</span>,\n  nama <span class=\"kw\">VARCHAR(100) NOT NULL</span>,\n  email <span class=\"kw\">VARCHAR(150) UNIQUE NOT NULL</span>,\n  poin_belanja <span class=\"kw\">INT DEFAULT</span> 0,\n  dibuat_pada <span class=\"kw\">TIMESTAMP DEFAULT CURRENT_TIMESTAMP</span>\n);\n\n<span class=\"cm\">-- 2. Menambahkan kolom baru jika ada kebutuhan fitur</span>\n<span class=\"kw\">ALTER TABLE</span> pelanggan <span class=\"kw\">ADD COLUMN</span> nomor_hp <span class=\"kw\">VARCHAR(20)</span>;\n\n<span class=\"cm\">-- 3. Menghapus tabel secara permanen</span>\n<span class=\"kw\">DROP TABLE IF EXISTS</span> tabel_lama;</div>\n\n        <div class=\"tip-box\">\n          <span class=\"tip-box-icon\">💡</span>\n          <div><b>Constraint Pelindung Data:</b> Gunakan <code>NOT NULL</code> agar kolom tidak bisa dikosongkan, <code>UNIQUE</code> agar tidak ada email kembar, dan <code>DEFAULT</code> untuk mengisi nilai awal otomatis.</div>\n        </div>\n      ",
+    "quiz": {
+     "q": "Perintah SQL mana yang digunakan untuk menambahkan kolom baru ke dalam struktur tabel yang sudah ada?",
+     "opts": [
+      "ALTER TABLE ... ADD COLUMN ...",
+      "UPDATE TABLE ... INSERT COLUMN ...",
+      "CREATE COLUMN ... IN TABLE ...",
+      "MODIFY TABLE ... NEW COLUMN ..."
+     ],
+     "ans": 0,
+     "why": "ALTER TABLE adalah perintah DDL untuk memodifikasi struktur skema tabel, termasuk menambah kolom baru dengan klausa ADD COLUMN."
+    }
+   },
+   {
+    "id": "sql-03",
+    "num": "03",
+    "title": "DML: Memasukkan, Mengubah & Menghapus Data",
+    "level": "Pemula",
+    "intro": "Operasi CRUD data: INSERT data baru, UPDATE data yang ada, dan menghapus dengan aman via DELETE.",
+    "body": "\n        <h4>📝 Manipulasi Data (DML: Data Manipulation Language)</h4>\n        <p>Setelah kerangka tabel tersedia, Supriyanto dapat mengelola isi baris data dengan tiga perintah utama:</p>\n        <div class=\"code-block\"><span class=\"cm\">-- 1. INSERT: Memasukkan data pelanggan baru</span>\n<span class=\"kw\">INSERT INTO</span> pelanggan (nama, email, nomor_hp)\n<span class=\"kw\">VALUES</span> (<span class=\"st\">'Supriyanto'</span>, <span class=\"st\">'supriyanto@example.com'</span>, <span class=\"st\">'081234567890'</span>);\n\n<span class=\"cm\">-- 2. UPDATE: Mengubah data poin pelanggan</span>\n<span class=\"kw\">UPDATE</span> pelanggan\n<span class=\"kw\">SET</span> poin_belanja = poin_belanja + 50\n<span class=\"kw\">WHERE</span> id = 1;\n\n<span class=\"cm\">-- 3. DELETE: Menghapus pelanggan tertentu</span>\n<span class=\"kw\">DELETE FROM</span> pelanggan\n<span class=\"kw\">WHERE</span> id = 99;</div>\n\n        <div class=\"tip-box\">\n          <span class=\"tip-box-icon\">⚠️</span>\n          <div><b>Mimpi Buruk Developer:</b> Jangan pernah lupa menyertakan klausa <code>WHERE</code> pada perintah <code>UPDATE</code> dan <code>DELETE</code>! Tanpa <code>WHERE</code>, seluruh baris data di tabel akan terhapus atau berubah serentak!</div>\n        </div>\n      ",
+    "quiz": {
+     "q": "Apa yang akan terjadi jika developer menjalankan perintah 'DELETE FROM pelanggan;' tanpa menyertakan klausa WHERE?",
+     "opts": [
+      "Semua baris data pelanggan di dalam tabel akan terhapus tanpa sisa",
+      "Hanya baris paling atas yang terhapus",
+      "Database akan memunculkan pesan error dan membatalkan perintah",
+      "Struktur tabel pelanggan akan otomatis hilang"
+     ],
+     "ans": 0,
+     "why": "Klausa WHERE menentukan baris mana yang dihapus. Tanpa WHERE, perintah DELETE akan menghapus seluruh isi rekaman baris dalam tabel tersebut."
+    }
+   },
+   {
+    "id": "sql-04",
+    "num": "04",
+    "title": "Query Data: SELECT, DISTINCT, WHERE & Operator Logika",
+    "level": "Pemula",
+    "intro": "Menyaring dan menampilkan data presisi menggunakan operator logika AND, OR, NOT, IN, dan LIKE.",
+    "body": "\n        <h4>🔍 Seni Membaca Data dengan SELECT</h4>\n        <p>Perintah <code>SELECT</code> adalah fondasi utama membaca data di SQL. Daripada mengambil semua kolom dengan <code>SELECT *</code>, praktik terbaik industri adalah menyebutkan nama kolom yang dibutuhkan:</p>\n        <div class=\"code-block\"><span class=\"cm\">-- Mengambil nama dan email dengan filter harga & kategori</span>\n<span class=\"kw\">SELECT</span> nama_produk, harga, stok\n<span class=\"kw\">FROM</span> produk\n<span class=\"kw\">WHERE</span> (kategori = <span class=\"st\">'Elektronik'</span> <span class=\"kw\">AND</span> harga &lt; 5000000)\n   <span class=\"kw\">OR</span> (kategori = <span class=\"st\">'Aksesoris'</span> <span class=\"kw\">AND</span> stok &gt; 10);</div>\n\n        <h4>🎯 Operator Pencarian Sakti: IN & LIKE</h4>\n        <ul>\n          <li><b>IN:</b> Memilih data yang cocok dengan sekumpulan pilihan:\n            <br><code>WHERE kategori IN ('Buku', 'Elektronik', 'Kopi')</code></li>\n          <li><b>LIKE (Pencarian Teks):</b> Mencari pola kata menggunakan wildcard <code>%</code>:\n            <br><code>WHERE nama LIKE '%Supriyanto%'</code> (mengandung kata Supriyanto di posisi mana pun).</li>\n          <li><b>DISTINCT:</b> Menghilangkan baris duplikat dari hasil pencarian:\n            <br><code>SELECT DISTINCT kota_asal FROM pelanggan;</code></li>\n        </ul>\n      ",
+    "quiz": {
+     "q": "Klausa mana yang digunakan untuk mencari produk yang namanya diawali dengan kata 'Laptop'?",
+     "opts": [
+      "WHERE nama LIKE 'Laptop%'",
+      "WHERE nama == 'Laptop*'",
+      "WHERE nama IN ('Laptop')",
+      "WHERE nama CONTAINS 'Laptop'"
+     ],
+     "ans": 0,
+     "why": "Dalam SQL standar, operator LIKE bersama wildcard % di akhir ('Laptop%') mencocokkan teks apa pun yang diawali dengan kata 'Laptop'."
+    }
+   },
+   {
+    "id": "sql-05",
+    "num": "05",
+    "title": "Mengurutkan & Paginasi: ORDER BY, LIMIT & OFFSET",
+    "level": "Menengah",
+    "intro": "Menyajikan data terurut dari yang termahal/termurah serta teknik paginasi halaman aplikasi.",
+    "body": "\n        <h4>📶 Mengurutkan Data: ORDER BY (ASC / DESC)</h4>\n        <p>Data di basis data tidak disimpan secara berurutan. Gunakan <code>ORDER BY</code> untuk menata urutan hasil query:</p>\n        <div class=\"code-block\"><span class=\"cm\">-- Urutkan produk dari harga paling mahal (Descending)</span>\n<span class=\"kw\">SELECT</span> nama_produk, harga\n<span class=\"kw\">FROM</span> produk\n<span class=\"kw\">ORDER BY</span> harga <span class=\"kw\">DESC</span>;\n\n<span class=\"cm\">-- Urutkan berdasarkan kategori A-Z, lalu jika sama urutkan harga termurah</span>\n<span class=\"kw\">SELECT</span> nama_produk, kategori, harga\n<span class=\"kw\">FROM</span> produk\n<span class=\"kw\">ORDER BY</span> kategori <span class=\"kw\">ASC</span>, harga <span class=\"kw\">ASC</span>;</div>\n\n        <h4>📄 Paginasi Halaman Web dengan LIMIT & OFFSET</h4>\n        <p>Aplikasi web modern tidak boleh menampilkan 1.000.000 produk sekaligus di layar handphone. Kita membaginya menjadi halaman demi halaman (misal 10 item per halaman):</p>\n        <div class=\"code-block\"><span class=\"cm\">-- Halaman 1 (Item 1 sampai 10)</span>\n<span class=\"kw\">SELECT</span> * <span class=\"kw\">FROM</span> produk <span class=\"kw\">LIMIT</span> 10 <span class=\"kw\">OFFSET</span> 0;\n\n<span class=\"cm\">-- Halaman 2 (Lewati 10 item pertama, ambil 10 berikutnya)</span>\n<span class=\"kw\">SELECT</span> * <span class=\"kw\">FROM</span> produk <span class=\"kw\">LIMIT</span> 10 <span class=\"kw\">OFFSET</span> 10;\n\n<span class=\"cm\">-- Halaman 3 (Rumus: OFFSET = (Halaman - 1) * LIMIT)</span>\n<span class=\"kw\">SELECT</span> * <span class=\"kw\">FROM</span> produk <span class=\"kw\">LIMIT</span> 10 <span class=\"kw\">OFFSET</span> 20;</div>\n      ",
+    "quiz": {
+     "q": "Jika Anda ingin menampilkan data pada halaman ke-4 dengan batas 15 data per halaman, berapa nilai OFFSET yang tepat?",
+     "opts": [
+      "OFFSET 45",
+      "OFFSET 60",
+      "OFFSET 30",
+      "OFFSET 15"
+     ],
+     "ans": 0,
+     "why": "Rumus paginasi adalah OFFSET = (Nomor Halaman - 1) * LIMIT. Untuk halaman ke-4: (4 - 1) * 15 = 45 data pertama dilewati."
+    }
+   },
+   {
+    "id": "sql-06",
+    "num": "06",
+    "title": "Agregasi & Pengelompokan: COUNT, SUM, GROUP BY & HAVING",
+    "level": "Menengah",
+    "intro": "Menghasilkan laporan bisnis: total omzet, rata-rata penjualan, dan penyaringan grup.",
+    "body": "\n        <h4>📊 Fungsi Agregasi Matematika</h4>\n        <p>SQL memiliki fungsi bawaan untuk menghitung ringkasan statistik dari ribuan baris data:</p>\n        <div class=\"code-block\"><span class=\"kw\">SELECT</span>\n  <span class=\"kw\">COUNT</span>(*) <span class=\"kw\">AS</span> total_transaksi,\n  <span class=\"kw\">SUM</span>(total_bayar) <span class=\"kw\">AS</span> total_omzet,\n  <span class=\"kw\">AVG</span>(total_bayar) <span class=\"kw\">AS</span> rata_rata_belanja,\n  <span class=\"kw\">MAX</span>(total_bayar) <span class=\"kw\">AS</span> belanja_terbesar,\n  <span class=\"kw\">MIN</span>(total_bayar) <span class=\"kw\">AS</span> belanja_terkecil\n<span class=\"kw\">FROM</span> pesanan;</div>\n\n        <h4>📦 GROUP BY & Membedakan WHERE vs HAVING</h4>\n        <p>Ketika ingin mengetahui total omzet <i>per kategori produk</i>, gunakan <code>GROUP BY</code>:</p>\n        <div class=\"code-block\"><span class=\"kw\">SELECT</span> kategori, <span class=\"kw\">SUM</span>(total_bayar) <span class=\"kw\">AS</span> omzet_kategori\n<span class=\"kw\">FROM</span> produk\n<span class=\"kw\">GROUP BY</span> kategori\n<span class=\"kw\">HAVING SUM</span>(total_bayar) &gt; 10000000;</div>\n\n        <div class=\"tip-box\">\n          <span class=\"tip-box-icon\">💡</span>\n          <div><b>Kunci Hafalan Supriyanto:</b> <code>WHERE</code> menyaring baris <b>sebelum</b> dikelompokkan, sedangkan <code>HAVING</code> menyaring hasil agregasi <b>setelah</b> dikelompokkan oleh GROUP BY!</div>\n        </div>\n      ",
+    "quiz": {
+     "q": "Klausa apa yang digunakan untuk menyaring hasil pengelompokan agregasi (misal: hanya menampilkan grup yang omzetnya di atas 10 juta)?",
+     "opts": [
+      "HAVING",
+      "WHERE",
+      "FILTER BY",
+      "ORDER BY"
+     ],
+     "ans": 0,
+     "why": "Klausa HAVING digunakan khusus untuk menyaring kondisi pada fungsi agregasi setelah data dikelompokkan oleh GROUP BY."
+    }
+   },
+   {
+    "id": "sql-07",
+    "num": "07",
+    "title": "Relasi Tabel I: Menguasai INNER JOIN & LEFT JOIN",
+    "level": "Menengah",
+    "intro": "Menyatukan data dari dua tabel terpisah berdasarkan kunci penghubung relasi.",
+    "body": "\n        <h4>🤝 Mengapa Perlu JOIN?</h4>\n        <p>Di tabel <code>pesanan</code>, kita hanya menyimpan <code>id_pelanggan: 101</code>. Pelanggan ingin melihat resi belanja yang mencantumkan nama asli dan alamatnya. Kita menggabungkan tabel <code>pesanan</code> dan <code>pelanggan</code> menggunakan <b>JOIN</b>!</p>\n\n        <h4>🔗 Perbedaan INNER JOIN vs LEFT JOIN</h4>\n        <div class=\"code-block\"><span class=\"cm\">-- 1. INNER JOIN: Hanya menampilkan pesanan yang memiliki pelanggan valid</span>\n<span class=\"kw\">SELECT</span> pesanan.id, pelanggan.nama, pesanan.total_bayar\n<span class=\"kw\">FROM</span> pesanan\n<span class=\"kw\">INNER JOIN</span> pelanggan <span class=\"kw\">ON</span> pesanan.id_pelanggan = pelanggan.id;\n\n<span class=\"cm\">-- 2. LEFT JOIN: Tampilkan SEMUA pelanggan, meski belum pernah belanja sama sekali</span>\n<span class=\"kw\">SELECT</span> pelanggan.nama, pesanan.id <span class=\"kw\">AS</span> nomor_pesanan\n<span class=\"kw\">FROM</span> pelanggan\n<span class=\"kw\">LEFT JOIN</span> pesanan <span class=\"kw\">ON</span> pelanggan.id = pesanan.id_pelanggan;</div>\n        <p>Pada <code>LEFT JOIN</code>, pelanggan yang belum pernah belanja tetap muncul di daftar dengan nilai <code>NULL</code> pada kolom pesanan. Ini sangat berguna untuk mencari pelanggan pasif!</p>\n      ",
+    "quiz": {
+     "q": "Apa hasil dari query LEFT JOIN jika baris pada tabel kiri tidak memiliki pasangan yang cocok di tabel kanan?",
+     "opts": [
+      "Baris tabel kiri tetap ditampilkan dan kolom tabel kanan diisi dengan nilai NULL",
+      "Baris tabel kiri akan otomatis dihapus dari database",
+      "Query akan menghasilkan error syntax",
+      "Baris tabel kanan akan diisi nilai angka 0"
+     ],
+     "ans": 0,
+     "why": "LEFT JOIN mempertahankan seluruh data dari tabel sebelah kiri, dan jika tidak ada kecocokan di tabel kanan, kolom tabel kanan akan bernilai NULL."
+    }
+   },
+   {
+    "id": "sql-08",
+    "num": "08",
+    "title": "Relasi Tabel II: RIGHT JOIN, FULL JOIN & Self Join",
+    "level": "Mahir",
+    "intro": "Tipe penggabungan komprehensif dan teknik menghubungkan tabel dengan dirinya sendiri.",
+    "body": "\n        <h4>🌐 RIGHT JOIN & FULL OUTER JOIN</h4>\n        <ul>\n          <li><b>RIGHT JOIN:</b> Kebalikan dari LEFT JOIN, mempertahankan seluruh baris dari tabel sebelah kanan.</li>\n          <li><b>FULL OUTER JOIN:</b> Menggabungkan kedua tabel secara total. Menampilkan semua baris dari kiri dan kanan, serta mengisi <code>NULL</code> pada sisi yang tidak memiliki pasangan cocok.</li>\n        </ul>\n\n        <h4>🪞 Self Join: Menghubungkan Tabel dengan Dirinya Sendiri</h4>\n        <p>Kasus umum di dunia kerja adalah tabel karyawan di mana setiap karyawan memiliki atasan (Manajer) yang juga sesama karyawan di tabel yang sama:</p>\n        <div class=\"code-block\"><span class=\"kw\">SELECT</span>\n  karyawan.nama <span class=\"kw\">AS</span> nama_staf,\n  manajer.nama <span class=\"kw\">AS</span> nama_atasan\n<span class=\"kw\">FROM</span> staf karyawan\n<span class=\"kw\">LEFT JOIN</span> staf manajer <span class=\"kw\">ON</span> karyawan.id_atasan = manajer.id;</div>\n        <p>Dengan memberi alias berbeda (<code>karyawan</code> dan <code>manajer</code>), kita dapat memperlakukan satu tabel fisik seolah-olah menjadi dua tabel berbeda!</p>\n      ",
+    "quiz": {
+     "q": "Kapan teknik Self Join biasanya diterapkan pada basis data?",
+     "opts": [
+      "Ketika sebuah tabel memiliki relasi hierarkis ke dirinya sendiri (seperti struktur staf dan manajer)",
+      "Ketika kapasitas harddisk server hampir penuh",
+      "Ketika ingin menduplikasi seluruh tabel ke database cadangan",
+      "Ketika tidak ada koneksi internet pada server database"
+     ],
+     "ans": 0,
+     "why": "Self Join digunakan saat data memiliki hubungan relasional hierarkis atau perbandingan di dalam satu tabel yang sama, seperti struktur organisasi staf dan atasan."
+    }
+   },
+   {
+    "id": "sql-09",
+    "num": "09",
+    "title": "Subquery & Common Table Expressions (WITH / CTE)",
+    "level": "Mahir",
+    "intro": "Menulis query modular yang bersih dan mudah dipelihara menggunakan CTE.",
+    "body": "\n        <h4>🧩 Apa Itu Subquery (Query di dalam Query)?</h4>\n        <p>Misalkan Supriyanto ingin mencari produk apa saja yang harganya di atas rata-rata seluruh toko:</p>\n        <div class=\"code-block\"><span class=\"cm\">-- Subquery di dalam klausa WHERE</span>\n<span class=\"kw\">SELECT</span> nama_produk, harga\n<span class=\"kw\">FROM</span> produk\n<span class=\"kw\">WHERE</span> harga &gt; (<span class=\"kw\">SELECT AVG</span>(harga) <span class=\"kw\">FROM</span> produk);</div>\n\n        <h4>✨ CTE (Common Table Expressions): Query Elegan Bersih</h4>\n        <p>Subquery yang bertingkat banyak sangat sulit dibaca (seperti sarang laba-laba). Solusi modern SQL adalah menggunakan klausa <b>WITH (CTE)</b>:</p>\n        <div class=\"code-block\"><span class=\"kw\">WITH</span> PelangganSultan <span class=\"kw\">AS</span> (\n  <span class=\"kw\">SELECT</span> id_pelanggan, <span class=\"kw\">SUM</span>(total_bayar) <span class=\"kw\">AS</span> total_belanja\n  <span class=\"kw\">FROM</span> pesanan\n  <span class=\"kw\">GROUP BY</span> id_pelanggan\n  <span class=\"kw\">HAVING SUM</span>(total_bayar) &gt; 20000000\n)\n<span class=\"kw\">SELECT</span> p.nama, s.total_belanja\n<span class=\"kw\">FROM</span> PelangganSultan s\n<span class=\"kw\">JOIN</span> pelanggan p <span class=\"kw\">ON</span> s.id_pelanggan = p.id;</div>\n      ",
+    "quiz": {
+     "q": "Klausa apa yang digunakan dalam SQL standar untuk mendefinisikan Common Table Expression (CTE)?",
+     "opts": [
+      "WITH",
+      "DEFINE",
+      "DECLARE",
+      "LET"
+     ],
+     "ans": 0,
+     "why": "Klausa WITH digunakan untuk membuat temporary named result set (CTE) yang memudahkan pembacaan dan modularitas query yang kompleks."
+    }
+   },
+   {
+    "id": "sql-10",
+    "num": "10",
+    "title": "Indeks & Optimasi Query: B-Tree Index & EXPLAIN",
+    "level": "Mahir",
+    "intro": "Mengubah pencarian lambat Full Table Scan menjadi secepat kilat dengan struktur indeks pohon B-Tree.",
+    "body": "\n        <h4>📖 Analogi Indeks di Halaman Belakang Buku</h4>\n        <p>Bayangkan Anda mencari resep masakan di buku setebal 1.000 halaman. Jika membalik halaman satu per satu dari halaman 1 sampai 1.000 (<b>Full Table Scan / Seq Scan</b>), Anda akan kelelahan. Namun jika Anda membuka halaman Indeks Alfabet di bagian belakang buku, Anda langsung tahu resep tersebut ada di halaman 345!</p>\n        <p>Itulah cara kerja <b>Index (B-Tree Index)</b> di database. Indeks membuat struktur pohon data terurut di memori sehingga pencarian data berukuran jutaan baris selesai dalam hitungan milidetik.</p>\n\n        <div class=\"code-block\"><span class=\"cm\">-- Membuat indeks pada kolom email agar proses login instan</span>\n<span class=\"kw\">CREATE INDEX</span> idx_pelanggan_email <span class=\"kw\">ON</span> pelanggan (email);\n\n<span class=\"cm\">-- Menyelidiki rencana kerja mesin database dengan EXPLAIN ANALYZE</span>\n<span class=\"kw\">EXPLAIN ANALYZE SELECT</span> * <span class=\"kw\">FROM</span> pelanggan <span class=\"kw\">WHERE</span> email = <span class=\"st\">'supriyanto@example.com'</span>;</div>\n        <div class=\"tip-box\">\n          <span class=\"tip-box-icon\">💡</span>\n          <div><b>Jangan Berlebihan:</b> Setiap indeks mempercepat pembacaan (<code>SELECT</code>), tetapi sedikit memperlambat penulisan (<code>INSERT/UPDATE</code>) karena pohon indeks harus diperbarui. Pasanglah indeks hanya pada kolom yang sering dicari atau di-JOIN!</div>\n        </div>\n      ",
+    "quiz": {
+     "q": "Perintah apa yang digunakan developer untuk menganalisis rencana eksekusi dan kecepatan eksekusi query pada database?",
+     "opts": [
+      "EXPLAIN / EXPLAIN ANALYZE",
+      "SHOW SPEED QUERY",
+      "CHECK PERFORMANCE",
+      "DEBUG QUERY NOW"
+     ],
+     "ans": 0,
+     "why": "EXPLAIN (atau EXPLAIN ANALYZE di PostgreSQL/MySQL) menampilkan detail rencana eksekusi query (Query Plan), seperti apakah menggunakan index atau full table scan."
+    }
+   },
+   {
+    "id": "sql-11",
+    "num": "11",
+    "title": "Integritas Transaksi ACID: COMMIT & ROLLBACK",
+    "level": "Expert",
+    "intro": "Menjaga keutuhan data finansial perbankan: sukses semua atau tidak sama sekali.",
+    "body": "\n        <h4>🏦 Studi Kasus Transfer Uang Toko Supriyanto</h4>\n        <p>Bayangkan Supriyanto mentransfer uang Rp 1.000.000 dari Rekening A ke Rekening B. Proses ini membutuhkan 2 langkah:\n        <ol>\n          <li>Saldo Rekening A dikurangi Rp 1.000.000.</li>\n          <li>Saldo Rekening B ditambah Rp 1.000.000.</li>\n        </ol>\n        Jika listrik padam atau server meledak persis setelah langkah 1 selesai, uang Supriyanto akan lenyap di antah berantah! <b>Transaksi Basis Data (ACID)</b> diciptakan untuk mencegah bencana ini.</p>\n\n        <h4>🛡️ Empat Pilar ACID</h4>\n        <ul>\n          <li><b>Atomicity:</b> Semua operasi berhasil, atau jika satu gagal maka semuanya dibatalkan (All-or-Nothing).</li>\n          <li><b>Consistency:</b> Data harus selalu mematuhi semua aturan validasi dan constraint.</li>\n          <li><b>Isolation:</b> Transaksi yang berjalan bersamaan tidak saling mengganggu.</li>\n          <li><b>Durability:</b> Begitu dinyatakan sukses (Commit), data aman tersimpan permanen meski server mati mendadak.</li>\n        </ul>\n\n        <div class=\"code-block\"><span class=\"kw\">BEGIN TRANSACTION</span>;\n  <span class=\"kw\">UPDATE</span> rekening <span class=\"kw\">SET</span> saldo = saldo - 1000000 <span class=\"kw\">WHERE</span> id = <span class=\"st\">'A'</span>;\n  <span class=\"kw\">UPDATE</span> rekening <span class=\"kw\">SET</span> saldo = saldo + 1000000 <span class=\"kw\">WHERE</span> id = <span class=\"st\">'B'</span>;\n<span class=\"kw\">COMMIT</span>; <span class=\"cm\">-- Simpan permanen jika semua lancar, atau ROLLBACK jika terjadi kegagalan</span></div>\n      ",
+    "quiz": {
+     "q": "Prinsip ACID manakah yang menjamin bahwa transaksi dieksekusi secara utuh atau dibatalkan seluruhnya (All-or-Nothing)?",
+     "opts": [
+      "Atomicity",
+      "Consistency",
+      "Isolation",
+      "Durability"
+     ],
+     "ans": 0,
+     "why": "Atomicity (keutuhan) memastikan bahwa seluruh rangkaian perintah dalam satu transaksi berhasil seluruhnya, atau jika gagal, database di-rollback ke kondisi semula."
+    }
+   },
+   {
+    "id": "sql-12",
+    "num": "12",
+    "title": "Desain Skema & Normalisasi Basis Data (1NF, 2NF, 3NF)",
+    "level": "Expert",
+    "intro": "Merancang arsitektur database profesional yang bebas anomali dan hemat penyimpanan.",
+    "body": "\n        <h4>🏛️ Tiga Bentuk Normalisasi (1NF, 2NF, 3NF)</h4>\n        <p>Normalisasi adalah teknik perancangan skema database untuk menghilangkan redudansi (duplikasi sia-sia) dan mencegah anomali saat insert/update/delete:</p>\n        <ol>\n          <li><b>First Normal Form (1NF):</b>\n            <br>• Setiap kolom hanya boleh berisi satu nilai tunggal (Atomic Value). Tidak boleh ada daftar koma seperti: <code>hobi: \"futsal, koding, renang\"</code> di satu kolom.\n            <br>• Wajib memiliki Primary Key.</li>\n          <li><b>Second Normal Form (2NF):</b>\n            <br>• Sudah memenuhi 1NF.\n            <br>• Semua kolom non-key harus bergantung penuh pada seluruh Primary Key (menghilangkan Partial Dependency).</li>\n          <li><b>Third Normal Form (3NF):</b>\n            <br>• Sudah memenuhi 2NF.\n            <br>• Tidak boleh ada ketergantungan transitif: kolom non-key tidak boleh bergantung pada kolom non-key lainnya (misal: kolom <code>nama_kota</code> tidak boleh disimpan di tabel transaksi jika sudah ada <code>id_kota</code>).</li>\n        </ol>\n\n        <div class=\"tip-box\">\n          <span class=\"tip-box-icon\">🏆</span>\n          <div><b>Selamat!</b> Supriyanto telah menyelesaikan seluruh perjalanan menguasai SQL & Relational Database dari fondasi tabel dasar hingga desain skema ternormalisasi. Uji keahlian Anda di <b>Quiz SQL</b>!</div>\n        </div>\n      ",
+    "quiz": {
+     "q": "Kapan sebuah tabel basis data relasional dikatakan telah memenuhi First Normal Form (1NF)?",
+     "opts": [
+      "Setiap sel kolom hanya berisi satu nilai tunggal (atomic value) dan tabel memiliki Primary Key",
+      "Tabel telah memiliki minimal 10 indeks B-Tree",
+      "Semua tabel telah menggunakan tipe data VARCHAR",
+      "Database telah terhubung ke cloud server"
+     ],
+     "ans": 0,
+     "why": "1NF mensyaratkan setiap kolom bernilai atomik (tidak ada multiple values/array di satu kolom) serta memiliki pengenal unik utama (Primary Key)."
+    }
+   }
+  ]
+ },
+ {
+  "id": "ts",
+  "title": "TypeScript 🔷",
+  "subtitle": "Static Typing Modern: Type Annotations, Interfaces, Generics, Utility Types & Tooling",
+  "accent": "blue",
+  "category": "it",
+  "lessons": [
+   {
+    "id": "ts-01",
+    "num": "01",
+    "title": "Mengapa TypeScript? Solusi Masalah Dinamis JS",
+    "level": "Pemula",
+    "intro": "Menangkap bug sebelum kode dijalankan di browser: keunggulan static type system modern.",
+    "body": "\n        <h4>🛡️ Analogi Rompi Pelindung Anti-Peluru Supriyanto</h4>\n        <p>Di JavaScript murni, kita bisa menulis kode seperti ini tanpa ada peringatan sama sekali saat mengetik:</p>\n        <div class=\"code-block\"><span class=\"kw\">function</span> <span class=\"fn\">hitungTotal</span>(harga, diskon) {\n  <span class=\"kw\">return</span> harga - diskon;\n}\n\n<span class=\"cm\">// Tidak sengaja memasukkan string: hasilnya \"100000undefined\" atau NaN!</span>\n<span class=\"fn\">hitungTotal</span>(<span class=\"st\">\"seratus ribu\"</span>);</div>\n        <p>Kesalahan sepele ini baru meledak saat aplikasi sudah live diakses jutaan pengguna (<i>Runtime Error</i>). <b>TypeScript adalah JavaScript dengan sistem tipe data statis (Type Safety)</b>. TypeScript bertindak seperti rompi pelindung yang langsung memberikan garis merah di editor teks saat Anda salah memasukkan tipe data sebelum kode sempat dijalankan!</p>\n\n        <h4>⚙️ Superset JavaScript</h4>\n        <p>Semua kode JavaScript yang valid adalah kode TypeScript yang valid. Kode TypeScript dikompilasi (transpiled) menjadi JavaScript murni yang dapat berjalan di semua browser dan Node.js.</p>\n      ",
+    "quiz": {
+     "q": "Kapan TypeScript memeriksa dan menangkap kesalahan tipe data (type error)?",
+     "opts": [
+      "Saat penulisan kode dan proses kompilasi (Compile-time), sebelum aplikasi dijalankan",
+      "Hanya setelah aplikasi di-deploy ke server produksi",
+      "Ketika browser pengguna kehabisan kuota internet",
+      "Hanya saat komputer di-restart"
+     ],
+     "ans": 0,
+     "why": "TypeScript menerapkan static type checking saat masa kompilasi (compile-time), mencegah bug tipe data lolos ke tahap runtime produksi."
+    }
+   },
+   {
+    "id": "ts-02",
+    "num": "02",
+    "title": "Tipe Data Primitif, Any & Type Inference",
+    "level": "Pemula",
+    "intro": "Menetapkan tipe data eksplisit pada variabel dan memanfaatkan kecerdasan deteksi otomatis.",
+    "body": "\n        <h4>🏷️ Type Annotations Dasar</h4>\n        <p>Kita menambahkan tanda titik dua (<code>: tipe</code>) setelah nama variabel untuk menetapkan kontrak tipe datanya:</p>\n        <div class=\"code-block\"><span class=\"kw\">let</span> nama: <span class=\"dt\">string</span> = <span class=\"st\">'Supriyanto'</span>;\n<span class=\"kw\">let</span> umur: <span class=\"dt\">number</span> = 28;\n<span class=\"kw\">let</span> isActive: <span class=\"dt\">boolean</span> = <span class=\"kw\">true</span>;\n<span class=\"kw\">let</span> kosong: <span class=\"dt\">null</span> = <span class=\"kw\">null</span>;\n<span class=\"kw\">let</span> belumAda: <span class=\"dt\">undefined</span> = <span class=\"kw\">undefined</span>;\n\n<span class=\"cm\">// Error: Type 'number' is not assignable to type 'string'.</span>\nnama = 123;</div>\n\n        <h4>🧠 Type Inference (Inferensi Tipe Cerdas)</h4>\n        <p>Anda tidak perlu menuliskan tipe secara berlebihan. Jika Anda langsung mengisi nilai awal, TypeScript cukup pintar untuk menebak tipe datanya secara otomatis:</p>\n        <div class=\"code-block\"><span class=\"kw\">let</span> alamat = <span class=\"st\">'Jakarta Selatan'</span>; <span class=\"cm\">// TypeScript otomatis tahu ini bertipe string!</span></div>\n\n        <div class=\"tip-box\">\n          <span class=\"tip-box-icon\">⚠️</span>\n          <div><b>Hindari 'any':</b> Tipe <code>any</code> mematikan seluruh fitur type-checker TypeScript dan mengembalikan Anda ke rimba liar JavaScript tanpa perlindungan. Hindari penggunaan <code>any</code> di kode produksi!</div>\n        </div>\n      ",
+    "quiz": {
+     "q": "Mengapa programmer profesional sangat menghindari penggunaan tipe 'any' di TypeScript?",
+     "opts": [
+      "Karena 'any' mematikan pemeriksaan tipe data dan menghilangkan manfaat keamanan TypeScript",
+      "Karena 'any' memperbesar ukuran file hingga sepuluh kali lipat",
+      "Karena 'any' dilarang oleh lisensi open-source",
+      "Karena 'any' hanya bisa dijalankan pada sistem operasi Linux"
+     ],
+     "ans": 0,
+     "why": "Tipe 'any' menonaktifkan mekanisme type safety, sehingga compiler tidak lagi memeriksa keabsahan pemanggilan metode atau operasi pada variabel tersebut."
+    }
+   },
+   {
+    "id": "ts-03",
+    "num": "03",
+    "title": "Koleksi Data: Array, Tuples & Readonly",
+    "level": "Pemula",
+    "intro": "Menjaga kemurnian elemen array dan mengunci struktur data dengan Tuple dan Readonly.",
+    "body": "\n        <h4>📚 Array Berjenis Kuat</h4>\n        <p>Di TypeScript, kita mendefinisikan tipe data isi array dengan sintaks <code>Tipe[]</code> atau <code>Array&lt;Tipe&gt;</code>:</p>\n        <div class=\"code-block\"><span class=\"kw\">const</span> hobiSupriyanto: <span class=\"dt\">string</span>[] = [<span class=\"st\">'Membaca'</span>, <span class=\"st\">'Koding'</span>, <span class=\"st\">'Futsal'</span>];\n<span class=\"kw\">const</span> skorUjian: <span class=\"dt\">number</span>[] = [90, 85, 95];\n\n<span class=\"cm\">// Error: Argument of type 'number' is not assignable to parameter of type 'string'</span>\nhobiSupriyanto.push(100);</div>\n\n        <h4>🎯 Tuples: Array Berukuran & Urutan Tetap</h4>\n        <p>Tuple adalah array spesial yang jumlah elemen dan tipe tiap posisinya sudah ditentukan secara kaku sejak awal (seperti koordinat GPS atau respons Hook React):</p>\n        <div class=\"code-block\"><span class=\"cm\">// Posisi 0 wajib string (nama), Posisi 1 wajib number (usia)</span>\n<span class=\"kw\">let</span> profilUser: [<span class=\"dt\">string</span>, <span class=\"dt\">number</span>] = [<span class=\"st\">'Supriyanto'</span>, 28];\n\n<span class=\"cm\">// Readonly: Mencegah array diubah atau dimodifikasi (.push / .pop dilarang)</span>\n<span class=\"kw\">const</span> config: <span class=\"kw\">readonly</span> <span class=\"dt\">string</span>[] = [<span class=\"st\">'API_KEY'</span>, <span class=\"st\">'BASE_URL'</span>];</div>\n      ",
+    "quiz": {
+     "q": "Apa perbedaan mendasar antara Tuple dan Array biasa di TypeScript?",
+     "opts": [
+      "Tuple memiliki jumlah elemen dan urutan tipe posisi yang telah ditentukan secara kaku",
+      "Tuple hanya dapat menampung data angka",
+      "Tuple tidak bisa diakses menggunakan indeks",
+      "Tuple otomatis dikonversi menjadi file database SQL"
+     ],
+     "ans": 0,
+     "why": "Tuple mendefinisikan tipe spesifik untuk setiap indeks dengan panjang array yang tetap, sedangkan Array biasa menampung elemen dengan tipe homogen tanpa batasan panjang kaku."
+    }
+   },
+   {
+    "id": "ts-04",
+    "num": "04",
+    "title": "Mengetik Fungsi: Parameter & Nilai Return",
+    "level": "Pemula",
+    "intro": "Menetapkan kontrak parameter wajib, opsional, default value, hingga penandaan fungsi tanpa return (void).",
+    "body": "\n        <h4>✍️ Anatomi Pengetikan Fungsi</h4>\n        <p>Setiap parameter fungsi wajib memiliki tipe data yang jelas, beserta tipe nilai kembaliannya (<i>return type</i>):</p>\n        <div class=\"code-block\"><span class=\"kw\">function</span> <span class=\"fn\">kirimSalam</span>(nama: <span class=\"dt\">string</span>, umur?: <span class=\"dt\">number</span>): <span class=\"dt\">string</span> {\n  <span class=\"kw\">if</span> (umur !== <span class=\"kw\">undefined</span>) {\n    <span class=\"kw\">return</span> `Halo ${nama}, umur Anda ${umur} tahun.`;\n  }\n  <span class=\"kw\">return</span> `Halo ${nama}!`;\n}</div>\n\n        <h4>Tanda Tanya (?) untuk Parameter Opsional</h4>\n        <p>Tanda tanya pada <code>umur?: number</code> menandakan bahwa parameter tersebut tidak wajib diisi saat dipanggil. Jika tidak diisi, nilainya adalah <code>undefined</code>.</p>\n\n        <h4>🚫 Tipe Void & Never</h4>\n        <ul>\n          <li><b>void:</b> Untuk fungsi yang hanya menjalankan aksi (efek samping) tanpa mengembalikan nilai (return):\n            <br><code>function logPesan(pesan: string): void { console.log(pesan); }</code></li>\n          <li><b>never:</b> Untuk fungsi yang tidak akan pernah selesai dengan normal (misal melempar error atau infinite loop).</li>\n        </ul>\n      ",
+    "quiz": {
+     "q": "Tipe return value apa yang digunakan untuk fungsi yang tidak mengembalikan nilai apa pun?",
+     "opts": [
+      "void",
+      "null",
+      "undefined",
+      "never"
+     ],
+     "ans": 0,
+     "why": "Tipe void menunjukkan ketiadaan nilai kembalian pada fungsi, umum digunakan pada fungsi yang hanya mencetak log atau memodifikasi state."
+    }
+   },
+   {
+    "id": "ts-05",
+    "num": "05",
+    "title": "Struktur Objek & Interfaces: Kontrak Data",
+    "level": "Menengah",
+    "intro": "Mendefinisikan bentuk objek data dengan Interface untuk standarisasi komunikasi komponen.",
+    "body": "\n        <h4>📜 Apa Itu Interface?</h4>\n        <p><b>Interface</b> adalah cetak biru atau kontrak perjanjian struktur sebuah objek. Jika ada objek yang mengklaim bertipe <code>Pengguna</code>, ia wajib memiliki semua properti yang tertulis di dalam interface tersebut:</p>\n        <div class=\"code-block\"><span class=\"kw\">interface</span> <span class=\"dt\">Pengguna</span> {\n  <span class=\"kw\">readonly</span> id: <span class=\"dt\">number</span>; <span class=\"cm\">// Tidak boleh diubah setelah dibuat</span>\n  nama: <span class=\"dt\">string</span>;\n  email: <span class=\"dt\">string</span>;\n  alamat?: <span class=\"dt\">string</span>;    <span class=\"cm\">// Opsional</span>\n}\n\n<span class=\"kw\">const</span> stafSupriyanto: <span class=\"dt\">Pengguna</span> = {\n  id: 101,\n  nama: <span class=\"st\">'Supriyanto'</span>,\n  email: <span class=\"st\">'supriyanto@example.com'</span>\n};</div>\n\n        <h4>Pewarisan Interface (extends)</h4>\n        <p>Interface sangat fleksibel dan dapat mewarisi properti dari interface lain layaknya hierarki dunia nyata:</p>\n        <div class=\"code-block\"><span class=\"kw\">interface</span> <span class=\"dt\">Admin</span> <span class=\"kw\">extends</span> <span class=\"dt\">Pengguna</span> {\n  levelHakAkses: <span class=\"dt\">number</span>;\n  departemen: <span class=\"dt\">string</span>;\n}</div>\n      ",
+    "quiz": {
+     "q": "Modifier apa yang digunakan di dalam Interface agar suatu properti objek tidak bisa diubah nilainya setelah pertama kali dibuat?",
+     "opts": [
+      "readonly",
+      "const",
+      "private",
+      "static"
+     ],
+     "ans": 0,
+     "why": "Keyword readonly di depan nama properti interface memastikan nilai properti tersebut bersifat imutabel (hanya bisa dibaca) setelah inisialisasi."
+    }
+   },
+   {
+    "id": "ts-06",
+    "num": "06",
+    "title": "Type Aliases vs Interfaces & Union / Intersection Types",
+    "level": "Menengah",
+    "intro": "Kapan menggunakan Type vs Interface dan menggabungkan tipe dengan Union (|) dan Intersection (&).",
+    "body": "\n        <h4>⚖️ Type Alias (type) vs Interface</h4>\n        <p>Keduanya sering digunakan bergantian, namun memiliki keunggulan masing-masing:</p>\n        <ul>\n          <li><b>Interface:</b> Sangat ideal untuk mendefinisikan bentuk objek (OOP), mendukung deklarasi berulang (<i>Declaration Merging</i>), dan mudah di-extend.</li>\n          <li><b>Type Alias:</b> Sangat fleksibel untuk mendefinisikan tipe primitif kustom, Union, Tuple, dan fungsi kalkulasi.</li>\n        </ul>\n\n        <h4>🔀 Union Types (|) dan Intersection Types (&)</h4>\n        <div class=\"code-block\"><span class=\"cm\">-- Union Type: Bisa bertipe A ATAU bertipe B</span>\n<span class=\"kw\">type</span> StatusPesanan = <span class=\"st\">'pending'</span> | <span class=\"st\">'dikirim'</span> | <span class=\"st\">'selesai'</span> | <span class=\"st\">'batal'</span>;\n<span class=\"kw\">let</span> statusSekarang: StatusPesanan = <span class=\"st\">'dikirim'</span>;\n\n<span class=\"cm\">-- Intersection Type: Menggabungkan properti A DAN properti B sekaligus</span>\n<span class=\"kw\">type</span> Karyawan = { nama: <span class=\"dt\">string</span>; nip: <span class=\"dt\">string</span> };\n<span class=\"kw\">type</span> Programmer = { bahasaFavorit: <span class=\"dt\">string</span>[] };\n<span class=\"kw\">type</span> DeveloperSupriyanto = Karyawan &amp; Programmer;</div>\n      ",
+    "quiz": {
+     "q": "Operator mana yang digunakan di TypeScript untuk membuat Union Type (variabel yang bisa menampung salah satu dari beberapa opsi tipe)?",
+     "opts": [
+      "Simbol pipa vertikal ( | )",
+      "Simbol ampersand ganda ( && )",
+      "Simbol tanda panah ( => )",
+      "Simbol titik dua ( : )"
+     ],
+     "ans": 0,
+     "why": "Operator pipa vertikal (|) merepresentasikan Union Type, memungkinkan suatu nilai memiliki tipe A atau tipe B."
+    }
+   },
+   {
+    "id": "ts-07",
+    "num": "07",
+    "title": "Literal Types & Teknik Type Narrowing",
+    "level": "Menengah",
+    "intro": "Menyempitkan tipe data luas menjadi tipe presisi menggunakan typeof, instanceof, dan diskriminan.",
+    "body": "\n        <h4>🎯 Literal Types: Mengunci Nilai Eksak</h4>\n        <p>Alih-alih membiarkan tipe bernilai <code>string</code> sembarangan, kita bisa menguncinya pada sekumpulan kata spesifik:</p>\n        <div class=\"code-block\"><span class=\"kw\">type</span> ArahMataAngin = <span class=\"st\">'Utara'</span> | <span class=\"st\">'Selatan'</span> | <span class=\"st\">'Timur'</span> | <span class=\"st\">'Barat'</span>;\n<span class=\"kw\">function</span> <span class=\"fn\">navigasi</span>(arah: ArahMataAngin) { ... }</div>\n\n        <h4>🔬 Type Narrowing (Penyempitan Tipe)</h4>\n        <p>Ketika suatu parameter menerima <code>string | number</code>, TypeScript menuntut Anda memastikan tipe nyatanya sebelum memanggil metode spesifik:</p>\n        <div class=\"code-block\"><span class=\"kw\">function</span> <span class=\"fn\">cetakID</span>(id: <span class=\"dt\">string</span> | <span class=\"dt\">number</span>) {\n  <span class=\"kw\">if</span> (<span class=\"kw\">typeof</span> id === <span class=\"st\">'string'</span>) {\n    <span class=\"cm\">// Di blok ini, TypeScript 100% tahu id adalah string</span>\n    console.log(id.toUpperCase());\n  } <span class=\"kw\">else</span> {\n    <span class=\"cm\">// Di blok ini, TypeScript 100% tahu id adalah number</span>\n    console.log(id.toFixed(2));\n  }\n}</div>\n      ",
+    "quiz": {
+     "q": "Apa fungsi dari teknik Type Narrowing di TypeScript?",
+     "opts": [
+      "Menyempitkan tipe data yang luas/union menjadi tipe yang lebih spesifik di dalam blok logika kode",
+      "Menghapus spasi kosong pada string secara otomatis",
+      "Mengurangi resolusi gambar website",
+      "Mempercepat waktu booting komputer"
+     ],
+     "ans": 0,
+     "why": "Type Narrowing menyaring tipe dari union menjadi tipe pasti menggunakan type guards (seperti typeof, instanceof, in) sehingga operasi pada tipe tersebut aman dijalankan."
+    }
+   },
+   {
+    "id": "ts-08",
+    "num": "08",
+    "title": "Generics: Komponen Fleksibel Reusable",
+    "level": "Mahir",
+    "intro": "Menciptakan fungsi dan struktur data bunglon yang tetap aman tanpa kehilangan tipe data asli.",
+    "body": "\n        <h4>📦 Analogi Kotak Paket Ajaib (Generics &lt;T&gt;)</h4>\n        <p>Bayangkan Supriyanto ingin membuat fungsi pembungkus API response. Jika menggunakan tipe kaku <code>Pengguna</code>, fungsi tersebut tidak bisa dipakai membungkus data <code>Produk</code>. Jika menggunakan <code>any</code>, kita kehilangan keamanan tipe data.</p>\n        <p><b>Generics (&lt;T&gt;)</b> adalah parameter penampung tipe data (tipe variabel dinamis). Fungsi tetap fleksibel menerima apa pun, namun tipe data di dalamnya tetap terkunci rapat!</p>\n\n        <div class=\"code-block\"><span class=\"kw\">interface</span> <span class=\"dt\">ApiResponse</span>&lt;<span class=\"dt\">T</span>&gt; {\n  sukses: <span class=\"dt\">boolean</span>;\n  pesan: <span class=\"dt\">string</span>;\n  data: <span class=\"dt\">T</span>; <span class=\"cm\">// Tipe data ditentukan saat fungsi dipanggil!</span>\n}\n\n<span class=\"kw\">interface</span> <span class=\"dt\">User</span> { nama: <span class=\"dt\">string</span>; role: <span class=\"dt\">string</span>; }\n<span class=\"kw\">interface</span> <span class=\"dt\">Produk</span> { judul: <span class=\"dt\">string</span>; harga: <span class=\"dt\">number</span>; }\n\n<span class=\"kw\">const</span> responsUser: <span class=\"dt\">ApiResponse</span>&lt;<span class=\"dt\">User</span>&gt; = {\n  sukses: <span class=\"kw\">true</span>,\n  pesan: <span class=\"st\">'User ditemukan'</span>,\n  data: { nama: <span class=\"st\">'Supriyanto'</span>, role: <span class=\"st\">'Admin'</span> }\n};</div>\n      ",
+    "quiz": {
+     "q": "Kapan developer paling tepat memanfaatkan fitur Generics (<T>) di TypeScript?",
+     "opts": [
+      "Ketika ingin membuat komponen, fungsi, atau interface yang reusable untuk berbagai macam tipe data dengan tetap menjaga type safety",
+      "Ketika ingin membuat animasi tombol 3D",
+      "Ketika ingin mengonfigurasi koneksi database MySQL",
+      "Ketika ingin membagi kode menjadi dua file terpisah"
+     ],
+     "ans": 0,
+     "why": "Generics memungkinkan pembuatan fungsi atau struktur data yang dapat bekerja dengan beragam tipe data tanpa mengorbankan keamanan type checking."
+    }
+   },
+   {
+    "id": "ts-09",
+    "num": "09",
+    "title": "Enums vs Const Objects: Memilih Pendekatan Terbaik",
+    "level": "Mahir",
+    "intro": "Menghindari jebakan overhead kode runtime Enum dan memanfaatkan as const objects yang ringan.",
+    "body": "\n        <h4>🔢 Mengenal Enum Tradisional</h4>\n        <p>Enum memungkinkan kita mengelompokkan konstanta bernama:</p>\n        <div class=\"code-block\"><span class=\"kw\">enum</span> <span class=\"dt\">Arah</span> {\n  Utara = <span class=\"st\">'UTARA'</span>,\n  Selatan = <span class=\"st\">'SELATAN'</span>,\n  Timur = <span class=\"st\">'TIMUR'</span>,\n  Barat = <span class=\"st\">'BARAT'</span>\n}\n<span class=\"kw\">const</span> tujuan: <span class=\"dt\">Arah</span> = <span class=\"dt\">Arah</span>.Utara;</div>\n\n        <h4>🚀 Alternatif Modern: Objects dengan 'as const'</h4>\n        <p>Banyak tim modern (termasuk tim core TypeScript) lebih menyukai <b>as const objects</b> karena tidak menghasilkan kode boilerplate JavaScript tambahan di hasil kompilasi akhir:</p>\n        <div class=\"code-block\"><span class=\"kw\">const</span> ROLES = {\n  ADMIN: <span class=\"st\">'admin'</span>,\n  USER: <span class=\"st\">'user'</span>,\n  GUEST: <span class=\"st\">'guest'</span>\n} <span class=\"kw\">as const</span>;\n\n<span class=\"cm\">// Menghasilkan union: \"admin\" | \"user\" | \"guest\"</span>\n<span class=\"kw\">type</span> Role = <span class=\"kw\">typeof</span> ROLES[<span class=\"kw\">keyof typeof</span> ROLES];</div>\n      ",
+    "quiz": {
+     "q": "Apa keuntungan utama menggunakan pola objek 'as const' dibandingkan Enum numerik di TypeScript?",
+     "opts": [
+      "Lebih ringan dan tidak menghasilkan kode wrapper JavaScript tambahan di file hasil kompilasi akhir",
+      "Otomatis tersimpan ke dalam database cloud",
+      "Mampu menggandakan kecepatan prosesor komputer",
+      "Menghilangkan kebutuhan menulis fungsi"
+     ],
+     "ans": 0,
+     "why": "Objek dengan 'as const' adalah pola JavaScript standar yang zero-cost saat kompilasi tanpa kode fungsi wrapper tambahan seperti enum klasik."
+    }
+   },
+   {
+    "id": "ts-10",
+    "num": "10",
+    "title": "OOP Modern: Classes, Modifiers & Implements",
+    "level": "Mahir",
+    "intro": "Pemrograman berorientasi objek dengan pembatasan hak akses public, private, protected, dan abstraksi.",
+    "body": "\n        <h4>🛡️ Access Modifiers (Hak Akses Properti)</h4>\n        <p>TypeScript menyediakan 3 kata kunci pengaman enkapsulasi data class:</p>\n        <ul>\n          <li><b>public:</b> Bisa diakses bebas dari mana saja (default).</li>\n          <li><b>private (atau #):</b> Hanya bisa diakses dari dalam class itu sendiri. Terlindung rapat dari luar!</li>\n          <li><b>protected:</b> Bisa diakses dari dalam class dan class turunannya (anak turunan pewarisan).</li>\n        </ul>\n\n        <div class=\"code-block\"><span class=\"kw\">class</span> <span class=\"dt\">AkunBank</span> {\n  <span class=\"kw\">private</span> saldo: <span class=\"dt\">number</span>;\n  <span class=\"kw\">public readonly</span> nomorRekening: <span class=\"dt\">string</span>;\n\n  <span class=\"kw\">constructor</span>(noRek: <span class=\"dt\">string</span>, saldoAwal: <span class=\"dt\">number</span>) {\n    <span class=\"kw\">this</span>.nomorRekening = noRek;\n    <span class=\"kw\">this</span>.saldo = saldoAwal;\n  }\n\n  <span class=\"kw\">public</span> <span class=\"fn\">cekSaldo</span>(): <span class=\"dt\">number</span> {\n    <span class=\"kw\">return this</span>.saldo;\n  }\n}</div>\n      ",
+    "quiz": {
+     "q": "Access modifier mana yang hanya mengizinkan properti diakses di dalam class itu sendiri dan class anak turunannya?",
+     "opts": [
+      "protected",
+      "private",
+      "public",
+      "internal"
+     ],
+     "ans": 0,
+     "why": "Modifier protected mengizinkan akses properti di dalam class yang mendefinisikannya serta sub-class yang mewarisinya, namun melarang akses langsung dari luar."
+    }
+   },
+   {
+    "id": "ts-11",
+    "num": "11",
+    "title": "Koleksi Utility Types Sakti: Partial, Pick, Omit & Record",
+    "level": "Expert",
+    "intro": "Mentransformasi tipe data yang sudah ada menjadi tipe baru tanpa menulis ulang dari awal.",
+    "body": "\n        <h4>🧙‍♂️ Empat Mantra Sakti Utility Types</h4>\n        <p>Alih-alih membuat 10 interface yang mirip-mirip, TypeScript memiliki alat pembentuk tipe instan:</p>\n        <div class=\"code-block\"><span class=\"kw\">interface</span> <span class=\"dt\">Barang</span> {\n  id: <span class=\"dt\">number</span>;\n  nama: <span class=\"dt\">string</span>;\n  harga: <span class=\"dt\">number</span>;\n  deskripsi: <span class=\"dt\">string</span>;\n}\n\n<span class=\"cm\">-- 1. Partial: Mengubah SEMUA properti menjadi opsional (cocok untuk operasi Update)</span>\n<span class=\"kw\">type</span> UpdateBarang = <span class=\"dt\">Partial</span>&lt;<span class=\"dt\">Barang</span>&gt;;\n\n<span class=\"cm\">-- 2. Pick: Mengambil HANYA properti tertentu yang dipilih</span>\n<span class=\"kw\">type</span> PreviewBarang = <span class=\"dt\">Pick</span>&lt;<span class=\"dt\">Barang</span>, <span class=\"st\">'id'</span> | <span class=\"st\">'nama'</span>&gt;;\n\n<span class=\"cm\">-- 3. Omit: Membuang properti tertentu dan mengambil sisanya</span>\n<span class=\"kw\">type</span> BarangBaru = <span class=\"dt\">Omit</span>&lt;<span class=\"dt\">Barang</span>, <span class=\"st\">'id'</span>&gt;;\n\n<span class=\"cm\">-- 4. Record: Membuat pasangan Key-Value dengan aturan tipe ketat</span>\n<span class=\"kw\">type</span> StokToko = <span class=\"dt\">Record</span>&lt;<span class=\"dt\">string</span>, <span class=\"dt\">number</span>&gt;;</div>\n      ",
+    "quiz": {
+     "q": "Utility type manakah yang digunakan untuk membuat tipe baru dengan membuang (mengecualikan) properti tertentu dari interface asli?",
+     "opts": [
+      "Omit<T, K>",
+      "Pick<T, K>",
+      "Partial<T>",
+      "Exclude<T, U>"
+     ],
+     "ans": 0,
+     "why": "Omit<T, K> mengonstruksi tipe baru dengan mengambil seluruh properti dari T kecuali properti kunci K yang disebutkan."
+    }
+   },
+   {
+    "id": "ts-12",
+    "num": "12",
+    "title": "Konfigurasi tsconfig.json & Panduan Migrasi Proyek",
+    "level": "Expert",
+    "intro": "Menjinakkan compiler TypeScript, flag strict mode, dan strategi bertahap migrasi proyek nyata.",
+    "body": "\n        <h4>⚙️ Jantung Kendali: tsconfig.json</h4>\n        <p>File <code>tsconfig.json</code> adalah pusat kendali bagaimana compiler TypeScript memproses kode proyek Anda:</p>\n        <div class=\"code-block\">{\n  <span class=\"st\">\"compilerOptions\"</span>: {\n    <span class=\"st\">\"target\"</span>: <span class=\"st\">\"ES2022\"</span>,          <span class=\"cm\">/* Versi output JavaScript */</span>\n    <span class=\"st\">\"module\"</span>: <span class=\"st\">\"NodeNext\"</span>,\n    <span class=\"st\">\"strict\"</span>: <span class=\"kw\">true</span>,              <span class=\"cm\">/* Wajib aktif: Menyalakan seluruh pemeriksaan ketat */</span>\n    <span class=\"st\">\"noImplicitAny\"</span>: <span class=\"kw\">true</span>,       <span class=\"cm\">/* Melarang variabel tanpa tipe menjadi any diam-diam */</span>\n    <span class=\"st\">\"esModuleInterop\"</span>: <span class=\"kw\">true</span>,\n    <span class=\"st\">\"skipLibCheck\"</span>: <span class=\"kw\">true</span>,\n    <span class=\"st\">\"outDir\"</span>: <span class=\"st\">\"./dist\"</span>           <span class=\"cm\">/* Folder hasil kompilasi JS murni */</span>\n  },\n  <span class=\"st\">\"include\"</span>: [<span class=\"st\">\"src/**/*\"</span>]\n}</div>\n\n        <div class=\"tip-box\">\n          <span class=\"tip-box-icon\">🏆</span>\n          <div><b>Selamat!</b> Supriyanto telah menyelesaikan seluruh perjalanan menguasai TypeScript dari fondasi type annotations hingga konfigurasi enterprise compiler. Uji keahlian Anda di <b>Quiz TypeScript</b>!</div>\n        </div>\n      ",
+    "quiz": {
+     "q": "Opsi konfigurasi mana di tsconfig.json yang mengaktifkan seluruh aturan pemeriksaan tipe paling ketat untuk menjamin kualitas kode terbaik?",
+     "opts": [
+      "\"strict\": true",
+      "\"fastMode\": true",
+      "\"noErrors\": true",
+      "\"autoFix\": true"
+     ],
+     "ans": 0,
+     "why": "\"strict\": true menyalakan sekumpulan flag pemeriksaan tipe ketat (seperti noImplicitAny, strictNullChecks, dll.) yang menjadi standar emas industri."
+    }
+   }
+  ]
+ },
+ {
   "id": "mandarin",
   "title": "Mandarin 🇨🇳",
   "subtitle": "Percakapan Sehari-hari: Pinyin, 4 Nada Dasar, Hanzi Praktis & Percakapan Nyata",
@@ -1546,6 +2256,556 @@ const TRACKS = [
     }
    }
   ]
+ },
+ {
+  "id": "korean",
+  "title": "Bahasa Korea 🇰🇷",
+  "subtitle": "Hangeul, Salam, Angka, Partikel Tata Bahasa & Percakapan Praktis Sehari-hari",
+  "accent": "sky",
+  "category": "lang",
+  "lessons": [
+   {
+    "id": "ko-01",
+    "num": "01",
+    "title": "Abjad Hangeul I: 10 Vokal & 14 Konsonan Dasar",
+    "level": "Pemula 0",
+    "intro": "Mengenal sistem abjad paling logis dan ilmiah di dunia: huruf Hangeul ciptaan Raja Sejong yang bisa dibaca dalam hitungan jam.",
+    "body": "\n        <h4>👑 Mengapa Hangeul Sangat Mudah Dipelajari?</h4>\n        <p>Sebelum abad ke-15, rakyat Korea kesulitan membaca karakter Hanja yang rumit. Raja Sejong yang Agung menciptakan <b>Hangeul (한글)</b> dengan filosofi bentuk organ bicara manusia (bibir, lidah, dan langit-langit mulut). Hangeul bukan huruf gambar abstrak, melainkan huruf fonetik alfabetik yang sangat teratur!</p>\n\n        <h4>🗣️ 10 Vokal Tunggal Dasar</h4>\n        <table class=\"zh-table\">\n          <thead><tr><th>Hangeul</th><th>Romanisasi</th><th>Analogi Bunyi Bahasa Indonesia</th></tr></thead>\n          <tbody>\n            <tr><td><span class=\"ko-char\">ㅏ</span></td><td><span class=\"zh-pinyin\">a</span></td><td>Seperti huruf \"A\" pada kata \"Ayah\"</td></tr>\n            <tr><td><span class=\"ko-char\">ㅑ</span></td><td><span class=\"zh-pinyin\">ya</span></td><td>Seperti huruf \"Ya\" pada kata \"Yakin\"</td></tr>\n            <tr><td><span class=\"ko-char\">ㅓ</span></td><td><span class=\"zh-pinyin\">eo</span></td><td>Bunyi vokal \"O\" terbuka seperti \"Organ\" atau \"Onde-onde\"</td></tr>\n            <tr><td><span class=\"ko-char\">ㅕ</span></td><td><span class=\"zh-pinyin\">yeo</span></td><td>Bunyi \"Yo\" terbuka seperti kata \"Yogurt\"</td></tr>\n            <tr><td><span class=\"ko-char\">ㅗ</span></td><td><span class=\"zh-pinyin\">o</span></td><td>Bunyi vokal \"O\" bulat tertutup seperti \"Obor\"</td></tr>\n            <tr><td><span class=\"ko-char\">ㅛ</span></td><td><span class=\"zh-pinyin\">yo</span></td><td>Bunyi \"Yo\" bulat seperti mainan \"Yoyo\"</td></tr>\n            <tr><td><span class=\"ko-char\">ㅜ</span></td><td><span class=\"zh-pinyin\">u</span></td><td>Bunyi \"U\" bibir mengerucut seperti \"Udang\"</td></tr>\n            <tr><td><span class=\"ko-char\">ㅠ</span></td><td><span class=\"zh-pinyin\">yu</span></td><td>Bunyi \"Yu\" seperti kata \"Yuyu\"</td></tr>\n            <tr><td><span class=\"ko-char\">ㅡ</span></td><td><span class=\"zh-pinyin\">eu</span></td><td>Bunyi \"E\" datar mendesis seperti \"Elang\"</td></tr>\n            <tr><td><span class=\"ko-char\">ㅣ</span></td><td><span class=\"zh-pinyin\">i</span></td><td>Bunyi \"I\" tersenyum lebar seperti \"Ikan\"</td></tr>\n          </tbody>\n        </table>\n\n        <h4>🧱 14 Konsonan Dasar</h4>\n        <table class=\"zh-table\">\n          <thead><tr><th>Hangeul</th><th>Nama</th><th>Bunyi Awal / Akhir</th></tr></thead>\n          <tbody>\n            <tr><td><span class=\"ko-char\">ㄱ</span></td><td>Giyeok</td><td>G / K (seperti lidah menyentuh langit-langit belakang)</td></tr>\n            <tr><td><span class=\"ko-char\">ㄴ</span></td><td>Nieun</td><td>N (seperti bentuk ujung lidah menyentuh gusi atas)</td></tr>\n            <tr><td><span class=\"ko-char\">ㄷ</span></td><td>Digeut</td><td>D / T</td></tr>\n            <tr><td><span class=\"ko-char\">ㄹ</span></td><td>Rieul</td><td>R / L (bergetar lembut)</td></tr>\n            <tr><td><span class=\"ko-char\">ㅁ</span></td><td>Mieum</td><td>M (kotak seperti bentuk bibir tertutup)</td></tr>\n            <tr><td><span class=\"ko-char\">ㅂ</span></td><td>Bieup</td><td>B / P</td></tr>\n            <tr><td><span class=\"ko-char\">ㅅ</span></td><td>Siot</td><td>S (seperti bentuk gigi atas)</td></tr>\n            <tr><td><span class=\"ko-char\">ㅇ</span></td><td>Ieung</td><td>Diam (silent) saat di awal suku kata, berbunyi \"NG\" saat di akhir!</td></tr>\n            <tr><td><span class=\"ko-char\">ㅈ</span></td><td>Jieut</td><td>J / T</td></tr>\n            <tr><td><span class=\"ko-char\">ㅊ</span></td><td>Chieut</td><td>Ch (dihembuskan kuat dengan udara)</td></tr>\n            <tr><td><span class=\"ko-char\">ㅋ</span></td><td>Kieok</td><td>K (aspirasi kuat seperti 'Kh')</td></tr>\n            <tr><td><span class=\"ko-char\">ㅌ</span></td><td>Tieut</td><td>T (aspirasi kuat)</td></tr>\n            <tr><td><span class=\"ko-char\">ㅍ</span></td><td>Pieup</td><td>P (aspirasi kuat)</td></tr>\n            <tr><td><span class=\"ko-char\">ㅎ</span></td><td>Hieut</td><td>H</td></tr>\n          </tbody>\n        </table>\n\n        <div class=\"tip-box\">\n          <span class=\"tip-box-icon\">💡</span>\n          <div><b>Aturan Balok Lego:</b> Huruf Hangeul tidak ditulis berjejer mendatar seperti huruf latin, melainkan disusun membentuk blok suku kata kotak (Konsonan + Vokal, misal: <span class=\"ko-char\">가</span> = ㄱ + ㅏ). Jika suku kata diawali vokal, tambahkan lingkaran netral <span class=\"ko-char\">ㅇ</span> di awal (misal: <span class=\"ko-char\">아</span>).</div>\n        </div>\n      ",
+    "quiz": {
+     "q": "Bagaimana cara menulis suku kata vokal murni 'A' dalam abjad Hangeul yang benar?",
+     "opts": [
+      "아 (menggunakan konsonan netral ㅇ di depan vokal ㅏ)",
+      "ㅏ (hanya menulis garis vokal saja)",
+      "가",
+      "나"
+     ],
+     "ans": 0,
+     "why": "Dalam sistem penulisan Hangeul, sebuah blok suku kata wajib memiliki konsonan awal. Jika bunyinya vokal murni, digunakan lingkaran netral 'ㅇ' yang tidak berbunyi di awal (아)."
+    }
+   },
+   {
+    "id": "ko-02",
+    "num": "02",
+    "title": "Abjad Hangeul II: Vokal Ganda & Konsonan Kembar",
+    "level": "Pemula 0",
+    "intro": "Menuntaskan seluruh variasi huruf: bunyi vokal gabungan (Diftong) dan konsonan ganda bernada tegang.",
+    "body": "\n        <h4>🌈 Vokal Ganda (Kombinasi Elegan)</h4>\n        <p>Vokal ganda dibentuk dengan menggabungkan dua vokal dasar secara harmonis:</p>\n        <table class=\"zh-table\">\n          <thead><tr><th>Hangeul</th><th>Romanisasi</th><th>Cara Pengucapan</th></tr></thead>\n          <tbody>\n            <tr><td><span class=\"ko-char\">ㅐ</span></td><td><span class=\"zh-pinyin\">ae</span></td><td>Bunyi \"E\" terbuka seperti \"Ember\"</td></tr>\n            <tr><td><span class=\"ko-char\">ㅔ</span></td><td><span class=\"zh-pinyin\">e</span></td><td>Bunyi \"E\" santai seperti \"Enak\" (dalam percakapan modern terdengar mirip ㅐ)</td></tr>\n            <tr><td><span class=\"ko-char\">ㅒ</span></td><td><span class=\"zh-pinyin\">yae</span></td><td>Bunyi \"Yae\"</td></tr>\n            <tr><td><span class=\"ko-char\">ㅖ</span></td><td><span class=\"zh-pinyin\">ye</span></td><td>Bunyi \"Ye\" seperti \"Yes\"</td></tr>\n            <tr><td><span class=\"ko-char\">ㅘ</span></td><td><span class=\"zh-pinyin\">wa</span></td><td>Bunyi \"Wa\" seperti \"Wajan\" (ㅗ + ㅏ)</td></tr>\n            <tr><td><span class=\"ko-char\">ㅝ</span></td><td><span class=\"zh-pinyin\">wo</span></td><td>Bunyi \"Wo\" seperti \"Wortel\" (ㅜ + ㅓ)</td></tr>\n            <tr><td><span class=\"ko-char\">ㅟ</span></td><td><span class=\"zh-pinyin\">wi</span></td><td>Bunyi \"Wi\" seperti \"Wisma\" (ㅜ + ㅣ)</td></tr>\n            <tr><td><span class=\"ko-char\">ㅢ</span></td><td><span class=\"zh-pinyin\">ui</span></td><td>Bunyi \"Eu-i\" cepat menyatu</td></tr>\n          </tbody>\n        </table>\n\n        <h4>⚡ 5 Konsonan Ganda (Bunyi Tegang / Tense)</h4>\n        <p>Konsonan kembar diucapkan tanpa hembusan napas, melainkan ditekan kencang di pita suara layaknya nada tegas:</p>\n        <ul>\n          <li><span class=\"ko-char\">ㄲ</span> (Ssang-giyeok) → Bunyi \"KK\" kencang dan padat (seperti 'Kk' di kata 'Kakak').</li>\n          <li><span class=\"ko-char\">ㄸ</span> (Ssang-digeut) → Bunyi \"TT\" tegas.</li>\n          <li><span class=\"ko-char\">ㅃ</span> (Ssang-bieup) → Bunyi \"PP\" mantap.</li>\n          <li><span class=\"ko-char\">ㅆ</span> (Ssang-siot) → Bunyi \"SS\" mendesis tajam.</li>\n          <li><span class=\"ko-char\">ㅉ</span> (Ssang-jieut) → Bunyi \"JJ\" meledak.</li>\n        </ul>\n      ",
+    "quiz": {
+     "q": "Huruf konsonan kembar 'ㄲ' diucapkan dengan cara seperti apa?",
+     "opts": [
+      "Ditekan tegas dan tegang di pita suara (KK padat)",
+      "Ditiup dengan hembusan angin yang sangat kuat",
+      "Dilesapkan menjadi bunyi desis S",
+      "Tidak diucapkan sama sekali"
+     ],
+     "ans": 0,
+     "why": "Konsonan ganda (ssang-jaeum) seperti ㄲ, ㄸ, ㅃ, ㅆ, ㅉ memiliki karakteristik suara tegang (tense) tanpa hembusan udara napas."
+    }
+   },
+   {
+    "id": "ko-03",
+    "num": "03",
+    "title": "Rahasia Konsonan Akhir (Batchim) & Hukum Alami",
+    "level": "Pemula",
+    "intro": "Kunci terdengar seperti penutur asli: melafalkan konsonan bawah (Batchim) dan perpindahan bunyi alami.",
+    "body": "\n        <h4>⚓ Apa Itu Batchim (받침)?</h4>\n        <p>Konsonan yang menempati posisi paling bawah dalam balok suku kata disebut <b>Batchim</b> (alas/jangkar penyangga). Meskipun ada 14 konsonan tunggal dan konsonan ganda, saat berada di posisi Batchim, semuanya disederhanakan menjadi <b>7 bunyi dasar</b> saja:</p>\n\n        <table class=\"zh-table\">\n          <thead><tr><th>Bunyi Akhir</th><th>Huruf Hangeul yang Menghasilkannya</th><th>Contoh Kata &amp; Arti</th></tr></thead>\n          <tbody>\n            <tr><td><b>[ K ]</b></td><td>ㄱ, ㅋ, ㄲ</td><td><span class=\"ko-char\">책</span> (Chaek = Buku), <span class=\"ko-char\">부엌</span> (Bueok = Dapur)</td></tr>\n            <tr><td><b>[ N ]</b></td><td>ㄴ</td><td><span class=\"ko-char\">눈</span> (Nun = Mata / Salju)</td></tr>\n            <tr><td><b>[ T ]</b></td><td>ㄷ, ㅅ, ㅆ, ㅈ, ㅊ, ㅌ, ㅎ</td><td><span class=\"ko-char\">옷</span> (Ot = Pakaian), <span class=\"ko-char\">꽃</span> (Kkot = Bunga)</td></tr>\n            <tr><td><b>[ L ]</b></td><td>ㄹ</td><td><span class=\"ko-char\">물</span> (Mul = Air)</td></tr>\n            <tr><td><b>[ M ]</b></td><td>ㅁ</td><td><span class=\"ko-char\">마음</span> (Ma-eum = Hati / Perasaan)</td></tr>\n            <tr><td><b>[ P ]</b></td><td>ㅂ, ㅍ</td><td><span class=\"ko-char\">밥</span> (Bap = Nasi), <span class=\"ko-char\">잎</span> (Ip = Daun)</td></tr>\n            <tr><td><b>[ NG ]</b></td><td>ㅇ</td><td><span class=\"ko-char\">방</span> (Bang = Kamar)</td></tr>\n          </tbody>\n        </table>\n\n        <h4>🌊 Hukum Penghubung Alami (Liaison / 연음)</h4>\n        <p>Jika suku kata pertama berakhiran Batchim dan suku kata berikutnya diawali vokal (ㅇ), konsonan bawah otomatis <b>meluncur naik ke atas</b> agar lidah mengalir santai:</p>\n        <p><i>Contoh:</i> <span class=\"ko-char\">한국어</span> (Han-guk + eo) dibaca menjadi <b>Hangugeo</b>!</p>\n      ",
+    "quiz": {
+     "q": "Bagaimana cara membaca kata '한국어' (Bahasa Korea) yang benar sesuai hukum pelafalan Liaison?",
+     "opts": [
+      "Hangugeo (konsonan g meluncur menyambung ke vokal eo)",
+      "Han guk eo (berhenti kaku per suku kata)",
+      "Hangueo",
+      "Hangkuk"
+     ],
+     "ans": 0,
+     "why": "Sesuai hukum liaison (yeon-eum), konsonan batchim 'ㄱ' pada '국' menyambung ke vokal '어' di sebelahnya sehingga dibaca mengalir: 'Hangugeo'."
+    }
+   },
+   {
+    "id": "ko-04",
+    "num": "04",
+    "title": "Salam, Maaf & Etika Kesopanan (존댓말 Jondaetmal)",
+    "level": "Pemula",
+    "intro": "Menyapa orang dengan sopan, mengucapkan terima kasih, dan memahami budaya bahasa hormat Korea.",
+    "body": "\n        <h4>🙇 Budaya Kesopanan Bahasa Korea</h4>\n        <p>Di Korea, tingkatan bahasa sangat dihargai. Kepada orang yang baru dikenal, rekan kerja, dan orang yang lebih tua, kita selalu menggunakan <b>Jondaetmal (Bahasa Sopan / Formal)</b> yang berakhiran <i>-yo</i> atau <i>-nida</i>.</p>\n\n        <table class=\"zh-table\">\n          <thead><tr><th>Frasa Hangeul</th><th>Romanisasi</th><th>Arti &amp; Situasi</th></tr></thead>\n          <tbody>\n            <tr><td><span class=\"ko-char\">안녕하세요</span></td><td><span class=\"zh-pinyin\">Annyeonghaseyo</span></td><td>Halo / Selamat pagi/siang/malam (Sopan universal)</td></tr>\n            <tr><td><span class=\"ko-char\">감사합니다</span></td><td><span class=\"zh-pinyin\">Gamsahamnida</span></td><td>Terima kasih banyak (Formal hormat)</td></tr>\n            <tr><td><span class=\"ko-char\">고마워요</span></td><td><span class=\"zh-pinyin\">Gomawoyo</span></td><td>Terima kasih (Sopan akrab)</td></tr>\n            <tr><td><span class=\"ko-char\">죄송합니다</span></td><td><span class=\"zh-pinyin\">Joesonghamnida</span></td><td>Mohon maaf / Maafkan saya (Formal)</td></tr>\n            <tr><td><span class=\"ko-char\">괜찮아요</span></td><td><span class=\"zh-pinyin\">Gwaenchanhayo</span></td><td>Tidak apa-apa / Semua baik-baik saja</td></tr>\n            <tr><td><span class=\"ko-char\">안녕히 계세요</span></td><td><span class=\"zh-pinyin\">Annyeonghi gyeseyo</span></td><td>Selamat tinggal (Dikatakan kepada orang yang tetap tinggal di tempat)</td></tr>\n            <tr><td><span class=\"ko-char\">안녕히 가세요</span></td><td><span class=\"zh-pinyin\">Annyeonghi gaseyo</span></td><td>Selamat jalan (Dikatakan kepada orang yang pergi)</td></tr>\n          </tbody>\n        </table>\n      ",
+    "quiz": {
+     "q": "Salam perpisahan apa yang Anda katakan kepada tuan rumah saat Anda berpamitan pulang duluan?",
+     "opts": [
+      "Annyeonghi gyeseyo (Selamat tinggal bagi yang tetap tinggal)",
+      "Annyeonghi gaseyo",
+      "Gamsahamnida",
+      "Joesonghamnida"
+     ],
+     "ans": 0,
+     "why": "'Annyeonghi gyeseyo' secara harfiah berarti 'Tinggallah dalam damai', diucapkan kepada pihak yang tetap tinggal di tempat saat kita berpamitan pergi."
+    }
+   },
+   {
+    "id": "ko-05",
+    "num": "05",
+    "title": "Perkenalan Diri Supriyanto (은/는 & 이에요/예요)",
+    "level": "Pemula",
+    "intro": "Menyusun kalimat identitas diri: nama, profesi software engineer, dan negara asal Indonesia.",
+    "body": "\n        <h4>👤 Partikel Topik: 은 (Eun) vs 는 (Neun)</h4>\n        <p>Dalam tata bahasa Korea, subjek atau topik utama kalimat selalu ditempeli stiker partikel topik:\n        <ul>\n          <li>Gunakan <b>은 (eun)</b> jika kata berakhiran konsonan (Batchim).</li>\n          <li>Gunakan <b>는 (neun)</b> jika kata berakhiran vokal (tanpa Batchim).</li>\n        </ul>\n        <i>Contoh:</i> <span class=\"ko-char\">저는</span> (Jeo-neun = Saya adalah...)</p>\n\n        <h4>🏷️ Akhiran Predikat Identitas: 이에요 vs 예요 (= adalah)</h4>\n        <ul>\n          <li>Jika kata berakhiran konsonan → gunakan <b>이에요 (i-e-yo)</b>.</li>\n          <li>Jika kata berakhiran vokal → gunakan <b>예요 (ye-yo)</b>.</li>\n        </ul>\n\n        <h4>💬 Naskah Dialog Perkenalan Supriyanto</h4>\n        <div class=\"code-block\"><span class=\"cm\">// Perkenalan Diri di Kantor Baru</span>\nSupriyanto: 안녕하세요! 저는 수프리얀토예요.\n   <span class=\"st\">(Annyeonghaseyo! Jeoneun Supeuriyantoyeyo. - Halo! Saya adalah Supriyanto.)</span>\n\nRekan:      반가워요! 수프리얀토 씨는 어느 나라 사람이에요?\n   <span class=\"st\">(Bangawoyo! Supeuriyanto ssineun eoneu nara saram-ieyo? - Senang bertemu! Supriyanto orang negara mana?)</span>\n\nSupriyanto: 저는 인도네시아 사람이에요. 소프트웨어 엔지니어예요.\n   <span class=\"st\">(Jeoneun Indonesia saram-ieyo. Sopeuteuwe-eo enjinieo-yeyo. - Saya orang Indonesia. Saya software engineer.)</span></div>\n      ",
+    "quiz": {
+     "q": "Bagaimana kalimat Supriyanto untuk memperkenalkan dirinya: 'Saya adalah Supriyanto' dalam bahasa Korea sopan?",
+     "opts": [
+      "저는 수프리얀토예요. (Jeoneun Supeuriyantoyeyo)",
+      "저는 수프리얀토이에요.",
+      "수프리얀토는 저예요.",
+      "안녕 수프리얀토."
+     ],
+     "ans": 0,
+     "why": "Kata '수프리얀토' diakhiri huruf vokal 'ㅗ', sehingga menggunakan akhiran identitas '예요' (Jeoneun Supeuriyantoyeyo)."
+    }
+   },
+   {
+    "id": "ko-06",
+    "num": "06",
+    "title": "Kepemilikan & Keberadaan (이/가 & 있어요/없어요)",
+    "level": "Pemula",
+    "intro": "Menyatakan kepemilikan benda dan keberadaan ada/tidak ada barang di sekitar kita.",
+    "body": "\n        <h4>📦 Rumus Sakti Keberadaan: 있어요 (Ada/Punya) vs 없어요 (Tidak Ada)</h4>\n        <p>Untuk menyatakan punya/ada sesuatu, gunakan rumus: <b>[Kata Benda] + [이/가] + 있어요 (Isseoyo)</b>:</p>\n        <ul>\n          <li>Berakhiran konsonan → pasang partikel subjek <b>이 (i)</b>.</li>\n          <li>Berakhiran vokal → pasang partikel subjek <b>가 (ga)</b>.</li>\n        </ul>\n\n        <table class=\"zh-table\">\n          <thead><tr><th>Kalimat Korea</th><th>Romanisasi</th><th>Arti Bahasa Indonesia</th></tr></thead>\n          <tbody>\n            <tr><td><span class=\"ko-char\">시간이 있어요.</span></td><td><span class=\"zh-pinyin\">Sigani isseoyo.</span></td><td>Saya punya waktu / Ada waktu.</td></tr>\n            <tr><td><span class=\"ko-char\">돈이 없어요.</span></td><td><span class=\"zh-pinyin\">Doni eopseoyo.</span></td><td>Saya tidak punya uang.</td></tr>\n            <tr><td><span class=\"ko-char\">질문이 있어요?</span></td><td><span class=\"zh-pinyin\">Jilmuni isseoyo?</span></td><td>Apakah ada pertanyaan?</td></tr>\n            <tr><td><span class=\"ko-char\">차(가) 있어요.</span></td><td><span class=\"zh-pinyin\">Chaga isseoyo.</span></td><td>Saya punya mobil.</td></tr>\n          </tbody>\n        </table>\n      ",
+    "quiz": {
+     "q": "Bagaimana cara mengatakan 'Saya tidak punya mobil' dalam bahasa Korea?",
+     "opts": [
+      "차가 없어요. (Chaga eopseoyo.)",
+      "차가 있어요.",
+      "돈이 있어요.",
+      "차는 사람이에요."
+     ],
+     "ans": 0,
+     "why": "Kata '차' (mobil) berakhiran vokal sehingga memakai partikel '가', dan '없어요' menyatakan ketidakberadaan / tidak punya (Chaga eopseoyo)."
+    }
+   },
+   {
+    "id": "ko-07",
+    "num": "07",
+    "title": "Dua Sistem Angka Korea: Sino-Korea vs Native Korea",
+    "level": "Menengah",
+    "intro": "Membedakan kapan menggunakan sistem angka serapan Tiongkok (uang, tanggal) vs angka asli Korea (umur, jam, jumlah barang).",
+    "body": "\n        <h4>🔢 Mengapa Ada 2 Sistem Angka di Korea?</h4>\n        <p>Sama seperti bahasa Indonesia yang memiliki hitungan biasa dan satuan khusus, bahasa Korea membagi penggunaan angka secara tegas:</p>\n\n        <h4>1. Angka Sino-Korea (Uang, Tanggal, Menit, Nomor Telepon)</h4>\n        <p>1 (<span class=\"ko-char\">일</span> il), 2 (<span class=\"ko-char\">이</span> i), 3 (<span class=\"ko-char\">삼</span> sam), 4 (<span class=\"ko-char\">사</span> sa), 5 (<span class=\"ko-char\">오</span> o), 6 (<span class=\"ko-char\">육</span> yuk), 7 (<span class=\"ko-char\">칠</span> chil), 8 (<span class=\"ko-char\">팔</span> pal), 9 (<span class=\"ko-char\">구</span> gu), 10 (<span class=\"ko-char\">십</span> sip).</p>\n        <p><i>Contoh:</i> 10.000 Won = <span class=\"ko-char\">만 원</span> (Man won).</p>\n\n        <h4>2. Angka Asli Korea (Jam, Umur, Menghitung Jumlah Benda / Orang)</h4>\n        <p>1 (<span class=\"ko-char\">하나</span> hana), 2 (<span class=\"ko-char\">둘</span> dul), 3 (<span class=\"ko-char\">셋</span> set), 4 (<span class=\"ko-char\">넷</span> net), 5 (<span class=\"ko-char\">다섯</span> daseot), 6 (<span class=\"ko-char\">여섯</span> yeoseot), 7 (<span class=\"ko-char\">일곱</span> ilgop), 8 (<span class=\"ko-char\">여덟</span> yeodeol), 9 (<span class=\"ko-char\">아홉</span> ahop), 10 (<span class=\"ko-char\">열</span> yeol).</p>\n        <p><i>Contoh:</i> 2 cangkir kopi = <span class=\"ko-char\">커피 두 잔</span> (Keopi du jan - hana/dul/set/net berubah jadi ha/du/se/ne saat menempel pada satuan hitung!).</p>\n      ",
+    "quiz": {
+     "q": "Sistem angka mana yang digunakan untuk menyebutkan harga belanja uang Won dan nomor telepon di Korea?",
+     "opts": [
+      "Sistem Angka Sino-Korea (일, 이, 삼, 사...)",
+      "Sistem Angka Asli Korea (하나, 둘, 셋...)",
+      "Sistem Romawi kuno",
+      "Hanya menggunakan angka biner"
+     ],
+     "ans": 0,
+     "why": "Angka Sino-Korea digunakan untuk menghitung nominal uang (Won), menit waktu, nomor telepon, lantai gedung, dan tanggal kalender."
+    }
+   },
+   {
+    "id": "ko-08",
+    "num": "08",
+    "title": "Kata Kerja & Akhiran Waktu Sekarang (-아요/-어요)",
+    "level": "Menengah",
+    "intro": "Mengonjugasi kata kerja kamus (-다) menjadi kalimat percakapan santai sopan sehari-hari.",
+    "body": "\n        <h4>🔧 Rumus Harmonisasi Vokal Pembentukan Kata Kerja</h4>\n        <p>Semua kata kerja dasar di kamus Korea berakhiran <b>-다 (da)</b>. Buang kata <code>-다</code>, lalu lihat huruf vokal terakhirnya:</p>\n        <ul>\n          <li>Jika vokal terakhir adalah <b>ㅏ (a)</b> atau <b>ㅗ (o)</b> → tambahkan <b>-아요 (a-yo)</b>.\n            <br>• <span class=\"ko-char\">가다</span> (Gada = Pergi) → <span class=\"ko-char\">가요</span> (Gayo = Saya pergi).\n            <br>• <span class=\"ko-char\">보다</span> (Boda = Melihat) → <span class=\"ko-char\">봐요</span> (Bwayo = Saya menonton).</li>\n          <li>Jika vokal terakhir SELAIN ㅏ atau ㅗ → tambahkan <b>-어요 (eo-yo)</b>.\n            <br>• <span class=\"ko-char\">먹다</span> (Meokda = Makan) → <span class=\"ko-char\">먹어요</span> (Meogeoyo = Saya makan).\n            <br>• <span class=\"ko-char\">읽다</span> (Ilgda = Membaca) → <span class=\"ko-char\">읽어요</span> (Ilgeoyo = Saya membaca).</li>\n          <li>Khusus kata kerja berakhiran <b>하다 (Hada = Melakukan)</b> → selalu berubah menjadi <b>해요 (Haeyo)</b>!\n            <br>• <span class=\"ko-char\">공부하다</span> (Belajar) → <span class=\"ko-char\">공부해요</span> (Gongbuhaeyo).</li>\n        </ul>\n      ",
+    "quiz": {
+     "q": "Bagaimana bentuk konjugasi sopan masa sekarang dari kata kerja '먹다' (Meokda = Makan)?",
+     "opts": [
+      "먹어요 (Meogeoyo)",
+      "먹아요",
+      "먹해요",
+      "먹다요"
+     ],
+     "ans": 0,
+     "why": "Kata dasar '먹' memiliki vokal 'ㅓ' (bukan ㅏ atau ㅗ), sehingga menurut aturan harmonisasi vokal mendapat akhiran '-어요' menjadi '먹어요'."
+    }
+   },
+   {
+    "id": "ko-09",
+    "num": "09",
+    "title": "Jam, Tanggal & Pola Keterangan Waktu (Partikel 에)",
+    "level": "Menengah",
+    "intro": "Menyusun keterangan waktu: rumus unik kombinasi jam Native Korea dan menit Sino-Korea.",
+    "body": "\n        <h4>⏰ Rumus Unik Jam Korea (Native + Sino)</h4>\n        <p>Masyarakat Korea menggabungkan kedua sistem angka dalam satu kalimat waktu:\n        <br><b>[Angka Asli Korea] + 시 (Si = Jam) + [Angka Sino-Korea] + 분 (Bun = Menit)</b></p>\n        <p><i>Contoh:</i> Jam 3:30 = <span class=\"ko-char\">세 시 삼십 분</span> (Se si sam-sip bun) atau <span class=\"ko-char\">세 시 반</span> (Se si ban = Jam 3 setengah).</p>\n\n        <h4>📍 Partikel Waktu: 에 (e = pada/di)</h4>\n        <p>Tempelkan partikel <b>에</b> pada keterangan waktu:</p>\n        <div class=\"code-block\"><span class=\"cm\">// Supriyanto makan siang pada jam 12</span>\n수프리얀토 씨는 열두 시에 점심을 먹어요.\n<span class=\"st\">(Supeuriyanto ssineun yeoldu sie jeomsimeul meogeoyo.)</span></div>\n      ",
+    "quiz": {
+     "q": "Bagaimana cara mengucapkan 'Jam 2 tepat' dalam bahasa Korea?",
+     "opts": [
+      "두 시 (Du si)",
+      "이 시",
+      "둘 시",
+      "하나 시"
+     ],
+     "ans": 0,
+     "why": "Jam selalu menggunakan angka asli Korea (하나, 둘, 셋...) dan saat menempel pada satuan hitung '시' (jam), angka '둘' disingkat menjadi '두' (Du si)."
+    }
+   },
+   {
+    "id": "ko-10",
+    "num": "10",
+    "title": "Menanyakan Lokasi: Partikel 에서 (Aktivitas) vs 에 (Arah)",
+    "level": "Menengah",
+    "intro": "Membedakan dengan tepat di mana aktivitas berlangsung (에서) vs arah tujuan tempat (에).",
+    "body": "\n        <h4>🏢 Perbedaan Fatal: 에 vs 에서</h4>\n        <ul>\n          <li><b>에 (e):</b> Menunjukkan lokasi diam keberadaan barang (ada di...) atau arah tujuan gerakan (pergi ke...):\n            <br>• <span class=\"ko-char\">회사에 가요.</span> (Hoesae gayo = Pergi ke kantor).\n            <br>• <span class=\"ko-char\">집에 있어요.</span> (Jibe isseoyo = Berada di rumah).</li>\n          <li><b>에서 (eseo):</b> Menunjukkan tempat di mana suatu <b>aktivitas aktif dinamis</b> sedang dikerjakan (belajar di, makan di, koding di):\n            <br>• <span class=\"ko-char\">카페에서 일해요.</span> (Kape-eseo ilhaeyo = Bekerja di kafe).\n            <br>• <span class=\"ko-char\">식당에서 밥을 먹어요.</span> (Sikdang-eseo babeul meogeoyo = Makan nasi di restoran).</li>\n        </ul>\n      ",
+    "quiz": {
+     "q": "Partikel tempat mana yang tepat untuk melengkapi kalimat aktivitas: 'Kape___ kodinghaeyo' (Saya koding di kafe)?",
+     "opts": [
+      "에서 (Kape-eseo)",
+      "에",
+      "은",
+      "를"
+     ],
+     "ans": 0,
+     "why": "Partikel '에서' digunakan untuk menandai lokasi tempat terjadinya suatu kegiatan atau tindakan dinamis (seperti bekerja, belajar, atau makan)."
+    }
+   },
+   {
+    "id": "ko-11",
+    "num": "11",
+    "title": "Memesan Makanan di Restoran Korea (주세요)",
+    "level": "Mahir",
+    "intro": "Kata ajaib 주세요 (tolong berikan) untuk memesan makanan, meminta bon, dan air minum.",
+    "body": "\n        <h4>🙏 Kata Paling Berharga di Korea: 주세요 (Juseyo)</h4>\n        <p>Cukup sebutkan nama menu makanan lalu tambahkan <b>주세요 (Juseyo = Tolong berikan saya...)</b>:</p>\n        <div class=\"code-block\"><span class=\"cm\">// Memesan di Restoran BBQ Korea</span>\nSupriyanto: 여기요! 삼겹살 2인분 주세요.\n   <span class=\"st\">(Yeogiyo! Samgyeopsal i-inbun juseyo. - Permisi! Tolong berikan Samgyeopsal 2 porsi.)</span>\n\nPelayan:    네, 알겠습니다. 음료수는요?\n   <span class=\"st\">(Ne, algetseumnida. Eumryosuneunyo? - Baik, dimengerti. Minumannya?)</span>\n\nSupriyanto: 물 좀 주세요. 그리고 안 맵게 해주세요!\n   <span class=\"st\">(Mul jom juseyo. Geurigo an maepge haejuseyo! - Tolong minta air putih. Dan tolong buat jangan pedas!)</span></div>\n      ",
+    "quiz": {
+     "q": "Kata apa yang digunakan untuk memanggil pelayan restoran dengan sopan di Korea ('Permisi di sini!')?",
+     "opts": [
+      "여기요! (Yeogiyo!) atau 저기요! (Jeogiyo!)",
+      "안녕!",
+      "주세요!",
+      "미안해!"
+     ],
+     "ans": 0,
+     "why": "'여기요' (Yeogiyo = di sini) atau '저기요' (Jeogiyo = di sana) adalah ungkapan standar sopan untuk memanggil perhatian pelayan di restoran Korea."
+    }
+   },
+   {
+    "id": "ko-12",
+    "num": "12",
+    "title": "Berbelanja & Bertanya Harga: 얼마예요? & 깎아주세요",
+    "level": "Mahir",
+    "intro": "Menanyakan harga barang dan jurus menawar ramah di pasar tradisional Myeongdong.",
+    "body": "\n        <h4>🛍️ Belanja Seperti Warga Lokal</h4>\n        <table class=\"zh-table\">\n          <thead><tr><th>Frasa Korea</th><th>Romanisasi</th><th>Arti Bahasa Indonesia</th></tr></thead>\n          <tbody>\n            <tr><td><span class=\"ko-char\">이거 얼마예요?</span></td><td><span class=\"zh-pinyin\">Igeo eolmayeyo?</span></td><td>Ini harganya berapa?</td></tr>\n            <tr><td><span class=\"ko-char\">너무 비싸요!</span></td><td><span class=\"zh-pinyin\">Neomu bissayo!</span></td><td>Mahal sekali!</td></tr>\n            <tr><td><span class=\"ko-char\">조금만 깎아주세요.</span></td><td><span class=\"zh-pinyin\">Jogeumman kkak-ajuseyo.</span></td><td>Boleh tolong diskon sedikit?</td></tr>\n            <tr><td><span class=\"ko-char\">카드 돼요?</span></td><td><span class=\"zh-pinyin\">Kadeu dwaeyo?</span></td><td>Bisa bayar pakai kartu kredit/debit?</td></tr>\n            <tr><td><span class=\"ko-char\">영수증 주세요.</span></td><td><span class=\"zh-pinyin\">Yeongsujeung juseyo.</span></td><td>Tolong berikan struk belanja.</td></tr>\n          </tbody>\n        </table>\n      ",
+    "quiz": {
+     "q": "Bagaimana cara menanyakan harga barang 'Ini berapa harganya?' dalam bahasa Korea?",
+     "opts": [
+      "이거 얼마예요? (Igeo eolmayeyo?)",
+      "이거 어디예요?",
+      "이거 누구예요?",
+      "이거 뭐예요?"
+     ],
+     "ans": 0,
+     "why": "'얼마' berarti berapa banyak (harga), sehingga '이거 얼마예요?' adalah frasa standar untuk menanyakan harga barang."
+    }
+   },
+   {
+    "id": "ko-13",
+    "num": "13",
+    "title": "Arah & Transportasi Kota: Taksi & Subway (지하철)",
+    "level": "Mahir",
+    "intro": "Navigasi sistem kereta bawah tanah Seoul dan memandu sopir taksi ke tempat tujuan.",
+    "body": "\n        <h4>🚇 Naik Subway & Taksi Seoul</h4>\n        <div class=\"code-block\"><span class=\"cm\">// Naik Taksi Supriyanto di Bandara Incheon</span>\nSopir:       어디로 가세요?\n   <span class=\"st\">(Eodiro gaseyo? - Mau pergi ke mana?)</span>\n\nSupriyanto:  강남역으로 가주세요.\n   <span class=\"st\">(Gangnam-yeog-euro gajuseyo. - Tolong antar ke Stasiun Gangnam.)</span>\n\nSupriyanto:  여기서 내려주세요. 감사합니다!\n   <span class=\"st\">(Yeogiseo naeryeojuseyo. Gamsahamnida! - Tolong turunkan saya di sini. Terima kasih!)</span></div>\n\n        <h4>Arah Navigasi Dasar</h4>\n        <ul>\n          <li>Kiri: <span class=\"ko-char\">왼쪽</span> (Oenjjok) → <span class=\"ko-char\">왼쪽으로 가세요</span> (Belok ke kiri).</li>\n          <li>Kanan: <span class=\"ko-char\">오른쪽</span> (Oreunjjok) → <span class=\"ko-char\">오른쪽으로 가세요</span> (Belok ke kanan).</li>\n          <li>Lurus: <span class=\"ko-char\">곧장 / 쭉 가세요</span> (Jjuk gaseyo = Jalan lurus terus).</li>\n        </ul>\n      ",
+    "quiz": {
+     "q": "Kalimat apa yang Anda katakan kepada sopir taksi saat ingin turun di lokasi saat ini: 'Tolong turunkan saya di sini'?",
+     "opts": [
+      "여기서 내려주세요. (Yeogiseo naeryeojuseyo.)",
+      "저기서 타세요.",
+      "빨리 가세요.",
+      "어디로 가요?"
+     ],
+     "ans": 0,
+     "why": "'여기서' (di sini) + '내려주세요' (tolong turunkan) adalah ungkapan yang digunakan saat penumpang ingin berhenti dan turun dari kendaraan."
+    }
+   },
+   {
+    "id": "ko-14",
+    "num": "14",
+    "title": "Mengungkapkan Keinginan (-고 싶어요) & Obrolan Santai",
+    "level": "Expert",
+    "intro": "Mengekspresikan impian, hobi, dan roadmap menjadi fasih bahasa Korea secara mandiri.",
+    "body": "\n        <h4>🌟 Rumus Keinginan: -고 싶어요 (Go sipeoyo)</h4>\n        <p>Untuk mengatakan <i>'Saya ingin / kepingin melakukan sesuatu'</i>, cukup tempelkan <b>-고 싶어요</b> langsung pada akar kata kerja tanpa pusing memikirkan vokal:</p>\n        <div class=\"code-block\"><span class=\"cm\">// Contoh Keinginan Supriyanto</span>\n• 한국에 가고 싶어요. (Saya ingin pergi ke Korea.)\n• 한국어를 잘하고 싶어요. (Saya ingin mahir bahasa Korea.)\n• 커피를 마시고 싶어요. (Saya ingin minum kopi.)</div>\n\n        <h4>🚀 Trik Lolos Ujian TOPIK & Fasih Otodidak</h4>\n        <ol>\n          <li><b>Metode Shadowing:</b> Dengarkan drama atau podcast Korea dan tirukan intonasinya persis secara real-time.</li>\n          <li><b>Hafalkan Pola Kalimat, Bukan Kata Lepas:</b> Menghafal 'Babeul meogeoyo' jauh lebih lekat di otak daripada hanya menghafal kata 'bap'.</li>\n        </ol>\n\n        <div class=\"tip-box\">\n          <span class=\"tip-box-icon\">🏆</span>\n          <div><b>Selamat!</b> Supriyanto telah menuntaskan seluruh 14 modul kurikulum Bahasa Korea dari pengenalan abjad Hangeul hingga ekspresi keinginan percakapan lancar. Uji pemahaman Anda di <b>Quiz Bahasa Korea</b>!</div>\n        </div>\n      ",
+    "quiz": {
+     "q": "Bagaimana cara menyusun kalimat 'Saya ingin belajar bahasa Korea' menggunakan rumus -고 싶어요?",
+     "opts": [
+      "한국어를 공부하고 싶어요. (Hangugeoreul gongbuhago sipeoyo.)",
+      "한국어를 공부해요 싶어요.",
+      "한국어를 공부가 있어요.",
+      "한국어는 공부하고 없어요."
+     ],
+     "ans": 0,
+     "why": "Akar kata kerja '공부하' (belajar) langsung digabungkan dengan akhiran keinginan '-고 싶어요' menjadi '공부하고 싶어요'."
+    }
+   }
+  ]
+ },
+ {
+  "id": "japanese",
+  "title": "Bahasa Jepang 🇯🇵",
+  "subtitle": "Hiragana, Katakana, Kanji Dasar, Partikel Inti & Percakapan Praktis Sehari-hari",
+  "accent": "rose",
+  "category": "lang",
+  "lessons": [
+   {
+    "id": "ja-01",
+    "num": "01",
+    "title": "Hiragana Bagian 1: Vokal A-I-U-E-O hingga Baris Na",
+    "level": "Pemula 0",
+    "intro": "Mengenal huruf fonetik berlekuk luwes pertama bahasa Jepang: fondasi membaca kata asli Jepang.",
+    "body": "\n        <h4>🌸 Tiga Sistem Huruf Bahasa Jepang</h4>\n        <p>Bahasa Jepang memiliki 3 jenis tulisan yang digunakan berdampingan secara harmonis:\n        <ol>\n          <li><b>Hiragana (ひらがな):</b> 46 huruf berlekuk halus untuk kosakata asli Jepang dan partikel tata bahasa.</li>\n          <li><b>Katakana (カタカナ):</b> 46 huruf bersudut kaku tegas untuk kata serapan asing dan nama luar negeri.</li>\n          <li><b>Kanji (漢字):</b> Karakter gambar makna yang diadopsi dari Tiongkok.</li>\n        </ol>\n        Kita mulai dari <b>Hiragana</b>!</p>\n\n        <h4>🎵 Vokal Dasar (A - I - U - E - O) &amp; Baris Ka, Sa, Ta, Na</h4>\n        <table class=\"zh-table\">\n          <thead><tr><th>Baris</th><th>Karakter Hiragana</th><th>Romanisasi (Romaji)</th><th>Trik Memori Visual</th></tr></thead>\n          <tbody>\n            <tr><td><b>Vokal</b></td><td><span class=\"ja-char\">あ</span> <span class=\"ja-char\">い</span> <span class=\"ja-char\">う</span> <span class=\"ja-char\">え</span> <span class=\"ja-char\">お</span></td><td>a - i - u - e - o</td><td>Ingat urutan vokal Jepang selalu A-I-U-E-O</td></tr>\n            <tr><td><b>Baris K</b></td><td><span class=\"ja-char\">か</span> <span class=\"ja-char\">き</span> <span class=\"ja-char\">く</span> <span class=\"ja-char\">け</span> <span class=\"ja-char\">こ</span></td><td>ka - ki - ku - ke - ko</td><td><span class=\"ja-char\">く</span> seperti mulut burung Ku-ku</td></tr>\n            <tr><td><b>Baris S</b></td><td><span class=\"ja-char\">さ</span> <span class=\"ja-char\">し</span> <span class=\"ja-char\">す</span> <span class=\"ja-char\">せ</span> <span class=\"ja-char\">そ</span></td><td>sa - <b>shi</b> - su - se - so</td><td>Perhatikan <span class=\"ja-char\">し</span> dibaca 'Shi', bukan 'Si'</td></tr>\n            <tr><td><b>Baris T</b></td><td><span class=\"ja-char\">た</span> <span class=\"ja-char\">ち</span> <span class=\"ja-char\">つ</span> <span class=\"ja-char\">て</span> <span class=\"ja-char\">と</span></td><td>ta - <b>chi</b> - <b>tsu</b> - te - to</td><td>Perhatikan <span class=\"ja-char\">ち</span> (Chi) dan <span class=\"ja-char\">つ</span> (Tsu tsunami)</td></tr>\n            <tr><td><b>Baris N</b></td><td><span class=\"ja-char\">な</span> <span class=\"ja-char\">に</span> <span class=\"ja-char\">ぬ</span> <span class=\"ja-char\">ね</span> <span class=\"ja-char\">の</span></td><td>na - ni - nu - ne - no</td><td><span class=\"ja-char\">の</span> bentuknya melingkar bulat sempurna</td></tr>\n          </tbody>\n        </table>\n      ",
+    "quiz": {
+     "q": "Bagaimana cara membaca karakter Hiragana pada baris 'S' berikut ini: 'し'?",
+     "opts": [
+      "Shi",
+      "Si",
+      "Sa",
+      "Su"
+     ],
+     "ans": 0,
+     "why": "Dalam sistem fonetik bahasa Jepang standar, baris S untuk vokal I dilafalkan sebagai 'Shi' (し), bukan 'Si'."
+    }
+   },
+   {
+    "id": "ja-02",
+    "num": "02",
+    "title": "Hiragana Bagian 2: Baris Ha sampai N & Tanda Dakuten",
+    "level": "Pemula 0",
+    "intro": "Menuntaskan seluruh 46 Hiragana serta modifikasi bunyi berdengung dengan tanda petik Tenten (゛) dan Maru (゜).",
+    "body": "\n        <h4>🍃 Baris Ha, Ma, Ya, Ra, Wa & N</h4>\n        <table class=\"zh-table\">\n          <thead><tr><th>Baris</th><th>Karakter Hiragana</th><th>Romaji</th></tr></thead>\n          <tbody>\n            <tr><td><b>Baris H</b></td><td><span class=\"ja-char\">は</span> <span class=\"ja-char\">ひ</span> <span class=\"ja-char\">ふ</span> <span class=\"ja-char\">へ</span> <span class=\"ja-char\">ほ</span></td><td>ha - hi - <b>fu</b> - he - ho (fu dihembuskan lembut)</td></tr>\n            <tr><td><b>Baris M</b></td><td><span class=\"ja-char\">ま</span> <span class=\"ja-char\">み</span> <span class=\"ja-char\">む</span> <span class=\"ja-char\">め</span> <span class=\"ja-char\">も</span></td><td>ma - mi - mu - me - mo</td></tr>\n            <tr><td><b>Baris Y</b></td><td><span class=\"ja-char\">や</span> (ya), <span class=\"ja-char\">ゆ</span> (yu), <span class=\"ja-char\">よ</span> (yo)</td><td>ya - yu - yo (hanya ada 3)</td></tr>\n            <tr><td><b>Baris R</b></td><td><span class=\"ja-char\">ら</span> <span class=\"ja-char\">り</span> <span class=\"ja-char\">る</span> <span class=\"ja-char\">れ</span> <span class=\"ja-char\">ろ</span></td><td>ra - ri - ru - re - ro (lidah mengetuk lembut seperti L/R)</td></tr>\n            <tr><td><b>Baris W</b></td><td><span class=\"ja-char\">わ</span> (wa), <span class=\"ja-char\">を</span> (wo / o)</td><td>wa - o</td></tr>\n            <tr><td><b>Konsonan N</b></td><td><span class=\"ja-char\">ん</span> (n)</td><td>Konsonan tunggal 'n' atau 'ng'</td></tr>\n          </tbody>\n        </table>\n\n        <h4>✨ Tanda Pengubah Bunyi: Tenten (゛) &amp; Maru (゜)</h4>\n        <p>Cukup tambahkan tanda petik dua di pojok kanan atas untuk mengubah bunyi:</p>\n        <ul>\n          <li>Baris K + ゛ → Baris <b>G</b> (<span class=\"ja-char\">が ぎ ぐ げ ご</span> = ga, gi, gu, ge, go).</li>\n          <li>Baris S + ゛ → Baris <b>Z</b> (<span class=\"ja-char\">ざ じ ず ぜ ぞ</span> = za, <b>ji</b>, zu, ze, zo).</li>\n          <li>Baris T + ゛ → Baris <b>D</b> (<span class=\"ja-char\">だ ぢ づ で ど</span> = da, ji, dzu, de, do).</li>\n          <li>Baris H + ゛ → Baris <b>B</b> (<span class=\"ja-char\">ば び ぶ べ ぼ</span> = ba, bi, bu, be, bo).</li>\n          <li>Baris H + ゜ → Baris <b>P</b> (<span class=\"ja-char\">ぱ ぴ ぷ ぺ ぽ</span> = pa, pi, pu, pe, po).</li>\n        </ul>\n      ",
+    "quiz": {
+     "q": "Karakter 'は' (ha) jika diberi tanda lingkaran kecil Maru (゜) di atasnya berubah bunyinya menjadi apa?",
+     "opts": [
+      "ぱ (Pa)",
+      "ば (Ba)",
+      "が (Ga)",
+      "ざ (Za)"
+     ],
+     "ans": 0,
+     "why": "Tanda lingkaran Maru (handakuten) khusus pada baris H mengubah bunyinya menjadi bunyi letup P (pa, pi, pu, pe, po)."
+    }
+   },
+   {
+    "id": "ja-03",
+    "num": "03",
+    "title": "Huruf Katakana: Kata Serapan Asing & Istilah Modern",
+    "level": "Pemula 0",
+    "intro": "Membaca menu kafe, istilah teknologi IT, dan nama orang asing menggunakan huruf bersudut Katakana.",
+    "body": "\n        <h4>📐 Ciri Khas Huruf Katakana (カタカナ)</h4>\n        <p>Bunyi Katakana sama persis 1:1 dengan Hiragana, namun bentuk goresannya lebih tegak lurus dan bersudut kaku layaknya balok geometris. Katakana digunakan untuk:\n        <ul>\n          <li><b>Nama orang dan negara non-Jepang:</b> Indonesia (<span class=\"ja-char\">インドネシア</span>), Supriyanto (<span class=\"ja-char\">スプリヤント</span>).</li>\n          <li><b>Kosakata serapan modern:</b> Kopi (<span class=\"ja-char\">コーヒー</span>), Komputer (<span class=\"ja-char\">コンピューター</span>), Hotel (<span class=\"ja-char\">ホテル</span>).</li>\n        </ul>\n        </p>\n\n        <h4>➖ Tanda Vokal Panjang: Chōonpu (ー)</h4>\n        <p>Garis mendatar (<code>ー</code>) pada Katakana menandakan vokal tersebut diucapkan panjang 2 ketukan:</p>\n        <p><i>Contoh:</i> <span class=\"ja-char\">ケーキ</span> (Kēki = Kue / Cake), <span class=\"ja-char\">タクシー</span> (Takushī = Taksi).</p>\n      ",
+    "quiz": {
+     "q": "Bagaimana cara penulisan nama negara 'Indonesia' dalam huruf Katakana yang tepat?",
+     "opts": [
+      "インドネシア (Indoneshia)",
+      "いんどねしあ",
+      "アメリカ",
+      "にほん"
+     ],
+     "ans": 0,
+     "why": "Nama negara asing ditulis menggunakan abjad Katakana: イ (i) + ン (n) + ド (do) + ネ (ne) + シ (shi) + ア (a) = インドネシア."
+    }
+   },
+   {
+    "id": "ja-04",
+    "num": "04",
+    "title": "Kanji Dasar Sehari-hari: Cara Baca Onyomi vs Kunyomi",
+    "level": "Pemula",
+    "intro": "Menghilangkan rasa takut pada Kanji: piktogram gambar alam dan rahasia dua cara membaca.",
+    "body": "\n        <h4>🎨 Kanji Adalah Gambar Visual Kehidupan</h4>\n        <table class=\"zh-table\">\n          <thead><tr><th>Kanji</th><th>Arti Asli</th><th>Visual Asal-Usul Gambar</th></tr></thead>\n          <tbody>\n            <tr><td><span class=\"ja-char\">日</span></td><td>Matahari / Hari</td><td>Bentuk bulatan matahari dengan bintik di tengah</td></tr>\n            <tr><td><span class=\"ja-char\">月</span></td><td>Bulan / Masa</td><td>Bentuk bulan sabit di langit malam</td></tr>\n            <tr><td><span class=\"ja-char\">木</span></td><td>Pohon / Kayu</td><td>Pohon dengan batang kokoh dan akar menghunjam</td></tr>\n            <tr><td><span class=\"ja-char\">山</span></td><td>Gunung</td><td>Tiga puncak gunung berjejer</td></tr>\n            <tr><td><span class=\"ja-char\">川</span></td><td>Sungai</td><td>Tiga garis aliran air sungai mengalir deras</td></tr>\n            <tr><td><span class=\"ja-char\">人</span></td><td>Orang / Manusia</td><td>Dua kaki manusia sedang melangkah maju</td></tr>\n          </tbody>\n        </table>\n\n        <h4>🔍 Mengapa Satu Kanji Punya 2 Cara Baca?</h4>\n        <ul>\n          <li><b>Onyomi (Bunyi Tiongkok):</b> Dipakai saat Kanji bergandengan dengan Kanji lain membentuk kata majemuk (misal: <span class=\"ja-char\">日本</span> = Ni-hon = Jepang).</li>\n          <li><b>Kunyomi (Bunyi Asli Jepang):</b> Dipakai saat Kanji berdiri sendiri (misal: <span class=\"ja-char\">ひと</span> = hito = orang).</li>\n        </ul>\n      ",
+    "quiz": {
+     "q": "Kapan cara baca Onyomi (bunyi serapan Tiongkok) biasanya digunakan pada karakter Kanji?",
+     "opts": [
+      "Ketika dua atau lebih karakter Kanji bergabung membentuk kata majemuk",
+      "Ketika Kanji berdiri sendiri tanpa huruf lain",
+      "Hanya saat menulis nama hewan",
+      "Ketika berbicara dengan anak kecil"
+     ],
+     "ans": 0,
+     "why": "Cara baca Onyomi umumnya dipakai saat beberapa kanji bergabung menjadi kosakata majemuk (seperti 日本, 大学, 先生)."
+    }
+   },
+   {
+    "id": "ja-05",
+    "num": "05",
+    "title": "Salam & Etika Percakapan Bahasa Jepang (Aisatsu)",
+    "level": "Pemula",
+    "intro": "Mengawali hari dengan salam hangat, membungkuk sopan (Ojigi), dan ungkapan terima kasih.",
+    "body": "\n        <h4>🌅 Salam Sehari-hari (挨拶 Aisatsu)</h4>\n        <table class=\"zh-table\">\n          <thead><tr><th>Frasa Jepang</th><th>Romaji</th><th>Arti Bahasa Indonesia &amp; Waktu</th></tr></thead>\n          <tbody>\n            <tr><td><span class=\"ja-char\">おはようございます</span></td><td><span class=\"zh-pinyin\">Ohayou gozaimasu</span></td><td>Selamat pagi (Sopan)</td></tr>\n            <tr><td><span class=\"ja-char\">こんにちは</span></td><td><span class=\"zh-pinyin\">Konnichiwa</span></td><td>Selamat siang / Halo universal</td></tr>\n            <tr><td><span class=\"ja-char\">こんばんは</span></td><td><span class=\"zh-pinyin\">Konbanwa</span></td><td>Selamat malam</td></tr>\n            <tr><td><span class=\"ja-char\">ありがとうございます</span></td><td><span class=\"zh-pinyin\">Arigatou gozaimasu</span></td><td>Terima kasih banyak</td></tr>\n            <tr><td><span class=\"ja-char\">すみません</span></td><td><span class=\"zh-pinyin\">Sumimasen</span></td><td>Permisi / Maaf (Kata ajaib paling multifungsi!)</td></tr>\n            <tr><td><span class=\"ja-char\">さようなら</span></td><td><span class=\"zh-pinyin\">Sayounara</span></td><td>Selamat tinggal</td></tr>\n            <tr><td><span class=\"ja-char\">じゃあ、また！</span></td><td><span class=\"zh-pinyin\">Jaa, mata!</span></td><td>Sampai jumpa lagi nanti!</td></tr>\n          </tbody>\n        </table>\n        <div class=\"tip-box\">\n          <span class=\"tip-box-icon\">💡</span>\n          <div><b>Kata Ajaib 'Sumimasen':</b> Anda bisa menggunakan <code>Sumimasen</code> untuk memanggil pelayan restoran, meminta maaf saat menyenggol orang di kereta, maupun saat berterima kasih karena dibantu!</div>\n        </div>\n      ",
+    "quiz": {
+     "q": "Kata multifungsi apa yang paling sering digunakan orang Jepang untuk permisi, memanggil pelayan, maupun meminta maaf?",
+     "opts": [
+      "Sumimasen (すみません)",
+      "Sayounara",
+      "Konnichiwa",
+      "Oyasuminasai"
+     ],
+     "ans": 0,
+     "why": "'Sumimasen' adalah kata paling berguna dalam bahasa Jepang untuk meminta maaf ringan, permisi lewat, maupun memanggil pelayan restoran."
+    }
+   },
+   {
+    "id": "ja-06",
+    "num": "06",
+    "title": "Perkenalan Diri Supriyanto (Pola 〜は〜です)",
+    "level": "Pemula",
+    "intro": "Rumus fondasi kalimat bahasa Jepang: Subjek + は + Predikat + です (A adalah B).",
+    "body": "\n        <h4>🧱 Rumus Emas Kalimat Jepang: A は B です</h4>\n        <p>Partikel <b>は</b> (ditulis 'ha', tetapi saat berfungsi sebagai partikel dibaca <b>'wa'</b>!) menandakan topik utama kalimat:</p>\n        <div class=\"code-block\"><span class=\"cm\">// Rumus: [Saya] wa [Identitas] desu</span>\nわたし は スプリヤント です。\n<span class=\"st\">(Watashi wa Supriyanto desu. - Saya adalah Supriyanto.)</span></div>\n\n        <h4>💬 Naskah Dialog Perkenalan Diri Supriyanto</h4>\n        <div class=\"code-block\"><span class=\"cm\">// Pertemuan Pertama dengan Rekan Kerja</span>\nSupriyanto: はじめまして！わたしはスプリヤントです。\n   <span class=\"st\">(Hajimemashite! Watashi wa Supriyanto desu. - Senang pertama kali bertemu! Saya adalah Supriyanto.)</span>\n\nSupriyanto: インドネシアから来ました。エンジニアです。\n   <span class=\"st\">(Indonesia kara kimashita. Enjinia desu. - Saya datang dari Indonesia. Saya seorang engineer.)</span>\n\nSupriyanto: どうぞよろしくお願いします！\n   <span class=\"st\">(Douzo yoroshiku onegaishimasu! - Mohon bimbingan dan kerjasamanya!)</span>\n\nTanaka:     田中です。こちらこそ、よろしくお願いします！\n   <span class=\"st\">(Tanaka desu. Kochirakoso, yoroshiku onegaishimasu! - Saya Tanaka. Saya juga senang bekerja sama dengan Anda!)</span></div>\n      ",
+    "quiz": {
+     "q": "Bagaimana cara membaca partikel penanda topik 'は' ketika berada di dalam kalimat (contoh: わたしは)?",
+     "opts": [
+      "Dibaca 'Wa'",
+      "Dibaca 'Ha'",
+      "Dibaca 'He'",
+      "Tidak dibaca"
+     ],
+     "ans": 0,
+     "why": "Secara historis huruf 'は' berbunyi 'ha', namun ketika berfungsi khusus sebagai partikel penanda topik kalimat, ia wajib dilafalkan sebagai 'wa'."
+    }
+   },
+   {
+    "id": "ja-07",
+    "num": "07",
+    "title": "Menunjuk Benda & Lokasi: Kore, Sore, Are & Doko",
+    "level": "Pemula",
+    "intro": "Menunjuk barang dekat pembicara (kore), dekat lawan bicara (sore), dan jauh dari keduanya (are).",
+    "body": "\n        <h4>📍 Sistem Penunjuk Tiga Zona (Ko - So - A - Do)</h4>\n        <table class=\"zh-table\">\n          <thead><tr><th>Zona Lokasi</th><th>Menunjuk Benda (Ini/Itu)</th><th>Menunjuk Tempat (Sini/Situ/Sana)</th></tr></thead>\n          <tbody>\n            <tr><td><b>Dekat Saya (Pembicara)</b></td><td><span class=\"ja-char\">これ</span> (Kore = Ini)</td><td><span class=\"ja-char\">ここ</span> (Koko = Di sini)</td></tr>\n            <tr><td><b>Dekat Kamu (Lawan Bicara)</b></td><td><span class=\"ja-char\">それ</span> (Sore = Itu)</td><td><span class=\"ja-char\">そこ</span> (Soko = Di situ)</td></tr>\n            <tr><td><b>Jauh dari Kita Berdua</b></td><td><span class=\"ja-char\">あれ</span> (Are = Yang di sana itu)</td><td><span class=\"ja-char\">あそこ</span> (Asoko = Di sebelah sana)</td></tr>\n            <tr><td><b>Kata Tanya (Mana?)</b></td><td><span class=\"ja-char\">どれ</span> (Dore = Yang mana?)</td><td><span class=\"ja-char\">どこ</span> (Doko = Di mana?)</td></tr>\n          </tbody>\n        </table>\n        <p><i>Contoh Bertanya Tempat:</i> <span class=\"ja-char\">トイレはどこですか？</span> (Toire wa doko desu ka? = Toilet di mana ya?)</p>\n      ",
+    "quiz": {
+     "q": "Bagaimana cara menanyakan 'Toilet ada di mana?' dalam bahasa Jepang yang sopan?",
+     "opts": [
+      "トイレはどこですか？ (Toire wa doko desu ka?)",
+      "トイレはここですか？",
+      "トイレはだれですか？",
+      "トイレはなんですか？"
+     ],
+     "ans": 0,
+     "why": "'どこ' berarti di mana, sehingga 'Toire wa doko desu ka?' adalah kalimat baku menanyakan lokasi toilet."
+    }
+   },
+   {
+    "id": "ja-08",
+    "num": "08",
+    "title": "Angka, Jam & Satuan Waktu (Ji, Fun, Jikan)",
+    "level": "Menengah",
+    "intro": "Menghitung angka 1-10.000, menyebutkan jam dan menit secara tepat.",
+    "body": "\n        <h4>🔢 Angka Dasar 1 sampai 10</h4>\n        <p>1 (<span class=\"ja-char\">いち</span> ichi), 2 (<span class=\"ja-char\">に</span> ni), 3 (<span class=\"ja-char\">さん</span> san), 4 (<span class=\"ja-char\">よん / し</span> yon/shi), 5 (<span class=\"ja-char\">ご</span> go), 6 (<span class=\"ja-char\">ろく</span> roku), 7 (<span class=\"ja-char\">なな / しち</span> nana/shichi), 8 (<span class=\"ja-char\">はち</span> hachi), 9 (<span class=\"ja-char\">きゅう / く</span> kyuu/ku), 10 (<span class=\"ja-char\">じゅう</span> juu).</p>\n        <p><i>Satuan Besar:</i> 100 (<span class=\"ja-char\">ひゃく</span> hyaku), 1.000 (<span class=\"ja-char\">せん</span> sen), 10.000 (<span class=\"ja-char\">いちまん</span> ichiman).</p>\n\n        <h4>⏰ Menyebutkan Jam (〜時 Ji) &amp; Menit (〜分 Fun/Pun)</h4>\n        <div class=\"code-block\"><span class=\"cm\">// Jam 7:30 (Setengah 8)</span>\nいま、しちじ はん です。\n<span class=\"st\">(Ima, shichiji han desu. - Sekarang jam 7 lewat 30 menit.)</span></div>\n      ",
+    "quiz": {
+     "q": "Bagaimana cara menyebutkan 'Jam 3 tepat' dalam bahasa Jepang?",
+     "opts": [
+      "さんじ (San-ji)",
+      "いちじ",
+      "よじ",
+      "ごじ"
+     ],
+     "ans": 0,
+     "why": "Angka 3 adalah 'san', ditambahkan akhiran satuan jam 'ji' menjadi 'san-ji' (さんじ)."
+    }
+   },
+   {
+    "id": "ja-09",
+    "num": "09",
+    "title": "Kata Kerja Bentuk Masu (〜ます / 〜ません)",
+    "level": "Menengah",
+    "intro": "Mengonjugasi kata kerja sopan masa sekarang, bentuk negatif, dan bentuk lampau.",
+    "body": "\n        <h4>⚙️ Empat Bentuk Dasar Kata Kerja Sopan (~Masu)</h4>\n        <table class=\"zh-table\">\n          <thead><tr><th>Kondisi Waktu</th><th>Akhiran</th><th>Contoh: 食べる (Makan)</th><th>Arti</th></tr></thead>\n          <tbody>\n            <tr><td><b>Positif (Sekarang/Akan Datang)</b></td><td>〜ます (-masu)</td><td><span class=\"ja-char\">たべます</span> (Tabemasu)</td><td>Saya makan / akan makan</td></tr>\n            <tr><td><b>Negatif (Tidak Melakukan)</b></td><td>〜ません (-masen)</td><td><span class=\"ja-char\">たべません</span> (Tabemasen)</td><td>Saya tidak makan</td></tr>\n            <tr><td><b>Lampau Positif (Sudah Selesai)</b></td><td>〜ました (-mashita)</td><td><span class=\"ja-char\">たべました</span> (Tabemashita)</td><td>Saya sudah makan</td></tr>\n            <tr><td><b>Lampau Negatif (Dulu Tidak)</b></td><td>〜ませんでした (-masendeshita)</td><td><span class=\"ja-char\">たべませんでした</span> (Tabemasendeshita)</td><td>Saya tidak makan (tadi)</td></tr>\n          </tbody>\n        </table>\n      ",
+    "quiz": {
+     "q": "Bentuk sopan lampau dari kata kerja 'Makan' (Saya sudah makan) adalah?",
+     "opts": [
+      "たべました (Tabemashita)",
+      "たべます",
+      "たべません",
+      "たべる"
+     ],
+     "ans": 0,
+     "why": "Akhiran '~ました' (-mashita) digunakan untuk menyatakan perbuatan yang telah selesai dilakukan di masa lampau secara sopan."
+    }
+   },
+   {
+    "id": "ja-10",
+    "num": "10",
+    "title": "Partikel Inti: を (Objek), に (Tujuan), で (Alat/Tempat)",
+    "level": "Menengah",
+    "intro": "Tiga pilar partikel gramatikal yang menghubungkan kata benda dengan kata kerja dalam kalimat.",
+    "body": "\n        <h4>🎯 Tiga Partikel Utama</h4>\n        <ul>\n          <li><b>を (dibaca 'o'):</b> Penanda objek penderita yang dikenai kata kerja:\n            <br>• <span class=\"ja-char\">ごはん を たべます。</span> (Gohan o tabemasu = Makan nasi).\n            <br>• <span class=\"ja-char\">みず を のみます。</span> (Mizu o nomimasu = Minum air).</li>\n          <li><b>に (ni):</b> Menunjukkan titik waktu tepat atau arah tujuan tempat:\n            <br>• <span class=\"ja-char\">7時 に おきます。</span> (Shichiji ni okimasu = Bangun pada jam 7).\n            <br>• <span class=\"ja-char\">日本 に いきます。</span> (Nihon ni ikimasu = Pergi ke Jepang).</li>\n          <li><b>で (de):</b> Menunjukkan tempat aktivitas berlangsung atau alat transportasi:\n            <br>• <span class=\"ja-char\">カフェ で しごと を します。</span> (Kafe de shigoto o shimasu = Bekerja di kafe).\n            <br>• <span class=\"ja-char\">でんしゃ で いきます。</span> (Densha de ikimasu = Pergi naik kereta).</li>\n        </ul>\n      ",
+    "quiz": {
+     "q": "Partikel apa yang digunakan untuk menandai objek makanan pada kalimat 'Kohi ___ nomimasu' (Saya minum kopi)?",
+     "opts": [
+      "を (o)",
+      "に (ni)",
+      "で (de)",
+      "は (wa)"
+     ],
+     "ans": 0,
+     "why": "Partikel 'を' (o) berfungsi sebagai penanda objek penderita tindakan langsung dari kata kerja."
+    }
+   },
+   {
+    "id": "ja-11",
+    "num": "11",
+    "title": "Memesan Makanan di Restoran Jepang (〜をください)",
+    "level": "Mahir",
+    "intro": "Seni memesan ramen, meminta rekomendasi koki, dan meminta bon tagihan (Okaikei).",
+    "body": "\n        <h4>🍜 Naskah Dialog di Kedai Ramen Supriyanto</h4>\n        <div class=\"code-block\"><span class=\"cm\">// Memesan Ramen di Tokyo</span>\nSupriyanto: すみません！ラーメン を ひとつ ください。\n   <span class=\"st\">(Sumimasen! Raamen o hitotsu kudasai. - Permisi! Tolong ramennya satu mangkok.)</span>\n\nPelayan:    はい、かしこまりました。お飲み物は？\n   <span class=\"st\">(Hai, kashikomarimashita. Onomimono wa? - Baik, dimengerti. Untuk minumannya?)</span>\n\nSupriyanto: おみず を おねがいします。\n   <span class=\"st\">(Omizu o onegaishimasu. - Minta air putih tolong.)</span>\n\nSupriyanto: おかいけい、おねがいします。ごちそうさまでした！\n   <span class=\"st\">(Okaikei, onegaishimasu. Gochisousama deshita! - Minta bonnya tolong. Terima kasih atas makanannya!)</span></div>\n      ",
+    "quiz": {
+     "q": "Ungkapan apa yang diucapkan orang Jepang setelah selesai makan sebagai ucapan terima kasih atas hidangan lezat?",
+     "opts": [
+      "ごちそうさまでした (Gochisousama deshita)",
+      "いただきます",
+      "おねがいします",
+      "いらっしゃいませ"
+     ],
+     "ans": 0,
+     "why": "'Gochisousama deshita' diucapkan setelah selesai makan sebagai ungkapan syukur dan terima kasih kepada yang memasak hidangan."
+    }
+   },
+   {
+    "id": "ja-12",
+    "num": "12",
+    "title": "Berbelanja & Bertanya Harga: いくらですか",
+    "level": "Mahir",
+    "intro": "Menanyakan harga barang belanjaan di Akihabara dan pembayaran kartu / uang tunai.",
+    "body": "\n        <h4>🛍️ Percakapan Berbelanja</h4>\n        <table class=\"zh-table\">\n          <thead><tr><th>Frasa Jepang</th><th>Romaji</th><th>Arti Bahasa Indonesia</th></tr></thead>\n          <tbody>\n            <tr><td><span class=\"ja-char\">これはいくらですか？</span></td><td><span class=\"zh-pinyin\">Kore wa ikura desu ka?</span></td><td>Ini harganya berapa?</td></tr>\n            <tr><td><span class=\"ja-char\">1,000円です。</span></td><td><span class=\"zh-pinyin\">Sen-en desu.</span></td><td>Harganya 1.000 Yen.</td></tr>\n            <tr><td><span class=\"ja-char\">これをください。</span></td><td><span class=\"zh-pinyin\">Kore o kudasai.</span></td><td>Saya mau beli yang ini tolong.</td></tr>\n            <tr><td><span class=\"ja-char\">カードはつかえますか？</span></td><td><span class=\"zh-pinyin\">Kaado wa tsukaemasu ka?</span></td><td>Bisa bayar pakai kartu kredit?</td></tr>\n          </tbody>\n        </table>\n      ",
+    "quiz": {
+     "q": "Bagaimana cara menanyakan 'Berapa harga barang ini?' dalam bahasa Jepang?",
+     "opts": [
+      "これはいくらですか？ (Kore wa ikura desu ka?)",
+      "これはどこですか？",
+      "これはなんですか？",
+      "これはだれですか？"
+     ],
+     "ans": 0,
+     "why": "'いくら' (ikura) berarti berapa harga, sehingga 'Kore wa ikura desu ka?' adalah frasa standar menanyakan harga barang."
+    }
+   },
+   {
+    "id": "ja-13",
+    "num": "13",
+    "title": "Arah, Stasiun Kereta & Transportasi Kota",
+    "level": "Mahir",
+    "intro": "Navigasi stasiun Shinjuku yang megah, naik kereta bawah tanah (Chikatetsu), dan bertanya arah.",
+    "body": "\n        <h4>🚉 Menanyakan Arah Stasiun</h4>\n        <div class=\"code-block\"><span class=\"cm\">// Bertanya Arah di Jalanan Shibuya</span>\nSupriyanto: すみません、しぶやえき は どこですか？\n   <span class=\"st\">(Sumimasen, Shibuya-eki wa doko desu ka? - Permisi, Stasiun Shibuya di mana ya?)</span>\n\nWarga:      あそこです。まっすぐ 行ってください。\n   <span class=\"st\">(Asoko desu. Massugu itte kudasai. - Di sebelah sana. Silakan jalan lurus terus.)</span>\n\nSupriyanto: どうもありがとうございます！\n   <span class=\"st\">(Doumo arigatou gozaimasu! - Terima kasih banyak!)</span></div>\n\n        <h4>Petunjuk Arah</h4>\n        <ul>\n          <li>Kiri: <span class=\"ja-char\">ひだり</span> (Hidari) → <span class=\"ja-char\">ひだり に まがってください</span> (Belok ke kiri).</li>\n          <li>Kanan: <span class=\"ja-char\">みぎ</span> (Migi) → <span class=\"ja-char\">みぎ に まがってください</span> (Belok ke kanan).</li>\n          <li>Lurus: <span class=\"ja-char\">まっすぐ</span> (Massugu) → Jalan lurus.</li>\n        </ul>\n      ",
+    "quiz": {
+     "q": "Apa arti dari kata penunjuk arah 'まっすぐ' (Massugu)?",
+     "opts": [
+      "Lurus terus",
+      "Belok kiri",
+      "Belok kanan",
+      "Putar balik"
+     ],
+     "ans": 0,
+     "why": "'Massugu' berarti berjalan lurus ke depan tanpa berbelok."
+    }
+   },
+   {
+    "id": "ja-14",
+    "num": "14",
+    "title": "Keinginan (〜たいです) & Ajakan Santai (〜ましょう)",
+    "level": "Expert",
+    "intro": "Menyatakan impian liburan ke Gunung Fuji, mengajak teman, dan roadmap sertifikasi JLPT N5.",
+    "body": "\n        <h4>🌟 Mengungkapkan Keinginan: 〜たいです (-tai desu)</h4>\n        <p>Ganti akhiran <code>-masu</code> dengan <b>-tai desu</b> untuk mengatakan <i>'Saya ingin...'</i>:</p>\n        <div class=\"code-block\"><span class=\"cm\">// Contoh Keinginan Supriyanto</span>\n• 日本へ 行きたいです。 (Nihon e ikitai desu = Saya ingin pergi ke Jepang.)\n• おすし を 食べたいです。 (Osushi o tabetai desu = Saya ingin makan sushi.)\n• にほんご を はなしたいです。 (Nihongo o hanashitai desu = Saya ingin berbicara bahasa Jepang.)</div>\n\n        <h4>🤝 Mengajak Teman: 〜ましょう (-mashou)</h4>\n        <p>Ganti akhiran <code>-masu</code> dengan <b>-mashou</b> untuk mengajak <i>'Mari kita...'</i>:</p>\n        <p><i>Contoh:</i> <span class=\"ja-char\">いっしょ に 行きましょう！</span> (Issho ni ikimashou! = Ayo kita pergi bareng!)</p>\n\n        <div class=\"tip-box\">\n          <span class=\"tip-box-icon\">🏆</span>\n          <div><b>Selamat!</b> Supriyanto telah menyelesaikan seluruh 14 modul kurikulum Bahasa Jepang dari pengenalan abjad Hiragana/Katakana hingga percakapan JLPT N5. Uji wawasan Anda di <b>Quiz Bahasa Jepang</b>!</div>\n        </div>\n      ",
+    "quiz": {
+     "q": "Bagaimana cara mengatakan 'Saya ingin pergi ke Jepang' menggunakan rumus keinginan ~たいです?",
+     "opts": [
+      "日本へ行きたいです。 (Nihon e ikitai desu.)",
+      "日本へ行きますです。",
+      "日本へ行きましたです。",
+      "日本へ行かないです。"
+     ],
+     "ans": 0,
+     "why": "Kata kerja 'ikimasu' (pergi) diubah menjadi bentuk keinginan dengan mengganti akhiran -masu menjadi -tai desu: 'ikitai desu'."
+    }
+   }
+  ]
  }
 ];
 
@@ -1679,6 +2939,162 @@ const QUIZ_BANK = [
   ],
   "ans": 0,
   "why": "Dart mendukung dua mode kompilasi: JIT untuk produktivitas pengembangan kilat dengan Hot Reload, dan AOT untuk kompilasi kode mesin native tanpa overhead runtime."
+ },
+ {
+  "track": "git",
+  "topic": "Memahami Version Control: Snapshot vs Delta",
+  "q": "Bagaimana cara kerja Git dalam mencatat riwayat perubahan proyek?",
+  "opts": [
+   "Merekam snapshot kondisi seluruh file proyek pada setiap commit checkpoint",
+   "Mengirim file zip manual via email setiap jam",
+   "Menghapus kode lama dan hanya menyisakan kode terbaru",
+   "Mengunci file agar tidak bisa diedit oleh programmer lain"
+  ],
+  "ans": 0,
+  "why": "Git mencatat riwayat proyek sebagai serangkaian snapshot utuh (commit). Jika ada file yang tidak berubah, Git hanya membuat referensi ke file sebelumnya."
+ },
+ {
+  "track": "git",
+  "topic": "Inisialisasi Repositori: git init, status & .gitignore",
+  "q": "File apakah yang digunakan untuk memberitahu Git agar mengabaikan file sensitif seperti password .env atau folder node_modules?",
+  "opts": [
+   ".gitignore",
+   ".gitkeep",
+   "package.json",
+   ".gitconfig"
+  ],
+  "ans": 0,
+  "why": "File .gitignore berisi pola daftar nama file atau direktori yang tidak boleh dilacak maupun dicatat oleh Git ke dalam repositori."
+ },
+ {
+  "track": "git",
+  "topic": "Tiga Area Git: Working Tree, Staging Area & Repository",
+  "q": "Perintah apa yang digunakan untuk memindahkan file dari Working Tree ke Staging Area sebelum di-commit?",
+  "opts": [
+   "git add <nama_file>",
+   "git push <nama_file>",
+   "git commit <nama_file>",
+   "git checkout <nama_file>"
+  ],
+  "ans": 0,
+  "why": "git add menyiapkan file yang sudah diedit ke Staging Area (area persiapan) sebelum nantinya dibungkus menjadi commit permanen."
+ },
+ {
+  "track": "git",
+  "topic": "Menjelajah Riwayat: git log, git diff & git checkout",
+  "q": "Perintah apa yang menampilkan riwayat daftar commit secara ringkas dan satu baris per commit?",
+  "opts": [
+   "git log --oneline",
+   "git status --short",
+   "git diff --summary",
+   "git show --all"
+  ],
+  "ans": 0,
+  "why": "Opsi --oneline pada perintah git log menyajikan hash pendek beserta pesan commit dalam satu baris bersih, memudahkan pembacaan riwayat."
+ },
+ {
+  "track": "git",
+  "topic": "Percabangan Efektif: git branch & git switch",
+  "q": "Apa keuntungan utama menggunakan fitur Branch (percabangan) di Git?",
+  "opts": [
+   "Mengisolasi pengembangan fitur baru agar tidak merusak kode utama yang stabil",
+   "Membuat ukuran file proyek menjadi dua kali lipat lebih kecil",
+   "Menghapus otomatis seluruh file JavaScript yang tidak terpakai",
+   "Mencegah developer lain melihat isi komputer kita"
+  ],
+  "ans": 0,
+  "why": "Branch memungkinkan eksperimen dan pengerjaan fitur berjalan terpisah secara aman tanpa mengganggu kode utama yang sedang berjalan stabil."
+ },
+ {
+  "track": "git",
+  "topic": "Menggabungkan Cabang: Fast-Forward vs 3-Way Merge",
+  "q": "Kapan situasi Fast-Forward merge dapat terjadi di Git?",
+  "opts": [
+   "Ketika cabang tujuan (main) belum memiliki commit baru sejak cabang fitur dibuat",
+   "Ketika terjadi tabrakan kode pada baris yang sama",
+   "Ketika koneksi internet sedang berkecepatan tinggi",
+   "Ketika ukuran file repositori di bawah 1 Megabyte"
+  ],
+  "ans": 0,
+  "why": "Fast-forward merge terjadi ketika garis riwayat linier tanpa percabangan ganda, sehingga Git cukup memajukan penunjuk cabang ke depan."
+ },
+ {
+  "track": "git",
+  "topic": "Menghadapi Merge Conflict dengan Tenang",
+  "q": "Apa yang harus dilakukan developer saat terjadi Merge Conflict pada file kode?",
+  "opts": [
+   "Memilih kode yang benar, menghapus simbol marker konflik, lalu melakukan git add dan commit",
+   "Mematikan komputer dan menghapus seluruh folder proyek",
+   "Memaksa push dengan git push --force tanpa memeriksa kodenya",
+   "Mengganti ekstensi file menjadi file .txt"
+  ],
+  "ans": 0,
+  "why": "Menyelesaikan konflik dilakukan dengan mengedit file, memilih kode yang diinginkan, membersihkan marker Git, kemudian melakukan add dan commit penyelesaian."
+ },
+ {
+  "track": "git",
+  "topic": "Remote Repository: GitHub, git remote & git push",
+  "q": "Perintah apa yang digunakan untuk mengunggah commit dari repositori lokal ke server remote GitHub?",
+  "opts": [
+   "git push",
+   "git pull",
+   "git clone",
+   "git fetch"
+  ],
+  "ans": 0,
+  "why": "git push mentransfer dan menyinkronkan seluruh commit checkpoint dari repositori lokal ke repositori remote di server GitHub."
+ },
+ {
+  "track": "git",
+  "topic": "Kolaborasi Tim: git fetch, git pull & Pull Request (PR)",
+  "q": "Apa tujuan utama dibukanya Pull Request (PR) di platform GitHub dalam tim software engineering?",
+  "opts": [
+   "Memfasilitasi peninjauan kode (code review) oleh rekan tim sebelum kode digabung ke cabang utama",
+   "Membayar biaya langganan server GitHub",
+   "Mengompresi file gambar agar loading website lebih cepat",
+   "Mengunduh repositori ke flashdisk eksternal"
+  ],
+  "ans": 0,
+  "why": "Pull Request adalah sarana diskusi dan code review profesional untuk memastikan kualitas kode, keamanan, dan fungsionalitas sebelum digabungkan ke cabang utama."
+ },
+ {
+  "track": "git",
+  "topic": "Menyimpan Pekerjaan Sementara: git stash & pop",
+  "q": "Perintah apa yang digunakan untuk mengembalikan pekerjaan yang sebelumnya disimpan via git stash kembali ke meja kerja?",
+  "opts": [
+   "git stash pop",
+   "git stash drop",
+   "git stash clear",
+   "git stash hide"
+  ],
+  "ans": 0,
+  "why": "git stash pop mengambil perubahan yang tersimpan paling atas di tumpukan stash, menerapkannya ke working tree, lalu menghapusnya dari daftar stash."
+ },
+ {
+  "track": "git",
+  "topic": "Perjalanan Waktu: git revert, reset & git commit --amend",
+  "q": "Manakah perintah yang paling aman digunakan untuk membatalkan commit yang sudah terlanjur di-push ke server GitHub bersama tim?",
+  "opts": [
+   "git revert <commit_hash>",
+   "git reset --hard HEAD~1",
+   "git clean -f -d",
+   "git branch -D main"
+  ],
+  "ans": 0,
+  "why": "git revert membuat commit baru yang membatalkan perubahan sebelumnya tanpa merusak atau menulis ulang riwayat commit rekan tim lain di server bersama."
+ },
+ {
+  "track": "git",
+  "topic": "Rebase vs Merge & Best Practice Alur Kerja Git Flow",
+  "q": "Apa perbedaan visual utama antara hasil git rebase dibandingkan git merge?",
+  "opts": [
+   "git rebase menghasilkan riwayat commit linier lurus tanpa merge commit tambahan",
+   "git rebase menghapus seluruh file gambar dalam repositori",
+   "git merge hanya bisa dijalankan satu kali seumur hidup repositori",
+   "git rebase membutuhkan biaya langganan bulanan di GitHub"
+  ],
+  "ans": 0,
+  "why": "git rebase memindahkan basis commit cabang ke ujung cabang target, menghasilkan riwayat perubahan linier bersih tanpa percabangan ganda atau merge commit."
  },
  {
   "track": "js",
@@ -2734,6 +4150,318 @@ const QUIZ_BANK = [
   "why": "Hermes melakukan prekompilasi JavaScript menjadi bytecode sebelum aplikasi diinstall, memangkas proses parsing runtime sehingga startup aplikasi instan."
  },
  {
+  "track": "sql",
+  "topic": "Fondasi Basis Data Relasional & RDBMS",
+  "q": "Apa fungsi utama dari Primary Key dalam tabel basis data relasional?",
+  "opts": [
+   "Sebagai identitas unik penanda setiap baris data agar tidak terjadi duplikasi",
+   "Untuk mengenkripsi password dengan teknologi blockchain",
+   "Untuk mengubah format angka menjadi mata uang rupiah secara otomatis",
+   "Membatasi ukuran tabel maksimal 10 Megabyte"
+  ],
+  "ans": 0,
+  "why": "Primary Key memastikan setiap baris (record) dalam tabel memiliki pengenal unik yang tidak boleh kosong (NOT NULL) dan tidak boleh bernilai ganda (UNIQUE)."
+ },
+ {
+  "track": "sql",
+  "topic": "DDL: Membuat & Mengelola Tabel (CREATE, ALTER, DROP)",
+  "q": "Perintah SQL mana yang digunakan untuk menambahkan kolom baru ke dalam struktur tabel yang sudah ada?",
+  "opts": [
+   "ALTER TABLE ... ADD COLUMN ...",
+   "UPDATE TABLE ... INSERT COLUMN ...",
+   "CREATE COLUMN ... IN TABLE ...",
+   "MODIFY TABLE ... NEW COLUMN ..."
+  ],
+  "ans": 0,
+  "why": "ALTER TABLE adalah perintah DDL untuk memodifikasi struktur skema tabel, termasuk menambah kolom baru dengan klausa ADD COLUMN."
+ },
+ {
+  "track": "sql",
+  "topic": "DML: Memasukkan, Mengubah & Menghapus Data",
+  "q": "Apa yang akan terjadi jika developer menjalankan perintah 'DELETE FROM pelanggan;' tanpa menyertakan klausa WHERE?",
+  "opts": [
+   "Semua baris data pelanggan di dalam tabel akan terhapus tanpa sisa",
+   "Hanya baris paling atas yang terhapus",
+   "Database akan memunculkan pesan error dan membatalkan perintah",
+   "Struktur tabel pelanggan akan otomatis hilang"
+  ],
+  "ans": 0,
+  "why": "Klausa WHERE menentukan baris mana yang dihapus. Tanpa WHERE, perintah DELETE akan menghapus seluruh isi rekaman baris dalam tabel tersebut."
+ },
+ {
+  "track": "sql",
+  "topic": "Query Data: SELECT, DISTINCT, WHERE & Operator Logika",
+  "q": "Klausa mana yang digunakan untuk mencari produk yang namanya diawali dengan kata 'Laptop'?",
+  "opts": [
+   "WHERE nama LIKE 'Laptop%'",
+   "WHERE nama == 'Laptop*'",
+   "WHERE nama IN ('Laptop')",
+   "WHERE nama CONTAINS 'Laptop'"
+  ],
+  "ans": 0,
+  "why": "Dalam SQL standar, operator LIKE bersama wildcard % di akhir ('Laptop%') mencocokkan teks apa pun yang diawali dengan kata 'Laptop'."
+ },
+ {
+  "track": "sql",
+  "topic": "Mengurutkan & Paginasi: ORDER BY, LIMIT & OFFSET",
+  "q": "Jika Anda ingin menampilkan data pada halaman ke-4 dengan batas 15 data per halaman, berapa nilai OFFSET yang tepat?",
+  "opts": [
+   "OFFSET 45",
+   "OFFSET 60",
+   "OFFSET 30",
+   "OFFSET 15"
+  ],
+  "ans": 0,
+  "why": "Rumus paginasi adalah OFFSET = (Nomor Halaman - 1) * LIMIT. Untuk halaman ke-4: (4 - 1) * 15 = 45 data pertama dilewati."
+ },
+ {
+  "track": "sql",
+  "topic": "Agregasi & Pengelompokan: COUNT, SUM, GROUP BY & HAVING",
+  "q": "Klausa apa yang digunakan untuk menyaring hasil pengelompokan agregasi (misal: hanya menampilkan grup yang omzetnya di atas 10 juta)?",
+  "opts": [
+   "HAVING",
+   "WHERE",
+   "FILTER BY",
+   "ORDER BY"
+  ],
+  "ans": 0,
+  "why": "Klausa HAVING digunakan khusus untuk menyaring kondisi pada fungsi agregasi setelah data dikelompokkan oleh GROUP BY."
+ },
+ {
+  "track": "sql",
+  "topic": "Relasi Tabel I: Menguasai INNER JOIN & LEFT JOIN",
+  "q": "Apa hasil dari query LEFT JOIN jika baris pada tabel kiri tidak memiliki pasangan yang cocok di tabel kanan?",
+  "opts": [
+   "Baris tabel kiri tetap ditampilkan dan kolom tabel kanan diisi dengan nilai NULL",
+   "Baris tabel kiri akan otomatis dihapus dari database",
+   "Query akan menghasilkan error syntax",
+   "Baris tabel kanan akan diisi nilai angka 0"
+  ],
+  "ans": 0,
+  "why": "LEFT JOIN mempertahankan seluruh data dari tabel sebelah kiri, dan jika tidak ada kecocokan di tabel kanan, kolom tabel kanan akan bernilai NULL."
+ },
+ {
+  "track": "sql",
+  "topic": "Relasi Tabel II: RIGHT JOIN, FULL JOIN & Self Join",
+  "q": "Kapan teknik Self Join biasanya diterapkan pada basis data?",
+  "opts": [
+   "Ketika sebuah tabel memiliki relasi hierarkis ke dirinya sendiri (seperti struktur staf dan manajer)",
+   "Ketika kapasitas harddisk server hampir penuh",
+   "Ketika ingin menduplikasi seluruh tabel ke database cadangan",
+   "Ketika tidak ada koneksi internet pada server database"
+  ],
+  "ans": 0,
+  "why": "Self Join digunakan saat data memiliki hubungan relasional hierarkis atau perbandingan di dalam satu tabel yang sama, seperti struktur organisasi staf dan atasan."
+ },
+ {
+  "track": "sql",
+  "topic": "Subquery & Common Table Expressions (WITH / CTE)",
+  "q": "Klausa apa yang digunakan dalam SQL standar untuk mendefinisikan Common Table Expression (CTE)?",
+  "opts": [
+   "WITH",
+   "DEFINE",
+   "DECLARE",
+   "LET"
+  ],
+  "ans": 0,
+  "why": "Klausa WITH digunakan untuk membuat temporary named result set (CTE) yang memudahkan pembacaan dan modularitas query yang kompleks."
+ },
+ {
+  "track": "sql",
+  "topic": "Indeks & Optimasi Query: B-Tree Index & EXPLAIN",
+  "q": "Perintah apa yang digunakan developer untuk menganalisis rencana eksekusi dan kecepatan eksekusi query pada database?",
+  "opts": [
+   "EXPLAIN / EXPLAIN ANALYZE",
+   "SHOW SPEED QUERY",
+   "CHECK PERFORMANCE",
+   "DEBUG QUERY NOW"
+  ],
+  "ans": 0,
+  "why": "EXPLAIN (atau EXPLAIN ANALYZE di PostgreSQL/MySQL) menampilkan detail rencana eksekusi query (Query Plan), seperti apakah menggunakan index atau full table scan."
+ },
+ {
+  "track": "sql",
+  "topic": "Integritas Transaksi ACID: COMMIT & ROLLBACK",
+  "q": "Prinsip ACID manakah yang menjamin bahwa transaksi dieksekusi secara utuh atau dibatalkan seluruhnya (All-or-Nothing)?",
+  "opts": [
+   "Atomicity",
+   "Consistency",
+   "Isolation",
+   "Durability"
+  ],
+  "ans": 0,
+  "why": "Atomicity (keutuhan) memastikan bahwa seluruh rangkaian perintah dalam satu transaksi berhasil seluruhnya, atau jika gagal, database di-rollback ke kondisi semula."
+ },
+ {
+  "track": "sql",
+  "topic": "Desain Skema & Normalisasi Basis Data (1NF, 2NF, 3NF)",
+  "q": "Kapan sebuah tabel basis data relasional dikatakan telah memenuhi First Normal Form (1NF)?",
+  "opts": [
+   "Setiap sel kolom hanya berisi satu nilai tunggal (atomic value) dan tabel memiliki Primary Key",
+   "Tabel telah memiliki minimal 10 indeks B-Tree",
+   "Semua tabel telah menggunakan tipe data VARCHAR",
+   "Database telah terhubung ke cloud server"
+  ],
+  "ans": 0,
+  "why": "1NF mensyaratkan setiap kolom bernilai atomik (tidak ada multiple values/array di satu kolom) serta memiliki pengenal unik utama (Primary Key)."
+ },
+ {
+  "track": "ts",
+  "topic": "Mengapa TypeScript? Solusi Masalah Dinamis JS",
+  "q": "Kapan TypeScript memeriksa dan menangkap kesalahan tipe data (type error)?",
+  "opts": [
+   "Saat penulisan kode dan proses kompilasi (Compile-time), sebelum aplikasi dijalankan",
+   "Hanya setelah aplikasi di-deploy ke server produksi",
+   "Ketika browser pengguna kehabisan kuota internet",
+   "Hanya saat komputer di-restart"
+  ],
+  "ans": 0,
+  "why": "TypeScript menerapkan static type checking saat masa kompilasi (compile-time), mencegah bug tipe data lolos ke tahap runtime produksi."
+ },
+ {
+  "track": "ts",
+  "topic": "Tipe Data Primitif, Any & Type Inference",
+  "q": "Mengapa programmer profesional sangat menghindari penggunaan tipe 'any' di TypeScript?",
+  "opts": [
+   "Karena 'any' mematikan pemeriksaan tipe data dan menghilangkan manfaat keamanan TypeScript",
+   "Karena 'any' memperbesar ukuran file hingga sepuluh kali lipat",
+   "Karena 'any' dilarang oleh lisensi open-source",
+   "Karena 'any' hanya bisa dijalankan pada sistem operasi Linux"
+  ],
+  "ans": 0,
+  "why": "Tipe 'any' menonaktifkan mekanisme type safety, sehingga compiler tidak lagi memeriksa keabsahan pemanggilan metode atau operasi pada variabel tersebut."
+ },
+ {
+  "track": "ts",
+  "topic": "Koleksi Data: Array, Tuples & Readonly",
+  "q": "Apa perbedaan mendasar antara Tuple dan Array biasa di TypeScript?",
+  "opts": [
+   "Tuple memiliki jumlah elemen dan urutan tipe posisi yang telah ditentukan secara kaku",
+   "Tuple hanya dapat menampung data angka",
+   "Tuple tidak bisa diakses menggunakan indeks",
+   "Tuple otomatis dikonversi menjadi file database SQL"
+  ],
+  "ans": 0,
+  "why": "Tuple mendefinisikan tipe spesifik untuk setiap indeks dengan panjang array yang tetap, sedangkan Array biasa menampung elemen dengan tipe homogen tanpa batasan panjang kaku."
+ },
+ {
+  "track": "ts",
+  "topic": "Mengetik Fungsi: Parameter & Nilai Return",
+  "q": "Tipe return value apa yang digunakan untuk fungsi yang tidak mengembalikan nilai apa pun?",
+  "opts": [
+   "void",
+   "null",
+   "undefined",
+   "never"
+  ],
+  "ans": 0,
+  "why": "Tipe void menunjukkan ketiadaan nilai kembalian pada fungsi, umum digunakan pada fungsi yang hanya mencetak log atau memodifikasi state."
+ },
+ {
+  "track": "ts",
+  "topic": "Struktur Objek & Interfaces: Kontrak Data",
+  "q": "Modifier apa yang digunakan di dalam Interface agar suatu properti objek tidak bisa diubah nilainya setelah pertama kali dibuat?",
+  "opts": [
+   "readonly",
+   "const",
+   "private",
+   "static"
+  ],
+  "ans": 0,
+  "why": "Keyword readonly di depan nama properti interface memastikan nilai properti tersebut bersifat imutabel (hanya bisa dibaca) setelah inisialisasi."
+ },
+ {
+  "track": "ts",
+  "topic": "Type Aliases vs Interfaces & Union / Intersection Types",
+  "q": "Operator mana yang digunakan di TypeScript untuk membuat Union Type (variabel yang bisa menampung salah satu dari beberapa opsi tipe)?",
+  "opts": [
+   "Simbol pipa vertikal ( | )",
+   "Simbol ampersand ganda ( && )",
+   "Simbol tanda panah ( => )",
+   "Simbol titik dua ( : )"
+  ],
+  "ans": 0,
+  "why": "Operator pipa vertikal (|) merepresentasikan Union Type, memungkinkan suatu nilai memiliki tipe A atau tipe B."
+ },
+ {
+  "track": "ts",
+  "topic": "Literal Types & Teknik Type Narrowing",
+  "q": "Apa fungsi dari teknik Type Narrowing di TypeScript?",
+  "opts": [
+   "Menyempitkan tipe data yang luas/union menjadi tipe yang lebih spesifik di dalam blok logika kode",
+   "Menghapus spasi kosong pada string secara otomatis",
+   "Mengurangi resolusi gambar website",
+   "Mempercepat waktu booting komputer"
+  ],
+  "ans": 0,
+  "why": "Type Narrowing menyaring tipe dari union menjadi tipe pasti menggunakan type guards (seperti typeof, instanceof, in) sehingga operasi pada tipe tersebut aman dijalankan."
+ },
+ {
+  "track": "ts",
+  "topic": "Generics: Komponen Fleksibel Reusable",
+  "q": "Kapan developer paling tepat memanfaatkan fitur Generics (<T>) di TypeScript?",
+  "opts": [
+   "Ketika ingin membuat komponen, fungsi, atau interface yang reusable untuk berbagai macam tipe data dengan tetap menjaga type safety",
+   "Ketika ingin membuat animasi tombol 3D",
+   "Ketika ingin mengonfigurasi koneksi database MySQL",
+   "Ketika ingin membagi kode menjadi dua file terpisah"
+  ],
+  "ans": 0,
+  "why": "Generics memungkinkan pembuatan fungsi atau struktur data yang dapat bekerja dengan beragam tipe data tanpa mengorbankan keamanan type checking."
+ },
+ {
+  "track": "ts",
+  "topic": "Enums vs Const Objects: Memilih Pendekatan Terbaik",
+  "q": "Apa keuntungan utama menggunakan pola objek 'as const' dibandingkan Enum numerik di TypeScript?",
+  "opts": [
+   "Lebih ringan dan tidak menghasilkan kode wrapper JavaScript tambahan di file hasil kompilasi akhir",
+   "Otomatis tersimpan ke dalam database cloud",
+   "Mampu menggandakan kecepatan prosesor komputer",
+   "Menghilangkan kebutuhan menulis fungsi"
+  ],
+  "ans": 0,
+  "why": "Objek dengan 'as const' adalah pola JavaScript standar yang zero-cost saat kompilasi tanpa kode fungsi wrapper tambahan seperti enum klasik."
+ },
+ {
+  "track": "ts",
+  "topic": "OOP Modern: Classes, Modifiers & Implements",
+  "q": "Access modifier mana yang hanya mengizinkan properti diakses di dalam class itu sendiri dan class anak turunannya?",
+  "opts": [
+   "protected",
+   "private",
+   "public",
+   "internal"
+  ],
+  "ans": 0,
+  "why": "Modifier protected mengizinkan akses properti di dalam class yang mendefinisikannya serta sub-class yang mewarisinya, namun melarang akses langsung dari luar."
+ },
+ {
+  "track": "ts",
+  "topic": "Koleksi Utility Types Sakti: Partial, Pick, Omit & Record",
+  "q": "Utility type manakah yang digunakan untuk membuat tipe baru dengan membuang (mengecualikan) properti tertentu dari interface asli?",
+  "opts": [
+   "Omit<T, K>",
+   "Pick<T, K>",
+   "Partial<T>",
+   "Exclude<T, U>"
+  ],
+  "ans": 0,
+  "why": "Omit<T, K> mengonstruksi tipe baru dengan mengambil seluruh properti dari T kecuali properti kunci K yang disebutkan."
+ },
+ {
+  "track": "ts",
+  "topic": "Konfigurasi tsconfig.json & Panduan Migrasi Proyek",
+  "q": "Opsi konfigurasi mana di tsconfig.json yang mengaktifkan seluruh aturan pemeriksaan tipe paling ketat untuk menjamin kualitas kode terbaik?",
+  "opts": [
+   "\"strict\": true",
+   "\"fastMode\": true",
+   "\"noErrors\": true",
+   "\"autoFix\": true"
+  ],
+  "ans": 0,
+  "why": "\"strict\": true menyalakan sekumpulan flag pemeriksaan tipe ketat (seperti noImplicitAny, strictNullChecks, dll.) yang menjadi standar emas industri."
+ },
+ {
   "track": "mandarin",
   "topic": "Pinyin & Rahasia 4 Nada Suara",
   "q": "Bagaimana cara membaca sapaan 'Nǐ hǎo' (你好) yang benar sesuai aturan perubahan nada (Tone Sandhi)?",
@@ -2940,5 +4668,369 @@ const QUIZ_BANK = [
   ],
   "ans": 0,
   "why": "Radikal 氵 (sān diǎn shuǐ / tiga tetes air) adalah piktogram air yang selalu menjadi pembentuk karakter-karakter bertema cairan seperti hǎi (laut), hé (sungai), dan xǐ (mencuci)."
+ },
+ {
+  "track": "korean",
+  "topic": "Abjad Hangeul I: 10 Vokal & 14 Konsonan Dasar",
+  "q": "Bagaimana cara menulis suku kata vokal murni 'A' dalam abjad Hangeul yang benar?",
+  "opts": [
+   "아 (menggunakan konsonan netral ㅇ di depan vokal ㅏ)",
+   "ㅏ (hanya menulis garis vokal saja)",
+   "가",
+   "나"
+  ],
+  "ans": 0,
+  "why": "Dalam sistem penulisan Hangeul, sebuah blok suku kata wajib memiliki konsonan awal. Jika bunyinya vokal murni, digunakan lingkaran netral 'ㅇ' yang tidak berbunyi di awal (아)."
+ },
+ {
+  "track": "korean",
+  "topic": "Abjad Hangeul II: Vokal Ganda & Konsonan Kembar",
+  "q": "Huruf konsonan kembar 'ㄲ' diucapkan dengan cara seperti apa?",
+  "opts": [
+   "Ditekan tegas dan tegang di pita suara (KK padat)",
+   "Ditiup dengan hembusan angin yang sangat kuat",
+   "Dilesapkan menjadi bunyi desis S",
+   "Tidak diucapkan sama sekali"
+  ],
+  "ans": 0,
+  "why": "Konsonan ganda (ssang-jaeum) seperti ㄲ, ㄸ, ㅃ, ㅆ, ㅉ memiliki karakteristik suara tegang (tense) tanpa hembusan udara napas."
+ },
+ {
+  "track": "korean",
+  "topic": "Rahasia Konsonan Akhir (Batchim) & Hukum Alami",
+  "q": "Bagaimana cara membaca kata '한국어' (Bahasa Korea) yang benar sesuai hukum pelafalan Liaison?",
+  "opts": [
+   "Hangugeo (konsonan g meluncur menyambung ke vokal eo)",
+   "Han guk eo (berhenti kaku per suku kata)",
+   "Hangueo",
+   "Hangkuk"
+  ],
+  "ans": 0,
+  "why": "Sesuai hukum liaison (yeon-eum), konsonan batchim 'ㄱ' pada '국' menyambung ke vokal '어' di sebelahnya sehingga dibaca mengalir: 'Hangugeo'."
+ },
+ {
+  "track": "korean",
+  "topic": "Salam, Maaf & Etika Kesopanan (존댓말 Jondaetmal)",
+  "q": "Salam perpisahan apa yang Anda katakan kepada tuan rumah saat Anda berpamitan pulang duluan?",
+  "opts": [
+   "Annyeonghi gyeseyo (Selamat tinggal bagi yang tetap tinggal)",
+   "Annyeonghi gaseyo",
+   "Gamsahamnida",
+   "Joesonghamnida"
+  ],
+  "ans": 0,
+  "why": "'Annyeonghi gyeseyo' secara harfiah berarti 'Tinggallah dalam damai', diucapkan kepada pihak yang tetap tinggal di tempat saat kita berpamitan pergi."
+ },
+ {
+  "track": "korean",
+  "topic": "Perkenalan Diri Supriyanto (은/는 & 이에요/예요)",
+  "q": "Bagaimana kalimat Supriyanto untuk memperkenalkan dirinya: 'Saya adalah Supriyanto' dalam bahasa Korea sopan?",
+  "opts": [
+   "저는 수프리얀토예요. (Jeoneun Supeuriyantoyeyo)",
+   "저는 수프리얀토이에요.",
+   "수프리얀토는 저예요.",
+   "안녕 수프리얀토."
+  ],
+  "ans": 0,
+  "why": "Kata '수프리얀토' diakhiri huruf vokal 'ㅗ', sehingga menggunakan akhiran identitas '예요' (Jeoneun Supeuriyantoyeyo)."
+ },
+ {
+  "track": "korean",
+  "topic": "Kepemilikan & Keberadaan (이/가 & 있어요/없어요)",
+  "q": "Bagaimana cara mengatakan 'Saya tidak punya mobil' dalam bahasa Korea?",
+  "opts": [
+   "차가 없어요. (Chaga eopseoyo.)",
+   "차가 있어요.",
+   "돈이 있어요.",
+   "차는 사람이에요."
+  ],
+  "ans": 0,
+  "why": "Kata '차' (mobil) berakhiran vokal sehingga memakai partikel '가', dan '없어요' menyatakan ketidakberadaan / tidak punya (Chaga eopseoyo)."
+ },
+ {
+  "track": "korean",
+  "topic": "Dua Sistem Angka Korea: Sino-Korea vs Native Korea",
+  "q": "Sistem angka mana yang digunakan untuk menyebutkan harga belanja uang Won dan nomor telepon di Korea?",
+  "opts": [
+   "Sistem Angka Sino-Korea (일, 이, 삼, 사...)",
+   "Sistem Angka Asli Korea (하나, 둘, 셋...)",
+   "Sistem Romawi kuno",
+   "Hanya menggunakan angka biner"
+  ],
+  "ans": 0,
+  "why": "Angka Sino-Korea digunakan untuk menghitung nominal uang (Won), menit waktu, nomor telepon, lantai gedung, dan tanggal kalender."
+ },
+ {
+  "track": "korean",
+  "topic": "Kata Kerja & Akhiran Waktu Sekarang (-아요/-어요)",
+  "q": "Bagaimana bentuk konjugasi sopan masa sekarang dari kata kerja '먹다' (Meokda = Makan)?",
+  "opts": [
+   "먹어요 (Meogeoyo)",
+   "먹아요",
+   "먹해요",
+   "먹다요"
+  ],
+  "ans": 0,
+  "why": "Kata dasar '먹' memiliki vokal 'ㅓ' (bukan ㅏ atau ㅗ), sehingga menurut aturan harmonisasi vokal mendapat akhiran '-어요' menjadi '먹어요'."
+ },
+ {
+  "track": "korean",
+  "topic": "Jam, Tanggal & Pola Keterangan Waktu (Partikel 에)",
+  "q": "Bagaimana cara mengucapkan 'Jam 2 tepat' dalam bahasa Korea?",
+  "opts": [
+   "두 시 (Du si)",
+   "이 시",
+   "둘 시",
+   "하나 시"
+  ],
+  "ans": 0,
+  "why": "Jam selalu menggunakan angka asli Korea (하나, 둘, 셋...) dan saat menempel pada satuan hitung '시' (jam), angka '둘' disingkat menjadi '두' (Du si)."
+ },
+ {
+  "track": "korean",
+  "topic": "Menanyakan Lokasi: Partikel 에서 (Aktivitas) vs 에 (Arah)",
+  "q": "Partikel tempat mana yang tepat untuk melengkapi kalimat aktivitas: 'Kape___ kodinghaeyo' (Saya koding di kafe)?",
+  "opts": [
+   "에서 (Kape-eseo)",
+   "에",
+   "은",
+   "를"
+  ],
+  "ans": 0,
+  "why": "Partikel '에서' digunakan untuk menandai lokasi tempat terjadinya suatu kegiatan atau tindakan dinamis (seperti bekerja, belajar, atau makan)."
+ },
+ {
+  "track": "korean",
+  "topic": "Memesan Makanan di Restoran Korea (주세요)",
+  "q": "Kata apa yang digunakan untuk memanggil pelayan restoran dengan sopan di Korea ('Permisi di sini!')?",
+  "opts": [
+   "여기요! (Yeogiyo!) atau 저기요! (Jeogiyo!)",
+   "안녕!",
+   "주세요!",
+   "미안해!"
+  ],
+  "ans": 0,
+  "why": "'여기요' (Yeogiyo = di sini) atau '저기요' (Jeogiyo = di sana) adalah ungkapan standar sopan untuk memanggil perhatian pelayan di restoran Korea."
+ },
+ {
+  "track": "korean",
+  "topic": "Berbelanja & Bertanya Harga: 얼마예요? & 깎아주세요",
+  "q": "Bagaimana cara menanyakan harga barang 'Ini berapa harganya?' dalam bahasa Korea?",
+  "opts": [
+   "이거 얼마예요? (Igeo eolmayeyo?)",
+   "이거 어디예요?",
+   "이거 누구예요?",
+   "이거 뭐예요?"
+  ],
+  "ans": 0,
+  "why": "'얼마' berarti berapa banyak (harga), sehingga '이거 얼마예요?' adalah frasa standar untuk menanyakan harga barang."
+ },
+ {
+  "track": "korean",
+  "topic": "Arah & Transportasi Kota: Taksi & Subway (지하철)",
+  "q": "Kalimat apa yang Anda katakan kepada sopir taksi saat ingin turun di lokasi saat ini: 'Tolong turunkan saya di sini'?",
+  "opts": [
+   "여기서 내려주세요. (Yeogiseo naeryeojuseyo.)",
+   "저기서 타세요.",
+   "빨리 가세요.",
+   "어디로 가요?"
+  ],
+  "ans": 0,
+  "why": "'여기서' (di sini) + '내려주세요' (tolong turunkan) adalah ungkapan yang digunakan saat penumpang ingin berhenti dan turun dari kendaraan."
+ },
+ {
+  "track": "korean",
+  "topic": "Mengungkapkan Keinginan (-고 싶어요) & Obrolan Santai",
+  "q": "Bagaimana cara menyusun kalimat 'Saya ingin belajar bahasa Korea' menggunakan rumus -고 싶어요?",
+  "opts": [
+   "한국어를 공부하고 싶어요. (Hangugeoreul gongbuhago sipeoyo.)",
+   "한국어를 공부해요 싶어요.",
+   "한국어를 공부가 있어요.",
+   "한국어는 공부하고 없어요."
+  ],
+  "ans": 0,
+  "why": "Akar kata kerja '공부하' (belajar) langsung digabungkan dengan akhiran keinginan '-고 싶어요' menjadi '공부하고 싶어요'."
+ },
+ {
+  "track": "japanese",
+  "topic": "Hiragana Bagian 1: Vokal A-I-U-E-O hingga Baris Na",
+  "q": "Bagaimana cara membaca karakter Hiragana pada baris 'S' berikut ini: 'し'?",
+  "opts": [
+   "Shi",
+   "Si",
+   "Sa",
+   "Su"
+  ],
+  "ans": 0,
+  "why": "Dalam sistem fonetik bahasa Jepang standar, baris S untuk vokal I dilafalkan sebagai 'Shi' (し), bukan 'Si'."
+ },
+ {
+  "track": "japanese",
+  "topic": "Hiragana Bagian 2: Baris Ha sampai N & Tanda Dakuten",
+  "q": "Karakter 'は' (ha) jika diberi tanda lingkaran kecil Maru (゜) di atasnya berubah bunyinya menjadi apa?",
+  "opts": [
+   "ぱ (Pa)",
+   "ば (Ba)",
+   "が (Ga)",
+   "ざ (Za)"
+  ],
+  "ans": 0,
+  "why": "Tanda lingkaran Maru (handakuten) khusus pada baris H mengubah bunyinya menjadi bunyi letup P (pa, pi, pu, pe, po)."
+ },
+ {
+  "track": "japanese",
+  "topic": "Huruf Katakana: Kata Serapan Asing & Istilah Modern",
+  "q": "Bagaimana cara penulisan nama negara 'Indonesia' dalam huruf Katakana yang tepat?",
+  "opts": [
+   "インドネシア (Indoneshia)",
+   "いんどねしあ",
+   "アメリカ",
+   "にほん"
+  ],
+  "ans": 0,
+  "why": "Nama negara asing ditulis menggunakan abjad Katakana: イ (i) + ン (n) + ド (do) + ネ (ne) + シ (shi) + ア (a) = インドネシア."
+ },
+ {
+  "track": "japanese",
+  "topic": "Kanji Dasar Sehari-hari: Cara Baca Onyomi vs Kunyomi",
+  "q": "Kapan cara baca Onyomi (bunyi serapan Tiongkok) biasanya digunakan pada karakter Kanji?",
+  "opts": [
+   "Ketika dua atau lebih karakter Kanji bergabung membentuk kata majemuk",
+   "Ketika Kanji berdiri sendiri tanpa huruf lain",
+   "Hanya saat menulis nama hewan",
+   "Ketika berbicara dengan anak kecil"
+  ],
+  "ans": 0,
+  "why": "Cara baca Onyomi umumnya dipakai saat beberapa kanji bergabung menjadi kosakata majemuk (seperti 日本, 大学, 先生)."
+ },
+ {
+  "track": "japanese",
+  "topic": "Salam & Etika Percakapan Bahasa Jepang (Aisatsu)",
+  "q": "Kata multifungsi apa yang paling sering digunakan orang Jepang untuk permisi, memanggil pelayan, maupun meminta maaf?",
+  "opts": [
+   "Sumimasen (すみません)",
+   "Sayounara",
+   "Konnichiwa",
+   "Oyasuminasai"
+  ],
+  "ans": 0,
+  "why": "'Sumimasen' adalah kata paling berguna dalam bahasa Jepang untuk meminta maaf ringan, permisi lewat, maupun memanggil pelayan restoran."
+ },
+ {
+  "track": "japanese",
+  "topic": "Perkenalan Diri Supriyanto (Pola 〜は〜です)",
+  "q": "Bagaimana cara membaca partikel penanda topik 'は' ketika berada di dalam kalimat (contoh: わたしは)?",
+  "opts": [
+   "Dibaca 'Wa'",
+   "Dibaca 'Ha'",
+   "Dibaca 'He'",
+   "Tidak dibaca"
+  ],
+  "ans": 0,
+  "why": "Secara historis huruf 'は' berbunyi 'ha', namun ketika berfungsi khusus sebagai partikel penanda topik kalimat, ia wajib dilafalkan sebagai 'wa'."
+ },
+ {
+  "track": "japanese",
+  "topic": "Menunjuk Benda & Lokasi: Kore, Sore, Are & Doko",
+  "q": "Bagaimana cara menanyakan 'Toilet ada di mana?' dalam bahasa Jepang yang sopan?",
+  "opts": [
+   "トイレはどこですか？ (Toire wa doko desu ka?)",
+   "トイレはここですか？",
+   "トイレはだれですか？",
+   "トイレはなんですか？"
+  ],
+  "ans": 0,
+  "why": "'どこ' berarti di mana, sehingga 'Toire wa doko desu ka?' adalah kalimat baku menanyakan lokasi toilet."
+ },
+ {
+  "track": "japanese",
+  "topic": "Angka, Jam & Satuan Waktu (Ji, Fun, Jikan)",
+  "q": "Bagaimana cara menyebutkan 'Jam 3 tepat' dalam bahasa Jepang?",
+  "opts": [
+   "さんじ (San-ji)",
+   "いちじ",
+   "よじ",
+   "ごじ"
+  ],
+  "ans": 0,
+  "why": "Angka 3 adalah 'san', ditambahkan akhiran satuan jam 'ji' menjadi 'san-ji' (さんじ)."
+ },
+ {
+  "track": "japanese",
+  "topic": "Kata Kerja Bentuk Masu (〜ます / 〜ません)",
+  "q": "Bentuk sopan lampau dari kata kerja 'Makan' (Saya sudah makan) adalah?",
+  "opts": [
+   "たべました (Tabemashita)",
+   "たべます",
+   "たべません",
+   "たべる"
+  ],
+  "ans": 0,
+  "why": "Akhiran '~ました' (-mashita) digunakan untuk menyatakan perbuatan yang telah selesai dilakukan di masa lampau secara sopan."
+ },
+ {
+  "track": "japanese",
+  "topic": "Partikel Inti: を (Objek), に (Tujuan), で (Alat/Tempat)",
+  "q": "Partikel apa yang digunakan untuk menandai objek makanan pada kalimat 'Kohi ___ nomimasu' (Saya minum kopi)?",
+  "opts": [
+   "を (o)",
+   "に (ni)",
+   "で (de)",
+   "は (wa)"
+  ],
+  "ans": 0,
+  "why": "Partikel 'を' (o) berfungsi sebagai penanda objek penderita tindakan langsung dari kata kerja."
+ },
+ {
+  "track": "japanese",
+  "topic": "Memesan Makanan di Restoran Jepang (〜をください)",
+  "q": "Ungkapan apa yang diucapkan orang Jepang setelah selesai makan sebagai ucapan terima kasih atas hidangan lezat?",
+  "opts": [
+   "ごちそうさまでした (Gochisousama deshita)",
+   "いただきます",
+   "おねがいします",
+   "いらっしゃいませ"
+  ],
+  "ans": 0,
+  "why": "'Gochisousama deshita' diucapkan setelah selesai makan sebagai ungkapan syukur dan terima kasih kepada yang memasak hidangan."
+ },
+ {
+  "track": "japanese",
+  "topic": "Berbelanja & Bertanya Harga: いくらですか",
+  "q": "Bagaimana cara menanyakan 'Berapa harga barang ini?' dalam bahasa Jepang?",
+  "opts": [
+   "これはいくらですか？ (Kore wa ikura desu ka?)",
+   "これはどこですか？",
+   "これはなんですか？",
+   "これはだれですか？"
+  ],
+  "ans": 0,
+  "why": "'いくら' (ikura) berarti berapa harga, sehingga 'Kore wa ikura desu ka?' adalah frasa standar menanyakan harga barang."
+ },
+ {
+  "track": "japanese",
+  "topic": "Arah, Stasiun Kereta & Transportasi Kota",
+  "q": "Apa arti dari kata penunjuk arah 'まっすぐ' (Massugu)?",
+  "opts": [
+   "Lurus terus",
+   "Belok kiri",
+   "Belok kanan",
+   "Putar balik"
+  ],
+  "ans": 0,
+  "why": "'Massugu' berarti berjalan lurus ke depan tanpa berbelok."
+ },
+ {
+  "track": "japanese",
+  "topic": "Keinginan (〜たいです) & Ajakan Santai (〜ましょう)",
+  "q": "Bagaimana cara mengatakan 'Saya ingin pergi ke Jepang' menggunakan rumus keinginan ~たいです?",
+  "opts": [
+   "日本へ行きたいです。 (Nihon e ikitai desu.)",
+   "日本へ行きますです。",
+   "日本へ行きましたです。",
+   "日本へ行かないです。"
+  ],
+  "ans": 0,
+  "why": "Kata kerja 'ikimasu' (pergi) diubah menjadi bentuk keinginan dengan mengganti akhiran -masu menjadi -tai desu: 'ikitai desu'."
  }
 ];

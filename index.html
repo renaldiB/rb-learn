@@ -3,8 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; font-src 'self' data:; img-src 'self' data:; media-src 'self' data:; connect-src 'self';">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <title>RB Learning — Platform Kurikulum Software Engineering, AI &amp; Bahasa Dunia</title>
-<meta name="description" content="Platform belajar Software Engineering, AI &amp; Bahasa Dunia: JavaScript, Playwright, Mojo, Python, React Native, Flutter, dan Mandarin. Materi terstruktur, kuis, dan playground.">
+<meta name="description" content="Platform belajar Software Engineering, AI &amp; Bahasa Dunia: Flutter, Git, JavaScript, Mojo, Playwright, Python, React Native, SQL, TypeScript, Mandarin, Korea, dan Jepang.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%231c1917'/%3E%3Ctext x='32' y='41' font-family='monospace' font-size='24' font-weight='700' text-anchor='middle' fill='%23faf9f6'%3E%7B%7D%3C/text%3E%3C/svg%3E">
 <link rel="stylesheet" href="css/style.css">
 </head>
@@ -12,7 +15,6 @@
 
 <a class="skip-link" href="#view">Langsung ke materi</a>
 
-<!-- ================= SIDEBAR ================= -->
 <div class="sidebar-scrim" id="sidebarScrim"></div>
 <aside class="sidebar" id="sidebar">
   <div class="side-head">
@@ -31,12 +33,12 @@
     <kbd>/</kbd>
   </div>
 
-  <nav class="side-nav" id="sideNav"><!-- diisi app.js --></nav>
+  <nav class="side-nav" id="sideNav"></nav>
 
   <div class="side-foot">
     <div class="side-progress">
       <div class="sp-top">
-        <span id="spLabel">0 dari 82 materi</span>
+        <span id="spLabel">0 dari 146 materi</span>
         <span id="spPct">0%</span>
       </div>
       <div class="sp-track"><div class="sp-fill" id="spFill"></div></div>
@@ -53,7 +55,6 @@
   </div>
 </aside>
 
-<!-- ================= MAIN ================= -->
 <div class="main">
   <header class="topbar">
     <button class="icon-btn menu-btn" id="menuBtn" aria-label="Buka menu">
@@ -63,7 +64,7 @@
     <div class="topbar-actions" id="topbarActions"></div>
   </header>
 
-  <main id="view" class="view" tabindex="-1"><!-- diisi app.js --></main>
+  <main id="view" class="view" tabindex="-1"></main>
 
   <footer class="foot">
     <span>RB Learning — Platform Kurikulum Software Engineering, AI &amp; Bahasa Dunia.</span>

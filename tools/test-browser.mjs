@@ -124,29 +124,37 @@ async function run() {
       return await cdp.send('Runtime.evaluate', { expression: expr, returnByValue: true });
     }
 
-    // 1. Beranda with 7 Tracks & Categories (Light Mode)
+    // 1. Beranda with 12 Tracks & Categories
     await cdp.send('Page.navigate', { url: BASE_URL + '/#/' });
     await sleep(600);
     await evalCode('localStorage.clear(); applyTheme("light"); render(); renderSidebar();');
     await sleep(300);
-    await capture('beranda-with-categories.png', 1440, 1100);
+    await capture('beranda-12-tracks.png', 1440, 1200);
 
-    // 2. Mandarin Lesson 01 (Dark Mode - matching user screenshot)
-    await cdp.send('Page.navigate', { url: BASE_URL + '/#/m/zh-01' });
+    // 2. Git Lesson showing Bookmark & Notes
+    await cdp.send('Page.navigate', { url: BASE_URL + '/#/m/git-01' });
     await sleep(500);
-    await evalCode('applyTheme("dark");');
+    await evalCode(`
+      document.querySelector('#btnBookmark').click();
+      const area = document.querySelector('#notesArea');
+      area.value = 'Catatan Supriyanto: Git adalah mesin waktu kode yang menyimpan snapshot checkpoint proyek.';
+      area.dispatchEvent(new Event('input'));
+    `);
     await sleep(300);
-    await capture('mandarin-lesson-01-dark.png', 1440, 950);
+    await capture('git-lesson-bookmark-notes.png', 1440, 950);
 
-    // 3. Mandarin Lesson 03 Dialog (Dark Mode - matching user uploaded screen)
-    await cdp.send('Page.navigate', { url: BASE_URL + '/#/m/zh-03' });
+    // 3. Korean Lesson Audio
+    await cdp.send('Page.navigate', { url: BASE_URL + '/#/m/ko-01' });
     await sleep(500);
-    await evalCode('applyTheme("dark");');
-    await sleep(300);
-    await capture('zh-03-dialog.png', 1440, 950);
+    await capture('korean-lesson-audio.png', 1440, 950);
+
+    // 4. Flashcard View
+    await cdp.send('Page.navigate', { url: BASE_URL + '/#/flashcard' });
+    await sleep(500);
+    await capture('flashcard-view.png', 1440, 950);
 
     cdp.close();
-    console.log('Revamped screenshots captured successfully.');
+    console.log('All screenshots captured successfully.');
   } catch (err) {
     console.error('Error during testing:', err);
   } finally {

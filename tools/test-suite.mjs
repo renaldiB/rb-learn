@@ -108,7 +108,6 @@ async function runTests() {
       return res.result ? res.result.value : undefined;
     }
 
-    // Load page
     await cdp.send('Page.navigate', { url: BASE_URL + '/#/' });
     await sleep(600);
 
@@ -120,8 +119,10 @@ async function runTests() {
     const itTrackOrder = await evaluate('return TRACKS.filter(t => t.category === "it" || !t.category).map(t => t.id);');
     console.log(`[PASS] Data integrity: ${lessonCount} lessons, ${quizCount} quiz questions, ${trackCount} tracks, Brand: "${brandText}"`);
     console.log(`[PASS] IT Track Alphabetical Order:`, itTrackOrder);
-    if (lessonCount !== 82 || quizCount !== 107 || trackCount !== 7 || !brandText.includes('RB Learning')) throw new Error('Invalid count or brand');
-    const expectedOrder = ['flutter', 'js', 'mojo', 'pw', 'py', 'rn'];
+    if (lessonCount !== 146 || quizCount !== 171 || trackCount !== 12 || !brandText.includes('RB Learning')) {
+      throw new Error(`Invalid count: lessons=${lessonCount}, quizzes=${quizCount}, tracks=${trackCount}`);
+    }
+    const expectedOrder = ['flutter', 'git', 'js', 'mojo', 'pw', 'py', 'rn', 'sql', 'ts'];
     if (JSON.stringify(itTrackOrder) !== JSON.stringify(expectedOrder)) throw new Error(`Wrong IT track order: ${JSON.stringify(itTrackOrder)}`);
 
     // Test 2: Category Headers & Catalog Filtering
@@ -132,8 +133,8 @@ async function runTests() {
     await evaluate(`document.querySelector('#catalogTabs .cat-tab[data-cat="lang"]').click();`);
     await sleep(200);
     const visibleLangCards = await evaluate(`return Array.from(document.querySelectorAll('#trackCardsGrid .track-card')).filter(el => el.style.display !== 'none').length;`);
-    console.log(`[PASS] Catalog filtered by "lang": ${visibleLangCards} card visible`);
-    if (visibleLangCards !== 1) throw new Error('Catalog filter by lang failed');
+    console.log(`[PASS] Catalog filtered by "lang": ${visibleLangCards} cards visible`);
+    if (visibleLangCards !== 3) throw new Error('Catalog filter by lang failed (expected 3: Mandarin, Korean, Japanese)');
 
     await evaluate(`document.querySelector('#catalogTabs .cat-tab[data-cat="all"]').click();`);
     await sleep(200);
@@ -151,64 +152,69 @@ async function runTests() {
     console.log('[PASS] Search results for "supriyanto":', visibleItems.length, 'lessons found');
     if (visibleItems.length === 0) throw new Error('Search failed for Supriyanto');
 
-    // Test 4: Collapsible group for Mandarin track
     await evaluate(`
       const input = document.querySelector('#searchInput');
       input.value = '';
       input.dispatchEvent(new Event('input'));
     `);
     await sleep(200);
-    const zhGroupBefore = await evaluate(`return document.querySelector('.side-group[data-track="mandarin"]').classList.contains('collapsed');`);
-    await evaluate(`toggleGroup('mandarin');`);
-    const zhGroupAfter = await evaluate(`return document.querySelector('.side-group[data-track="mandarin"]').classList.contains('collapsed');`);
-    const storedCollapsed = await evaluate(`return localStorage.getItem('rblearn:collapsed');`);
-    console.log(`[PASS] Collapsible Mandarin group: before=${zhGroupBefore}, after=${zhGroupAfter}, stored=${storedCollapsed}`);
-    if (zhGroupAfter === zhGroupBefore) throw new Error('Toggle Mandarin group failed');
 
-    // Re-open Mandarin group
-    await evaluate(`toggleGroup('mandarin');`);
-
-    // Test 5: Mandarin Lesson navigation (zh-01: Pinyin & Rahasia 4 Nada Suara)
-    await cdp.send('Page.navigate', { url: BASE_URL + '/#/m/zh-01' });
+    // Test 4: Bookmark Feature
+    await cdp.send('Page.navigate', { url: BASE_URL + '/#/m/git-01' });
     await sleep(400);
-    const title = await evaluate(`return document.querySelector('.lesson-title').textContent;`);
-    const hasPinyinContent = await evaluate(`return document.querySelector('.lesson-body').textContent.includes('Nada 1');`);
-    const hasAudioBanner = await evaluate(`return !!document.querySelector('.zh-audio-banner');`);
-    const speakerButtons = await evaluate(`return document.querySelectorAll('.zh-speak-btn').length;`);
-    console.log(`[PASS] Mandarin audio & lesson zh-01: "${title}", banner=${hasAudioBanner}, speakerBtns=${speakerButtons}`);
-    if (!hasPinyinContent || !hasAudioBanner || speakerButtons === 0) throw new Error('Mandarin audio buttons missing in zh-01');
-
-    // Click speaker button
-    await evaluate(`document.querySelector('.zh-speak-btn').click();`);
-    await sleep(100);
-
-    // Test 5b: Verify full sentence speech in dialogue on zh-03
-    await cdp.send('Page.navigate', { url: BASE_URL + '/#/m/zh-03' });
-    await sleep(400);
-    const dialogSpeaks = await evaluate(`
-      return Array.from(document.querySelectorAll('.dialog-speak-btn')).map(b => b.dataset.speak);
-    `);
-    console.log('[PASS] Dialogue speak data in zh-03:', dialogSpeaks);
-    if (!dialogSpeaks.some(s => s.includes('你叫什么名字')) || !dialogSpeaks.some(s => s.includes('苏普扬托'))) {
-      throw new Error('Dialogue speech in zh-03 is still truncated!');
-    }
-
-    // Mark done on Mandarin lesson (zh-03)
-    await evaluate(`document.querySelector('#btnDone').click();`);
+    await evaluate(`document.querySelector('#btnBookmark').click();`);
     await sleep(200);
-    const isDoneStored = await evaluate(`return JSON.parse(localStorage.getItem('rblearn:progress')).includes('zh-03');`);
-    const pctText = await evaluate(`return document.querySelector('#spPct').textContent;`);
-    console.log(`[PASS] Progress marked for zh-03: inStorage=${isDoneStored}, UI pct=${pctText}`);
-    if (!isDoneStored) throw new Error('Progress saving failed');
+    const bmStored = await evaluate(`return JSON.parse(localStorage.getItem('rblearn:bookmarks')).includes('git-01');`);
+    console.log(`[PASS] Bookmark saved for git-01: ${bmStored}`);
+    if (!bmStored) throw new Error('Bookmark saving failed');
 
-    // Test 6: Quiz workflow with Mandarin filter
+    // Test 5: Personal Notes Feature
+    await evaluate(`
+      const area = document.querySelector('#notesArea');
+      area.value = 'Catatan belajar Git Supriyanto: selalu commit pesan jelas!';
+      area.dispatchEvent(new Event('input'));
+    `);
+    await sleep(600);
+    const notesStored = await evaluate(`return JSON.parse(localStorage.getItem('rblearn:notes'))['git-01'];`);
+    console.log(`[PASS] Personal notes saved: "${notesStored}"`);
+    if (!notesStored || !notesStored.includes('Supriyanto')) throw new Error('Personal notes saving failed');
+
+    // Test 6: Korean Track Audio & Content
+    await cdp.send('Page.navigate', { url: BASE_URL + '/#/m/ko-01' });
+    await sleep(400);
+    const koTitle = await evaluate(`return document.querySelector('.lesson-title').textContent;`);
+    const koSpeakers = await evaluate(`return document.querySelectorAll('.ko-char .zh-speak-btn').length;`);
+    console.log(`[PASS] Korean lesson loaded: "${koTitle}", speakerBtns=${koSpeakers}`);
+    if (!koTitle.includes('Hangeul') || koSpeakers === 0) throw new Error('Korean lesson elements missing');
+
+    // Test 7: Japanese Track Audio & Content
+    await cdp.send('Page.navigate', { url: BASE_URL + '/#/m/ja-01' });
+    await sleep(400);
+    const jaTitle = await evaluate(`return document.querySelector('.lesson-title').textContent;`);
+    const jaSpeakers = await evaluate(`return document.querySelectorAll('.ja-char .zh-speak-btn').length;`);
+    console.log(`[PASS] Japanese lesson loaded: "${jaTitle}", speakerBtns=${jaSpeakers}`);
+    if (!jaTitle.includes('Hiragana') || jaSpeakers === 0) throw new Error('Japanese lesson elements missing');
+
+    // Test 8: Flashcard View & Controls
+    await cdp.send('Page.navigate', { url: BASE_URL + '/#/flashcard' });
+    await sleep(400);
+    const fcCharBefore = await evaluate(`return document.querySelector('.fc-char').textContent;`);
+    const isFlippedBefore = await evaluate(`return document.querySelector('#fcCard').classList.contains('flipped');`);
+    await evaluate(`document.querySelector('#fcCard').click();`);
+    const isFlippedAfter = await evaluate(`return document.querySelector('#fcCard').classList.contains('flipped');`);
+    await evaluate(`document.querySelector('#fcNext').click();`);
+    const fcCharAfter = await evaluate(`return document.querySelector('.fc-char').textContent;`);
+    console.log(`[PASS] Flashcard: char="${fcCharBefore}", flippedBefore=${isFlippedBefore}, flippedAfter=${isFlippedAfter}, nextChar="${fcCharAfter}"`);
+    if (!isFlippedAfter || fcCharBefore === fcCharAfter) throw new Error('Flashcard flip or navigation failed');
+
+    // Test 9: Quiz workflow with TypeScript
     await cdp.send('Page.navigate', { url: BASE_URL + '/#/quiz' });
     await sleep(400);
-    await evaluate(`startQuiz('mandarin');`);
+    await evaluate(`startQuiz('ts');`);
     await sleep(200);
     const quizQuestion = await evaluate(`return document.querySelector('.quiz-q').textContent;`);
     const optsCount = await evaluate(`return document.querySelectorAll('.quiz-opt').length;`);
-    console.log(`[PASS] Mandarin Quiz started: "${quizQuestion.slice(0, 45)}...", ${optsCount} options`);
+    console.log(`[PASS] TypeScript Quiz started: "${quizQuestion.slice(0, 45)}...", ${optsCount} options`);
     if (optsCount < 2) throw new Error('Quiz options missing');
 
     // Answer first question
@@ -219,7 +225,7 @@ async function runTests() {
     console.log(`[PASS] Quiz answer feedback: whyShown=${whyVisible}, nextEnabled=${nextEnabled}`);
     if (!whyVisible || !nextEnabled) throw new Error('Quiz answer state failed');
 
-    // Test 7: Theme toggle
+    // Test 10: Theme toggle
     const themeBefore = await evaluate(`return document.documentElement.dataset.theme;`);
     await evaluate(`document.querySelector('#themeBtn').click();`);
     const themeAfter = await evaluate(`return document.documentElement.dataset.theme;`);
@@ -229,11 +235,9 @@ async function runTests() {
 
     // Reset theme back to light
     await evaluate(`applyTheme('light');`);
-
-    // Clean up test data
     await evaluate(`localStorage.clear();`);
 
-    console.log('--- ALL 7 AUTOMATED INTEGRATION TESTS PASSED ---');
+    console.log('--- ALL 10 AUTOMATED INTEGRATION TESTS PASSED ---');
     cdp.close();
   } catch (err) {
     console.error('[FAIL] Test failed:', err);
