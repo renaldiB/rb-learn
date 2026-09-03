@@ -169,8 +169,14 @@ async function runTests() {
     await sleep(400);
     const title = await evaluate(`return document.querySelector('.lesson-title').textContent;`);
     const hasPinyinContent = await evaluate(`return document.querySelector('.lesson-body').textContent.includes('Nada 1');`);
-    console.log(`[PASS] Lesson navigation to zh-01: "${title}", hasPinyinContent=${hasPinyinContent}`);
-    if (!hasPinyinContent) throw new Error('Pinyin content missing in zh-01');
+    const hasAudioBanner = await evaluate(`return !!document.querySelector('.zh-audio-banner');`);
+    const speakerButtons = await evaluate(`return document.querySelectorAll('.zh-speak-btn').length;`);
+    console.log(`[PASS] Mandarin audio & lesson zh-01: "${title}", banner=${hasAudioBanner}, speakerBtns=${speakerButtons}`);
+    if (!hasPinyinContent || !hasAudioBanner || speakerButtons === 0) throw new Error('Mandarin audio buttons missing in zh-01');
+
+    // Click speaker button
+    await evaluate(`document.querySelector('.zh-speak-btn').click();`);
+    await sleep(100);
 
     // Mark done on Mandarin lesson
     await evaluate(`document.querySelector('#btnDone').click();`);

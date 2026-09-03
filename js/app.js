@@ -333,6 +333,25 @@ function viewHome() {
   scrollTop();
 }
 
+function speakMandarin(text) {
+  if (!('speechSynthesis' in window)) {
+    console.warn('SpeechSynthesis API tidak didukung peramban.');
+    return;
+  }
+  try {
+    window.speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = 'zh-CN';
+    u.rate = 0.82; // Kecepatan ramah pemula
+    const voices = window.speechSynthesis.getVoices();
+    const zhVoice = voices.find(v => v.lang && (v.lang.startsWith('zh') || v.lang.includes('Chinese')));
+    if (zhVoice) u.voice = zhVoice;
+    window.speechSynthesis.speak(u);
+  } catch (err) {
+    console.error('TTS Error:', err);
+  }
+}
+
 function viewLesson(id) {
   const l = BY_ID[id];
   if (!l) { location.hash = '#/'; return; }
@@ -346,6 +365,13 @@ function viewLesson(id) {
   setTopAction(doneButton(l));
   wireDoneButton(l);
 
+  const isMandarin = t.id === 'mandarin';
+  const audioBanner = isMandarin ? `
+    <div class="zh-audio-banner">
+      <span class="zh-audio-ic">🔊</span>
+      <div><b>Fitur Audio Interaktif:</b> Klik tombol speaker <button class="zh-speak-btn" style="pointer-events:none">🔊</button> atau klik langsung teks Hanzi warna merah di bawah untuk mendengarkan pengucapan penutur asli bahasa Mandarin!</div>
+    </div>` : '';
+
   $('#view').innerHTML = `
     <article class="lesson" style="--track:var(--${t.accent})">
       <div class="lesson-eyebrow">
@@ -356,6 +382,7 @@ function viewLesson(id) {
       <h1 class="lesson-title">${esc(l.title)}</h1>
       ${l.desc ? `<p class="lesson-desc">${esc(l.desc)}</p>` : ''}
       ${l.intro ? `<div class="lesson-callout">${l.intro}</div>` : ''}
+      ${audioBanner}
       <div class="lesson-body">${l.body}</div>
       <nav class="pager">
         ${prev
@@ -369,6 +396,37 @@ function viewLesson(id) {
   scrollTop();
   groupCards($('#view'));
   addCopyButtons($('#view'));
+
+  if (isMandarin) {
+    $('#view').querySelectorAll('.zh-char').forEach(el => {
+      const pureText = el.textContent.trim().replace(/[^\u4e00-\u9fa5]/g, '');
+      if (pureText && !el.querySelector('.zh-speak-btn')) {
+        el.dataset.speak = pureText;
+        el.title = `Klik untuk mendengarkan "${pureText}"`;
+        const btn = document.createElement('button');
+        btn.className = 'zh-speak-btn';
+        btn.dataset.speak = pureText;
+        btn.title = `Putar suara "${pureText}"`;
+        btn.innerHTML = '🔊';
+        el.appendChild(btn);
+      }
+    });
+
+    $('#view').querySelectorAll('.code-block').forEach(cb => {
+      const lines = cb.innerHTML.split('\n');
+      let changed = false;
+      const newLines = lines.map(line => {
+        const textOnly = line.replace(/<[^>]+>/g, '');
+        const match = textOnly.match(/[\u4e00-\u9fa5]{2,}/);
+        if (match && !line.includes('dialog-speak-btn')) {
+          changed = true;
+          return `${line} <button class="dialog-speak-btn" data-speak="${match[0]}" title="Putar suara kalimat">🔊</button>`;
+        }
+        return line;
+      });
+      if (changed) cb.innerHTML = newLines.join('\n');
+    });
+  }
 }
 
 /* kelompokkan keyword-card berurutan menjadi grid 2 kolom di layar lebar */
@@ -710,3 +768,17 @@ document.addEventListener('keydown', e => {
     if (dest) location.hash = '#/m/' + dest.id;
   }
 });
+
+/* ---------- audio speech mandarin click listener ---------- */
+document.addEventListener('click', e => {
+  const target = e.target.closest('[data-speak]');
+  if (target) {
+    const text = target.dataset.speak;
+    if (text) {
+      speakMandarin(text);
+      target.classList.add('speaking');
+      setTimeout(() => target.classList.remove('speaking'), 800);
+    }
+  }
+});
+

@@ -373,10 +373,51 @@ kbd{
 }
 .zh-table tr:last-child td{border-bottom:none}
 .zh-char{
+  cursor:pointer;display:inline-flex;align-items:center;gap:4px;
   font-size:1.22rem;font-weight:bold;color:var(--rose);font-family:"Microsoft YaHei","PingFang SC",sans-serif;
+  transition:color .15s,opacity .15s;
 }
+.zh-char:hover{opacity:.85}
 .zh-pinyin{
   font-family:var(--font-mono);font-size:.85rem;color:var(--ink-2);
+}
+
+/* Audio & Pronunciation for Mandarin */
+.zh-audio-banner{
+  display:flex;align-items:center;gap:12px;
+  background:color-mix(in srgb, var(--rose) 8%, var(--card));
+  border:1px solid color-mix(in srgb, var(--rose) 25%, transparent);
+  border-left:4px solid var(--rose);
+  padding:12px 16px;border-radius:var(--r-m);
+  margin-bottom:24px;font-size:.9rem;color:var(--ink);
+}
+.zh-audio-ic{font-size:1.35rem;flex:none}
+.zh-speak-btn{
+  display:inline-flex;align-items:center;justify-content:center;
+  background:var(--paper-2);border:1px solid var(--line);
+  border-radius:6px;width:24px;height:24px;font-size:.8rem;
+  cursor:pointer;margin-left:6px;vertical-align:middle;
+  transition:background .15s,transform .15s,border-color .15s;
+  color:var(--ink-2);padding:0;line-height:1;
+}
+.zh-speak-btn:hover{
+  background:var(--rose);color:#fff;border-color:var(--rose);transform:scale(1.15);
+}
+.zh-speak-btn.speaking{
+  background:var(--rose);color:#fff;border-color:var(--rose);animation:pulse-speak .5s infinite alternate;
+}
+@keyframes pulse-speak{
+  from{transform:scale(1)}
+  to{transform:scale(1.2)}
+}
+.dialog-speak-btn{
+  background:var(--paper-2);border:1px solid var(--line);border-radius:4px;
+  padding:2px 8px;font-size:.76rem;cursor:pointer;color:var(--ink-2);
+  display:inline-flex;align-items:center;gap:4px;margin-left:8px;
+  transition:background .15s,color .15s,border-color .15s;
+}
+.dialog-speak-btn:hover{
+  background:var(--rose);color:#fff;border-color:var(--rose);
 }
 
 /* Track Cards Grid (Scalable to 10+ tracks) */

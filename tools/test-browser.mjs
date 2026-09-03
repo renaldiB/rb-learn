@@ -131,17 +131,17 @@ async function run() {
     await sleep(300);
     await capture('beranda-with-categories.png', 1440, 1100);
 
-    // 2. Mandarin Lesson 01
+    // 2. Mandarin Lesson 01 (Dark Mode - matching user screenshot)
     await cdp.send('Page.navigate', { url: BASE_URL + '/#/m/zh-01' });
     await sleep(500);
-    await capture('mandarin-lesson-01.png', 1440, 950);
-
-    // 3. Mandarin Quiz (Light Mode)
-    await cdp.send('Page.navigate', { url: BASE_URL + '/#/quiz' });
-    await sleep(500);
-    await evalCode('startQuiz("mandarin");');
+    await evalCode('applyTheme("dark");');
     await sleep(300);
-    await capture('mandarin-quiz.png', 1440, 900);
+    await capture('mandarin-lesson-01-dark.png', 1440, 950);
+
+    // 3. Mandarin Lesson 01 (Light Mode)
+    await evalCode('applyTheme("light");');
+    await sleep(300);
+    await capture('mandarin-lesson-01.png', 1440, 950);
 
     cdp.close();
     console.log('Revamped screenshots captured successfully.');
