@@ -138,10 +138,12 @@ async function run() {
     await sleep(300);
     await capture('mandarin-lesson-01-dark.png', 1440, 950);
 
-    // 3. Mandarin Lesson 01 (Light Mode)
-    await evalCode('applyTheme("light");');
+    // 3. Mandarin Lesson 03 Dialog (Dark Mode - matching user uploaded screen)
+    await cdp.send('Page.navigate', { url: BASE_URL + '/#/m/zh-03' });
+    await sleep(500);
+    await evalCode('applyTheme("dark");');
     await sleep(300);
-    await capture('mandarin-lesson-01.png', 1440, 950);
+    await capture('zh-03-dialog.png', 1440, 950);
 
     cdp.close();
     console.log('Revamped screenshots captured successfully.');

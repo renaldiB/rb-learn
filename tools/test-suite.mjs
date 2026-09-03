@@ -178,12 +178,23 @@ async function runTests() {
     await evaluate(`document.querySelector('.zh-speak-btn').click();`);
     await sleep(100);
 
-    // Mark done on Mandarin lesson
+    // Test 5b: Verify full sentence speech in dialogue on zh-03
+    await cdp.send('Page.navigate', { url: BASE_URL + '/#/m/zh-03' });
+    await sleep(400);
+    const dialogSpeaks = await evaluate(`
+      return Array.from(document.querySelectorAll('.dialog-speak-btn')).map(b => b.dataset.speak);
+    `);
+    console.log('[PASS] Dialogue speak data in zh-03:', dialogSpeaks);
+    if (!dialogSpeaks.some(s => s.includes('你叫什么名字')) || !dialogSpeaks.some(s => s.includes('苏普扬托'))) {
+      throw new Error('Dialogue speech in zh-03 is still truncated!');
+    }
+
+    // Mark done on Mandarin lesson (zh-03)
     await evaluate(`document.querySelector('#btnDone').click();`);
     await sleep(200);
-    const isDoneStored = await evaluate(`return JSON.parse(localStorage.getItem('rblearn:progress')).includes('zh-01');`);
+    const isDoneStored = await evaluate(`return JSON.parse(localStorage.getItem('rblearn:progress')).includes('zh-03');`);
     const pctText = await evaluate(`return document.querySelector('#spPct').textContent;`);
-    console.log(`[PASS] Progress marked for zh-01: inStorage=${isDoneStored}, UI pct=${pctText}`);
+    console.log(`[PASS] Progress marked for zh-03: inStorage=${isDoneStored}, UI pct=${pctText}`);
     if (!isDoneStored) throw new Error('Progress saving failed');
 
     // Test 6: Quiz workflow with Mandarin filter

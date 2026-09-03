@@ -399,7 +399,7 @@ function viewLesson(id) {
 
   if (isMandarin) {
     $('#view').querySelectorAll('.zh-char').forEach(el => {
-      const pureText = el.textContent.trim().replace(/[^\u4e00-\u9fa5]/g, '');
+      const pureText = el.textContent.trim().replace(/[^\u4e00-\u9fa5，。！？、：；]/g, '');
       if (pureText && !el.querySelector('.zh-speak-btn')) {
         el.dataset.speak = pureText;
         el.title = `Klik untuk mendengarkan "${pureText}"`;
@@ -416,11 +416,16 @@ function viewLesson(id) {
       const lines = cb.innerHTML.split('\n');
       let changed = false;
       const newLines = lines.map(line => {
-        const textOnly = line.replace(/<[^>]+>/g, '');
-        const match = textOnly.match(/[\u4e00-\u9fa5]{2,}/);
-        if (match && !line.includes('dialog-speak-btn')) {
-          changed = true;
-          return `${line} <button class="dialog-speak-btn" data-speak="${match[0]}" title="Putar suara kalimat">🔊</button>`;
+        const textOnly = line.replace(/<[^>]+>/g, '').trim();
+        if (!line.includes('dialog-speak-btn') && /[\u4e00-\u9fa5]/.test(textOnly)) {
+          // Strip speaker name (e.g. A:, B:, Supriyanto:, Penjual:, etc.)
+          let speechText = textOnly.replace(/^[A-Za-z0-9_\u4e00-\u9fa5\s]+[:：]\s*/, '');
+          // Strip trailing parens/translation if on same line
+          speechText = speechText.replace(/\s*\([^)]*\)\s*$/, '').trim();
+          if (speechText && /[\u4e00-\u9fa5]/.test(speechText)) {
+            changed = true;
+            return `${line} <button class="dialog-speak-btn" data-speak="${esc(speechText)}" title="Putar kalimat utuh: ${esc(speechText)}">🔊</button>`;
+          }
         }
         return line;
       });
