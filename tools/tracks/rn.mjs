@@ -3,6 +3,7 @@ export const rnTrack = {
   title: 'React Native 📱',
   subtitle: 'Mobile Cross-Platform: JavaScript/TypeScript, Native Components, Expo, Navigasi & API',
   accent: 'cyan',
+  category: 'it',
   lessons: [
     {
       id: 'rn-01',

@@ -69,12 +69,12 @@ function renderSidebar(filter = '') {
     <a class="side-item" href="#/">${IC_HOME}<span class="t">Beranda</span></a>
   </div>`;
 
-  for (const t of TRACKS) {
+  const renderTrackGroup = (t) => {
     const items = t.lessons.filter(matches);
-    if (q && items.length === 0) continue;
+    if (q && items.length === 0) return '';
     const done = t.lessons.filter(l => progress.has(l.id)).length;
-    const isCollapsed = !q && collapsed.has(t.id);   // saat mencari: selalu tampil
-    html += `<div class="side-group track ${isCollapsed ? 'collapsed' : ''}" data-track="${t.id}">
+    const isCollapsed = !q && collapsed.has(t.id);
+    return `<div class="side-group track ${isCollapsed ? 'collapsed' : ''}" data-track="${t.id}">
       <div class="side-group-title" role="button" tabindex="0" aria-expanded="${!isCollapsed}"
            title="Buka/tutup daftar ${t.title}">
         <span class="dot" style="background:var(--${t.accent})"></span>
@@ -92,14 +92,27 @@ function renderSidebar(filter = '') {
           </a>`).join('')}
       </div>
     </div>`;
+  };
+
+  const itTracks = TRACKS.filter(t => t.category === 'it' || !t.category);
+  const langTracks = TRACKS.filter(t => t.category === 'lang');
+
+  const itHtml = itTracks.map(renderTrackGroup).join('');
+  if (itHtml) {
+    html += `<div class="side-category">💻 Rekayasa IT</div>` + itHtml;
+  }
+
+  const langHtml = langTracks.map(renderTrackGroup).join('');
+  if (langHtml) {
+    html += `<div class="side-category">🌏 Bahasa Dunia</div>` + langHtml;
   }
 
   if (q && !html.includes('side-item" href="#/m/')) {
     html += `<div class="search-empty">Tidak ada materi yang cocok.</div>`;
   }
 
-  html += `<div class="side-group">
-    <div class="side-group-title static">Praktik</div>
+  html += `<div class="side-category">Praktik</div>
+  <div class="side-group">
     <div class="side-items">
       <a class="side-item" href="#/playground">${IC_PLAY}<span class="t">Playground</span></a>
       <a class="side-item" href="#/quiz">${IC_QUIZ}<span class="t">Quiz</span></a>
@@ -197,12 +210,13 @@ function viewHome() {
     const pct = Math.round(done / t.lessons.length * 100);
     const nextLesson = t.lessons.find(l => !progress.has(l.id)) || t.lessons[0];
     const isFinished = done === t.lessons.length;
+    const catLabel = t.category === 'lang' ? '🌏 Bahasa' : '💻 IT';
 
     return `
-      <div class="track-card" style="--track:var(--${t.accent})">
+      <div class="track-card" data-category="${t.category || 'it'}" style="--track:var(--${t.accent})">
         <div class="tc-top">
           <span class="tc-name"><span class="dot" style="background:var(--${t.accent})"></span>${t.title}</span>
-          <span class="tc-badge">${t.lessons.length} materi</span>
+          <span class="tc-badge">${catLabel} · ${t.lessons.length} materi</span>
         </div>
         <div class="tc-sub">${esc(t.subtitle)}</div>
         <div class="tc-meta">
@@ -225,11 +239,11 @@ function viewHome() {
     <div class="home-hero">
       <div class="home-kicker">
         <span class="kicker-dot"></span>
-        RB Learning · Platform Rekayasa Perangkat Lunak &amp; AI
+        RB Learning · Rekayasa Perangkat Lunak, AI &amp; Bahasa Dunia
       </div>
-      <h1>Kuasai Skill <em>Software Engineering</em> &amp; <em>AI Modern</em>.</h1>
+      <h1>Kuasai Skill <em>Software Engineering</em>, <em>AI</em> &amp; <em>Bahasa</em>.</h1>
       <p class="hero-desc">
-        Kurikulum praktis berbahasa Indonesia dengan analogi ramah orang awam. Dari fondasi web, automation testing, bahasa sistem performa tinggi, hingga machine learning — lengkap dengan kuis pemahaman dan playground interaktif.
+        Kurikulum praktis berbahasa Indonesia dengan analogi ramah orang awam. Dari fondasi web, testing, bahasa performa tinggi, machine learning, aplikasi mobile, hingga bahasa Mandarin — lengkap dengan kuis dan panduan bertahap.
       </p>
       <div class="home-actions">
         <a class="btn btn-primary" href="#/m/${next.id}">▶ Lanjutkan: ${esc(next.title)}</a>
@@ -251,8 +265,8 @@ function viewHome() {
           <span class="stat-lbl">Soal Kuis Interaktif</span>
         </div>
         <div class="stat-item">
-          <span class="stat-val">${totalDone > 0 ? overallPct + '%' : '100%'}</span>
-          <span class="stat-lbl">${totalDone > 0 ? `${totalDone} Modul Selesai` : 'Akses Terbuka & Praktis'}</span>
+          <span class="stat-val">${totalDone > 0 ? overallPct + '%' : '2'}</span>
+          <span class="stat-lbl">${totalDone > 0 ? `${totalDone} Modul Selesai` : 'Bidang (IT &amp; Bahasa)'}</span>
         </div>
       </div>
     </div>
@@ -265,7 +279,12 @@ function viewHome() {
         </div>
         <span class="section-count">${TRACKS.length} Jalur Keahlian Tersedia</span>
       </div>
-      <div class="track-cards">${cards}</div>
+      <div class="catalog-filter-row" id="catalogTabs">
+        <button class="cat-tab active" data-cat="all">Semua (${TRACKS.length})</button>
+        <button class="cat-tab" data-cat="it">💻 Rekayasa IT (${TRACKS.filter(t => (t.category || 'it') === 'it').length})</button>
+        <button class="cat-tab" data-cat="lang">🌏 Bahasa Dunia (${TRACKS.filter(t => t.category === 'lang').length})</button>
+      </div>
+      <div class="track-cards" id="trackCardsGrid">${cards}</div>
     </div>
 
     <div class="home-features-section">
@@ -298,6 +317,18 @@ function viewHome() {
         </div>
       </div>
     </div>`;
+
+  const tabs = document.querySelectorAll('#catalogTabs .cat-tab');
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      const cat = tab.dataset.cat;
+      document.querySelectorAll('#trackCardsGrid .track-card').forEach(card => {
+        card.style.display = (cat === 'all' || card.dataset.category === cat) ? '' : 'none';
+      });
+    });
+  });
 
   scrollTop();
 }
@@ -460,12 +491,13 @@ function viewQuiz() {
 function renderQuizStart() {
   const filters = [
     { id: 'all', label: 'Semua' },
-    { id: 'js', label: 'JavaScript' },
-    { id: 'pw', label: 'Playwright' },
+    { id: 'js', label: 'JavaScript 🟨' },
+    { id: 'pw', label: 'Playwright 🎭' },
     { id: 'mojo', label: 'Mojo 🔥' },
     { id: 'py', label: 'Python 🐍' },
     { id: 'rn', label: 'React Native 📱' },
     { id: 'flutter', label: 'Flutter 💙' },
+    { id: 'mandarin', label: 'Mandarin 🇨🇳' },
   ];
   $('#view').innerHTML = `
     <div class="quiz-head">

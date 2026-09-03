@@ -124,29 +124,24 @@ async function run() {
       return await cdp.send('Runtime.evaluate', { expression: expr, returnByValue: true });
     }
 
-    // 1. Beranda with 6 Tracks (Light Mode)
+    // 1. Beranda with 7 Tracks & Categories (Light Mode)
     await cdp.send('Page.navigate', { url: BASE_URL + '/#/' });
     await sleep(600);
     await evalCode('localStorage.clear(); applyTheme("light"); render(); renderSidebar();');
     await sleep(300);
-    await capture('tracks-6-beranda.png', 1440, 1100);
+    await capture('beranda-with-categories.png', 1440, 1100);
 
-    // 2. React Native Lesson 01
-    await cdp.send('Page.navigate', { url: BASE_URL + '/#/m/rn-01' });
+    // 2. Mandarin Lesson 01
+    await cdp.send('Page.navigate', { url: BASE_URL + '/#/m/zh-01' });
     await sleep(500);
-    await capture('rn-lesson-01.png', 1440, 900);
+    await capture('mandarin-lesson-01.png', 1440, 950);
 
-    // 3. Flutter Lesson 01
-    await cdp.send('Page.navigate', { url: BASE_URL + '/#/m/flutter-01' });
-    await sleep(500);
-    await capture('flutter-lesson-01.png', 1440, 900);
-
-    // 4. Flutter Quiz (Light Mode)
+    // 3. Mandarin Quiz (Light Mode)
     await cdp.send('Page.navigate', { url: BASE_URL + '/#/quiz' });
     await sleep(500);
-    await evalCode('startQuiz("flutter");');
+    await evalCode('startQuiz("mandarin");');
     await sleep(300);
-    await capture('flutter-quiz.png', 1440, 900);
+    await capture('mandarin-quiz.png', 1440, 900);
 
     cdp.close();
     console.log('Revamped screenshots captured successfully.');

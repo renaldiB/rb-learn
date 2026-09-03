@@ -5,6 +5,7 @@ import { dirname, join } from 'path';
 import { fileURLToPath } from 'url';
 import { rnTrack } from './tracks/rn.mjs';
 import { flutterTrack } from './tracks/flutter.mjs';
+import { mandarinTrack } from './tracks/mandarin.mjs';
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const JS_DIR = 'C:/Users/Z Series/MainRB/Code Project/Learn JS';
@@ -41,9 +42,10 @@ const FIX = [
 
 const jsTrack = {
   id: 'js',
-  title: 'JavaScript',
+  title: 'JavaScript 🟨',
   subtitle: 'Fondasi bahasa: dari variabel sampai async/await',
   accent: 'amber',
+  category: 'it',
   lessons: LESSONS.map(l => {
     let intro = l.intro, body = l.body, desc = l.desc;
     let quizQ = l.quiz.q, quizWhy = l.quiz.why;
@@ -87,9 +89,10 @@ function balanceSlice(src, startIdx, open, close) {
 
 const pwTrack = {
   id: 'pw',
-  title: 'Playwright',
+  title: 'Playwright 🎭',
   subtitle: 'Automation testing: locator, action, assertion, sampai CI/CD',
   accent: 'green',
+  category: 'it',
   lessons: [],
 };
 
@@ -747,6 +750,7 @@ const mojoTrack = {
   title: 'Mojo 🔥',
   subtitle: 'Bahasa AI Modern: Sintaks Python, Performa C++, SIMD & Neural Network',
   accent: 'orange',
+  category: 'it',
   lessons: mojoLessons
 };
 
@@ -1368,6 +1372,7 @@ const pythonTrack = {
   title: 'Python 🐍',
   subtitle: 'Bahasa Terpopuler Dunia: Fondasi, OOP, Data Science, AI & Backend API',
   accent: 'sky',
+  category: 'it',
   lessons: pythonLessons
 };
 
@@ -1383,12 +1388,16 @@ const flutterQuizBank = flutterTrack.lessons.map(l => ({
   track: 'flutter', topic: l.title, q: l.quiz.q, opts: l.quiz.opts, ans: l.quiz.ans, why: l.quiz.why,
 }));
 
+const mandarinQuizBank = mandarinTrack.lessons.map(l => ({
+  track: 'mandarin', topic: l.title, q: l.quiz.q, opts: l.quiz.opts, ans: l.quiz.ans, why: l.quiz.why,
+}));
+
 /* ---------- OUTPUT ---------- */
 mkdirSync(join(HERE, '..', 'js'), { recursive: true });
 writeFileSync(join(HERE, '..', 'js/data.js'),
-  '/* Data materi gabungan — dihasilkan dari modul JavaScript, Playwright, Mojo, Python, React Native, dan Flutter. */\n'
-  + 'const TRACKS = ' + JSON.stringify([jsTrack, pwTrack, mojoTrack, pythonTrack, rnTrack, flutterTrack], null, 1) + ';\n\n'
-  + 'const QUIZ_BANK = ' + JSON.stringify([...jsQuizBank, ...pwQuizBank, ...mojoQuizBank, ...pythonQuizBank, ...rnQuizBank, ...flutterQuizBank], null, 1) + ';\n'
+  '/* Data materi gabungan — dihasilkan dari modul JavaScript, Playwright, Mojo, Python, React Native, Flutter, dan Mandarin. */\n'
+  + 'const TRACKS = ' + JSON.stringify([jsTrack, pwTrack, mojoTrack, pythonTrack, rnTrack, flutterTrack, mandarinTrack], null, 1) + ';\n\n'
+  + 'const QUIZ_BANK = ' + JSON.stringify([...jsQuizBank, ...pwQuizBank, ...mojoQuizBank, ...pythonQuizBank, ...rnQuizBank, ...flutterQuizBank, ...mandarinQuizBank], null, 1) + ';\n'
 );
 
 console.log('JS lessons:', jsTrack.lessons.length);
@@ -1397,10 +1406,12 @@ console.log('Mojo lessons:', mojoTrack.lessons.length);
 console.log('Python lessons:', pythonTrack.lessons.length);
 console.log('RN lessons:', rnTrack.lessons.length);
 console.log('Flutter lessons:', flutterTrack.lessons.length);
-const totalL = jsTrack.lessons.length + pwTrack.lessons.length + mojoTrack.lessons.length + pythonTrack.lessons.length + rnTrack.lessons.length + flutterTrack.lessons.length;
-const totalQ = jsQuizBank.length + pwQuizBank.length + mojoQuizBank.length + pythonQuizBank.length + rnQuizBank.length + flutterQuizBank.length;
+console.log('Mandarin lessons:', mandarinTrack.lessons.length);
+const totalL = jsTrack.lessons.length + pwTrack.lessons.length + mojoTrack.lessons.length + pythonTrack.lessons.length + rnTrack.lessons.length + flutterTrack.lessons.length + mandarinTrack.lessons.length;
+const totalQ = jsQuizBank.length + pwQuizBank.length + mojoQuizBank.length + pythonQuizBank.length + rnQuizBank.length + flutterQuizBank.length + mandarinQuizBank.length;
 console.log('Total lessons:', totalL);
-console.log('Quiz total:', totalQ, `(js ${jsQuizBank.length} / pw ${pwQuizBank.length} / mojo ${mojoQuizBank.length} / py ${pythonQuizBank.length} / rn ${rnQuizBank.length} / flutter ${flutterQuizBank.length})`);
+console.log('Quiz total:', totalQ, `(js ${jsQuizBank.length} / pw ${pwQuizBank.length} / mojo ${mojoQuizBank.length} / py ${pythonQuizBank.length} / rn ${rnQuizBank.length} / flutter ${flutterQuizBank.length} / zh ${mandarinQuizBank.length})`);
+
 
 
 

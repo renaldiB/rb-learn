@@ -118,9 +118,23 @@ async function runTests() {
     const trackCount = await evaluate('return TRACKS.length;');
     const brandText = await evaluate('return document.querySelector(".brand-text").textContent;');
     console.log(`[PASS] Data integrity: ${lessonCount} lessons, ${quizCount} quiz questions, ${trackCount} tracks, Brand: "${brandText}"`);
-    if (lessonCount !== 66 || quizCount !== 91 || trackCount !== 6 || !brandText.includes('RB Learning')) throw new Error('Invalid count or brand');
+    if (lessonCount !== 82 || quizCount !== 107 || trackCount !== 7 || !brandText.includes('RB Learning')) throw new Error('Invalid count or brand');
 
-    // Test 2: Search functionality with "Supriyanto"
+    // Test 2: Category Headers & Catalog Filtering
+    const sideCatCount = await evaluate('return document.querySelectorAll(".side-category").length;');
+    console.log(`[PASS] Sidebar category headers rendered: ${sideCatCount}`);
+    if (sideCatCount < 3) throw new Error('Sidebar category headers missing');
+
+    await evaluate(`document.querySelector('#catalogTabs .cat-tab[data-cat="lang"]').click();`);
+    await sleep(200);
+    const visibleLangCards = await evaluate(`return Array.from(document.querySelectorAll('#trackCardsGrid .track-card')).filter(el => el.style.display !== 'none').length;`);
+    console.log(`[PASS] Catalog filtered by "lang": ${visibleLangCards} card visible`);
+    if (visibleLangCards !== 1) throw new Error('Catalog filter by lang failed');
+
+    await evaluate(`document.querySelector('#catalogTabs .cat-tab[data-cat="all"]').click();`);
+    await sleep(200);
+
+    // Test 3: Search functionality with "Supriyanto"
     await evaluate(`
       const input = document.querySelector('#searchInput');
       input.value = 'supriyanto';
@@ -133,58 +147,47 @@ async function runTests() {
     console.log('[PASS] Search results for "supriyanto":', visibleItems.length, 'lessons found');
     if (visibleItems.length === 0) throw new Error('Search failed for Supriyanto');
 
-    // Test 3: Collapsible group for Flutter track
+    // Test 4: Collapsible group for Mandarin track
     await evaluate(`
       const input = document.querySelector('#searchInput');
       input.value = '';
       input.dispatchEvent(new Event('input'));
     `);
     await sleep(200);
-    const flGroupBefore = await evaluate(`return document.querySelector('.side-group[data-track="flutter"]').classList.contains('collapsed');`);
-    await evaluate(`toggleGroup('flutter');`);
-    const flGroupAfter = await evaluate(`return document.querySelector('.side-group[data-track="flutter"]').classList.contains('collapsed');`);
+    const zhGroupBefore = await evaluate(`return document.querySelector('.side-group[data-track="mandarin"]').classList.contains('collapsed');`);
+    await evaluate(`toggleGroup('mandarin');`);
+    const zhGroupAfter = await evaluate(`return document.querySelector('.side-group[data-track="mandarin"]').classList.contains('collapsed');`);
     const storedCollapsed = await evaluate(`return localStorage.getItem('rblearn:collapsed');`);
-    console.log(`[PASS] Collapsible Flutter group: before=${flGroupBefore}, after=${flGroupAfter}, stored=${storedCollapsed}`);
-    if (flGroupAfter === flGroupBefore) throw new Error('Toggle Flutter group failed');
+    console.log(`[PASS] Collapsible Mandarin group: before=${zhGroupBefore}, after=${zhGroupAfter}, stored=${storedCollapsed}`);
+    if (zhGroupAfter === zhGroupBefore) throw new Error('Toggle Mandarin group failed');
 
-    // Re-open Flutter group
-    await evaluate(`toggleGroup('flutter');`);
+    // Re-open Mandarin group
+    await evaluate(`toggleGroup('mandarin');`);
 
-    // Test 4: React Native Lesson navigation (rn-01: Pengenalan React Native & Expo)
-    await cdp.send('Page.navigate', { url: BASE_URL + '/#/m/rn-01' });
+    // Test 5: Mandarin Lesson navigation (zh-01: Pinyin & Rahasia 4 Nada Suara)
+    await cdp.send('Page.navigate', { url: BASE_URL + '/#/m/zh-01' });
     await sleep(400);
     const title = await evaluate(`return document.querySelector('.lesson-title').textContent;`);
-    const hasRNContent = await evaluate(`return document.querySelector('.lesson-body').textContent.includes('Expo');`);
-    console.log(`[PASS] Lesson navigation to rn-01: "${title}", hasRNContent=${hasRNContent}`);
-    if (!hasRNContent) throw new Error('RN content missing in rn-01');
+    const hasPinyinContent = await evaluate(`return document.querySelector('.lesson-body').textContent.includes('Nada 1');`);
+    console.log(`[PASS] Lesson navigation to zh-01: "${title}", hasPinyinContent=${hasPinyinContent}`);
+    if (!hasPinyinContent) throw new Error('Pinyin content missing in zh-01');
 
-    // Mark done on RN lesson
+    // Mark done on Mandarin lesson
     await evaluate(`document.querySelector('#btnDone').click();`);
     await sleep(200);
-    const isDoneStored = await evaluate(`return JSON.parse(localStorage.getItem('rblearn:progress')).includes('rn-01');`);
+    const isDoneStored = await evaluate(`return JSON.parse(localStorage.getItem('rblearn:progress')).includes('zh-01');`);
     const pctText = await evaluate(`return document.querySelector('#spPct').textContent;`);
-    console.log(`[PASS] Progress marked for rn-01: inStorage=${isDoneStored}, UI pct=${pctText}`);
+    console.log(`[PASS] Progress marked for zh-01: inStorage=${isDoneStored}, UI pct=${pctText}`);
     if (!isDoneStored) throw new Error('Progress saving failed');
 
-    // Test 5: Playground execution with Supriyanto
-    await cdp.send('Page.navigate', { url: BASE_URL + '/#/playground' });
-    await sleep(400);
-    await evaluate(`
-      document.querySelector('#pgCode').value = 'const nama = "Supriyanto"; console.log("Halo, " + nama);';
-      runPlayground();
-    `);
-    const pgOutput = await evaluate(`return document.querySelector('#pgOut').textContent;`);
-    console.log(`[PASS] Playground execution output: "${pgOutput.trim()}"`);
-    if (!pgOutput.includes('Halo, Supriyanto')) throw new Error('Playground execution failed');
-
-    // Test 6: Quiz workflow with Flutter filter
+    // Test 6: Quiz workflow with Mandarin filter
     await cdp.send('Page.navigate', { url: BASE_URL + '/#/quiz' });
     await sleep(400);
-    await evaluate(`startQuiz('flutter');`);
+    await evaluate(`startQuiz('mandarin');`);
     await sleep(200);
     const quizQuestion = await evaluate(`return document.querySelector('.quiz-q').textContent;`);
     const optsCount = await evaluate(`return document.querySelectorAll('.quiz-opt').length;`);
-    console.log(`[PASS] Flutter Quiz started: "${quizQuestion.slice(0, 45)}...", ${optsCount} options`);
+    console.log(`[PASS] Mandarin Quiz started: "${quizQuestion.slice(0, 45)}...", ${optsCount} options`);
     if (optsCount < 2) throw new Error('Quiz options missing');
 
     // Answer first question

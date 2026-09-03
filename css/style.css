@@ -20,6 +20,7 @@
   --sky:#0284c7;     /* track Python 🐍 */
   --cyan:#0891b2;    /* track React Native 📱 */
   --teal:#0d9488;    /* track Flutter 💙 */
+  --rose:#e11d48;    /* track Mandarin 🇨🇳 */
   --blue:#1d4ed8;    /* aksi umum */
   --red:#b91c1c;
 
@@ -63,6 +64,7 @@
   --sky:#38bdf8;
   --cyan:#22d3ee;
   --teal:#2dd4bf;
+  --rose:#fb7185;
   --blue:#7aa7ff;
   --red:#f87171;
 
@@ -211,7 +213,24 @@ kbd{
 .side-item[data-accent="sky"]{--accent:var(--sky)}
 .side-item[data-accent="cyan"]{--accent:var(--cyan)}
 .side-item[data-accent="teal"]{--accent:var(--teal)}
+.side-item[data-accent="rose"]{--accent:var(--rose)}
 .search-empty{padding:14px 10px;font-size:.84rem;color:var(--ink-3);font-style:italic}
+
+.side-category{
+  padding:16px 8px 6px;
+  font-family:var(--font-mono);
+  font-size:.66rem;
+  font-weight:700;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:var(--ink-3);
+  display:flex;
+  align-items:center;
+  gap:6px;
+}
+.side-category::after{
+  content:"";flex:1;height:1px;background:var(--line);
+}
 
 .side-foot{border-top:1px solid var(--line);padding:14px 16px}
 .side-progress{margin-bottom:10px}
@@ -329,6 +348,37 @@ kbd{
   padding:4px 10px;border-radius:99px;
 }
 
+/* Category Filter Tabs */
+.catalog-filter-row{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap}
+.cat-tab{
+  background:var(--card);border:1px solid var(--line);
+  padding:6px 14px;border-radius:99px;font-size:.82rem;font-weight:600;
+  color:var(--ink-2);cursor:pointer;transition:background .15s,color .15s,border-color .15s;
+}
+.cat-tab:hover{border-color:var(--ink-3);color:var(--ink)}
+.cat-tab.active{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+
+/* Table Mandarin & Kosakata */
+.zh-table{
+  width:100%;border-collapse:collapse;margin:16px 0 20px;
+  font-size:.9rem;background:var(--card);border-radius:var(--r-m);
+  overflow:hidden;border:1px solid var(--line);
+}
+.zh-table th,.zh-table td{
+  padding:9px 13px;text-align:left;border-bottom:1px solid var(--line);
+}
+.zh-table th{
+  background:var(--paper-2);font-weight:700;color:var(--ink);
+  font-size:.8rem;letter-spacing:.03em;
+}
+.zh-table tr:last-child td{border-bottom:none}
+.zh-char{
+  font-size:1.22rem;font-weight:bold;color:var(--rose);font-family:"Microsoft YaHei","PingFang SC",sans-serif;
+}
+.zh-pinyin{
+  font-family:var(--font-mono);font-size:.85rem;color:var(--ink-2);
+}
+
 /* Track Cards Grid (Scalable to 10+ tracks) */
 .track-cards{
   display:grid;
@@ -426,6 +476,7 @@ kbd{
 .chip.sky{color:var(--sky);border-color:color-mix(in srgb,var(--sky) 40%,transparent)}
 .chip.cyan{color:var(--cyan);border-color:color-mix(in srgb,var(--cyan) 40%,transparent)}
 .chip.teal{color:var(--teal);border-color:color-mix(in srgb,var(--teal) 40%,transparent)}
+.chip.rose{color:var(--rose);border-color:color-mix(in srgb,var(--rose) 40%,transparent)}
 .lesson-title{
   font-family:var(--font-display);font-weight:400;
   font-size:clamp(1.7rem,3.4vw,2.3rem);line-height:1.2;letter-spacing:-.01em;

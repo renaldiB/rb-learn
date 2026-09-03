@@ -3,6 +3,7 @@ export const flutterTrack = {
   title: 'Flutter 💙',
   subtitle: 'Mobile UI Toolkit: Bahasa Dart, Widget Tree, State Management & Kompilasi AOT Native',
   accent: 'teal',
+  category: 'it',
   lessons: [
     {
       id: 'flutter-01',
