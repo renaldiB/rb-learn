@@ -124,43 +124,23 @@ async function run() {
       return await cdp.send('Runtime.evaluate', { expression: expr, returnByValue: true });
     }
 
-    // 1. Beranda (Light Mode, 4 Tracks)
+    // 1. Beranda Revamp (Light Mode)
     await cdp.send('Page.navigate', { url: BASE_URL + '/#/' });
     await sleep(600);
     await evalCode('localStorage.clear(); applyTheme("light"); render(); renderSidebar();');
     await sleep(300);
-    await capture('python-1-beranda.png', 1440, 900);
+    await capture('revamp-1-beranda-light.png', 1440, 960);
 
-    // 2. Python 01: Pengenalan (Light Mode)
-    await cdp.send('Page.navigate', { url: BASE_URL + '/#/m/py-01' });
-    await sleep(500);
-    await capture('python-2-pengenalan-light.png', 1440, 900);
-
-    // 3. Python 10: Machine Learning (Light Mode)
-    await cdp.send('Page.navigate', { url: BASE_URL + '/#/m/py-10' });
-    await sleep(500);
-    await capture('python-3-ml-light.png', 1440, 900);
-
-    // 4. Python 10 (Dark Mode)
+    // 2. Beranda Revamp (Dark Mode)
     await evalCode('applyTheme("dark");');
     await sleep(300);
-    await capture('python-4-ml-dark.png', 1440, 900);
+    await capture('revamp-2-beranda-dark.png', 1440, 960);
 
-    // 5. Quiz with Python filter (Light Mode)
-    await evalCode('applyTheme("light");');
-    await cdp.send('Page.navigate', { url: BASE_URL + '/#/quiz' });
-    await sleep(500);
-    await evalCode('startQuiz("py");');
-    await sleep(300);
-    await capture('python-5-quiz.png', 1440, 900);
-
-    // 6. Mobile View Python 10
-    await cdp.send('Page.navigate', { url: BASE_URL + '/#/m/py-10' });
-    await sleep(500);
-    await capture('python-6-mobile.png', 390, 844);
+    // 3. Mobile View Beranda Revamp
+    await capture('revamp-3-beranda-mobile.png', 390, 844);
 
     cdp.close();
-    console.log('All Python screenshots captured successfully.');
+    console.log('Revamped screenshots captured successfully.');
   } catch (err) {
     console.error('Error during testing:', err);
   } finally {

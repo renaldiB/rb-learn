@@ -53,6 +53,9 @@ function toggleGroup(trackId) {
 }
 
 const CHEV = `<svg class="chev" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>`;
+const IC_HOME = `<svg class="tool-ic" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>`;
+const IC_PLAY = `<svg class="tool-ic" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>`;
+const IC_QUIZ = `<svg class="tool-ic" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>`;
 
 function renderSidebar(filter = '') {
   const nav = $('#sideNav');
@@ -63,7 +66,7 @@ function renderSidebar(filter = '') {
     !q || l.title.toLowerCase().includes(q) || searchIndex[l.id].includes(q);
 
   let html = `<div class="side-group">
-    <a class="side-item" href="#/"><span class="tool-ic">⌂</span><span class="t">Beranda</span></a>
+    <a class="side-item" href="#/">${IC_HOME}<span class="t">Beranda</span></a>
   </div>`;
 
   for (const t of TRACKS) {
@@ -98,8 +101,8 @@ function renderSidebar(filter = '') {
   html += `<div class="side-group">
     <div class="side-group-title static">Praktik</div>
     <div class="side-items">
-      <a class="side-item" href="#/playground"><span class="tool-ic">▸</span><span class="t">Playground</span></a>
-      <a class="side-item" href="#/quiz"><span class="tool-ic">?</span><span class="t">Quiz</span></a>
+      <a class="side-item" href="#/playground">${IC_PLAY}<span class="t">Playground</span></a>
+      <a class="side-item" href="#/quiz">${IC_QUIZ}<span class="t">Quiz</span></a>
     </div>
   </div>`;
 
@@ -187,44 +190,115 @@ function viewHome() {
 
   const next = ALL.find(l => !progress.has(l.id)) || ALL[0];
   const totalDone = ALL.filter(l => progress.has(l.id)).length;
+  const overallPct = Math.round(totalDone / ALL.length * 100);
 
   const cards = TRACKS.map(t => {
     const done = t.lessons.filter(l => progress.has(l.id)).length;
     const pct = Math.round(done / t.lessons.length * 100);
+    const nextLesson = t.lessons.find(l => !progress.has(l.id)) || t.lessons[0];
+    const isFinished = done === t.lessons.length;
+
     return `
       <div class="track-card" style="--track:var(--${t.accent})">
         <div class="tc-top">
           <span class="tc-name"><span class="dot" style="background:var(--${t.accent})"></span>${t.title}</span>
-          <span class="tc-pct">${t.lessons.length} materi</span>
+          <span class="tc-badge">${t.lessons.length} materi</span>
         </div>
-        <div class="tc-sub">${t.subtitle}</div>
+        <div class="tc-sub">${esc(t.subtitle)}</div>
+        <div class="tc-meta">
+          <span>Tingkat: <b>Pemula → Mahir</b></span>
+          <span>${done}/${t.lessons.length} selesai</span>
+        </div>
         <div class="tc-progress">
           <div class="tc-track"><div class="tc-fill" style="width:${pct}%;background:var(--${t.accent})"></div></div>
           <span class="tc-pct">${pct}%</span>
         </div>
-        <div style="margin-top:14px">
-          <a class="btn btn-ghost" href="#/m/${t.lessons[0].id}" style="padding:6px 13px;font-size:.8rem">Mulai dari awal</a>
+        <div class="tc-actions">
+          <a class="btn ${done > 0 && !isFinished ? 'btn-primary' : 'btn-ghost'}" href="#/m/${nextLesson.id}" style="padding:7px 15px;font-size:.82rem">
+            ${isFinished ? 'Ulangi Materi ↺' : done > 0 ? `Lanjutkan: ${nextLesson.num} →` : 'Mulai Belajar →'}
+          </a>
         </div>
       </div>`;
   }).join('');
 
   $('#view').innerHTML = `
     <div class="home-hero">
-      <div class="home-kicker">RB Learning · Materi Lengkap Bahasa Indonesia</div>
-      <h1>Empat pilar skill modern: <em>JavaScript</em>, <em>Playwright</em>, <em>Mojo 🔥</em>, dan <em>Python 🐍</em>.</h1>
-      <p>Kuasai fondasi web JavaScript, automation testing Playwright, bahasa performa AI Mojo, hingga ekosistem terlengkap dunia Python: data science, machine learning, dan backend API. Setiap materi memiliki contoh nyata dan kuis pemahaman interaktif.</p>
+      <div class="home-kicker">
+        <span class="kicker-dot"></span>
+        RB Learning · Platform Rekayasa Perangkat Lunak &amp; AI
+      </div>
+      <h1>Kuasai Skill <em>Software Engineering</em> &amp; <em>AI Modern</em>.</h1>
+      <p class="hero-desc">
+        Kurikulum praktis berbahasa Indonesia dengan analogi ramah orang awam. Dari fondasi web, automation testing, bahasa sistem performa tinggi, hingga machine learning — lengkap dengan kuis pemahaman dan playground interaktif.
+      </p>
       <div class="home-actions">
-        <a class="btn btn-primary" href="#/m/${next.id}">Lanjutkan: ${esc(next.title)}</a>
-        <a class="btn btn-ghost" href="#/quiz">Uji pemahaman</a>
+        <a class="btn btn-primary" href="#/m/${next.id}">▶ Lanjutkan: ${esc(next.title)}</a>
+        <a class="btn btn-ghost" href="#/quiz">Uji Pemahaman (Quiz)</a>
         <a class="btn btn-ghost" href="#/playground">Playground</a>
+      </div>
+
+      <div class="home-stats">
+        <div class="stat-item">
+          <span class="stat-val">${TRACKS.length}</span>
+          <span class="stat-lbl">Track Pembelajaran</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-val">${ALL.length}</span>
+          <span class="stat-lbl">Modul Materi Lengkap</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-val">${QUIZ_BANK.length}</span>
+          <span class="stat-lbl">Soal Kuis Interaktif</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-val">${totalDone > 0 ? overallPct + '%' : '100%'}</span>
+          <span class="stat-lbl">${totalDone > 0 ? `${totalDone} Modul Selesai` : 'Akses Terbuka & Praktis'}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="home-catalog">
+      <div class="home-section-head">
+        <div>
+          <div class="section-kicker">Katalog Kurikulum</div>
+          <h2>Pilih Alur Belajar Kamu</h2>
+        </div>
+        <span class="section-count">${TRACKS.length} Jalur Keahlian Tersedia</span>
       </div>
       <div class="track-cards">${cards}</div>
     </div>
-    <p style="margin-top:22px;font-size:.82rem;color:var(--ink-3)">
-      ${totalDone > 0
-        ? `Kamu sudah menyelesaikan ${totalDone} dari ${ALL.length} materi. Progres tersimpan otomatis.`
-        : 'Klik materi di sidebar untuk mulai — tidak perlu instalasi apa pun.'}
-    </p>`;
+
+    <div class="home-features-section">
+      <div class="home-section-head">
+        <div>
+          <div class="section-kicker">Metode Pembelajaran</div>
+          <h2>Mengapa Belajar di RB Learning?</h2>
+        </div>
+      </div>
+      <div class="home-features">
+        <div class="feature-card">
+          <div class="feature-icon">💡</div>
+          <div class="feature-title">Analogi Ramah Orang Awam</div>
+          <div class="feature-desc">Konsep teknis rumit (SIMD, OOP, Async, Matrix, Scikit-Learn) dijelaskan dengan perumpamaan sederhana Supriyanto yang sangat mudah dipahami.</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">⚡</div>
+          <div class="feature-title">Playground Interaktif</div>
+          <div class="feature-desc">Eksperimen kode langsung dari peramban tanpa perlu konfigurasi environment rumit atau instalasi software tambahan di komputer.</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🎯</div>
+          <div class="feature-title">Kuis &amp; Pembahasan Detail</div>
+          <div class="feature-desc">Uji pemahaman di setiap akhir materi dengan bank soal berbobot, lengkap dengan penjelasan logis di balik setiap jawaban yang benar.</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">💾</div>
+          <div class="feature-title">Progres Tersimpan Otomatis</div>
+          <div class="feature-desc">Lacak capaian belajar secara mandiri. Seluruh progres belajar tersimpan aman dan persisten di browser kamu tanpa perlu registrasi berbelit.</div>
+        </div>
+      </div>
+    </div>`;
+
   scrollTop();
 }
 
