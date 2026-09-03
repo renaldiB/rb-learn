@@ -554,12 +554,12 @@ function viewQuiz() {
 function renderQuizStart() {
   const filters = [
     { id: 'all', label: 'Semua' },
+    { id: 'flutter', label: 'Flutter 💙' },
     { id: 'js', label: 'JavaScript 🟨' },
-    { id: 'pw', label: 'Playwright 🎭' },
     { id: 'mojo', label: 'Mojo 🔥' },
+    { id: 'pw', label: 'Playwright 🎭' },
     { id: 'py', label: 'Python 🐍' },
     { id: 'rn', label: 'React Native 📱' },
-    { id: 'flutter', label: 'Flutter 💙' },
     { id: 'mandarin', label: 'Mandarin 🇨🇳' },
   ];
   $('#view').innerHTML = `

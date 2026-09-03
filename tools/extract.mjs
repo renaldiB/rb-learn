@@ -1396,8 +1396,8 @@ const mandarinQuizBank = mandarinTrack.lessons.map(l => ({
 mkdirSync(join(HERE, '..', 'js'), { recursive: true });
 writeFileSync(join(HERE, '..', 'js/data.js'),
   '/* Data materi gabungan — dihasilkan dari modul JavaScript, Playwright, Mojo, Python, React Native, Flutter, dan Mandarin. */\n'
-  + 'const TRACKS = ' + JSON.stringify([jsTrack, pwTrack, mojoTrack, pythonTrack, rnTrack, flutterTrack, mandarinTrack], null, 1) + ';\n\n'
-  + 'const QUIZ_BANK = ' + JSON.stringify([...jsQuizBank, ...pwQuizBank, ...mojoQuizBank, ...pythonQuizBank, ...rnQuizBank, ...flutterQuizBank, ...mandarinQuizBank], null, 1) + ';\n'
+  + 'const TRACKS = ' + JSON.stringify([flutterTrack, jsTrack, mojoTrack, pwTrack, pythonTrack, rnTrack, mandarinTrack], null, 1) + ';\n\n'
+  + 'const QUIZ_BANK = ' + JSON.stringify([...flutterQuizBank, ...jsQuizBank, ...mojoQuizBank, ...pwQuizBank, ...pythonQuizBank, ...rnQuizBank, ...mandarinQuizBank], null, 1) + ';\n'
 );
 
 console.log('JS lessons:', jsTrack.lessons.length);

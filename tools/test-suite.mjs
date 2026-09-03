@@ -112,13 +112,17 @@ async function runTests() {
     await cdp.send('Page.navigate', { url: BASE_URL + '/#/' });
     await sleep(600);
 
-    // Test 1: Data integrity & Branding
+    // Test 1: Data integrity & Branding & Track Ordering
     const lessonCount = await evaluate('return ALL.length;');
     const quizCount = await evaluate('return QUIZ_BANK.length;');
     const trackCount = await evaluate('return TRACKS.length;');
     const brandText = await evaluate('return document.querySelector(".brand-text").textContent;');
+    const itTrackOrder = await evaluate('return TRACKS.filter(t => t.category === "it" || !t.category).map(t => t.id);');
     console.log(`[PASS] Data integrity: ${lessonCount} lessons, ${quizCount} quiz questions, ${trackCount} tracks, Brand: "${brandText}"`);
+    console.log(`[PASS] IT Track Alphabetical Order:`, itTrackOrder);
     if (lessonCount !== 82 || quizCount !== 107 || trackCount !== 7 || !brandText.includes('RB Learning')) throw new Error('Invalid count or brand');
+    const expectedOrder = ['flutter', 'js', 'mojo', 'pw', 'py', 'rn'];
+    if (JSON.stringify(itTrackOrder) !== JSON.stringify(expectedOrder)) throw new Error(`Wrong IT track order: ${JSON.stringify(itTrackOrder)}`);
 
     // Test 2: Category Headers & Catalog Filtering
     const sideCatCount = await evaluate('return document.querySelectorAll(".side-category").length;');
