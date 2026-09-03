@@ -1,4 +1,4 @@
-/* Data materi gabungan — dihasilkan dari modul JavaScript, Playwright, dan Mojo. */
+/* Data materi gabungan — dihasilkan dari modul JavaScript, Playwright, Mojo, dan Python. */
 const TRACKS = [
  {
   "id": "js",
@@ -580,6 +580,254 @@ const TRACKS = [
      ],
      "ans": 0,
      "why": "MAX Engine mengoptimalkan eksekusi model AI lintas berbagai akselerator hardware dengan efisiensi memori dan throughput komputasi tertinggi."
+    }
+   }
+  ]
+ },
+ {
+  "id": "py",
+  "title": "Python 🐍",
+  "subtitle": "Bahasa Terpopuler Dunia: Fondasi, OOP, Data Science, AI & Backend API",
+  "accent": "sky",
+  "lessons": [
+   {
+    "id": "py-01",
+    "num": "01",
+    "title": "Pengenalan & Filosofi Python",
+    "level": "Pemula",
+    "desc": "Bahasa paling populer di dunia untuk Data Science, AI, Web, dan Otomasi.",
+    "intro": "Python dirancang oleh Guido van Rossum dengan satu moto utama: 'Readability counts' (keterbacaan dan kebersihan kode adalah yang paling utama). Sintaksnya yang mirip bahasa Inggris menjadikannya bahasa nomor satu untuk pemula dan profesional.",
+    "body": "\n      <h4>🌐 Analogi Bahasa Internasional Dunia Komputer</h4>\n      <p>Jika bahasa pemrograman lain seperti dialek kuno yang penuh aturan birokrasi rumit (banyak titik koma <code class=\"inline\">;</code> dan kurung kurawal <code class=\"inline\">{}</code>), maka <b>Python adalah Bahasa Inggris internasional yang bersih dan santai</b>: apa yang Anda tulis di kode hampir sama persis dengan apa yang Anda pikirkan di kepala.</p>\n\n      <div class=\"tip-box\">\n        <span class=\"tip-box-icon\">🐍</span>\n        <div><b>Zen of Python:</b> <i>\"Simple is better than complex. Complex is better than complicated. Readability counts.\"</i> — Filosofi dasar yang membuat jutaan programmer betah menggunakan Python.</div>\n      </div>\n\n      <h4>📝 Program Pertama: Halo Supriyanto</h4>\n      <p>Di Python, Anda tidak memerlukan fungsi <code class=\"inline\">main()</code> atau boilerplate kelas yang rumit. Cukup satu baris langsung dieksekusi:</p>\n      <div class=\"code-block\"><span class=\"cm\"># Mencetak teks ke layar</span>\n<span class=\"fn\">print</span>(<span class=\"st\">\"Halo Supriyanto! Selamat datang di dunia Python 🐍\"</span>)\n\n<span class=\"cm\"># Menggabungkan teks dan variabel</span>\nnama_pengguna = <span class=\"st\">\"Supriyanto\"</span>\npesan = <span class=\"st\">\"Python membuat coding terasa menyenangkan dan produktif\"</span>\n<span class=\"fn\">print</span>(pesan, <span class=\"st\">\"oleh\"</span>, nama_pengguna)</div>\n\n      <h4>🚀 Mengapa Python Merajai AI &amp; Otomasi?</h4>\n      <p>Python memiliki ekosistem ribuan <i>library</i> raksasa (seperti Pandas, NumPy, Scikit-Learn, PyTorch, dan FastAPI). Anda tidak perlu membuat roda dari nol — cukup gunakan modul yang ada untuk membangun aplikasi kelas dunia.</p>\n    ",
+    "quiz": {
+     "q": "Apa prinsip dasar utama dari filosofi desain bahasa Python (Zen of Python)?",
+     "opts": [
+      "Kode harus bersih, sederhana, dan mengutamakan keterbacaan (Readability counts)",
+      "Kode harus memiliki titik koma di setiap akhir baris",
+      "Hanya boleh digunakan untuk membuat game 3D",
+      "Wajib menggunakan huruf kapital semua"
+     ],
+     "ans": 0,
+     "why": "Filosofi Python menekankan pada kesederhanaan dan keterbacaan kode (Readability counts) agar mudah dipelajari dan dirawat."
+    }
+   },
+   {
+    "id": "py-02",
+    "num": "02",
+    "title": "Variabel, Tipe Data Dinamis & Input",
+    "level": "Pemula",
+    "desc": "Memahami tipe data primitif, Dynamic Typing, type casting, dan f-strings modern.",
+    "intro": "Python menggunakan Dynamic Typing: Anda tidak perlu menuliskan tipe data secara manual. Python secara cerdas akan mendeteksi tipe data saat nilai dimasukkan.",
+    "body": "\n      <h4>🏷️ Analogi Label Stiker Pintar</h4>\n      <p>Bayangkan Anda memiliki kotak penyimpanan. Di bahasa lain, Anda harus memesan kotak khusus bertuliskan 'KHUSUS ANGKA'. Di Python, variabel seperti <b>label stiker tempel</b> bernama <code class=\"inline\">nama_pengguna</code> atau <code class=\"inline\">saldo</code> yang bebas Anda tempelkan pada wadah apa saja — teks, angka, maupun desimal.</p>\n\n      <h4>📦 4 Tipe Data Dasar</h4>\n      <div class=\"cards\">\n        <div class=\"keyword-card\">\n          <div class=\"keyword-card-header\"><span class=\"keyword-name\">str (Teks)</span><span class=\"keyword-badge\">\"Supriyanto\"</span></div>\n          <div class=\"keyword-desc\">Rangkaian huruf dan karakter dalam tanda petik.</div>\n        </div>\n        <div class=\"keyword-card\">\n          <div class=\"keyword-card-header\"><span class=\"keyword-name\">int (Bilangan Bulat)</span><span class=\"keyword-badge\">28, 100, -5</span></div>\n          <div class=\"keyword-desc\">Angka bulat untuk kuantitas dan perhitungan diskrit.</div>\n        </div>\n        <div class=\"keyword-card\">\n          <div class=\"keyword-card-header\"><span class=\"keyword-name\">float (Desimal)</span><span class=\"keyword-badge\">98.5, 3.14</span></div>\n          <div class=\"keyword-desc\">Angka pecahan desimal dengan presisi tinggi.</div>\n        </div>\n        <div class=\"keyword-card\">\n          <div class=\"keyword-card-header\"><span class=\"keyword-name\">bool (Logika)</span><span class=\"keyword-badge\">True / False</span></div>\n          <div class=\"keyword-desc\">Nilai kebenaran logika biner (Benar / Salah).</div>\n        </div>\n      </div>\n\n      <h4>✨ Format String Modern (f-string)</h4>\n      <div class=\"code-block\"><span class=\"cm\"># Deklarasi data profil Supriyanto</span>\nnama_klien = <span class=\"st\">\"Supriyanto\"</span>\nskor_kemampuan = <span class=\"nm\">92.5</span>\njumlah_proyek = <span class=\"nm\">14</span>\nis_verifikasi = <span class=\"kw\">True</span>\n\n<span class=\"cm\"># Format f-string dengan formatting angka</span>\ninfo = <span class=\"st\">f\"Klien: {nama_klien} | Proyek: {jumlah_proyek} | Skor: {skor_kemampuan:.1f} | Aktif: {is_verifikasi}\"</span>\n<span class=\"fn\">print</span>(info)\n\n<span class=\"cm\"># Konversi Tipe Data (Type Casting)</span>\nteks_angka = <span class=\"st\">\"50000\"</span>\nnominal = <span class=\"fn\">int</span>(teks_angka) + <span class=\"nm\">15000</span>\n<span class=\"fn\">print</span>(<span class=\"st\">f\"Total Nominal Supriyanto: Rp{nominal:,}\"</span>)</div>\n    ",
+    "quiz": {
+     "q": "Bagaimana cara menulis format string modern (f-string) yang benar di Python?",
+     "opts": [
+      "f\"Halo {nama_pengguna}\"",
+      "\"Halo $nama_pengguna\"",
+      "\"Halo %s\" % nama_pengguna",
+      "string.format(\"Halo\", nama_pengguna)"
+     ],
+     "ans": 0,
+     "why": "f-string diawali dengan huruf f sebelum tanda petik, lalu nama variabel disisipkan langsung di dalam kurung kurawal {variabel}."
+    }
+   },
+   {
+    "id": "py-03",
+    "num": "03",
+    "title": "Logika & Percabangan if-elif-else",
+    "level": "Pemula",
+    "desc": "Membangun alur keputusan cerdas dengan operator pembanding dan logika.",
+    "intro": "Program yang cerdas tahu kapan harus mengambil jalan A atau jalan B. Percabangan if-elif-else adalah mekanisme utama pengambilan keputusan di Python.",
+    "body": "\n      <h4>🚦 Analogi Satpam Pintu Gerbang Otomatis</h4>\n      <p>Bayangkan seorang satpam gerbang yang bertugas menyaring tamu:</p>\n      <ul>\n        <li><b>if (Jika):</b> Tamu punya tiket VIP (Supriyanto) → langsung silakan masuk ke ruang eksekutif.</li>\n        <li><b>elif (Jika kondisi lain):</b> Tamu punya tiket reguler → arahkan ke antrean reguler.</li>\n        <li><b>else (Lainnya):</b> Tidak punya tiket sama sekali → arahkan ke loket registrasi.</li>\n      </ul>\n\n      <h4>🛠️ Contoh Kode: Evaluasi Kelulusan Supriyanto</h4>\n      <div class=\"code-block\">skor_tes = <span class=\"nm\">88</span>\nnama_kandidat = <span class=\"st\">\"Supriyanto\"</span>\n\n<span class=\"kw\">if</span> skor_tes &gt;= <span class=\"nm\">90</span>:\n    grade = <span class=\"st\">\"A (Sangat Baik)\"</span>\n    rekomendasi = <span class=\"st\">\"Langsung diterima sebagai Senior Engineer\"</span>\n<span class=\"kw\">elif</span> skor_tes &gt;= <span class=\"nm\">75</span>:\n    grade = <span class=\"st\">\"B (Lulus Memuaskan)\"</span>\n    rekomendasi = <span class=\"st\">\"Diterima di divisi Rekayasa AI\"</span>\n<span class=\"kw\">else</span>:\n    grade = <span class=\"st\">\"C (Perlu Remedial)\"</span>\n    rekomendasi = <span class=\"st\">\"Mengulang modul latihan dasar\"</span>\n\n<span class=\"fn\">print</span>(<span class=\"st\">f\"Hasil Evaluasi {nama_kandidat}:\"</span>)\n<span class=\"fn\">print</span>(<span class=\"st\">f\"Grade: {grade} | Keputusan: {rekomendasi}\"</span>)</div>\n\n      <div class=\"note\">\n        <b>Aturan Indentasi Python:</b> Python tidak menggunakan kurung kurawal <code class=\"inline\">{}</code>. Blok kode ditentukan oleh <b>4 spasi indentasi</b> setelah titik dua <code class=\"inline\">:</code>.\n      </div>\n    ",
+    "quiz": {
+     "q": "Bagaimana Python menentukan cakupan blok kode di dalam percabangan if?",
+     "opts": [
+      "Menggunakan indentasi spasi/tab yang konsisten setelah tanda titik dua (:)",
+      "Menggunakan tanda kurung kurawal { }",
+      "Menggunakan kata kunci BEGIN dan END",
+      "Menggunakan tanda titik koma ;"
+     ],
+     "ans": 0,
+     "why": "Python menggunakan indentasi (spasi/tab) setelah tanda titik dua (:) untuk menentukan blok cakupan kode secara bersih."
+    }
+   },
+   {
+    "id": "py-04",
+    "num": "04",
+    "title": "Struktur Data Koleksi (List, Tuple, Set, Dict)",
+    "level": "Menengah",
+    "desc": "Menguasai 4 struktur data bawaan Python untuk mengelola data kompleks.",
+    "intro": "Sebagian besar waktu seorang programmer digunakan untuk memproses kumpulan data. Python menyediakan 4 wadah bawaan yang sangat fleksibel dan berdaya guna tinggi.",
+    "body": "\n      <h4>🧺 Analogi 4 Jenis Wadah Penyimpanan</h4>\n      <div class=\"cards\">\n        <div class=\"keyword-card\">\n          <div class=\"keyword-card-header\"><span class=\"keyword-name\">List [1, 2, 3]</span><span class=\"keyword-badge\">MUTABLE</span></div>\n          <div class=\"keyword-desc\">Keranjang belanja fleksibel: urutannya terjaga, datanya bisa ditambah, diedit, atau dihapus kapan saja.</div>\n        </div>\n        <div class=\"keyword-card\">\n          <div class=\"keyword-card-header\"><span class=\"keyword-name\">Tuple (1, 2, 3)</span><span class=\"keyword-badge\">IMMUTABLE</span></div>\n          <div class=\"keyword-desc\">Dokumen bersegel resmi: nilainya permanen dan tidak bisa diubah setelah dibuat (sangat hemat memori).</div>\n        </div>\n        <div class=\"keyword-card\">\n          <div class=\"keyword-card-header\"><span class=\"keyword-name\">Set {1, 2, 3}</span><span class=\"keyword-badge\">UNIQUE</span></div>\n          <div class=\"keyword-desc\">Kantong unik: otomatis membuang data ganda (duplikat) dan mendukung operasi irisan/gabungan.</div>\n        </div>\n        <div class=\"keyword-card\">\n          <div class=\"keyword-card-header\"><span class=\"keyword-name\">Dict {\"k\": \"v\"}</span><span class=\"keyword-badge\">KEY-VALUE</span></div>\n          <div class=\"keyword-desc\">Buku kontak telepon: mencari nilai berdasarkan kunci/nama secara instan O(1).</div>\n        </div>\n      </div>\n\n      <h4>🛠️ Contoh Kode Koleksi Data Profil</h4>\n      <div class=\"code-block\"><span class=\"cm\"># 1. Dictionary profil Supriyanto</span>\nprofil_supriyanto = {\n    <span class=\"st\">\"nama\"</span>: <span class=\"st\">\"Supriyanto\"</span>,\n    <span class=\"st\">\"keahlian\"</span>: [<span class=\"st\">\"Python\"</span>, <span class=\"st\">\"Automation\"</span>, <span class=\"st\">\"AI\"</span>],  <span class=\"cm\"># List</span>\n    <span class=\"st\">\"koordinat_kantor\"</span>: (<span class=\"nm\">-6.2088</span>, <span class=\"nm\">106.8456</span>),         <span class=\"cm\"># Tuple (lat, lon)</span>\n    <span class=\"st\">\"badge_penghargaan\"</span>: {<span class=\"st\">\"Top Contributor\"</span>, <span class=\"st\">\"AI Innovator\"</span>} <span class=\"cm\"># Set</span>\n}\n\n<span class=\"cm\"># Memanipulasi data</span>\nprofil_supriyanto[<span class=\"st\">\"keahlian\"</span>].<span class=\"fn\">append</span>(<span class=\"st\">\"Data Engineering\"</span>)\nprofil_supriyanto[<span class=\"st\">\"level\"</span>] = <span class=\"st\">\"Expert\"</span>\n\n<span class=\"fn\">print</span>(<span class=\"st\">f\"Profil: {profil_supriyanto['nama']}\"</span>)\n<span class=\"fn\">print</span>(<span class=\"st\">f\"Daftar Keahlian ({len(profil_supriyanto['keahlian'])} bidang): {', '.join(profil_supriyanto['keahlian'])}\"</span>)</div>\n    ",
+    "quiz": {
+     "q": "Struktur data Python manakah yang otomatis menghapus nilai duplikat dan tidak memiliki indeks urutan?",
+     "opts": [
+      "Set",
+      "List",
+      "Tuple",
+      "Dictionary"
+     ],
+     "ans": 0,
+     "why": "Set di Python hanya menyimpan nilai-nilai unik (tidak mengizinkan duplikasi) dan tidak terurut berdasarkan indeks angka."
+    }
+   },
+   {
+    "id": "py-05",
+    "num": "05",
+    "title": "Perulangan & List Comprehension",
+    "level": "Menengah",
+    "desc": "Memproses ribuan data otomatis dengan loop for, while, dan ekspresi List Comprehension.",
+    "intro": "Komputer tidak pernah lelah melakukan tugas berulang. Di Python, List Comprehension memungkinkan Anda menyaring dan mengubah data dalam satu baris ekspresi yang sangat elegan.",
+    "body": "\n      <h4>🏭 Analogi Mesin Pabrik Ban Berjalan</h4>\n      <p>Jika perulangan <code class=\"inline\">for</code> tradisional seperti pekerja memeriksa satu per satu barang di atas meja, maka <b>List Comprehension</b> adalah mesin pabrik pintar: barang masuk di satu sisi, langsung disaring, dicap, dan keluar sebagai kumpulan produk baru dalam 1 baris pipa produksi.</p>\n\n      <h4>⚡ List Comprehension vs For Loop Tradisional</h4>\n      <div class=\"code-block\"><span class=\"cm\"># Daftar transaksi Supriyanto (dalam Rupiah)</span>\ntransaksi = [<span class=\"nm\">10000</span>, <span class=\"nm\">25000</span>, <span class=\"nm\">50000</span>, <span class=\"nm\">15000</span>, <span class=\"nm\">85000</span>, <span class=\"nm\">120000</span>]\n\n<span class=\"cm\"># Cara 1: Tradisional For Loop</span>\ntransaksi_vip = []\n<span class=\"kw\">for</span> t <span class=\"kw\">in</span> transaksi:\n    <span class=\"kw\">if</span> t &gt;= <span class=\"nm\">50000</span>:\n        transaksi_vip.<span class=\"fn\">append</span>(t * <span class=\"nm\">1.1</span>) <span class=\"cm\"># Tambah cashback 10%</span>\n\n<span class=\"cm\"># Cara 2: Pythonic (List Comprehension) — 1 Baris Elegan!</span>\ntransaksi_vip_modern = [t * <span class=\"nm\">1.1</span> <span class=\"kw\">for</span> t <span class=\"kw\">in</span> transaksi <span class=\"kw\">if</span> t &gt;= <span class=\"nm\">50000</span>]\n\n<span class=\"fn\">print</span>(<span class=\"st\">\"Transaksi VIP Supriyanto (dengan cashback):\"</span>, transaksi_vip_modern)</div>\n\n      <div class=\"tip\">\n        <b>Pola List Comprehension:</b> <code class=\"inline\">[ekspresi_baru for item in koleksi if syarat]</code>. Pola ini jauh lebih cepat dieksekusi oleh interpreter Python dibandingkan loop manual.\n      </div>\n    ",
+    "quiz": {
+     "q": "Apa keuntungan utama menulis List Comprehension dibandingkan perulangan for biasa di Python?",
+     "opts": [
+      "Sintaks lebih ringkas, mudah dibaca, dan dieksekusi lebih cepat di level C-Python",
+      "Menghapus variabel dari RAM komputer",
+      "Mengubah tipe data angka menjadi gambar",
+      "Mematikan fungsi compiler"
+     ],
+     "ans": 0,
+     "why": "List Comprehension menyediakan sintaks yang ringkas, mudah dipahami (pythonic), dan memiliki optimasi performa di level interpreter Python."
+    }
+   },
+   {
+    "id": "py-06",
+    "num": "06",
+    "title": "Fungsi, Args/Kwargs & Lambda",
+    "level": "Menengah",
+    "desc": "Membuat fungsi modular, parameter opsional, fleksibilitas arbitrary arguments, dan lambda.",
+    "intro": "Fungsi adalah blok bangunan utama program modular. Python memiliki fitur *args dan **kwargs yang memungkinkan fungsi menerima jumlah argumen yang dinamis.",
+    "body": "\n      <h4>🧑‍🍳 Analogi Resep Masakan & Pesanan Kustom</h4>\n      <p>Bayangkan Supriyanto membuka jasa konsultasi software:</p>\n      <ul>\n        <li><b>Positional Args:</b> Pesanan standar yang wajib diisi (Nama Klien).</li>\n        <li><b><code class=\"inline\">*args</code>:</b> Daftar fitur tambahan yang jumlahnya bebas (bisa pesan 2 fitur, 5 fitur, atau 10 fitur).</li>\n        <li><b><code class=\"inline\">**kwargs</code>:</b> Opsi kustom dengan label khusus (seperti <code class=\"inline\">garansi=\"1 tahun\"</code>, <code class=\"inline\">diskon=0.15</code>).</li>\n      </ul>\n\n      <h4>🛠️ Contoh Kode: Fungsi Fleksibel</h4>\n      <div class=\"code-block\"><span class=\"kw\">def</span> <span class=\"fn\">buat_penawaran_proyek</span>(nama_klien, *fitur, diskon=<span class=\"nm\">0.05</span>, **opsi_tambahan):\n    biaya_dasar = <span class=\"fn\">len</span>(fitur) * <span class=\"nm\">1500000</span>\n    total_biaya = biaya_dasar * (<span class=\"nm\">1</span> - diskon)\n    \n    <span class=\"kw\">return</span> {\n        <span class=\"st\">\"klien\"</span>: nama_klien,\n        <span class=\"st\">\"total_fitur\"</span>: <span class=\"fn\">len</span>(fitur),\n        <span class=\"st\">\"daftar_fitur\"</span>: fitur,\n        <span class=\"st\">\"biaya_akhir\"</span>: total_biaya,\n        <span class=\"st\">\"opsi_kustom\"</span>: opsi_tambahan\n    }\n\n<span class=\"cm\"># Memanggil fungsi dengan fleksibel</span>\nhasil = buat_penawaran_proyek(\n    <span class=\"st\">\"Supriyanto\"</span>,\n    <span class=\"st\">\"Autentikasi\"</span>, <span class=\"st\">\"Dashboard Analitik\"</span>, <span class=\"st\">\"Integrasi AI\"</span>,\n    diskon=<span class=\"nm\">0.1</span>,\n    garansi_bulan=<span class=\"nm\">12</span>,\n    deploy_target=<span class=\"st\">\"Cloudflare\"</span>\n)\n\n<span class=\"fn\">print</span>(<span class=\"st\">\"Ringkasan Penawaran:\"</span>, hasil)\n\n<span class=\"cm\"># Fungsi Lambda Satu Baris</span>\nhitung_pajak = <span class=\"kw\">lambda</span> nominal: nominal * <span class=\"nm\">0.11</span>\n<span class=\"fn\">print</span>(<span class=\"st\">\"Pajak Rp1.000.000:\"</span>, hitung_pajak(<span class=\"nm\">1000000</span>))</div>\n    ",
+    "quiz": {
+     "q": "Apa perbedaan antara parameter *args dan **kwargs pada fungsi Python?",
+     "opts": [
+      "*args menerima argumen posisional sebagai Tuple, sedangkan **kwargs menerima argumen kata-kunci sebagai Dictionary",
+      "*args hanya untuk string, **kwargs hanya untuk angka",
+      "*args wajib diisi, **kwargs tidak boleh dipakai",
+      "Tidak ada perbedaan sama sekali"
+     ],
+     "ans": 0,
+     "why": "*args mengumpulkan argumen posisional tak terbatas ke dalam Tuple, sedangkan **kwargs mengumpulkan argumen bernama (key=value) ke dalam Dictionary."
+    }
+   },
+   {
+    "id": "py-07",
+    "num": "07",
+    "title": "Pemrograman Berorientasi Objek (OOP)",
+    "level": "Lanjutan",
+    "desc": "Membangun sistem modular dengan Class, Object, Constructor __init__, Encapsulation, dan Inheritance.",
+    "intro": "OOP mengorganisir kode seperti di dunia nyata: menggabungkan data (atribut) dan perilaku (method) ke dalam satu kesatuan bernama Objek.",
+    "body": "\n      <h4>🏛️ Analogi Cetak Biru Gedung & Bangunan Nyata</h4>\n      <p><b>Class</b> adalah cetak biru (blueprint) arsitektur di atas kertas. <b>Object / Instance</b> adalah gedung fisik nyata yang dibangun dari cetak biru tersebut. Dari 1 cetak biru <code class=\"inline\">Engineer</code>, kita bisa membuat banyak objek seperti profil <b>Supriyanto</b> dengan atribut dan kemampuannya masing-masing.</p>\n\n      <h4>🏗️ Contoh Kode: Inheritance &amp; Encapsulation</h4>\n      <div class=\"code-block\"><span class=\"kw\">class</span> <span class=\"fn\">Engineer</span>:\n    <span class=\"kw\">def</span> <span class=\"fn\">__init__</span>(self, nama: str, level: str):\n        self.nama = nama\n        self.level = level\n        self._poin_reputasi = <span class=\"nm\">100</span> <span class=\"cm\"># Protected attribute</span>\n\n    <span class=\"kw\">def</span> <span class=\"fn\">tambah_reputasi</span>(self, poin: int):\n        self._poin_reputasi += poin\n        <span class=\"fn\">print</span>(<span class=\"st\">f\"Reputasi {self.nama} naik menjadi {self._poin_reputasi} poin.\"</span>)\n\n    <span class=\"kw\">def</span> <span class=\"fn\">info_profil</span>(self) -&gt; str:\n        <span class=\"kw\">return</span> <span class=\"st\">f\"Engineer: {self.nama} | Level: {self.level}\"</span>\n\n<span class=\"cm\"># Inheritance (Pewarisan sifat dari class Engineer)</span>\n<span class=\"kw\">class</span> <span class=\"fn\">AIEngineer</span>(Engineer):\n    <span class=\"kw\">def</span> <span class=\"fn\">__init__</span>(self, nama: str, spesialisasi: str):\n        <span class=\"fn\">super</span>().<span class=\"fn\">__init__</span>(nama, level=<span class=\"st\">\"Lead AI Specialist\"</span>)\n        self.spesialisasi = spesialisasi\n\n    <span class=\"kw\">def</span> <span class=\"fn\">deploy_model</span>(self, nama_model: str):\n        <span class=\"kw\">return</span> <span class=\"st\">f\"🚀 {self.nama} sukses melakukan deploy model '{nama_model}' ke cloud!\"</span>\n\n<span class=\"cm\"># Membuat Object Supriyanto</span>\nsupriyanto = AIEngineer(<span class=\"st\">\"Supriyanto\"</span>, spesialisasi=<span class=\"st\">\"Large Language Models\"</span>)\n<span class=\"fn\">print</span>(supriyanto.info_profil())\nsupriyanto.tambah_reputasi(<span class=\"nm\">50</span>)\n<span class=\"fn\">print</span>(supriyanto.deploy_model(<span class=\"st\">\"Neural-Classifier-v2\"</span>))</div>\n    ",
+    "quiz": {
+     "q": "Apa fungsi method khusus '__init__' pada sebuah class di Python?",
+     "opts": [
+      "Sebagai konstruktor yang otomatis dijalankan saat objek baru pertama kali dibuat",
+      "Untuk menghapus class dari memori",
+      "Untuk mencetak teks ke printer",
+      "Untuk mengubah nama file Python"
+     ],
+     "ans": 0,
+     "why": "__init__ adalah method konstruktor inisialisasi yang dipanggil secara otomatis ketika suatu instance class baru diinstansiasi."
+    }
+   },
+   {
+    "id": "py-08",
+    "num": "08",
+    "title": "Error Handling (try-except) & File I/O",
+    "level": "Lanjutan",
+    "desc": "Menangani kesalahan program secara elegan dan manipulasi file JSON/CSV dengan Context Manager.",
+    "intro": "Aplikasi profesional tidak boleh crash tiba-tiba saat terjadi error. Blok try-except dan context manager 'with' menjamin keamanan program dan penanganan berkas data.",
+    "body": "\n      <h4>🎪 Analogi Jaring Pengaman Sirkus Akrobat</h4>\n      <p>Pemain akrobat sirkus selalu memasang <b>jaring pengaman di bawahnya (<code class=\"inline\">try-except</code>)</b>: jika pemain terpeleset (terjadi error seperti file tidak ditemukan atau koneksi putus), pertunjukan tidak berhenti total — sang akrobat mendarat dengan selamat di jaring pengaman dan program tetap berjalan lancar.</p>\n\n      <h4>📁 Membaca &amp; Menulis File JSON dengan Aman</h4>\n      <div class=\"code-block\"><span class=\"kw\">import</span> json\n\ndata_portofolio = {\n    <span class=\"st\">\"klien\"</span>: <span class=\"st\">\"Supriyanto\"</span>,\n    <span class=\"st\">\"proyek_selesai\"</span>: [<span class=\"st\">\"Web RB Learning\"</span>, <span class=\"st\">\"AI Engine\"</span>, <span class=\"st\">\"Bot Automation\"</span>],\n    <span class=\"st\">\"skor_rata_rata\"</span>: <span class=\"nm\">97.8</span>,\n    <span class=\"st\">\"status\"</span>: <span class=\"st\">\"Verified\"</span>\n}\n\nnama_file = <span class=\"st\">\"data_supriyanto.json\"</span>\n\n<span class=\"cm\"># 1. Menulis file dengan Context Manager (with open)</span>\n<span class=\"kw\">try</span>:\n    <span class=\"kw\">with</span> <span class=\"fn\">open</span>(nama_file, <span class=\"st\">\"w\"</span>, encoding=<span class=\"st\">\"utf-8\"</span>) <span class=\"kw\">as</span> f:\n        json.dump(data_portofolio, f, indent=<span class=\"nm\">2</span>)\n    <span class=\"fn\">print</span>(<span class=\"st\">f\"✅ Berhasil menyimpan {nama_file}\"</span>)\n<span class=\"kw\">except</span> IOError <span class=\"kw\">as</span> err:\n    <span class=\"fn\">print</span>(<span class=\"st\">f\"❌ Gagal menulis file: {err}\"</span>)\n\n<span class=\"cm\"># 2. Membaca kembali file secara aman</span>\n<span class=\"kw\">try</span>:\n    <span class=\"kw\">with</span> <span class=\"fn\">open</span>(nama_file, <span class=\"st\">\"r\"</span>, encoding=<span class=\"st\">\"utf-8\"</span>) <span class=\"kw\">as</span> f:\n        data_baca = json.load(f)\n    <span class=\"fn\">print</span>(<span class=\"st\">f\"📂 Data terbaca untuk: {data_baca['klien']} (Total Proyek: {len(data_baca['proyek_selesai'])})\"</span>)\n<span class=\"kw\">except</span> FileNotFoundError:\n    <span class=\"fn\">print</span>(<span class=\"st\">\"⚠️ File tidak ditemukan!\"</span>)</div>\n    ",
+    "quiz": {
+     "q": "Mengapa disarankan menggunakan 'with open(...)' saat membaca atau menulis file di Python?",
+     "opts": [
+      "Karena otomatis menutup file secara aman setelah selesai, bahkan jika terjadi error di tengah proses",
+      "Karena membuat ukuran file menjadi 0 byte",
+      "Hanya berlaku untuk file berformat MP3",
+      "Wajib digunakan agar komputer tidak restart"
+     ],
+     "ans": 0,
+     "why": "Pernyataan 'with' bertindak sebagai context manager yang menjamin penutupan file secara otomatis (resource cleanup) sehingga tidak terjadi kebocoran memori."
+    }
+   },
+   {
+    "id": "py-09",
+    "num": "09",
+    "title": "Fondasi Data Science: NumPy & Pandas",
+    "level": "Mahir",
+    "desc": "Manipulasi data skala besar dengan Array multi-dimensi NumPy dan DataFrame Pandas.",
+    "intro": "NumPy dan Pandas adalah fondasi seluruh revolusi Data Science dan AI modern. Keduanya menyediakan komputasi vektor berkecepatan native C di balik antarmuka Python yang ramah.",
+    "body": "\n      <h4>📊 Analogi Excel Bertenaga Mesin Jet</h4>\n      <p>Jika aplikasi spreadsheet Excel tradisional mulai macet saat membuka 100.000 baris data, maka <b>Pandas &amp; NumPy seperti spreadsheet bertenaga mesin jet</b>: mampu memfilter, menggabungkan (<i>merge</i>), dan menghitung statistik dari jutaan baris data dalam hitungan milidetik.</p>\n\n      <h4>🧮 Contoh Analisis Data Penjualan Supriyanto</h4>\n      <div class=\"code-block\"><span class=\"kw\">import</span> numpy <span class=\"kw\">as</span> np\n<span class=\"kw\">import</span> pandas <span class=\"kw\">as</span> pd\n\n<span class=\"cm\"># 1. Komputasi Vektor dengan NumPy</span>\nskor_mentah = np.array([<span class=\"nm\">75.0</span>, <span class=\"nm\">82.5</span>, <span class=\"nm\">90.0</span>, <span class=\"nm\">95.5</span>, <span class=\"nm\">88.0</span>])\nskor_ternormalisasi = (skor_mentah - np.mean(skor_mentah)) / np.std(skor_mentah)\n<span class=\"fn\">print</span>(<span class=\"st\">\"Rata-rata NumPy:\"</span>, np.mean(skor_mentah))\n\n<span class=\"cm\"># 2. Analisis Tabel Data dengan Pandas DataFrame</span>\ndata_bisnis = {\n    <span class=\"st\">\"Bulan\"</span>: [<span class=\"st\">\"Januari\"</span>, <span class=\"st\">\"Februari\"</span>, <span class=\"st\">\"Maret\"</span>, <span class=\"st\">\"April\"</span>, <span class=\"st\">\"Mei\"</span>],\n    <span class=\"st\">\"Klien_Aktif\"</span>: [<span class=\"nm\">12</span>, <span class=\"nm\">18</span>, <span class=\"nm\">25</span>, <span class=\"nm\">32</span>, <span class=\"nm\">45</span>],\n    <span class=\"st\">\"Pendapatan_Juta\"</span>: [<span class=\"nm\">45.0</span>, <span class=\"nm\">68.5</span>, <span class=\"nm\">95.0</span>, <span class=\"nm\">124.0</span>, <span class=\"nm\">180.5</span>]\n}\n\ndf = pd.DataFrame(data_bisnis)\n<span class=\"cm\"># Menghitung metrik baru secara instan (Vectorized Calculation)</span>\ndf[<span class=\"st\">\"Rata_Per_Klien\"</span>] = df[<span class=\"st\">\"Pendapatan_Juta\"</span>] / df[<span class=\"st\">\"Klien_Aktif\"</span>]\n\n<span class=\"fn\">print</span>(<span class=\"st\">\"=== LAPORAN PERTUMBUHAN BISNIS SUPRIYANTO ===\"</span>)\n<span class=\"fn\">print</span>(df)\n<span class=\"fn\">print</span>(<span class=\"st\">\"Total Pendapatan:\"</span>, df[<span class=\"st\">\"Pendapatan_Juta\"</span>].sum(), <span class=\"st\">\"Juta Rupiah\"</span>)</div>\n    ",
+    "quiz": {
+     "q": "Struktur data dua dimensi berbentuk tabel baris-dan-kolom utama di library Pandas disebut apa?",
+     "opts": [
+      "DataFrame",
+      "Series",
+      "Tensor",
+      "Matrix2D"
+     ],
+     "ans": 0,
+     "why": "DataFrame adalah struktur data 2 dimensi utama di Pandas yang menyerupai tabel relasional dengan label baris dan kolom."
+    }
+   },
+   {
+    "id": "py-10",
+    "num": "10",
+    "title": "Fondasi AI & Machine Learning (Scikit-Learn)",
+    "level": "Mahir",
+    "desc": "Membangun model kecerdasan buatan untuk klasifikasi dan prediksi data nyata.",
+    "intro": "Machine Learning memungkinkan komputer mempelajari pola dari data masa lalu tanpa diprogram aturan logika manual satu per satu.",
+    "body": "\n      <h4>🤖 Analogi Mengajari Anak Mengenali Gambar</h4>\n      <p>Dalam <b>Machine Learning</b>, sistem bekerja dengan cara yang sangat mirip: daripada menulis 1.000 aturan manual untuk membedakan apel dan jeruk, kita cukup memperlihatkan <b>1.000 contoh gambar apel dan jeruk yang sudah diberi label (<i>Training Data</i>)</b>. Komputer akan mempelajari sendiri pola fitur untuk memprediksi data baru secara akurat.</p>\n\n      <h4>🧠 Membuat Model Prediksi Kelulusan AI</h4>\n      <div class=\"code-block\"><span class=\"kw\">from</span> sklearn.tree <span class=\"kw\">import</span> DecisionTreeClassifier\n<span class=\"kw\">import</span> numpy <span class=\"kw\">as</span> np\n\n<span class=\"cm\"># Fitur: [Jam Belajar per Minggu, Skor Latihan Quiz]</span>\n<span class=\"cm\"># Target: [0 = Perlu Bimbingan, 1 = Lulus Sertifikasi AI]</span>\nX_train = np.array([\n    [<span class=\"nm\">2.0</span>, <span class=\"nm\">45</span>],\n    [<span class=\"nm\">4.5</span>, <span class=\"nm\">60</span>],\n    [<span class=\"nm\">8.0</span>, <span class=\"nm\">85</span>],\n    [<span class=\"nm\">12.0</span>, <span class=\"nm\">92</span>],\n    [<span class=\"nm\">10.0</span>, <span class=\"nm\">88</span>],\n    [<span class=\"nm\">3.0</span>, <span class=\"nm\">50</span>]\n])\ny_train = np.array([<span class=\"nm\">0</span>, <span class=\"nm\">0</span>, <span class=\"nm\">1</span>, <span class=\"nm\">1</span>, <span class=\"nm\">1</span>, <span class=\"nm\">0</span>])\n\n<span class=\"cm\"># 1. Inisialisasi dan Latih Model (Training)</span>\nmodel_ai = DecisionTreeClassifier()\nmodel_ai.fit(X_train, y_train)\n\n<span class=\"cm\"># 2. Prediksi Data Baru untuk Supriyanto [9.5 jam belajar, skor 90]</span>\ndata_supriyanto = np.array([[<span class=\"nm\">9.5</span>, <span class=\"nm\">90</span>]])\nprediksi = model_ai.predict(data_supriyanto)\nprobabilitas = model_ai.predict_proba(data_supriyanto)[<span class=\"nm\">0</span>][<span class=\"nm\">1</span>]\n\n<span class=\"fn\">print</span>(<span class=\"st\">\"=== PREDIKSI MODEL AI ===\"</span>)\n<span class=\"fn\">print</span>(<span class=\"st\">\"Kandidat:\"</span>, <span class=\"st\">\"Supriyanto\"</span>)\n<span class=\"fn\">print</span>(<span class=\"st\">f\"Probabilitas Lulus: {probabilitas * 100:.1f}%\"</span>)\n<span class=\"fn\">print</span>(<span class=\"st\">\"Hasil Keputusan:\"</span>, <span class=\"st\">\"LULUS SERTIFIKASI ✅\"</span> <span class=\"kw\">if</span> prediksi[<span class=\"nm\">0</span>] == <span class=\"nm\">1</span> <span class=\"kw\">else</span> <span class=\"st\">\"REMEDIAL ⚠️\"</span>)</div>\n    ",
+    "quiz": {
+     "q": "Apa fungsi method '.fit(X, y)' pada algoritma Machine Learning di Scikit-Learn?",
+     "opts": [
+      "Melatih model AI agar mempelajari pola hubungan antara data fitur (X) dan target (y)",
+      "Mengunduh file dari internet",
+      "Mengunci laptop agar tidak bisa dipakai",
+      "Membuat grafik 3D di layar"
+     ],
+     "ans": 0,
+     "why": "Method .fit() adalah proses training di mana model machine learning mengestimasi parameter internalnya berdasarkan data training X dan label y."
+    }
+   },
+   {
+    "id": "py-11",
+    "num": "11",
+    "title": "Backend & API Development (FastAPI)",
+    "level": "Mahir",
+    "desc": "Membangun REST API modern berkinerja tinggi dengan validasi tipe data Pydantic.",
+    "intro": "FastAPI adalah framework web backend Python modern yang sangat cepat, otomatis menghasilkan dokumentasi Swagger interaktif, dan standar industri untuk menyajikan model AI.",
+    "body": "\n      <h4>🍽️ Analogi Pelayan Restoran Digital</h4>\n      <p>Jika model AI atau database Anda adalah dapur koki, maka <b>FastAPI adalah pelayan restoran super gesit</b>: menerima pesanan dari aplikasi peramban web/HP (HTTP Request), memeriksa apakah formulir pesanan valid (<i>Pydantic Validation</i>), membawanya ke dapur, lalu mengantarkan makanan siap saji dalam format data <b>JSON</b>.</p>\n\n      <h4>⚡ Struktur REST API Lengkap dengan FastAPI</h4>\n      <div class=\"code-block\"><span class=\"kw\">from</span> fastapi <span class=\"kw\">import</span> FastAPI, HTTPException\n<span class=\"kw\">from</span> pydantic <span class=\"kw\">import</span> BaseModel\n\napp = FastAPI(title=<span class=\"st\">\"API Layanan RB Learning\"</span>, version=<span class=\"st\">\"1.0.0\"</span>)\n\n<span class=\"cm\"># Skema Validasi Data Input Pengguna</span>\n<span class=\"kw\">class</span> <span class=\"fn\">DataKlien</span>(BaseModel):\n    nama: str\n    skor_latihan: float\n    bidang: str\n\n<span class=\"cm\"># Endpoint GET: Sambutan API</span>\n<span class=\"dec\">@app.get</span>(<span class=\"st\">\"/\"</span>)\n<span class=\"kw\">def</span> <span class=\"fn\">root</span>():\n    <span class=\"kw\">return</span> {<span class=\"st\">\"status\"</span>: <span class=\"st\">\"online\"</span>, <span class=\"st\">\"pesan\"</span>: <span class=\"st\">\"Selamat datang di API RB Learning\"</span>}\n\n<span class=\"cm\"># Endpoint POST: Evaluasi Kelayakan Klien</span>\n<span class=\"dec\">@app.post</span>(<span class=\"st\">\"/api/evaluasi\"</span>)\n<span class=\"kw\">def</span> <span class=\"fn\">evaluasi_klien</span>(klien: DataKlien):\n    rekomendasi = <span class=\"st\">\"Disetujui\"</span> <span class=\"kw\">if</span> klien.skor_latihan &gt;= <span class=\"nm\">75.0</span> <span class=\"kw\">else</span> <span class=\"st\">\"Review\"</span>\n    <span class=\"kw\">return</span> {\n        <span class=\"st\">\"kandidat\"</span>: klien.nama,\n        <span class=\"st\">\"bidang\"</span>: klien.bidang,\n        <span class=\"st\">\"status\"</span>: rekomendasi,\n        <span class=\"st\">\"keterangan\"</span>: <span class=\"st\">f\"Evaluasi untuk {klien.nama} berhasil diproses oleh sistem AI.\"</span>\n    }</div>\n\n      <div class=\"tip-box\">\n        <span class=\"tip-box-icon\">💡</span>\n        <div><b>Dokumentasi Otomatis:</b> Buka <code class=\"inline\">/docs</code> di browser saat server berjalan untuk mencoba semua endpoint secara interaktif melalui antarmuka Swagger UI.</div>\n      </div>\n    ",
+    "quiz": {
+     "q": "Fitur unggulan apa yang otomatis disediakan oleh FastAPI tanpa perlu coding tambahan?",
+     "opts": [
+      "Dokumentasi API interaktif berbasis Swagger UI di URL /docs dan validasi tipe data otomatis",
+      "Otomatis membeli domain web gratis",
+      "Otomatis mematikan server setiap malam",
+      "Mengganti sistem operasi Windows menjadi Linux"
+     ],
+     "ans": 0,
+     "why": "FastAPI secara otomatis menghasilkan dokumentasi interaktif Swagger UI (/docs) dan ReDoc (/redoc) berdasarkan type hints dan skema Pydantic."
+    }
+   },
+   {
+    "id": "py-12",
+    "num": "12",
+    "title": "Asynchronous Python & Otomasi (async/await)",
+    "level": "Mahir",
+    "desc": "Mengeksekusi ribuan tugas I/O non-blocking secara serentak dengan asyncio.",
+    "intro": "Dalam komputasi modern, menunggu respons database atau API eksternal sering membuang waktu. Fitur async/await memungkinkan Python mengeksekusi tugas lain selagi menunggu.",
+    "body": "\n      <h4>☕ Analogi Barista Multitasking di Kedai Kopi</h4>\n      <p>Bayangkan seorang barista di kedai kopi:</p>\n      <ul>\n        <li><b>Synchronous (Tradisional):</b> Barista menekan tombol mesin espresso lalu berdiri diam menatap cangkir selama 30 detik tanpa melakukan apa pun sampai kopi selesai menetes.</li>\n        <li><b>Asynchronous (<code class=\"inline\">async/await</code>):</b> Selagi mesin espresso bekerja meneteskan kopi (<code class=\"inline\">await</code>), barista langsung memanggang roti untuk pelanggan lain. Semua pesanan selesai 5x lebih cepat tanpa ada waktu terbuang!</li>\n      </ul>\n\n      <h4>⚡ Menjalankan Request Bersamaan dengan asyncio.gather</h4>\n      <div class=\"code-block\"><span class=\"kw\">import</span> asyncio\n\n<span class=\"kw\">async def</span> <span class=\"fn\">tarik_data_api</span>(sumber_data: str, jeda_detik: float):\n    <span class=\"fn\">print</span>(<span class=\"st\">f\"[Bot Supriyanto] Mulai fetch data dari {sumber_data}...\"</span>)\n    <span class=\"kw\">await</span> asyncio.sleep(jeda_detik) <span class=\"cm\"># Simulasi network delay non-blocking</span>\n    <span class=\"fn\">print</span>(<span class=\"st\">f\"[Bot Supriyanto] Selesai: {sumber_data} ({jeda_detik} detik)\"</span>)\n    <span class=\"kw\">return</span> {<span class=\"st\">\"sumber\"</span>: sumber_data, <span class=\"st\">\"status\"</span>: <span class=\"st\">\"200 OK\"</span>}\n\n<span class=\"kw\">async def</span> <span class=\"fn\">main</span>():\n    <span class=\"fn\">print</span>(<span class=\"st\">\"=== MEMULAI PENGAMBILAN DATA ASYNCHRONOUS ===\"</span>)\n    <span class=\"cm\"># Menjalankan 3 request paralel secara serentak</span>\n    hasil = <span class=\"kw\">await</span> asyncio.gather(\n        tarik_data_api(<span class=\"st\">\"Server Analytics Supriyanto\"</span>, <span class=\"nm\">2.0</span>),\n        tarik_data_api(<span class=\"st\">\"Gateway AI Model\"</span>, <span class=\"nm\">1.0</span>),\n        tarik_data_api(<span class=\"st\">\"Database Cloudflare\"</span>, <span class=\"nm\">1.5</span>)\n    )\n    <span class=\"fn\">print</span>(<span class=\"st\">\"Semua data berhasil dikumpulkan:\"</span>, hasil)\n\n<span class=\"cm\"># asyncio.run(main())</span></div>\n\n      <div class=\"tip-box\">\n        <span class=\"tip-box-icon\">🏆</span>\n        <div><b>Selamat!</b> Supriyanto telah menyelesaikan seluruh rangkaian materi Python dari tingkat Pemula hingga Expert. Uji kemampuan Anda dengan mengikuti <b>Quiz Python</b> pada menu navigasi!</div>\n      </div>\n    ",
+    "quiz": {
+     "q": "Apa fungsi fungsi 'asyncio.gather()' di Python?",
+     "opts": [
+      "Menjalankan beberapa coroutine asynchronous secara bersamaan (paralel) dan mengumpulkan seluruh hasilnya",
+      "Menghapus seluruh file temporary di komputer",
+      "Mengubah kode Python menjadi file HTML",
+      "Mematikan koneksi WiFi"
+     ],
+     "ans": 0,
+     "why": "asyncio.gather() menerima sekumpulan tugas asynchronous dan mengeksekusinya secara bersamaan (concurrently) hingga semuanya selesai."
     }
    }
   ]
@@ -1353,5 +1601,161 @@ const QUIZ_BANK = [
   ],
   "ans": 0,
   "why": "MAX Engine mengoptimalkan eksekusi model AI lintas berbagai akselerator hardware dengan efisiensi memori dan throughput komputasi tertinggi."
+ },
+ {
+  "track": "py",
+  "topic": "Pengenalan & Filosofi Python",
+  "q": "Apa prinsip dasar utama dari filosofi desain bahasa Python (Zen of Python)?",
+  "opts": [
+   "Kode harus bersih, sederhana, dan mengutamakan keterbacaan (Readability counts)",
+   "Kode harus memiliki titik koma di setiap akhir baris",
+   "Hanya boleh digunakan untuk membuat game 3D",
+   "Wajib menggunakan huruf kapital semua"
+  ],
+  "ans": 0,
+  "why": "Filosofi Python menekankan pada kesederhanaan dan keterbacaan kode (Readability counts) agar mudah dipelajari dan dirawat."
+ },
+ {
+  "track": "py",
+  "topic": "Variabel, Tipe Data Dinamis & Input",
+  "q": "Bagaimana cara menulis format string modern (f-string) yang benar di Python?",
+  "opts": [
+   "f\"Halo {nama_pengguna}\"",
+   "\"Halo $nama_pengguna\"",
+   "\"Halo %s\" % nama_pengguna",
+   "string.format(\"Halo\", nama_pengguna)"
+  ],
+  "ans": 0,
+  "why": "f-string diawali dengan huruf f sebelum tanda petik, lalu nama variabel disisipkan langsung di dalam kurung kurawal {variabel}."
+ },
+ {
+  "track": "py",
+  "topic": "Logika & Percabangan if-elif-else",
+  "q": "Bagaimana Python menentukan cakupan blok kode di dalam percabangan if?",
+  "opts": [
+   "Menggunakan indentasi spasi/tab yang konsisten setelah tanda titik dua (:)",
+   "Menggunakan tanda kurung kurawal { }",
+   "Menggunakan kata kunci BEGIN dan END",
+   "Menggunakan tanda titik koma ;"
+  ],
+  "ans": 0,
+  "why": "Python menggunakan indentasi (spasi/tab) setelah tanda titik dua (:) untuk menentukan blok cakupan kode secara bersih."
+ },
+ {
+  "track": "py",
+  "topic": "Struktur Data Koleksi (List, Tuple, Set, Dict)",
+  "q": "Struktur data Python manakah yang otomatis menghapus nilai duplikat dan tidak memiliki indeks urutan?",
+  "opts": [
+   "Set",
+   "List",
+   "Tuple",
+   "Dictionary"
+  ],
+  "ans": 0,
+  "why": "Set di Python hanya menyimpan nilai-nilai unik (tidak mengizinkan duplikasi) dan tidak terurut berdasarkan indeks angka."
+ },
+ {
+  "track": "py",
+  "topic": "Perulangan & List Comprehension",
+  "q": "Apa keuntungan utama menulis List Comprehension dibandingkan perulangan for biasa di Python?",
+  "opts": [
+   "Sintaks lebih ringkas, mudah dibaca, dan dieksekusi lebih cepat di level C-Python",
+   "Menghapus variabel dari RAM komputer",
+   "Mengubah tipe data angka menjadi gambar",
+   "Mematikan fungsi compiler"
+  ],
+  "ans": 0,
+  "why": "List Comprehension menyediakan sintaks yang ringkas, mudah dipahami (pythonic), dan memiliki optimasi performa di level interpreter Python."
+ },
+ {
+  "track": "py",
+  "topic": "Fungsi, Args/Kwargs & Lambda",
+  "q": "Apa perbedaan antara parameter *args dan **kwargs pada fungsi Python?",
+  "opts": [
+   "*args menerima argumen posisional sebagai Tuple, sedangkan **kwargs menerima argumen kata-kunci sebagai Dictionary",
+   "*args hanya untuk string, **kwargs hanya untuk angka",
+   "*args wajib diisi, **kwargs tidak boleh dipakai",
+   "Tidak ada perbedaan sama sekali"
+  ],
+  "ans": 0,
+  "why": "*args mengumpulkan argumen posisional tak terbatas ke dalam Tuple, sedangkan **kwargs mengumpulkan argumen bernama (key=value) ke dalam Dictionary."
+ },
+ {
+  "track": "py",
+  "topic": "Pemrograman Berorientasi Objek (OOP)",
+  "q": "Apa fungsi method khusus '__init__' pada sebuah class di Python?",
+  "opts": [
+   "Sebagai konstruktor yang otomatis dijalankan saat objek baru pertama kali dibuat",
+   "Untuk menghapus class dari memori",
+   "Untuk mencetak teks ke printer",
+   "Untuk mengubah nama file Python"
+  ],
+  "ans": 0,
+  "why": "__init__ adalah method konstruktor inisialisasi yang dipanggil secara otomatis ketika suatu instance class baru diinstansiasi."
+ },
+ {
+  "track": "py",
+  "topic": "Error Handling (try-except) & File I/O",
+  "q": "Mengapa disarankan menggunakan 'with open(...)' saat membaca atau menulis file di Python?",
+  "opts": [
+   "Karena otomatis menutup file secara aman setelah selesai, bahkan jika terjadi error di tengah proses",
+   "Karena membuat ukuran file menjadi 0 byte",
+   "Hanya berlaku untuk file berformat MP3",
+   "Wajib digunakan agar komputer tidak restart"
+  ],
+  "ans": 0,
+  "why": "Pernyataan 'with' bertindak sebagai context manager yang menjamin penutupan file secara otomatis (resource cleanup) sehingga tidak terjadi kebocoran memori."
+ },
+ {
+  "track": "py",
+  "topic": "Fondasi Data Science: NumPy & Pandas",
+  "q": "Struktur data dua dimensi berbentuk tabel baris-dan-kolom utama di library Pandas disebut apa?",
+  "opts": [
+   "DataFrame",
+   "Series",
+   "Tensor",
+   "Matrix2D"
+  ],
+  "ans": 0,
+  "why": "DataFrame adalah struktur data 2 dimensi utama di Pandas yang menyerupai tabel relasional dengan label baris dan kolom."
+ },
+ {
+  "track": "py",
+  "topic": "Fondasi AI & Machine Learning (Scikit-Learn)",
+  "q": "Apa fungsi method '.fit(X, y)' pada algoritma Machine Learning di Scikit-Learn?",
+  "opts": [
+   "Melatih model AI agar mempelajari pola hubungan antara data fitur (X) dan target (y)",
+   "Mengunduh file dari internet",
+   "Mengunci laptop agar tidak bisa dipakai",
+   "Membuat grafik 3D di layar"
+  ],
+  "ans": 0,
+  "why": "Method .fit() adalah proses training di mana model machine learning mengestimasi parameter internalnya berdasarkan data training X dan label y."
+ },
+ {
+  "track": "py",
+  "topic": "Backend & API Development (FastAPI)",
+  "q": "Fitur unggulan apa yang otomatis disediakan oleh FastAPI tanpa perlu coding tambahan?",
+  "opts": [
+   "Dokumentasi API interaktif berbasis Swagger UI di URL /docs dan validasi tipe data otomatis",
+   "Otomatis membeli domain web gratis",
+   "Otomatis mematikan server setiap malam",
+   "Mengganti sistem operasi Windows menjadi Linux"
+  ],
+  "ans": 0,
+  "why": "FastAPI secara otomatis menghasilkan dokumentasi interaktif Swagger UI (/docs) dan ReDoc (/redoc) berdasarkan type hints dan skema Pydantic."
+ },
+ {
+  "track": "py",
+  "topic": "Asynchronous Python & Otomasi (async/await)",
+  "q": "Apa fungsi fungsi 'asyncio.gather()' di Python?",
+  "opts": [
+   "Menjalankan beberapa coroutine asynchronous secara bersamaan (paralel) dan mengumpulkan seluruh hasilnya",
+   "Menghapus seluruh file temporary di komputer",
+   "Mengubah kode Python menjadi file HTML",
+   "Mematikan koneksi WiFi"
+  ],
+  "ans": 0,
+  "why": "asyncio.gather() menerima sekumpulan tugas asynchronous dan mengeksekusinya secara bersamaan (concurrently) hingga semuanya selesai."
  }
 ];

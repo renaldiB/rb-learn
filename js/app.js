@@ -211,9 +211,8 @@ function viewHome() {
   $('#view').innerHTML = `
     <div class="home-hero">
       <div class="home-kicker">RB Learning · Materi Lengkap Bahasa Indonesia</div>
-      <h1>Tiga skill modern: <em>JavaScript</em>, <em>Playwright</em>, dan <em>Mojo 🔥</em>.</h1>
-      <p>Kuasai fondasi web JavaScript, automation testing Playwright, hingga bahasa AI modern berkecepatan tinggi Mojo:
-         SIMD, tensor matriks, dan inferensi neural network. Setiap materi memiliki contoh nyata dan kuis pemahaman interaktif.</p>
+      <h1>Empat pilar skill modern: <em>JavaScript</em>, <em>Playwright</em>, <em>Mojo 🔥</em>, dan <em>Python 🐍</em>.</h1>
+      <p>Kuasai fondasi web JavaScript, automation testing Playwright, bahasa performa AI Mojo, hingga ekosistem terlengkap dunia Python: data science, machine learning, dan backend API. Setiap materi memiliki contoh nyata dan kuis pemahaman interaktif.</p>
       <div class="home-actions">
         <a class="btn btn-primary" href="#/m/${next.id}">Lanjutkan: ${esc(next.title)}</a>
         <a class="btn btn-ghost" href="#/quiz">Uji pemahaman</a>
@@ -390,6 +389,7 @@ function renderQuizStart() {
     { id: 'js', label: 'JavaScript' },
     { id: 'pw', label: 'Playwright' },
     { id: 'mojo', label: 'Mojo 🔥' },
+    { id: 'py', label: 'Python 🐍' },
   ];
   $('#view').innerHTML = `
     <div class="quiz-head">
