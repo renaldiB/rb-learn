@@ -464,6 +464,8 @@ function renderQuizStart() {
     { id: 'pw', label: 'Playwright' },
     { id: 'mojo', label: 'Mojo 🔥' },
     { id: 'py', label: 'Python 🐍' },
+    { id: 'rn', label: 'React Native 📱' },
+    { id: 'flutter', label: 'Flutter 💙' },
   ];
   $('#view').innerHTML = `
     <div class="quiz-head">

@@ -1,4 +1,4 @@
-/* Data materi gabungan — dihasilkan dari modul JavaScript, Playwright, Mojo, dan Python. */
+/* Data materi gabungan — dihasilkan dari modul JavaScript, Playwright, Mojo, Python, React Native, dan Flutter. */
 const TRACKS = [
  {
   "id": "js",
@@ -828,6 +828,402 @@ const TRACKS = [
      ],
      "ans": 0,
      "why": "asyncio.gather() menerima sekumpulan tugas asynchronous dan mengeksekusinya secara bersamaan (concurrently) hingga semuanya selesai."
+    }
+   }
+  ]
+ },
+ {
+  "id": "rn",
+  "title": "React Native 📱",
+  "subtitle": "Mobile Cross-Platform: JavaScript/TypeScript, Native Components, Expo, Navigasi & API",
+  "accent": "cyan",
+  "lessons": [
+   {
+    "id": "rn-01",
+    "num": "01",
+    "title": "Pengenalan React Native & Expo",
+    "level": "Pemula",
+    "intro": "React Native memungkinkan Supriyanto membuat aplikasi mobile Android dan iOS sungguhan dari satu basis kode JavaScript/TypeScript.",
+    "body": "\n        <h4>📱 Analogi Satu Blueprint untuk Dua Tim Pembangun</h4>\n        <p>Bayangkan Supriyanto adalah seorang arsitek. Daripada menggambar dua denah terpisah dengan simbol yang berbeda untuk tukang bangunan Android dan tukang bangunan iOS, Supriyanto cukup membuat <b>satu denah blueprint standar (React)</b>. Kompiler React Native bertindak sebagai penerjemah yang secara otomatis memerintahkan Android membuat tombol native Android (Java/Kotlin) dan iOS membuat tombol native iOS (Swift/Objective-C).</p>\n        <p>Hasilnya bukan sekadar website yang dibungkus browser (bukan WebView), melainkan <b>komponen antarmuka native 100%</b> yang berjalan kencang di HP pengguna.</p>\n\n        <h4>⚡ Memulai dengan Expo Snack / CLI</h4>\n        <p><b>Expo</b> adalah ekosistem perkakas modern yang mempermudah pengembangan React Native tanpa perlu menginstal Android Studio atau Xcode di awal belajar.</p>\n        <div class=\"code-block\"><span class=\"cm\">// App.js - Aplikasi Pertama Supriyanto</span>\n<span class=\"kw\">import</span> React <span class=\"kw\">from</span> <span class=\"st\">'react'</span>;\n<span class=\"kw\">import</span> { StyleSheet, Text, View } <span class=\"kw\">from</span> <span class=\"st\">'react-native'</span>;\n\n<span class=\"kw\">export default function</span> <span class=\"fn\">App</span>() {\n  <span class=\"kw\">return</span> (\n    &lt;<span class=\"kw\">View</span> style={styles.container}&gt;\n      &lt;<span class=\"kw\">Text</span> style={styles.heading}&gt;Halo, Supriyanto! 👋&lt;/<span class=\"kw\">Text</span>&gt;\n      &lt;<span class=\"kw\">Text</span> style={styles.sub}&gt;Aplikasi React Native pertama siap dijalankan.&lt;/<span class=\"kw\">Text</span>&gt;\n    &lt;/<span class=\"kw\">View</span>&gt;\n  );\n}\n\n<span class=\"kw\">const</span> styles = StyleSheet.<span class=\"fn\">create</span>({\n  container: {\n    flex: <span class=\"nm\">1</span>,\n    backgroundColor: <span class=\"st\">'#f8fafc'</span>,\n    alignItems: <span class=\"st\">'center'</span>,\n    justifyContent: <span class=\"st\">'center'</span>,\n  },\n  heading: {\n    fontSize: <span class=\"nm\">22</span>,\n    fontWeight: <span class=\"st\">'bold'</span>,\n    color: <span class=\"st\">'#0e7490'</span>,\n  },\n  sub: {\n    fontSize: <span class=\"nm\">14</span>,\n    color: <span class=\"st\">'#64748b'</span>,\n    marginTop: <span class=\"nm\">8</span>,\n  },\n});</div>\n\n        <div class=\"tip-box\">\n          <span class=\"tip-box-icon\">💡</span>\n          <div><b>Kunci Pemahaman:</b> Berbeda dari web yang menggunakan tag HTML seperti <code>&lt;div&gt;</code> atau <code>&lt;h1&gt;</code>, di React Native kita menggunakan komponen bawaan seperti <code>&lt;View&gt;</code> dan <code>&lt;Text&gt;</code>.</div>\n        </div>\n      ",
+    "quiz": {
+     "q": "Mengapa React Native berbeda dari aplikasi hybrid berbasis WebView biasa?",
+     "opts": [
+      "Karena React Native menerjemahkan komponen menjadi elemen antarmuka native bawaan sistem operasi HP secara langsung",
+      "Karena React Native hanya bisa berjalan di laptop, bukan di HP",
+      "Karena React Native tidak menggunakan bahasa JavaScript sama sekali",
+      "Karena React Native mewajibkan pengguna membayar lisensi bulanan ke Apple"
+     ],
+     "ans": 0,
+     "why": "React Native berkomunikasi dengan platform native sehingga elemen seperti tombol dan teks dirender menggunakan komponen asli Android dan iOS, bukan halaman web dalam iframe/browser."
+    }
+   },
+   {
+    "id": "rn-02",
+    "num": "02",
+    "title": "Komponen Inti & Styling StyleSheet",
+    "level": "Pemula",
+    "intro": "Mengenal blok bangunan utama antarmuka: View, Text, Image, dan sistem tata rias StyleSheet.",
+    "body": "\n        <h4>🧱 Analogi Balok Lego Antarmuka</h4>\n        <p>Membuat tampilan aplikasi mobile seperti menyusun balok lego:\n        <ul>\n          <li><b>&lt;View&gt;</b>: Balok kotak kosong sebagai wadah pembungkus (setara <code>&lt;div&gt;</code> di web).</li>\n          <li><b>&lt;Text&gt;</b>: Satu-satunya balok yang diizinkan memegang teks. Di React Native, Anda <i>tidak boleh</i> meletakkan huruf langsung di dalam <code>&lt;View&gt;</code> tanpa dibungkus <code>&lt;Text&gt;</code>.</li>\n          <li><b>&lt;Image&gt;</b>: Balok penampil foto/ikon (lokal maupun via URL internet).</li>\n          <li><b>StyleSheet.create</b>: Resep warna, ukuran, dan jarak antar balok lego tersebut.</li>\n        </ul>\n        </p>\n\n        <h4>🎨 Membuat Kartu Profil Pengguna</h4>\n        <div class=\"code-block\"><span class=\"kw\">import</span> React <span class=\"kw\">from</span> <span class=\"st\">'react'</span>;\n<span class=\"kw\">import</span> { StyleSheet, View, Text, Image } <span class=\"kw\">from</span> <span class=\"st\">'react-native'</span>;\n\n<span class=\"kw\">export default function</span> <span class=\"fn\">ProfilSupriyanto</span>() {\n  <span class=\"kw\">return</span> (\n    &lt;<span class=\"kw\">View</span> style={styles.card}&gt;\n      &lt;<span class=\"kw\">Image</span>\n        source={{ uri: <span class=\"st\">'https://api.dicebear.com/7.x/bottts/svg?seed=Supriyanto'</span> }}\n        style={styles.avatar}\n      /&gt;\n      &lt;<span class=\"kw\">View</span> style={styles.info}&gt;\n        &lt;<span class=\"kw\">Text</span> style={styles.name}&gt;Supriyanto&lt;/<span class=\"kw\">Text</span>&gt;\n        &lt;<span class=\"kw\">Text</span> style={styles.role}&gt;Software Engineer Mobile&lt;/<span class=\"kw\">Text</span>&gt;\n      &lt;/<span class=\"kw\">View</span>&gt;\n    &lt;/<span class=\"kw\">View</span>&gt;\n  );\n}\n\n<span class=\"kw\">const</span> styles = StyleSheet.<span class=\"fn\">create</span>({\n  card: {\n    flexDirection: <span class=\"st\">'row'</span>,\n    backgroundColor: <span class=\"st\">'#ffffff'</span>,\n    padding: <span class=\"nm\">16</span>,\n    borderRadius: <span class=\"nm\">12</span>,\n    shadowColor: <span class=\"st\">'#000'</span>,\n    shadowOpacity: <span class=\"nm\">0.1</span>,\n    elevation: <span class=\"nm\">3</span>, <span class=\"cm\">// Bayangan khusus Android</span>\n    alignItems: <span class=\"st\">'center'</span>,\n  },\n  avatar: { width: <span class=\"nm\">56</span>, height: <span class=\"nm\">56</span>, borderRadius: <span class=\"nm\">28</span> },\n  info: { marginLeft: <span class=\"nm\">14</span> },\n  name: { fontSize: <span class=\"nm\">18</span>, fontWeight: <span class=\"st\">'bold'</span>, color: <span class=\"st\">'#1e293b'</span> },\n  role: { fontSize: <span class=\"nm\">13</span>, color: <span class=\"st\">'#0891b2'</span>, marginTop: <span class=\"nm\">2</span> },\n});</div>\n      ",
+    "quiz": {
+     "q": "Apa yang terjadi jika Supriyanto menulis teks string langsung di dalam <View> tanpa membungkusnya dengan <Text>?",
+     "opts": [
+      "Aplikasi akan melempar error di layar HP karena React Native mewajibkan semua teks berada di dalam <Text>",
+      "Teks otomatis berubah warna menjadi merah",
+      "Teks otomatis diunggah ke Google Drive",
+      "Tidak ada error dan teks muncul secara normal"
+     ],
+     "ans": 0,
+     "why": "Di React Native, mesin rendering native Android/iOS memerlukan komponen TextView/UILabel khusus, sehingga teks wajib diletakkan di dalam tag <Text>."
+    }
+   },
+   {
+    "id": "rn-03",
+    "num": "03",
+    "title": "Layouting Flexbox Mobile",
+    "level": "Pemula",
+    "intro": "Mengatur tata letak responsif di berbagai resolusi layar HP dengan Flexbox.",
+    "body": "\n        <h4>🧳 Analogi Menata Koper Kabin Pesawat</h4>\n        <p>Layar smartphone hadir dalam ratusan ukuran berbeda. Flexbox bekerja seperti pembatas kompartemen di dalam koper:\n        <ul>\n          <li><b>flexDirection: 'column' (Default di React Native!)</b>: Menyusun barang dari atas ke bawah (berbeda dari web yang defaultnya mendatar <code>row</code>).</li>\n          <li><b>justifyContent</b>: Mengatur jarak searah garis utama (misal: atas-bawah jika column, kiri-kanan jika row).</li>\n          <li><b>alignItems</b>: Mengatur perataan menyilang (misal: rata tengah kiri-kanan jika column).</li>\n          <li><b>flex: 1</b>: Memerintahkan wadah untuk membesar dan memenuhi seluruh ruang kosong yang tersisa di layar.</li>\n        </ul>\n        </p>\n\n        <h4>📐 Contoh Dashboard Responsif Supriyanto</h4>\n        <div class=\"code-block\"><span class=\"kw\">import</span> { View, StyleSheet } <span class=\"kw\">from</span> <span class=\"st\">'react-native'</span>;\n\n<span class=\"kw\">export default function</span> <span class=\"fn\">DashboardLayout</span>() {\n  <span class=\"kw\">return</span> (\n    &lt;<span class=\"kw\">View</span> style={styles.screen}&gt;\n      &lt;<span class=\"kw\">View</span> style={styles.header} /&gt;\n      &lt;<span class=\"kw\">View</span> style={styles.content}&gt;\n        &lt;<span class=\"kw\">View</span> style={styles.card} /&gt;\n        &lt;<span class=\"kw\">View</span> style={styles.card} /&gt;\n      &lt;/<span class=\"kw\">View</span>&gt;\n      &lt;<span class=\"kw\">View</span> style={styles.bottomNav} /&gt;\n    &lt;/<span class=\"kw\">View</span>&gt;\n  );\n}\n\n<span class=\"kw\">const</span> styles = StyleSheet.<span class=\"fn\">create</span>({\n  screen: { flex: <span class=\"nm\">1</span>, backgroundColor: <span class=\"st\">'#f1f5f9'</span> },\n  header: { height: <span class=\"nm\">70</span>, backgroundColor: <span class=\"st\">'#0891b2'</span> },\n  content: {\n    flex: <span class=\"nm\">1</span>, <span class=\"cm\">// Mengisi seluruh sisa layar di tengah</span>\n    flexDirection: <span class=\"st\">'row'</span>,\n    justifyContent: <span class=\"st\">'space-around'</span>,\n    padding: <span class=\"nm\">16</span>,\n  },\n  card: { flex: <span class=\"nm\">0.45</span>, backgroundColor: <span class=\"st\">'#ffffff'</span>, borderRadius: <span class=\"nm\">8</span> },\n  bottomNav: { height: <span class=\"nm\">60</span>, backgroundColor: <span class=\"st\">'#ffffff'</span> },\n});</div>\n      ",
+    "quiz": {
+     "q": "Apa perbedaan arah default 'flexDirection' antara browser web CSS biasa dan React Native?",
+     "opts": [
+      "Web CSS default-nya adalah 'row' (horizontal), sedangkan React Native default-nya adalah 'column' (vertikal)",
+      "Web CSS default-nya adalah 'column', sedangkan React Native default-nya adalah 'row'",
+      "Kedua platform sama-sama menggunakan 'grid' sebagai default",
+      "React Native tidak memiliki fitur Flexbox"
+     ],
+     "ans": 0,
+     "why": "Karena layar smartphone berorientasi tegak (portrait), React Native menetapkan default flexDirection ke 'column' agar elemen otomatis tersusun ke bawah."
+    }
+   },
+   {
+    "id": "rn-04",
+    "num": "04",
+    "title": "State, Props & Interaksi Pengguna",
+    "level": "Menengah",
+    "intro": "Menghidupkan aplikasi dengan sentuhan jari menggunakan useState dan komponen Pressable.",
+    "body": "\n        <h4>🔘 Analogi Saklar Lampu & Memori Otak</h4>\n        <p>Sebuah aplikasi mobile interaktif membutuhkan dua hal:\n        <ol>\n          <li><b>State (useState)</b>: Memori internal aplikasi yang mengingat status terkini (misalnya jumlah keranjang belanja Supriyanto). Ketika nilai memori berubah, tampilan HP langsung diperbarui otomatis (*re-render*).</li>\n          <li><b>Pressable</b>: Komponen penerima sentuhan jari yang fleksibel. Bisa mendeteksi kapan jari menempel, berapa lama ditekan (*long press*), dan kapan dilepas.</li>\n        </ol>\n        </p>\n\n        <h4>🛒 Counter Keranjang Belanja Toko Supriyanto</h4>\n        <div class=\"code-block\"><span class=\"kw\">import</span> React, { useState } <span class=\"kw\">from</span> <span class=\"st\">'react'</span>;\n<span class=\"kw\">import</span> { StyleSheet, View, Text, Pressable } <span class=\"kw\">from</span> <span class=\"st\">'react-native'</span>;\n\n<span class=\"kw\">export default function</span> <span class=\"fn\">CounterBelanja</span>() {\n  <span class=\"kw\">const</span> [jumlah, setJumlah] = <span class=\"fn\">useState</span>(<span class=\"nm\">1</span>);\n\n  <span class=\"kw\">return</span> (\n    &lt;<span class=\"kw\">View</span> style={styles.box}&gt;\n      &lt;<span class=\"kw\">Text</span> style={styles.title}&gt;Pesanan Supriyanto: {jumlah} item&lt;/<span class=\"kw\">Text</span>&gt;\n      &lt;<span class=\"kw\">View</span> style={styles.btnRow}&gt;\n        &lt;<span class=\"kw\">Pressable</span>\n          onPress={() =&gt; <span class=\"fn\">setJumlah</span>(j =&gt; Math.<span class=\"fn\">max</span>(<span class=\"nm\">1</span>, j - <span class=\"nm\">1</span>))}\n          style={({ pressed }) =&gt; [styles.btn, pressed && styles.btnActive]}&gt;\n          &lt;<span class=\"kw\">Text</span> style={styles.btnText}&gt;- Kurang&lt;/<span class=\"kw\">Text</span>&gt;\n        &lt;/<span class=\"kw\">Pressable</span>&gt;\n\n        &lt;<span class=\"kw\">Pressable</span>\n          onPress={() =&gt; <span class=\"fn\">setJumlah</span>(j =&gt; j + <span class=\"nm\">1</span>)}\n          style={({ pressed }) =&gt; [styles.btn, styles.btnPrimary, pressed && styles.btnActive]}&gt;\n          &lt;<span class=\"kw\">Text</span> style={[styles.btnText, { color: <span class=\"st\">'#fff'</span> }]}&gt;+ Tambah&lt;/<span class=\"kw\">Text</span>&gt;\n        &lt;/<span class=\"kw\">Pressable</span>&gt;\n      &lt;/<span class=\"kw\">View</span>&gt;\n    &lt;/<span class=\"kw\">View</span>&gt;\n  );\n}\n\n<span class=\"kw\">const</span> styles = StyleSheet.<span class=\"fn\">create</span>({\n  box: { padding: <span class=\"nm\">20</span>, alignItems: <span class=\"st\">'center'</span> },\n  title: { fontSize: <span class=\"nm\">18</span>, fontWeight: <span class=\"st\">'600'</span>, marginBottom: <span class=\"nm\">12</span> },\n  btnRow: { flexDirection: <span class=\"st\">'row'</span>, gap: <span class=\"nm\">12</span> },\n  btn: { paddingVertical: <span class=\"nm\">10</span>, paddingHorizontal: <span class=\"nm\">18</span>, borderRadius: <span class=\"nm\">8</span>, backgroundColor: <span class=\"st\">'#e2e8f0'</span> },\n  btnPrimary: { backgroundColor: <span class=\"st\">'#0891b2'</span> },\n  btnActive: { opacity: <span class=\"nm\">0.7</span>, transform: [{ scale: <span class=\"nm\">0.97</span> }] },\n  btnText: { fontWeight: <span class=\"st\">'bold'</span>, color: <span class=\"st\">'#1e293b'</span> },\n});</div>\n      ",
+    "quiz": {
+     "q": "Mengapa komponen <Pressable> lebih dianjurkan daripada tombol HTML <button> di React Native?",
+     "opts": [
+      "Karena di ekosistem mobile tidak ada tag HTML <button>, dan <Pressable> memberikan kontrol interaksi sentuhan yang akurat dan performan",
+      "Karena <Pressable> otomatis mengirim pesan WhatsApp ke developer",
+      "Karena <button> hanya bisa diklik satu kali seumur hidup",
+      "Karena <Pressable> hanya bisa dipakai di perangkat laptop"
+     ],
+     "ans": 0,
+     "why": "React Native tidak merender DOM web melainkan native views, dan <Pressable> adalah komponen standar yang menangani gestur sentuhan (pressed state, delay, long press) dengan lancar."
+    }
+   },
+   {
+    "id": "rn-05",
+    "num": "05",
+    "title": "List Rendering: FlatList vs ScrollView",
+    "level": "Menengah",
+    "intro": "Menampilkan ribuan item daftar tanpa membebani memori RAM dan mencegah aplikasi crash.",
+    "body": "\n        <h4>🏬 Analogi Etalase Berputar vs Seluruh Isi Gudang</h4>\n        <p>Jika toko Supriyanto memiliki 10.000 barang:\n        <ul>\n          <li><b>ScrollView</b>: Membuka semua 10.000 barang sekaligus di atas meja. Layar HP langsung panas, memori RAM jebol, dan aplikasi macet total!</li>\n          <li><b>FlatList</b>: Menggunakan etalase berjalan (*Virtualization*). Hanya 10 barang yang sedang dipandang mata yang dirender ke memori HP. Saat pengguna menggulir ke bawah, barang lama dibersihkan dari RAM dan barang baru dimuat seketika.</li>\n        </ul>\n        </p>\n\n        <h4>📜 Implementasi FlatList Transaksi Supriyanto</h4>\n        <div class=\"code-block\"><span class=\"kw\">import</span> React <span class=\"kw\">from</span> <span class=\"st\">'react'</span>;\n<span class=\"kw\">import</span> { FlatList, View, Text, StyleSheet } <span class=\"kw\">from</span> <span class=\"st\">'react-native'</span>;\n\n<span class=\"kw\">const</span> DATA_TRANSAKSI = [\n  { id: <span class=\"st\">'t-1'</span>, nama: <span class=\"st\">'Supriyanto'</span>, nominal: <span class=\"st\">'Rp 250.000'</span>, status: <span class=\"st\">'Sukses'</span> },\n  { id: <span class=\"st\">'t-2'</span>, nama: <span class=\"st\">'Klien Alpha'</span>, nominal: <span class=\"st\">'Rp 1.400.000'</span>, status: <span class=\"st\">'Sukses'</span> },\n  { id: <span class=\"st\">'t-3'</span>, nama: <span class=\"st\">'Klien Beta'</span>, nominal: <span class=\"st\">'Rp 750.000'</span>, status: <span class=\"st\">'Pending'</span> },\n];\n\n<span class=\"kw\">export default function</span> <span class=\"fn\">DaftarTransaksi</span>() {\n  <span class=\"kw\">const</span> <span class=\"fn\">renderItem</span> = ({ item }) =&gt; (\n    &lt;<span class=\"kw\">View</span> style={styles.itemRow}&gt;\n      &lt;<span class=\"kw\">View</span>&gt;\n        &lt;<span class=\"kw\">Text</span> style={styles.itemNama}&gt;{item.nama}&lt;/<span class=\"kw\">Text</span>&gt;\n        &lt;<span class=\"kw\">Text</span> style={styles.itemNominal}&gt;{item.nominal}&lt;/<span class=\"kw\">Text</span>&gt;\n      &lt;/<span class=\"kw\">View</span>&gt;\n      &lt;<span class=\"kw\">Text</span> style={[styles.badge, item.status === <span class=\"st\">'Sukses'</span> ? styles.ok : styles.wait]}&gt;\n        {item.status}\n      &lt;/<span class=\"kw\">Text</span>&gt;\n    &lt;/<span class=\"kw\">View</span>&gt;\n  );\n\n  <span class=\"kw\">return</span> (\n    &lt;<span class=\"kw\">FlatList</span>\n      data={DATA_TRANSAKSI}\n      renderItem={renderItem}\n      keyExtractor={item =&gt; item.id}\n      ItemSeparatorComponent={() =&gt; &lt;<span class=\"kw\">View</span> style={styles.sep} /&gt;}\n      contentContainerStyle={{ padding: <span class=\"nm\">16</span> }}\n    /&gt;\n  );\n}\n\n<span class=\"kw\">const</span> styles = StyleSheet.<span class=\"fn\">create</span>({\n  itemRow: { flexDirection: <span class=\"st\">'row'</span>, justifyContent: <span class=\"st\">'space-between'</span>, alignItems: <span class=\"st\">'center'</span>, paddingVertical: <span class=\"nm\">12</span> },\n  itemNama: { fontSize: <span class=\"nm\">15</span>, fontWeight: <span class=\"st\">'600'</span> },\n  itemNominal: { fontSize: <span class=\"nm\">13</span>, color: <span class=\"st\">'#64748b'</span>, marginTop: <span class=\"nm\">2</span> },\n  badge: { fontSize: <span class=\"nm\">12</span>, paddingHorizontal: <span class=\"nm\">8</span>, paddingVertical: <span class=\"nm\">4</span>, borderRadius: <span class=\"nm\">6</span>, fontWeight: <span class=\"st\">'bold'</span> },\n  ok: { backgroundColor: <span class=\"st\">'#dcfce7'</span>, color: <span class=\"st\">'#15803d'</span> },\n  wait: { backgroundColor: <span class=\"st\">'#fef9c3'</span>, color: <span class=\"st\">'#a16207'</span> },\n  sep: { height: <span class=\"nm\">1</span>, backgroundColor: <span class=\"st\">'#e2e8f0'</span> },\n});</div>\n      ",
+    "quiz": {
+     "q": "Mengapa kita wajib menggunakan FlatList daripada ScrollView saat menampilkan daftar 5.000 item?",
+     "opts": [
+      "Karena FlatList hanya me-render elemen yang sedang terlihat di layar (windowing), menghemat RAM dan menjaga aplikasi tetap lancar 60 FPS",
+      "Karena FlatList otomatis mengubah tulisan menjadi suara",
+      "Karena ScrollView tidak bisa diberi warna background",
+      "Karena FlatList secara otomatis menghapus database setiap 5 menit"
+     ],
+     "ans": 0,
+     "why": "FlatList menggunakan teknik windowing/virtualization sehingga hanya item di viewport yang dibuat, mencegah aplikasi kehabisan memori dan lagging."
+    }
+   },
+   {
+    "id": "rn-06",
+    "num": "06",
+    "title": "Navigasi Layar: React Navigation",
+    "level": "Menengah",
+    "intro": "Menghubungkan banyak layar dengan Stack Navigation dan Tab Bar mobile.",
+    "body": "\n        <h4>🃏 Analogi Tumpukan Kartu Remi (Stack)</h4>\n        <p>Di mobile, berpindah halaman bukan seperti membuka URL web baru, melainkan menumpuk kartu di atas meja:\n        <ul>\n          <li><b>Push / Navigate</b>: Menaruh kartu layar baru di tumpukan paling atas (misalnya dari Home ke Detail).</li>\n          <li><b>Pop / GoBack</b>: Mengambil kembali kartu teratas untuk kembali melihat kartu di bawahnya (tombol Back di pojok kiri atas).</li>\n          <li><b>Bottom Tabs</b>: Panel tombol di bagian bawah layar seperti lift utama gedung (Beranda, Pesanan, Profil).</li>\n        </ul>\n        </p>\n\n        <h4>🧭 Struktur Stack Navigator dengan Parameter</h4>\n        <div class=\"code-block\"><span class=\"kw\">import</span> { NavigationContainer } <span class=\"kw\">from</span> <span class=\"st\">'@react-navigation/native'</span>;\n<span class=\"kw\">import</span> { createNativeStackNavigator } <span class=\"kw\">from</span> <span class=\"st\">'@react-navigation/native-stack'</span>;\n<span class=\"kw\">import</span> { View, Text, Button } <span class=\"kw\">from</span> <span class=\"st\">'react-native'</span>;\n\n<span class=\"kw\">const</span> Stack = <span class=\"fn\">createNativeStackNavigator</span>();\n\n<span class=\"kw\">function</span> <span class=\"fn\">HomeScreen</span>({ navigation }) {\n  <span class=\"kw\">return</span> (\n    &lt;<span class=\"kw\">View</span> style={{ flex: <span class=\"nm\">1</span>, alignItems: <span class=\"st\">'center'</span>, justifyContent: <span class=\"st\">'center'</span> }}&gt;\n      &lt;<span class=\"kw\">Text</span>&gt;Layar Utama&lt;/<span class=\"kw\">Text</span>&gt;\n      &lt;<span class=\"kw\">Button</span>\n        title=<span class=\"st\">\"Buka Profil Supriyanto\"</span>\n        onPress={() =&gt; navigation.<span class=\"fn\">navigate</span>(<span class=\"st\">'Detail'</span>, { nama: <span class=\"st\">'Supriyanto'</span>, id: <span class=\"nm\">101</span> })}\n      /&gt;\n    &lt;/<span class=\"kw\">View</span>&gt;\n  );\n}\n\n<span class=\"kw\">function</span> <span class=\"fn\">DetailScreen</span>({ route, navigation }) {\n  <span class=\"kw\">const</span> { nama, id } = route.params;\n  <span class=\"kw\">return</span> (\n    &lt;<span class=\"kw\">View</span> style={{ flex: <span class=\"nm\">1</span>, alignItems: <span class=\"st\">'center'</span>, justifyContent: <span class=\"st\">'center'</span> }}&gt;\n      &lt;<span class=\"kw\">Text</span>&gt;Halo, {nama}! ID Pengguna: {id}&lt;/<span class=\"kw\">Text</span>&gt;\n      &lt;<span class=\"kw\">Button</span> title=<span class=\"st\">\"Kembali\"</span> onPress={() =&gt; navigation.<span class=\"fn\">goBack</span>()} /&gt;\n    &lt;/<span class=\"kw\">View</span>&gt;\n  );\n}\n\n<span class=\"kw\">export default function</span> <span class=\"fn\">AppNav</span>() {\n  <span class=\"kw\">return</span> (\n    &lt;<span class=\"kw\">NavigationContainer</span>&gt;\n      &lt;<span class=\"kw\">Stack.Navigator</span>&gt;\n        &lt;<span class=\"kw\">Stack.Screen</span> name=<span class=\"st\">\"Home\"</span> component={HomeScreen} /&gt;\n        &lt;<span class=\"kw\">Stack.Screen</span> name=<span class=\"st\">\"Detail\"</span> component={DetailScreen} /&gt;\n      &lt;/<span class=\"kw\">Stack.Navigator</span>&gt;\n    &lt;/<span class=\"kw\">NavigationContainer</span>&gt;\n  );\n}</div>\n      ",
+    "quiz": {
+     "q": "Dalam sistem React Navigation Stack, apa fungsi dari 'navigation.goBack()'?",
+     "opts": [
+      "Menutup layar teratas dan kembali menampilkan layar sebelumnya di bawah tumpukan",
+      "Menghapus seluruh memori aplikasi dan merestart HP",
+      "Membuka browser Safari atau Google Chrome",
+      "Mengirim email laporan ke tim developer"
+     ],
+     "ans": 0,
+     "why": "navigation.goBack() membuang kartu layar saat ini (pop) dari tumpukan navigasi sehingga user kembali ke layar asal."
+    }
+   },
+   {
+    "id": "rn-07",
+    "num": "07",
+    "title": "Fetch Data API & State Loading/Error",
+    "level": "Lanjutan",
+    "intro": "Menghubungkan aplikasi mobile ke REST API backend dengan penanganan loading indicator dan error.",
+    "body": "\n        <h4>📦 Analogi Kurir Pengantar Paket Online</h4>\n        <p>Ketika Supriyanto menekan tombol refresh data:\n        <ol>\n          <li><b>Status Menunggu (Loading)</b>: Kurir sedang di jalan. Tampilkan roda berputar (<code>&lt;ActivityIndicator&gt;</code>) agar pengguna tahu HP sedang memproses data.</li>\n          <li><b>Status Sukses (Success)</b>: Paket tiba dengan selamat. Simpan data JSON ke dalam state dan tampilkan di layar.</li>\n          <li><b>Status Gagal (Error)</b>: Koneksi internet putus atau server mati. Tampilkan pesan ramah dengan tombol \"Coba Lagi\".</li>\n        </ol>\n        </p>\n\n        <h4>🌐 Fetch Data Produk Toko Supriyanto</h4>\n        <div class=\"code-block\"><span class=\"kw\">import</span> React, { useState, useEffect } <span class=\"kw\">from</span> <span class=\"st\">'react'</span>;\n<span class=\"kw\">import</span> { View, Text, ActivityIndicator, Button, StyleSheet } <span class=\"kw\">from</span> <span class=\"st\">'react-native'</span>;\n\n<span class=\"kw\">export default function</span> <span class=\"fn\">ProdukScreen</span>() {\n  <span class=\"kw\">const</span> [produk, setProduk] = <span class=\"fn\">useState</span>(<span class=\"kw\">null</span>);\n  <span class=\"kw\">const</span> [loading, setLoading] = <span class=\"fn\">useState</span>(<span class=\"kw\">true</span>);\n  <span class=\"kw\">const</span> [error, setError] = <span class=\"fn\">useState</span>(<span class=\"st\">''</span>);\n\n  <span class=\"kw\">const</span> <span class=\"fn\">loadData</span> = <span class=\"kw\">async</span> () =&gt; {\n    <span class=\"fn\">setLoading</span>(<span class=\"kw\">true</span>);\n    <span class=\"fn\">setError</span>(<span class=\"st\">''</span>);\n    <span class=\"kw\">try</span> {\n      <span class=\"kw\">const</span> res = <span class=\"kw\">await</span> <span class=\"fn\">fetch</span>(<span class=\"st\">'https://api.example.com/produk/supriyanto'</span>);\n      <span class=\"kw\">if</span> (!res.ok) <span class=\"kw\">throw new</span> <span class=\"fn\">Error</span>(<span class=\"st\">'Gagal memuat katalog'</span>);\n      <span class=\"kw\">const</span> data = <span class=\"kw\">await</span> res.<span class=\"fn\">json</span>();\n      <span class=\"fn\">setProduk</span>(data);\n    } <span class=\"kw\">catch</span> (err) {\n      <span class=\"fn\">setError</span>(err.message);\n    } <span class=\"kw\">finally</span> {\n      <span class=\"fn\">setLoading</span>(<span class=\"kw\">false</span>);\n    }\n  };\n\n  <span class=\"fn\">useEffect</span>(() =&gt; { <span class=\"fn\">loadData</span>(); }, []);\n\n  <span class=\"kw\">if</span> (loading) {\n    <span class=\"kw\">return</span> (\n      &lt;<span class=\"kw\">View</span> style={styles.center}&gt;\n        &lt;<span class=\"kw\">ActivityIndicator</span> size=<span class=\"st\">\"large\"</span> color=<span class=\"st\">\"#0891b2\"</span> /&gt;\n        &lt;<span class=\"kw\">Text</span> style={{ marginTop: <span class=\"nm\">8</span> }}&gt;Memuat data Supriyanto...&lt;/<span class=\"kw\">Text</span>&gt;\n      &lt;/<span class=\"kw\">View</span>&gt;\n    );\n  }\n\n  <span class=\"kw\">if</span> (error) {\n    <span class=\"kw\">return</span> (\n      &lt;<span class=\"kw\">View</span> style={styles.center}&gt;\n        &lt;<span class=\"kw\">Text</span> style={{ color: <span class=\"st\">'#dc2626'</span>, marginBottom: <span class=\"nm\">10</span> }}&gt;Terjadi kesalahan: {error}&lt;/<span class=\"kw\">Text</span>&gt;\n        &lt;<span class=\"kw\">Button</span> title=<span class=\"st\">\"Coba Lagi\"</span> onPress={loadData} /&gt;\n      &lt;/<span class=\"kw\">View</span>&gt;\n    );\n  }\n\n  <span class=\"kw\">return</span> (\n    &lt;<span class=\"kw\">View</span> style={styles.box}&gt;\n      &lt;<span class=\"kw\">Text</span> style={styles.title}&gt;{produk?.nama}&lt;/<span class=\"kw\">Text</span>&gt;\n      &lt;<span class=\"kw\">Text</span>&gt;Harga: {produk?.harga}&lt;/<span class=\"kw\">Text</span>&gt;\n    &lt;/<span class=\"kw\">View</span>&gt;\n  );\n}\n\n<span class=\"kw\">const</span> styles = StyleSheet.<span class=\"fn\">create</span>({\n  center: { flex: <span class=\"nm\">1</span>, justifyContent: <span class=\"st\">'center'</span>, alignItems: <span class=\"st\">'center'</span> },\n  box: { padding: <span class=\"nm\">20</span> },\n  title: { fontSize: <span class=\"nm\">20</span>, fontWeight: <span class=\"st\">'bold'</span> },\n});</div>\n      ",
+    "quiz": {
+     "q": "Komponen bawaan React Native apa yang digunakan untuk menampilkan animasi muter (spinner) saat proses fetch data?",
+     "opts": [
+      "<ActivityIndicator>",
+      "<LoadingSpinnerDom>",
+      "<ProgressBarHtml>",
+      "<WaitRotateIcon>"
+     ],
+     "ans": 0,
+     "why": "<ActivityIndicator> adalah komponen native resmi bawaan React Native untuk menampilkan status loading berputar di Android dan iOS."
+    }
+   },
+   {
+    "id": "rn-08",
+    "num": "08",
+    "title": "Fitur Hardware: AsyncStorage & Sensor",
+    "level": "Lanjutan",
+    "intro": "Menyimpan data persisten secara offline di HP dan mengakses fitur perangkat native.",
+    "body": "\n        <h4>🔐 Analogi Brankas Mini & Satpam Izin HP</h4>\n        <p>Aplikasi mobile modern berinteraksi langsung dengan perangkat keras:\n        <ul>\n          <li><b>AsyncStorage</b>: Brankas mini di HP Supriyanto. Saat aplikasi ditutup atau HP direstart, data penting seperti token otentikasi login atau preferensi tema gelap tetap tersimpan aman.</li>\n          <li><b>Device Permissions</b>: Satpam sistem operasi. Sebelum aplikasi mengambil foto atau melacak lokasi GPS, aplikasi wajib meminta izin (*permission request*) kepada pemilik HP.</li>\n        </ul>\n        </p>\n\n        <h4>💾 Menyimpan & Membaca Sesi Supriyanto</h4>\n        <div class=\"code-block\"><span class=\"kw\">import</span> AsyncStorage <span class=\"kw\">from</span> <span class=\"st\">'@react-native-async-storage/async-storage'</span>;\n\n<span class=\"cm\">// 1. Menyimpan data login</span>\n<span class=\"kw\">export async function</span> <span class=\"fn\">simpanSesi</span>(token, username) {\n  <span class=\"kw\">try</span> {\n    <span class=\"kw\">const</span> payload = JSON.<span class=\"fn\">stringify</span>({ token, username, loginAt: <span class=\"kw\">new</span> <span class=\"fn\">Date</span>() });\n    <span class=\"kw\">await</span> AsyncStorage.<span class=\"fn\">setItem</span>(<span class=\"st\">'user_session'</span>, payload);\n    <span class=\"fn\">console</span>.<span class=\"fn\">log</span>(<span class=\"st\">'Sesi Supriyanto berhasil disimpan di storage HP'</span>);\n  } <span class=\"kw\">catch</span> (e) {\n    <span class=\"fn\">console</span>.<span class=\"fn\">error</span>(<span class=\"st\">'Gagal menyimpan sesi'</span>, e);\n  }\n}\n\n<span class=\"cm\">// 2. Membaca data login saat aplikasi pertama dibuka</span>\n<span class=\"kw\">export async function</span> <span class=\"fn\">bacaSesi</span>() {\n  <span class=\"kw\">try</span> {\n    <span class=\"kw\">const</span> raw = <span class=\"kw\">await</span> AsyncStorage.<span class=\"fn\">getItem</span>(<span class=\"st\">'user_session'</span>);\n    <span class=\"kw\">return</span> raw ? JSON.<span class=\"fn\">parse</span>(raw) : <span class=\"kw\">null</span>;\n  } <span class=\"kw\">catch</span> (e) {\n    <span class=\"kw\">return null</span>;\n  }\n}</div>\n      ",
+    "quiz": {
+     "q": "Kapan waktu yang paling tepat untuk menggunakan AsyncStorage di aplikasi mobile?",
+     "opts": [
+      "Untuk menyimpan data ringan seperti token otentikasi, preferensi tema, atau ID pengguna secara persisten",
+      "Untuk menyimpan video berukuran 50 Gigabyte",
+      "Untuk mempercepat koneksi internet WiFi 10x lipat",
+      "Sebagai pengganti database PostgreSQL jutaan baris di server"
+     ],
+     "ans": 0,
+     "why": "AsyncStorage dirancang untuk penyimpanan key-value asynchronous sederhana di memori lokal perangkat, ideal untuk token sesi atau pengaturan aplikasi."
+    }
+   },
+   {
+    "id": "rn-09",
+    "num": "09",
+    "title": "Animasi Halus 60 FPS: Reanimated",
+    "level": "Mahir",
+    "intro": "Menciptakan animasi interaktif bebas patah-patah dengan React Native Reanimated.",
+    "body": "\n        <h4>⚡ Analogi Pintu Berpegas Mekanis</h4>\n        <p>Di React Native biasa, jika thread JavaScript sedang sibuk mengolah data berat, animasi sentuhan jari bisa tersendat-sendat (*lag/frame drop*).\n        <b>React Native Reanimated</b> memecahkan masalah ini dengan memindahkan seluruh instruksi animasi langsung ke <b>UI Thread Native</b> (seperti pegas mekanis pada pintu toko Supriyanto). Begitu jari menyentuh layar, pintu mengayun mulus 60 hingga 120 FPS tanpa menunggu giliran thread JavaScript!</p>\n\n        <h4>🎬 Animasi Tombol Mengambang (Floating Action Button)</h4>\n        <div class=\"code-block\"><span class=\"kw\">import</span> React <span class=\"kw\">from</span> <span class=\"st\">'react'</span>;\n<span class=\"kw\">import</span> { StyleSheet, Pressable, Text } <span class=\"kw\">from</span> <span class=\"st\">'react-native'</span>;\n<span class=\"kw\">import</span> Animated, { useSharedValue, useAnimatedStyle, withSpring } <span class=\"kw\">from</span> <span class=\"st\">'react-native-reanimated'</span>;\n\n<span class=\"kw\">export default function</span> <span class=\"fn\">TombolAnimasiSupriyanto</span>() {\n  <span class=\"kw\">const</span> skala = <span class=\"fn\">useSharedValue</span>(<span class=\"nm\">1</span>);\n\n  <span class=\"kw\">const</span> animatedStyle = <span class=\"fn\">useAnimatedStyle</span>(() =&gt; ({\n    transform: [{ scale: skala.value }],\n  }));\n\n  <span class=\"kw\">const</span> <span class=\"fn\">tekanMulai</span> = () =&gt; { skala.value = <span class=\"fn\">withSpring</span>(<span class=\"nm\">0.92</span>); };\n  <span class=\"kw\">const</span> <span class=\"fn\">tekanSelesai</span> = () =&gt; { skala.value = <span class=\"fn\">withSpring</span>(<span class=\"nm\">1</span>); };\n\n  <span class=\"kw\">return</span> (\n    &lt;<span class=\"kw\">Pressable</span> onPressIn={tekanMulai} onPressOut={tekanSelesai}&gt;\n      &lt;<span class=\"kw\">Animated.View</span> style={[styles.fab, animatedStyle]}&gt;\n        &lt;<span class=\"kw\">Text</span> style={styles.fabText}&gt;+ Buat Pesanan&lt;/<span class=\"kw\">Text</span>&gt;\n      &lt;/<span class=\"kw\">Animated.View</span>&gt;\n    &lt;/<span class=\"kw\">Pressable</span>&gt;\n  );\n}\n\n<span class=\"kw\">const</span> styles = StyleSheet.<span class=\"fn\">create</span>({\n  fab: {\n    backgroundColor: <span class=\"st\">'#0891b2'</span>,\n    paddingVertical: <span class=\"nm\">14</span>,\n    paddingHorizontal: <span class=\"nm\">24</span>,\n    borderRadius: <span class=\"nm\">30</span>,\n    alignItems: <span class=\"st\">'center'</span>,\n    elevation: <span class=\"nm\">5</span>,\n  },\n  fabText: { color: <span class=\"st\">'#ffffff'</span>, fontWeight: <span class=\"st\">'bold'</span>, fontSize: <span class=\"nm\">16</span> },\n});</div>\n      ",
+    "quiz": {
+     "q": "Mengapa animasi dengan React Native Reanimated dapat berjalan mulus tanpa lag meski JavaScript sedang memproses komputasi berat?",
+     "opts": [
+      "Karena perhitungan dan frame animasi dijalankan langsung di Native UI Thread perangkat",
+      "Karena Reanimated menghapus seluruh gambar di aplikasi",
+      "Karena Reanimated hanya bekerja saat HP disambungkan ke charger",
+      "Karena Reanimated membatasi refresh rate layar menjadi 5 FPS"
+     ],
+     "ans": 0,
+     "why": "Reanimated menggunakan worklet yang berjalan langsung di native UI thread, melepaskan ketergantungan frame rate animasi dari kesibukan thread JavaScript."
+    }
+   },
+   {
+    "id": "rn-10",
+    "num": "10",
+    "title": "Hermes Engine, Optimasi & Rilis Store",
+    "level": "Expert",
+    "intro": "Mengoptimalkan bundle aplikasi, memangkas ukuran APK, dan mempublikasikan ke Google Play Store & Apple App Store.",
+    "body": "\n        <h4>🚀 Analogi Kantong Vakum Kompresi Tinggi</h4>\n        <p>Sebelum aplikasi Supriyanto diunggah ke Google Play Store atau Apple App Store:\n        <ul>\n          <li><b>Hermes JavaScript Engine</b>: Mesin JavaScript open-source yang dioptimalkan khusus untuk Android & iOS. Kode JavaScript dikompilasi sebelumnya (*AOT Bytecode*) sehingga waktu buka aplikasi (*Time to Interactive*) turun drastis dan pemakaian RAM hemat hingga 50%.</li>\n          <li><b>EAS Build (Expo Application Services)</b>: Mengompilasi aplikasi di cloud untuk menghasilkan file <code>.aab</code> (Android App Bundle) dan <code>.ipa</code> (iOS).</li>\n          <li><b>Tree Shaking & Asset Optimization</b>: Menghapus kode dan ikon yang tidak terpakai agar ukuran download aplikasi Supriyanto tetap ramping dan hemat kuota pengguna.</li>\n        </ul>\n        </p>\n\n        <h4>📋 Konfigurasi Production di app.json & EAS</h4>\n        <div class=\"code-block\"><span class=\"cm\">// app.json</span>\n{\n  <span class=\"st\">\"expo\"</span>: {\n    <span class=\"st\">\"name\"</span>: <span class=\"st\">\"RB Mobile Supriyanto\"</span>,\n    <span class=\"st\">\"slug\"</span>: <span class=\"st\">\"rb-mobile-supriyanto\"</span>,\n    <span class=\"st\">\"version\"</span>: <span class=\"st\">\"1.0.0\"</span>,\n    <span class=\"st\">\"orientation\"</span>: <span class=\"st\">\"portrait\"</span>,\n    <span class=\"st\">\"jsEngine\"</span>: <span class=\"st\">\"hermes\"</span>,\n    <span class=\"st\">\"android\"</span>: {\n      <span class=\"st\">\"package\"</span>: <span class=\"st\">\"com.supriyanto.rbmobile\"</span>,\n      <span class=\"st\">\"versionCode\"</span>: <span class=\"nm\">1</span>\n    },\n    <span class=\"st\">\"ios\"</span>: {\n      <span class=\"st\">\"bundleIdentifier\"</span>: <span class=\"st\">\"com.supriyanto.rbmobile\"</span>\n    }\n  }\n}</div>\n\n        <div class=\"tip-box\">\n          <span class=\"tip-box-icon\">🏆</span>\n          <div><b>Selamat!</b> Supriyanto telah menyelesaikan kurikulum React Native dari tingkat Pemula hingga Expert. Uji pengetahuan Anda dengan mengikuti <b>Quiz React Native 📱</b>!</div>\n        </div>\n      ",
+    "quiz": {
+     "q": "Apa keuntungan utama mengaktifkan Hermes Engine di aplikasi React Native?",
+     "opts": [
+      "Waktu buka aplikasi (startup) jauh lebih cepat, konsumsi RAM lebih hemat, dan ukuran APK lebih kecil",
+      "Aplikasi otomatis bisa berjalan tanpa baterai HP",
+      "Menghilangkan kebutuhan akan koneksi internet selamanya",
+      "Mengubah seluruh kode menjadi file dokumen Microsoft Word"
+     ],
+     "ans": 0,
+     "why": "Hermes melakukan prekompilasi JavaScript menjadi bytecode sebelum aplikasi diinstall, memangkas proses parsing runtime sehingga startup aplikasi instan."
+    }
+   }
+  ]
+ },
+ {
+  "id": "flutter",
+  "title": "Flutter 💙",
+  "subtitle": "Mobile UI Toolkit: Bahasa Dart, Widget Tree, State Management & Kompilasi AOT Native",
+  "accent": "teal",
+  "lessons": [
+   {
+    "id": "flutter-01",
+    "num": "01",
+    "title": "Pengenalan Flutter & Bahasa Dart",
+    "level": "Pemula",
+    "intro": "Flutter adalah framework open-source Google untuk membuat aplikasi multi-platform super cepat dengan bahasa Dart.",
+    "body": "\n        <h4>🎨 Analogi Kanvas Pelukis Skia & Impeller</h4>\n        <p>Kebanyakan framework mobile bekerja seperti penerjemah: mereka meminta sistem Android atau iOS membuat tombol native lewat jembatan komunikasi (*bridge*). Jembatan ini kadang membuat animasi tersendat.</p>\n        <p><b>Flutter bekerja dengan cara berbeda:</b> Flutter bertindak seperti pelukis ahli dengan kanvas digital kosong. Menggunakan engine rendering grafis sendiri (<b>Impeller & Skia</b>), Flutter melukis setiap piksel teks, tombol, dan bayangan langsung ke layar HP dengan kecepatan konsisten <b>120 frame per detik (FPS) tanpa jembatan (*Zero Bridge*)</b>!</p>\n\n        <h4>💙 Bahasa Dart & Aplikasi Pertama Supriyanto</h4>\n        <p>Dart adalah bahasa pemrograman modern berorientasi objek yang mudah dipelajari bagi yang sudah mengerti JavaScript, Java, atau C#.</p>\n        <div class=\"code-block\"><span class=\"cm\">// main.dart - Titik Masuk Aplikasi Flutter</span>\n<span class=\"kw\">import</span> <span class=\"st\">'package:flutter/material.dart'</span>;\n\n<span class=\"kw\">void</span> <span class=\"fn\">main</span>() {\n  <span class=\"fn\">runApp</span>(<span class=\"kw\">const</span> <span class=\"fn\">AplikasiSupriyanto</span>());\n}\n\n<span class=\"kw\">class</span> <span class=\"fn\">AplikasiSupriyanto</span> <span class=\"kw\">extends</span> <span class=\"fn\">StatelessWidget</span> {\n  <span class=\"kw\">const</span> <span class=\"fn\">AplikasiSupriyanto</span>({<span class=\"kw\">super</span>.key});\n\n  @override\n  Widget <span class=\"fn\">build</span>(BuildContext context) {\n    <span class=\"kw\">return</span> <span class=\"fn\">MaterialApp</span>(\n      title: <span class=\"st\">'Flutter Supriyanto'</span>,\n      theme: ThemeData(primarySwatch: Colors.teal),\n      home: <span class=\"fn\">Scaffold</span>(\n        appBar: AppBar(title: <span class=\"kw\">const</span> Text(<span class=\"st\">'RB Mobile Flutter'</span>)),\n        body: <span class=\"kw\">const</span> Center(\n          child: Text(\n            <span class=\"st\">'Halo, Supriyanto! Selamat datang di Flutter 💙'</span>,\n            style: TextStyle(fontSize: <span class=\"nm\">18</span>, fontWeight: FontWeight.bold),\n          ),\n        ),\n      ),\n    );\n  }\n}</div>\n\n        <div class=\"tip-box\">\n          <span class=\"tip-box-icon\">💡</span>\n          <div><b>Kunci Pemahaman:</b> Fungsi <code>runApp()</code> adalah jantung awal yang menghidupkan dan merender pohon widget utama ke seluruh layar HP.</div>\n        </div>\n      ",
+    "quiz": {
+     "q": "Mengapa arsitektur rendering Flutter sering disebut 'Zero Bridge'?",
+     "opts": [
+      "Karena Flutter melukis langsung setiap piksel ke layar HP menggunakan rendering engine sendiri (Impeller/Skia) tanpa jembatan perantara",
+      "Karena Flutter hanya bisa berjalan jika HP terhubung kabel ke laptop",
+      "Karena Flutter tidak memiliki tombol sama sekali",
+      "Karena Flutter mengharuskan pengguna membuat jembatan kayu asli"
+     ],
+     "ans": 0,
+     "why": "Flutter tidak mengandalkan jembatan komunikasi runtime ke komponen UI platform asli, melainkan menggambar sendiri seluruh antarmuka secara native menggunakan grafis Impeller/Skia."
+    }
+   },
+   {
+    "id": "flutter-02",
+    "num": "02",
+    "title": "StatelessWidget vs StatefulWidget",
+    "level": "Pemula",
+    "intro": "Memahami dua tipe widget fundamental: tampilan statis dan tampilan dinamis yang merespons data.",
+    "body": "\n        <h4>🗿 Analogi Patung Museum vs Papan Skor Interaktif</h4>\n        <p>Di Flutter, semboyan utamanya adalah <i>\"Everything is a Widget\"</i>. Semua widget terbagi dalam dua kategori:\n        <ul>\n          <li><b>StatelessWidget (Patung Museum)</b>: Sekali dipahat/dibuat, wujudnya tidak pernah berubah. Cocok untuk teks judul, ikon, label, atau kartu profil yang datanya tetap.</li>\n          <li><b>StatefulWidget (Papan Skor Lapangan Futsal Supriyanto)</b>: Memiliki memori internal (*State*). Saat tombol ditekan, fungsi <code>setState()</code> dipanggil untuk memperbarui angka skor di layar secara seketika.</li>\n        </ul>\n        </p>\n\n        <h4>🔢 Counter Interaktif dengan StatefulWidget</h4>\n        <div class=\"code-block\"><span class=\"kw\">import</span> <span class=\"st\">'package:flutter/material.dart'</span>;\n\n<span class=\"kw\">class</span> <span class=\"fn\">PapanSkorSupriyanto</span> <span class=\"kw\">extends</span> <span class=\"fn\">StatefulWidget</span> {\n  <span class=\"kw\">const</span> <span class=\"fn\">PapanSkorSupriyanto</span>({<span class=\"kw\">super</span>.key});\n\n  @override\n  State&lt;<span class=\"fn\">PapanSkorSupriyanto</span>&gt; <span class=\"fn\">createState</span>() =&gt; <span class=\"fn\">_PapanSkorState</span>();\n}\n\n<span class=\"kw\">class</span> <span class=\"fn\">_PapanSkorState</span> <span class=\"kw\">extends</span> State&lt;<span class=\"fn\">PapanSkorSupriyanto</span>&gt; {\n  <span class=\"kw\">int</span> _skor = <span class=\"nm\">0</span>;\n\n  <span class=\"kw\">void</span> <span class=\"fn\">_tambahGol</span>() {\n    <span class=\"fn\">setState</span>(() {\n      _skor++; <span class=\"cm\">// Memberitahu Flutter untuk menggambar ulang angka baru</span>\n    });\n  }\n\n  @override\n  Widget <span class=\"fn\">build</span>(BuildContext context) {\n    <span class=\"kw\">return</span> Column(\n      mainAxisAlignment: MainAxisAlignment.center,\n      children: [\n        Text(<span class=\"st\">'Skor Tim Supriyanto: $_skor'</span>, style: <span class=\"kw\">const</span> TextStyle(fontSize: <span class=\"nm\">22</span>)),\n        <span class=\"kw\">const</span> SizedBox(height: <span class=\"nm\">12</span>),\n        ElevatedButton(\n          onPressed: _tambahGol,\n          child: <span class=\"kw\">const</span> Text(<span class=\"st\">'Gol! +1'</span>),\n        ),\n      ],\n    );\n  }\n}</div>\n      ",
+    "quiz": {
+     "q": "Kapan Supriyanto harus memilih StatefulWidget daripada StatelessWidget?",
+     "opts": [
+      "Ketika tampilan layar perlu berubah secara dinamis merespons interaksi pengguna atau perubahan data waktu",
+      "Ketika membuat logo gambar statis yang tidak pernah berubah",
+      "Ketika ingin membuat ukuran aplikasi menjadi 0 kilobyte",
+      "Ketika aplikasi hanya dijalankan di malam hari"
+     ],
+     "ans": 0,
+     "why": "StatefulWidget dirancang untuk elemen antarmuka yang memiliki state/data yang dapat berubah sepanjang siklus hidup widget, diperbarui melalui fungsi setState()."
+    }
+   },
+   {
+    "id": "flutter-03",
+    "num": "03",
+    "title": "Tata Letak: Row, Column & Expanded",
+    "level": "Pemula",
+    "intro": "Menyusun tata letak antarmuka mobile yang rapi dan fleksibel di berbagai orientasi layar.",
+    "body": "\n        <h4>📐 Analogi Rak Etalase Modular Toko Supriyanto</h4>\n        <p>Membangun antarmuka Flutter sama seperti menata kotak modular di etalase toko:\n        <ul>\n          <li><b>Row</b>: Menyusun barang sejajar mendatar ke samping (horizontal).</li>\n          <li><b>Column</b>: Menumpuk barang dari atas ke bawah (vertikal).</li>\n          <li><b>Container</b>: Kotak serbaguna yang bisa diberi warna latar, padding, margin, dan lengkungan sudut (<code>BoxDecoration</code>).</li>\n          <li><b>Expanded</b>: Kotak lentur cerdas yang otomatis mengisi dan membagi seluruh ruang sisa secara adil, mencegah error garis kuning-hitam meluap (*Overflow Error*).</li>\n        </ul>\n        </p>\n\n        <h4>💳 Membuat Kartu Saldo Dompet Supriyanto</h4>\n        <div class=\"code-block\"><span class=\"kw\">import</span> <span class=\"st\">'package:flutter/material.dart'</span>;\n\nWidget <span class=\"fn\">kartuSaldoSupriyanto</span>() {\n  <span class=\"kw\">return</span> Container(\n    padding: <span class=\"kw\">const</span> EdgeInsets.all(<span class=\"nm\">20</span>),\n    decoration: BoxDecoration(\n      color: Colors.teal,\n      borderRadius: BorderRadius.circular(<span class=\"nm\">16</span>),\n      boxShadow: [\n        BoxShadow(color: Colors.black12, blurRadius: <span class=\"nm\">8</span>, offset: <span class=\"kw\">const</span> Offset(<span class=\"nm\">0</span>, <span class=\"nm\">4</span>)),\n      ],\n    ),\n    child: Column(\n      crossAxisAlignment: CrossAxisAlignment.start,\n      children: [\n        <span class=\"kw\">const</span> Text(<span class=\"st\">'Saldo Dompet Supriyanto'</span>, style: TextStyle(color: Colors.white70)),\n        <span class=\"kw\">const</span> SizedBox(height: <span class=\"nm\">8</span>),\n        Row(\n          mainAxisAlignment: MainAxisAlignment.spaceBetween,\n          children: [\n            <span class=\"kw\">const</span> Text(<span class=\"st\">'Rp 8.750.000'</span>, style: TextStyle(color: Colors.white, fontSize: <span class=\"nm\">24</span>, fontWeight: FontWeight.bold)),\n            IconButton(\n              icon: <span class=\"kw\">const</span> Icon(Icons.send, color: Colors.white),\n              onPressed: () {},\n            ),\n          ],\n        ),\n      ],\n    ),\n  );\n}</div>\n      ",
+    "quiz": {
+     "q": "Widget apa yang digunakan di dalam Row atau Column untuk memaksa anak widget mengambil seluruh ruang kosong yang tersisa?",
+     "opts": [
+      "Expanded",
+      "StaticBox",
+      "FixedSpace",
+      "LockContainer"
+     ],
+     "ans": 0,
+     "why": "Widget Expanded memperluas child widget agar memenuhi sisa ruang yang tersedia di main axis Row atau Column, mencegah overflow error."
+    }
+   },
+   {
+    "id": "flutter-04",
+    "num": "04",
+    "title": "Form Input, TextField & Validasi",
+    "level": "Menengah",
+    "intro": "Menerima masukan dari pengguna dengan kontroler teks dan validasi form yang aman.",
+    "body": "\n        <h4>📝 Analogi Loket Pendaftaran & Satpam Verifikasi</h4>\n        <p>Ketika pengguna mengisi formulir di aplikasi mobile:\n        <ul>\n          <li><b>TextEditingController</b>: Pena pencatat pintar. Ia merekam setiap huruf yang diketik Supriyanto, dan bisa digunakan untuk membaca nilai atau mengosongkan input.</li>\n          <li><b>Form & GlobalKey&lt;FormState&gt;</b>: Satpam pemeriksa. Sebelum formulir dikirim ke server, satpam memeriksa semua kolom input. Jika email tidak valid atau nomor HP kosong, pesan merah peringatan langsung muncul seketika.</li>\n        </ul>\n        </p>\n\n        <h4>📋 Implementasi Form Registrasi Supriyanto</h4>\n        <div class=\"code-block\"><span class=\"kw\">import</span> <span class=\"st\">'package:flutter/material.dart'</span>;\n\n<span class=\"kw\">class</span> <span class=\"fn\">FormSupriyanto</span> <span class=\"kw\">extends</span> <span class=\"fn\">StatefulWidget</span> {\n  <span class=\"kw\">const</span> <span class=\"fn\">FormSupriyanto</span>({<span class=\"kw\">super</span>.key});\n\n  @override\n  State&lt;<span class=\"fn\">FormSupriyanto</span>&gt; <span class=\"fn\">createState</span>() =&gt; <span class=\"fn\">_FormState</span>();\n}\n\n<span class=\"kw\">class</span> <span class=\"fn\">_FormState</span> <span class=\"kw\">extends</span> State&lt;<span class=\"fn\">FormSupriyanto</span>&gt; {\n  <span class=\"kw\">final</span> _formKey = GlobalKey&lt;FormState&gt;();\n  <span class=\"kw\">final</span> _namaCtrl = TextEditingController(text: <span class=\"st\">'Supriyanto'</span>);\n\n  <span class=\"kw\">void</span> <span class=\"fn\">_kirim</span>() {\n    <span class=\"kw\">if</span> (_formKey.currentState!.validate()) {\n      ScaffoldMessenger.of(context).showSnackBar(\n        SnackBar(content: Text(<span class=\"st\">'Data berhasil disimpan: ${_namaCtrl.text}'</span>)),\n      );\n    }\n  }\n\n  @override\n  Widget <span class=\"fn\">build</span>(BuildContext context) {\n    <span class=\"kw\">return</span> Form(\n      key: _formKey,\n      child: Column(\n        children: [\n          TextFormField(\n            controller: _namaCtrl,\n            decoration: <span class=\"kw\">const</span> InputDecoration(labelText: <span class=\"st\">'Nama Lengkap'</span>),\n            validator: (v) =&gt; (v == <span class=\"kw\">null</span> || v.isEmpty) ? <span class=\"st\">'Wajib diisi!'</span> : <span class=\"kw\">null</span>,\n          ),\n          <span class=\"kw\">const</span> SizedBox(height: <span class=\"nm\">16</span>),\n          ElevatedButton(onPressed: _kirim, child: <span class=\"kw\">const</span> Text(<span class=\"st\">'Simpan'</span>)),\n        ],\n      ),\n    );\n  }\n}</div>\n      ",
+    "quiz": {
+     "q": "Objek apa yang digunakan di Flutter untuk membaca, memodifikasi, atau menghapus teks di dalam TextField secara programatik?",
+     "opts": [
+      "TextEditingController",
+      "StringReaderDom",
+      "InputScanner",
+      "FormStringKeeper"
+     ],
+     "ans": 0,
+     "why": "TextEditingController adalah pengendali resmi di Flutter yang mengikat teks input pengguna sehingga developer bisa membaca dan memanipulasi teks kapan saja."
+    }
+   },
+   {
+    "id": "flutter-05",
+    "num": "05",
+    "title": "Daftar Dinamis: ListView.builder",
+    "level": "Menengah",
+    "intro": "Menampilkan ribuan item katalog secara efisien dengan teknik lazy rendering.",
+    "body": "\n        <h4>🧾 Analogi Mesin Rol Struk Percetakan</h4>\n        <p>Jika Supriyanto memiliki 10.000 riwayat transaksi:\n        <ul>\n          <li>Jika menggunakan <code>ListView(children: [...])</code>, Flutter akan membuat 10.000 widget sekaligus di RAM HP. HP pengguna langsung panas dan aplikasi macet!</li>\n          <li>Menggunakan <b>ListView.builder</b> bekerja seperti mesin cetak otomatis (*Lazy Evaluation*). Flutter hanya membuat widget yang sedang aktif terlihat di layar. Saat pengguna menggulir ke bawah, item lama yang keluar layar langsung didaur ulang (*recycled*) untuk item berikutnya.</li>\n        </ul>\n        </p>\n\n        <h4>📦 Implementasi Riwayat Transaksi Supriyanto</h4>\n        <div class=\"code-block\"><span class=\"kw\">import</span> <span class=\"st\">'package:flutter/material.dart'</span>;\n\n<span class=\"kw\">class</span> <span class=\"fn\">DaftarPesanan</span> <span class=\"kw\">extends</span> <span class=\"fn\">StatelessWidget</span> {\n  <span class=\"kw\">final</span> List&lt;String&gt; daftarBarang = List.generate(<span class=\"nm\">1000</span>, (i) =&gt; <span class=\"st\">'Pesanan #$i untuk Supriyanto'</span>);\n\n  <span class=\"kw\">const</span> <span class=\"fn\">DaftarPesanan</span>({<span class=\"kw\">super</span>.key});\n\n  @override\n  Widget <span class=\"fn\">build</span>(BuildContext context) {\n    <span class=\"kw\">return</span> ListView.builder(\n      itemCount: daftarBarang.length,\n      itemBuilder: (context, index) {\n        <span class=\"kw\">return</span> Card(\n          margin: <span class=\"kw\">const</span> EdgeInsets.symmetric(horizontal: <span class=\"nm\">16</span>, vertical: <span class=\"nm\">6</span>),\n          child: ListTile(\n            leading: CircleAvatar(child: Text(<span class=\"st\">'${index + 1}'</span>)),\n            title: Text(daftarBarang[index]),\n            subtitle: <span class=\"kw\">const</span> Text(<span class=\"st\">'Status: Siap Dikirim 🚚'</span>),\n            trailing: <span class=\"kw\">const</span> Icon(Icons.arrow_forward_ios, size: <span class=\"nm\">14</span>),\n          ),\n        );\n      },\n    );\n  }\n}</div>\n      ",
+    "quiz": {
+     "q": "Mengapa ListView.builder sangat efisien dalam menampilkan daftar data dengan ribuan elemen?",
+     "opts": [
+      "Karena ListView.builder hanya membangun widget saat item tersebut hampir terlihat di layar (on-demand / lazy loading)",
+      "Karena ListView.builder mengompres seluruh data menjadi file ZIP",
+      "Karena ListView.builder mematikan fitur scrolling",
+      "Karena ListView.builder menghapus data transaksi dari memori secara permanen"
+     ],
+     "ans": 0,
+     "why": "ListView.builder hanya memanggil itemBuilder untuk item yang benar-benar terlihat di viewport layar, menghemat penggunaan memori RAM secara signifikan."
+    }
+   },
+   {
+    "id": "flutter-06",
+    "num": "06",
+    "title": "Navigasi Layar: Navigator Push & Pop",
+    "level": "Menengah",
+    "intro": "Alur perpindahan antar halaman dan pengiriman parameter data antar layar di Flutter.",
+    "body": "\n        <h4>🍽️ Analogi Tumpukan Nampan Saji Restoran</h4>\n        <p>Sistem navigasi di Flutter mengadopsi konsep tumpukan (*LIFO - Last In First Out*):\n        <ul>\n          <li><b>Navigator.push()</b>: Menaruh nampan halaman baru di atas tumpukan (misalnya dari Beranda pindah ke Layar Detail Produk Supriyanto).</li>\n          <li><b>Navigator.pop()</b>: Mengangkat nampan teratas untuk kembali melihat nampan sebelumnya di bawahnya (tombol Back). Anda bahkan bisa mengembalikan nilai (*return value*) ke layar pemanggil!</li>\n        </ul>\n        </p>\n\n        <h4>🧭 Contoh Navigasi dengan Pengiriman Data</h4>\n        <div class=\"code-block\"><span class=\"kw\">import</span> <span class=\"st\">'package:flutter/material.dart'</span>;\n\n<span class=\"cm\">// 1. Layar Beranda</span>\n<span class=\"kw\">class</span> <span class=\"fn\">LayarUtama</span> <span class=\"kw\">extends</span> <span class=\"fn\">StatelessWidget</span> {\n  <span class=\"kw\">const</span> <span class=\"fn\">LayarUtama</span>({<span class=\"kw\">super</span>.key});\n\n  @override\n  Widget <span class=\"fn\">build</span>(BuildContext context) {\n    <span class=\"kw\">return</span> Center(\n      child: ElevatedButton(\n        child: <span class=\"kw\">const</span> Text(<span class=\"st\">'Lihat Profil Supriyanto →'</span>),\n        onPressed: () {\n          Navigator.push(\n            context,\n            MaterialPageRoute(builder: (c) =&gt; <span class=\"kw\">const</span> <span class=\"fn\">LayarDetail</span>(nama: <span class=\"st\">'Supriyanto'</span>)),\n          );\n        },\n      ),\n    );\n  }\n}\n\n<span class=\"cm\">// 2. Layar Detail</span>\n<span class=\"kw\">class</span> <span class=\"fn\">LayarDetail</span> <span class=\"kw\">extends</span> <span class=\"fn\">StatelessWidget</span> {\n  <span class=\"kw\">final</span> String nama;\n  <span class=\"kw\">const</span> <span class=\"fn\">LayarDetail</span>({<span class=\"kw\">super</span>.key, <span class=\"kw\">required</span> <span class=\"kw\">this</span>.nama});\n\n  @override\n  Widget <span class=\"fn\">build</span>(BuildContext context) {\n    <span class=\"kw\">return</span> Scaffold(\n      appBar: AppBar(title: Text(<span class=\"st\">'Profil $nama'</span>)),\n      body: Center(\n        child: ElevatedButton(\n          onPressed: () =&gt; Navigator.pop(context), <span class=\"cm\">// Kembali ke layar utama</span>\n          child: <span class=\"kw\">const</span> Text(<span class=\"st\">'← Kembali'</span>),\n        ),\n      ),\n    );\n  }\n}</div>\n      ",
+    "quiz": {
+     "q": "Perintah apa yang dipanggil untuk menutup layar saat ini dan kembali ke layar sebelumnya di Flutter?",
+     "opts": [
+      "Navigator.pop(context)",
+      "Navigator.exitAll()",
+      "Screen.delete()",
+      "System.reboot()"
+     ],
+     "ans": 0,
+     "why": "Navigator.pop(context) membuang rute teratas dari tumpukan navigasi sehingga layar sebelumnya kembali tampil di layar pengguna."
+    }
+   },
+   {
+    "id": "flutter-07",
+    "num": "07",
+    "title": "Konsumsi REST API & Model Dart",
+    "level": "Lanjutan",
+    "intro": "Menghubungkan aplikasi Flutter ke server backend dan mengubah JSON menjadi objek Dart yang type-safe.",
+    "body": "\n        <h4>📬 Analogi Surat Telegram & Form Isian Resmi</h4>\n        <p>Ketika aplikasi Supriyanto meminta data ke server melalui koneksi internet:\n        <ol>\n          <li><b>Package http</b>: Kurir pengantar surat yang mengirim request <code>GET</code> atau <code>POST</code>.</li>\n          <li><b>Model Dart (fromJson)</b>: Salinan formulir resmi. Data mentah JSON diterjemahkan ke dalam atribut class dengan tipe data yang ketat (*type-safe*). Mencegah typo nama variabel yang sering menyebabkan crash!</li>\n          <li><b>FutureBuilder</b>: Pekerja cerdas yang otomatis merender roda loading saat data sedang ditarik, atau menampilkan pesan error jika kuota internet habis.</li>\n        </ol>\n        </p>\n\n        <h4>🌐 Mengambil Data Profil Supriyanto</h4>\n        <div class=\"code-block\"><span class=\"kw\">import</span> <span class=\"st\">'dart:convert'</span>;\n<span class=\"kw\">import</span> <span class=\"st\">'package:flutter/material.dart'</span>;\n<span class=\"kw\">import</span> <span class=\"st\">'package:http/http.dart'</span> <span class=\"kw\">as</span> http;\n\n<span class=\"cm\">// Model Dart</span>\n<span class=\"kw\">class</span> <span class=\"fn\">Pengguna</span> {\n  <span class=\"kw\">final</span> String nama;\n  <span class=\"kw\">final</span> String peran;\n  <span class=\"fn\">Pengguna</span>({<span class=\"kw\">required</span> <span class=\"kw\">this</span>.nama, <span class=\"kw\">required</span> <span class=\"kw\">this</span>.peran});\n\n  <span class=\"kw\">factory</span> <span class=\"fn\">Pengguna</span>.fromJson(Map&lt;String, dynamic&gt; json) {\n    <span class=\"kw\">return</span> <span class=\"fn\">Pengguna</span>(nama: json[<span class=\"st\">'nama'</span>], peran: json[<span class=\"st\">'peran'</span>]);\n  }\n}\n\n<span class=\"cm\">// Fungsi Fetch API</span>\nFuture&lt;<span class=\"fn\">Pengguna</span>&gt; <span class=\"fn\">tarikData</span>() <span class=\"kw\">async</span> {\n  <span class=\"kw\">final</span> res = <span class=\"kw\">await</span> http.get(Uri.parse(<span class=\"st\">'https://api.example.com/user/supriyanto'</span>));\n  <span class=\"kw\">if</span> (res.statusCode == <span class=\"nm\">200</span>) {\n    <span class=\"kw\">return</span> <span class=\"fn\">Pengguna</span>.fromJson(jsonDecode(res.body));\n  }\n  <span class=\"kw\">throw</span> Exception(<span class=\"st\">'Gagal mengambil data'</span>);\n}</div>\n      ",
+    "quiz": {
+     "q": "Apa keuntungan utama mengubah data JSON mentah menjadi Model Class Dart dengan factory method fromJson?",
+     "opts": [
+      "Mencegah kesalahan pengetikan nama kolom secara type-safe dan mempermudah auto-complete di editor kode",
+      "Membuat kecepatan internet menjadi tanpa kuota",
+      "Mengubah tampilan HP menjadi transparan",
+      "Menghilangkan kebutuhan akan koneksi internet"
+     ],
+     "ans": 0,
+     "why": "Model class Dart memberikan kepastian tipe data (type-safety) dan auto-completion, menghindarkan aplikasi dari error runtime akibat salah mengakses key JSON."
+    }
+   },
+   {
+    "id": "flutter-08",
+    "num": "08",
+    "title": "State Management: Provider & Notifier",
+    "level": "Mahir",
+    "intro": "Mengelola data global (seperti keranjang belanja atau status login) di seluruh penjuru aplikasi.",
+    "body": "\n        <h4>📻 Analogi Menara Radio Pemancar Desa</h4>\n        <p>Bayangkan toko kelontong Supriyanto memiliki 5 cabang di desa. Jika harga sembako berubah:\n        <ul>\n          <li>Daripada mengirim pesuruh manual dari pintu ke pintu (*Prop Drilling*), Supriyanto cukup membuat <b>Menara Radio Pemancar (ChangeNotifier)</b>.</li>\n          <li>Begitu harga baru diumumkan via pemancar (<code>notifyListeners()</code>), seluruh radio warga yang menyala (<b>Consumer / context.watch</b>) langsung menerima kabar dan memperbarui papan harga mereka secara serentak!</li>\n        </ul>\n        </p>\n\n        <h4>🛒 State Keranjang Toko Supriyanto</h4>\n        <div class=\"code-block\"><span class=\"kw\">import</span> <span class=\"st\">'package:flutter/material.dart'</span>;\n<span class=\"kw\">import</span> <span class=\"st\">'package:provider/provider.dart'</span>;\n\n<span class=\"cm\">// 1. ChangeNotifier (Menara Pemancar)</span>\n<span class=\"kw\">class</span> <span class=\"fn\">KeranjangModel</span> <span class=\"kw\">extends</span> <span class=\"fn\">ChangeNotifier</span> {\n  <span class=\"kw\">final</span> List&lt;String&gt; _items = [];\n  List&lt;String&gt; <span class=\"kw\">get</span> items =&gt; _items;\n\n  <span class=\"kw\">void</span> <span class=\"fn\">tambah</span>(String barang) {\n    _items.add(barang);\n    <span class=\"fn\">notifyListeners</span>(); <span class=\"cm\">// Menyiarkan sinyal update ke seluruh widget</span>\n  }\n}\n\n<span class=\"cm\">// 2. Consumer Widget (Radio Pendengar)</span>\n<span class=\"kw\">class</span> <span class=\"fn\">BadgeKeranjang</span> <span class=\"kw\">extends</span> <span class=\"fn\">StatelessWidget</span> {\n  <span class=\"kw\">const</span> <span class=\"fn\">BadgeKeranjang</span>({<span class=\"kw\">super</span>.key});\n\n  @override\n  Widget <span class=\"fn\">build</span>(BuildContext context) {\n    <span class=\"kw\">return</span> Consumer&lt;<span class=\"fn\">KeranjangModel</span>&gt;(\n      builder: (context, keranjang, child) {\n        <span class=\"kw\">return</span> Text(<span class=\"st\">'Pesanan Supriyanto: ${keranjang.items.length}'</span>);\n      },\n    );\n  }\n}</div>\n      ",
+    "quiz": {
+     "q": "Fungsi apa yang wajib dipanggil di dalam class ChangeNotifier agar seluruh widget Consumer me-render ulang tampilannya?",
+     "opts": [
+      "notifyListeners()",
+      "rebootScreen()",
+      "broadcastAll()",
+      "refreshMemoryNow()"
+     ],
+     "ans": 0,
+     "why": "notifyListeners() adalah metode di ChangeNotifier yang memberitahu para listener (widget yang berlangganan) bahwa state telah berubah dan UI perlu di-render ulang."
+    }
+   },
+   {
+    "id": "flutter-09",
+    "num": "09",
+    "title": "Animasi Mulus: AnimatedContainer & Hero",
+    "level": "Mahir",
+    "intro": "Menghadirkan transisi visual yang memanjakan mata dengan AnimatedContainer dan Hero widget.",
+    "body": "\n        <h4>🦸 Analogi Pahlawan Super Terbang Antar Layar</h4>\n        <p>Sentuhan animasi membedakan aplikasi amatir dengan aplikasi profesional kelas dunia:\n        <ul>\n          <li><b>AnimatedContainer</b>: Kotak dinamis yang bisa berubah warna, ukuran, atau lengkungan secara bertahap dan luwes cukup dengan mengganti nilainya.</li>\n          <li><b>Hero Widget</b>: Seperti pahlawan super yang terbang melintasi langit. Ketika foto profil Supriyanto di daftar kecil diklik, foto tersebut seolah membesar dan melayang mulus ke posisi atas di halaman profil detail tanpa jeda!</li>\n        </ul>\n        </p>\n\n        <h4>🎬 Implementasi Hero Transition Supriyanto</h4>\n        <div class=\"code-block\"><span class=\"kw\">import</span> <span class=\"st\">'package:flutter/material.dart'</span>;\n\n<span class=\"cm\">// Di Layar Katalog</span>\nWidget <span class=\"fn\">fotoKecil</span>(BuildContext context) {\n  <span class=\"kw\">return</span> GestureDetector(\n    onTap: () =&gt; Navigator.push(context, MaterialPageRoute(builder: (_) =&gt; <span class=\"kw\">const</span> LayarDetailFoto())),\n    child: Hero(\n      tag: <span class=\"st\">'avatar-supriyanto'</span>, <span class=\"cm\">// Kunci identitas tag yang unik</span>\n      child: ClipRRect(\n        borderRadius: BorderRadius.circular(<span class=\"nm\">8</span>),\n        child: Image.network(<span class=\"st\">'https://api.dicebear.com/7.x/bottts/svg?seed=Supriyanto'</span>, width: <span class=\"nm\">60</span>),\n      ),\n    ),\n  );\n}\n\n<span class=\"cm\">// Di Layar Detail</span>\n<span class=\"kw\">class</span> <span class=\"fn\">LayarDetailFoto</span> <span class=\"kw\">extends</span> <span class=\"fn\">StatelessWidget</span> {\n  <span class=\"kw\">const</span> <span class=\"fn\">LayarDetailFoto</span>({<span class=\"kw\">super</span>.key});\n\n  @override\n  Widget <span class=\"fn\">build</span>(BuildContext context) {\n    <span class=\"kw\">return</span> Scaffold(\n      body: Center(\n        child: Hero(\n          tag: <span class=\"st\">'avatar-supriyanto'</span>, <span class=\"cm\">// Tag harus sama persis</span>\n          child: Image.network(<span class=\"st\">'https://api.dicebear.com/7.x/bottts/svg?seed=Supriyanto'</span>, width: <span class=\"nm\">260</span>),\n        ),\n      ),\n    );\n  }\n}</div>\n      ",
+    "quiz": {
+     "q": "Widget apa di Flutter yang secara otomatis memberikan animasi transisi terbang sebuah elemen gambar saat berpindah layar?",
+     "opts": [
+      "Hero",
+      "FlyingImageDom",
+      "AirTrans",
+      "TeleportBox"
+     ],
+     "ans": 0,
+     "why": "Widget Hero di Flutter menghubungkan dua elemen dengan tag yang sama pada rute berbeda dan menganimasikan transisi terbang posisinya secara otomatis."
+    }
+   },
+   {
+    "id": "flutter-10",
+    "num": "10",
+    "title": "Kompilasi AOT & Rilis Multi-Platform",
+    "level": "Expert",
+    "intro": "Mengompilasi aplikasi ke kode mesin native (AOT) untuk performa puncak dan publikasi ke Play Store & App Store.",
+    "body": "\n        <h4>📦 Analogi Buku Cetak Siap Terbit</h4>\n        <p>Dalam siklus pengembangan Flutter, terdapat dua mode kerja:\n        <ul>\n          <li><b>Mode Debug (JIT - Just In Time)</b>: Naskah sketsa yang cepat diedit. Fitur <b>Stateful Hot Reload</b> memungkinkan Supriyanto mengubah kode dan melihat hasilnya di HP dalam hitungan sub-detik tanpa merestart aplikasi.</li>\n          <li><b>Mode Release (AOT - Ahead Of Time)</b>: Buku edisi cetak tebal. Seluruh kode Dart dikompilasi langsung menjadi instruksi mesin ARM 64-bit native. Tidak ada lagi interpreter, menghasilkan performa setara C++ murni!</li>\n        </ul>\n        </p>\n\n        <h4>🚀 Perintah Build Production Flutter</h4>\n        <div class=\"code-block\"><span class=\"cm\"># 1. Menghasilkan Android App Bundle (.aab) siap upload ke Google Play Console</span>\nflutter build appbundle --release\n\n<span class=\"cm\"># 2. Menghasilkan IPA untuk Apple App Store</span>\nflutter build ipa --release\n\n<span class=\"cm\"># 3. Menghasilkan build Web modern (Wasm / CanvasKit)</span>\nflutter build web --release</div>\n\n        <div class=\"tip-box\">\n          <span class=\"tip-box-icon\">🏆</span>\n          <div><b>Selamat!</b> Supriyanto telah menyelesaikan kurikulum Flutter dari tingkat Pemula hingga Expert. Uji kemampuan Anda dengan mengikuti <b>Quiz Flutter 💙</b>!</div>\n        </div>\n      ",
+    "quiz": {
+     "q": "Apa perbedaan utama antara mode Debug (JIT) dan mode Release (AOT) di Flutter?",
+     "opts": [
+      "Mode Debug menggunakan Just-In-Time untuk Hot Reload kilat saat coding, sedangkan mode Release menggunakan Ahead-Of-Time untuk kompilasi mesin native berkecepatan maksimal",
+      "Mode Debug hanya berjalan di siang hari, mode Release hanya di malam hari",
+      "Mode Release mengharuskan aplikasi ditulis ulang dalam bahasa Python",
+      "Mode Debug menghasilkan file berukuran 100 Terabyte"
+     ],
+     "ans": 0,
+     "why": "Dart mendukung dua mode kompilasi: JIT untuk produktivitas pengembangan kilat dengan Hot Reload, dan AOT untuk kompilasi kode mesin native tanpa overhead runtime."
     }
    }
   ]
@@ -1757,5 +2153,265 @@ const QUIZ_BANK = [
   ],
   "ans": 0,
   "why": "asyncio.gather() menerima sekumpulan tugas asynchronous dan mengeksekusinya secara bersamaan (concurrently) hingga semuanya selesai."
+ },
+ {
+  "track": "rn",
+  "topic": "Pengenalan React Native & Expo",
+  "q": "Mengapa React Native berbeda dari aplikasi hybrid berbasis WebView biasa?",
+  "opts": [
+   "Karena React Native menerjemahkan komponen menjadi elemen antarmuka native bawaan sistem operasi HP secara langsung",
+   "Karena React Native hanya bisa berjalan di laptop, bukan di HP",
+   "Karena React Native tidak menggunakan bahasa JavaScript sama sekali",
+   "Karena React Native mewajibkan pengguna membayar lisensi bulanan ke Apple"
+  ],
+  "ans": 0,
+  "why": "React Native berkomunikasi dengan platform native sehingga elemen seperti tombol dan teks dirender menggunakan komponen asli Android dan iOS, bukan halaman web dalam iframe/browser."
+ },
+ {
+  "track": "rn",
+  "topic": "Komponen Inti & Styling StyleSheet",
+  "q": "Apa yang terjadi jika Supriyanto menulis teks string langsung di dalam <View> tanpa membungkusnya dengan <Text>?",
+  "opts": [
+   "Aplikasi akan melempar error di layar HP karena React Native mewajibkan semua teks berada di dalam <Text>",
+   "Teks otomatis berubah warna menjadi merah",
+   "Teks otomatis diunggah ke Google Drive",
+   "Tidak ada error dan teks muncul secara normal"
+  ],
+  "ans": 0,
+  "why": "Di React Native, mesin rendering native Android/iOS memerlukan komponen TextView/UILabel khusus, sehingga teks wajib diletakkan di dalam tag <Text>."
+ },
+ {
+  "track": "rn",
+  "topic": "Layouting Flexbox Mobile",
+  "q": "Apa perbedaan arah default 'flexDirection' antara browser web CSS biasa dan React Native?",
+  "opts": [
+   "Web CSS default-nya adalah 'row' (horizontal), sedangkan React Native default-nya adalah 'column' (vertikal)",
+   "Web CSS default-nya adalah 'column', sedangkan React Native default-nya adalah 'row'",
+   "Kedua platform sama-sama menggunakan 'grid' sebagai default",
+   "React Native tidak memiliki fitur Flexbox"
+  ],
+  "ans": 0,
+  "why": "Karena layar smartphone berorientasi tegak (portrait), React Native menetapkan default flexDirection ke 'column' agar elemen otomatis tersusun ke bawah."
+ },
+ {
+  "track": "rn",
+  "topic": "State, Props & Interaksi Pengguna",
+  "q": "Mengapa komponen <Pressable> lebih dianjurkan daripada tombol HTML <button> di React Native?",
+  "opts": [
+   "Karena di ekosistem mobile tidak ada tag HTML <button>, dan <Pressable> memberikan kontrol interaksi sentuhan yang akurat dan performan",
+   "Karena <Pressable> otomatis mengirim pesan WhatsApp ke developer",
+   "Karena <button> hanya bisa diklik satu kali seumur hidup",
+   "Karena <Pressable> hanya bisa dipakai di perangkat laptop"
+  ],
+  "ans": 0,
+  "why": "React Native tidak merender DOM web melainkan native views, dan <Pressable> adalah komponen standar yang menangani gestur sentuhan (pressed state, delay, long press) dengan lancar."
+ },
+ {
+  "track": "rn",
+  "topic": "List Rendering: FlatList vs ScrollView",
+  "q": "Mengapa kita wajib menggunakan FlatList daripada ScrollView saat menampilkan daftar 5.000 item?",
+  "opts": [
+   "Karena FlatList hanya me-render elemen yang sedang terlihat di layar (windowing), menghemat RAM dan menjaga aplikasi tetap lancar 60 FPS",
+   "Karena FlatList otomatis mengubah tulisan menjadi suara",
+   "Karena ScrollView tidak bisa diberi warna background",
+   "Karena FlatList secara otomatis menghapus database setiap 5 menit"
+  ],
+  "ans": 0,
+  "why": "FlatList menggunakan teknik windowing/virtualization sehingga hanya item di viewport yang dibuat, mencegah aplikasi kehabisan memori dan lagging."
+ },
+ {
+  "track": "rn",
+  "topic": "Navigasi Layar: React Navigation",
+  "q": "Dalam sistem React Navigation Stack, apa fungsi dari 'navigation.goBack()'?",
+  "opts": [
+   "Menutup layar teratas dan kembali menampilkan layar sebelumnya di bawah tumpukan",
+   "Menghapus seluruh memori aplikasi dan merestart HP",
+   "Membuka browser Safari atau Google Chrome",
+   "Mengirim email laporan ke tim developer"
+  ],
+  "ans": 0,
+  "why": "navigation.goBack() membuang kartu layar saat ini (pop) dari tumpukan navigasi sehingga user kembali ke layar asal."
+ },
+ {
+  "track": "rn",
+  "topic": "Fetch Data API & State Loading/Error",
+  "q": "Komponen bawaan React Native apa yang digunakan untuk menampilkan animasi muter (spinner) saat proses fetch data?",
+  "opts": [
+   "<ActivityIndicator>",
+   "<LoadingSpinnerDom>",
+   "<ProgressBarHtml>",
+   "<WaitRotateIcon>"
+  ],
+  "ans": 0,
+  "why": "<ActivityIndicator> adalah komponen native resmi bawaan React Native untuk menampilkan status loading berputar di Android dan iOS."
+ },
+ {
+  "track": "rn",
+  "topic": "Fitur Hardware: AsyncStorage & Sensor",
+  "q": "Kapan waktu yang paling tepat untuk menggunakan AsyncStorage di aplikasi mobile?",
+  "opts": [
+   "Untuk menyimpan data ringan seperti token otentikasi, preferensi tema, atau ID pengguna secara persisten",
+   "Untuk menyimpan video berukuran 50 Gigabyte",
+   "Untuk mempercepat koneksi internet WiFi 10x lipat",
+   "Sebagai pengganti database PostgreSQL jutaan baris di server"
+  ],
+  "ans": 0,
+  "why": "AsyncStorage dirancang untuk penyimpanan key-value asynchronous sederhana di memori lokal perangkat, ideal untuk token sesi atau pengaturan aplikasi."
+ },
+ {
+  "track": "rn",
+  "topic": "Animasi Halus 60 FPS: Reanimated",
+  "q": "Mengapa animasi dengan React Native Reanimated dapat berjalan mulus tanpa lag meski JavaScript sedang memproses komputasi berat?",
+  "opts": [
+   "Karena perhitungan dan frame animasi dijalankan langsung di Native UI Thread perangkat",
+   "Karena Reanimated menghapus seluruh gambar di aplikasi",
+   "Karena Reanimated hanya bekerja saat HP disambungkan ke charger",
+   "Karena Reanimated membatasi refresh rate layar menjadi 5 FPS"
+  ],
+  "ans": 0,
+  "why": "Reanimated menggunakan worklet yang berjalan langsung di native UI thread, melepaskan ketergantungan frame rate animasi dari kesibukan thread JavaScript."
+ },
+ {
+  "track": "rn",
+  "topic": "Hermes Engine, Optimasi & Rilis Store",
+  "q": "Apa keuntungan utama mengaktifkan Hermes Engine di aplikasi React Native?",
+  "opts": [
+   "Waktu buka aplikasi (startup) jauh lebih cepat, konsumsi RAM lebih hemat, dan ukuran APK lebih kecil",
+   "Aplikasi otomatis bisa berjalan tanpa baterai HP",
+   "Menghilangkan kebutuhan akan koneksi internet selamanya",
+   "Mengubah seluruh kode menjadi file dokumen Microsoft Word"
+  ],
+  "ans": 0,
+  "why": "Hermes melakukan prekompilasi JavaScript menjadi bytecode sebelum aplikasi diinstall, memangkas proses parsing runtime sehingga startup aplikasi instan."
+ },
+ {
+  "track": "flutter",
+  "topic": "Pengenalan Flutter & Bahasa Dart",
+  "q": "Mengapa arsitektur rendering Flutter sering disebut 'Zero Bridge'?",
+  "opts": [
+   "Karena Flutter melukis langsung setiap piksel ke layar HP menggunakan rendering engine sendiri (Impeller/Skia) tanpa jembatan perantara",
+   "Karena Flutter hanya bisa berjalan jika HP terhubung kabel ke laptop",
+   "Karena Flutter tidak memiliki tombol sama sekali",
+   "Karena Flutter mengharuskan pengguna membuat jembatan kayu asli"
+  ],
+  "ans": 0,
+  "why": "Flutter tidak mengandalkan jembatan komunikasi runtime ke komponen UI platform asli, melainkan menggambar sendiri seluruh antarmuka secara native menggunakan grafis Impeller/Skia."
+ },
+ {
+  "track": "flutter",
+  "topic": "StatelessWidget vs StatefulWidget",
+  "q": "Kapan Supriyanto harus memilih StatefulWidget daripada StatelessWidget?",
+  "opts": [
+   "Ketika tampilan layar perlu berubah secara dinamis merespons interaksi pengguna atau perubahan data waktu",
+   "Ketika membuat logo gambar statis yang tidak pernah berubah",
+   "Ketika ingin membuat ukuran aplikasi menjadi 0 kilobyte",
+   "Ketika aplikasi hanya dijalankan di malam hari"
+  ],
+  "ans": 0,
+  "why": "StatefulWidget dirancang untuk elemen antarmuka yang memiliki state/data yang dapat berubah sepanjang siklus hidup widget, diperbarui melalui fungsi setState()."
+ },
+ {
+  "track": "flutter",
+  "topic": "Tata Letak: Row, Column & Expanded",
+  "q": "Widget apa yang digunakan di dalam Row atau Column untuk memaksa anak widget mengambil seluruh ruang kosong yang tersisa?",
+  "opts": [
+   "Expanded",
+   "StaticBox",
+   "FixedSpace",
+   "LockContainer"
+  ],
+  "ans": 0,
+  "why": "Widget Expanded memperluas child widget agar memenuhi sisa ruang yang tersedia di main axis Row atau Column, mencegah overflow error."
+ },
+ {
+  "track": "flutter",
+  "topic": "Form Input, TextField & Validasi",
+  "q": "Objek apa yang digunakan di Flutter untuk membaca, memodifikasi, atau menghapus teks di dalam TextField secara programatik?",
+  "opts": [
+   "TextEditingController",
+   "StringReaderDom",
+   "InputScanner",
+   "FormStringKeeper"
+  ],
+  "ans": 0,
+  "why": "TextEditingController adalah pengendali resmi di Flutter yang mengikat teks input pengguna sehingga developer bisa membaca dan memanipulasi teks kapan saja."
+ },
+ {
+  "track": "flutter",
+  "topic": "Daftar Dinamis: ListView.builder",
+  "q": "Mengapa ListView.builder sangat efisien dalam menampilkan daftar data dengan ribuan elemen?",
+  "opts": [
+   "Karena ListView.builder hanya membangun widget saat item tersebut hampir terlihat di layar (on-demand / lazy loading)",
+   "Karena ListView.builder mengompres seluruh data menjadi file ZIP",
+   "Karena ListView.builder mematikan fitur scrolling",
+   "Karena ListView.builder menghapus data transaksi dari memori secara permanen"
+  ],
+  "ans": 0,
+  "why": "ListView.builder hanya memanggil itemBuilder untuk item yang benar-benar terlihat di viewport layar, menghemat penggunaan memori RAM secara signifikan."
+ },
+ {
+  "track": "flutter",
+  "topic": "Navigasi Layar: Navigator Push & Pop",
+  "q": "Perintah apa yang dipanggil untuk menutup layar saat ini dan kembali ke layar sebelumnya di Flutter?",
+  "opts": [
+   "Navigator.pop(context)",
+   "Navigator.exitAll()",
+   "Screen.delete()",
+   "System.reboot()"
+  ],
+  "ans": 0,
+  "why": "Navigator.pop(context) membuang rute teratas dari tumpukan navigasi sehingga layar sebelumnya kembali tampil di layar pengguna."
+ },
+ {
+  "track": "flutter",
+  "topic": "Konsumsi REST API & Model Dart",
+  "q": "Apa keuntungan utama mengubah data JSON mentah menjadi Model Class Dart dengan factory method fromJson?",
+  "opts": [
+   "Mencegah kesalahan pengetikan nama kolom secara type-safe dan mempermudah auto-complete di editor kode",
+   "Membuat kecepatan internet menjadi tanpa kuota",
+   "Mengubah tampilan HP menjadi transparan",
+   "Menghilangkan kebutuhan akan koneksi internet"
+  ],
+  "ans": 0,
+  "why": "Model class Dart memberikan kepastian tipe data (type-safety) dan auto-completion, menghindarkan aplikasi dari error runtime akibat salah mengakses key JSON."
+ },
+ {
+  "track": "flutter",
+  "topic": "State Management: Provider & Notifier",
+  "q": "Fungsi apa yang wajib dipanggil di dalam class ChangeNotifier agar seluruh widget Consumer me-render ulang tampilannya?",
+  "opts": [
+   "notifyListeners()",
+   "rebootScreen()",
+   "broadcastAll()",
+   "refreshMemoryNow()"
+  ],
+  "ans": 0,
+  "why": "notifyListeners() adalah metode di ChangeNotifier yang memberitahu para listener (widget yang berlangganan) bahwa state telah berubah dan UI perlu di-render ulang."
+ },
+ {
+  "track": "flutter",
+  "topic": "Animasi Mulus: AnimatedContainer & Hero",
+  "q": "Widget apa di Flutter yang secara otomatis memberikan animasi transisi terbang sebuah elemen gambar saat berpindah layar?",
+  "opts": [
+   "Hero",
+   "FlyingImageDom",
+   "AirTrans",
+   "TeleportBox"
+  ],
+  "ans": 0,
+  "why": "Widget Hero di Flutter menghubungkan dua elemen dengan tag yang sama pada rute berbeda dan menganimasikan transisi terbang posisinya secara otomatis."
+ },
+ {
+  "track": "flutter",
+  "topic": "Kompilasi AOT & Rilis Multi-Platform",
+  "q": "Apa perbedaan utama antara mode Debug (JIT) dan mode Release (AOT) di Flutter?",
+  "opts": [
+   "Mode Debug menggunakan Just-In-Time untuk Hot Reload kilat saat coding, sedangkan mode Release menggunakan Ahead-Of-Time untuk kompilasi mesin native berkecepatan maksimal",
+   "Mode Debug hanya berjalan di siang hari, mode Release hanya di malam hari",
+   "Mode Release mengharuskan aplikasi ditulis ulang dalam bahasa Python",
+   "Mode Debug menghasilkan file berukuran 100 Terabyte"
+  ],
+  "ans": 0,
+  "why": "Dart mendukung dua mode kompilasi: JIT untuk produktivitas pengembangan kilat dengan Hot Reload, dan AOT untuk kompilasi kode mesin native tanpa overhead runtime."
  }
 ];

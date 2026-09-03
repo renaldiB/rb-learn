@@ -118,9 +118,9 @@ async function runTests() {
     const trackCount = await evaluate('return TRACKS.length;');
     const brandText = await evaluate('return document.querySelector(".brand-text").textContent;');
     console.log(`[PASS] Data integrity: ${lessonCount} lessons, ${quizCount} quiz questions, ${trackCount} tracks, Brand: "${brandText}"`);
-    if (lessonCount !== 46 || quizCount !== 71 || trackCount !== 4 || !brandText.includes('RB Learning')) throw new Error('Invalid count or brand');
+    if (lessonCount !== 66 || quizCount !== 91 || trackCount !== 6 || !brandText.includes('RB Learning')) throw new Error('Invalid count or brand');
 
-    // Test 2: Search functionality with "Supriyanto" and "python"
+    // Test 2: Search functionality with "Supriyanto"
     await evaluate(`
       const input = document.querySelector('#searchInput');
       input.value = 'supriyanto';
@@ -133,37 +133,37 @@ async function runTests() {
     console.log('[PASS] Search results for "supriyanto":', visibleItems.length, 'lessons found');
     if (visibleItems.length === 0) throw new Error('Search failed for Supriyanto');
 
-    // Test 3: Collapsible group for Python track
+    // Test 3: Collapsible group for Flutter track
     await evaluate(`
       const input = document.querySelector('#searchInput');
       input.value = '';
       input.dispatchEvent(new Event('input'));
     `);
     await sleep(200);
-    const pyGroupBefore = await evaluate(`return document.querySelector('.side-group[data-track="py"]').classList.contains('collapsed');`);
-    await evaluate(`toggleGroup('py');`);
-    const pyGroupAfter = await evaluate(`return document.querySelector('.side-group[data-track="py"]').classList.contains('collapsed');`);
+    const flGroupBefore = await evaluate(`return document.querySelector('.side-group[data-track="flutter"]').classList.contains('collapsed');`);
+    await evaluate(`toggleGroup('flutter');`);
+    const flGroupAfter = await evaluate(`return document.querySelector('.side-group[data-track="flutter"]').classList.contains('collapsed');`);
     const storedCollapsed = await evaluate(`return localStorage.getItem('rblearn:collapsed');`);
-    console.log(`[PASS] Collapsible Python group: before=${pyGroupBefore}, after=${pyGroupAfter}, stored=${storedCollapsed}`);
-    if (pyGroupAfter === pyGroupBefore) throw new Error('Toggle Python group failed');
+    console.log(`[PASS] Collapsible Flutter group: before=${flGroupBefore}, after=${flGroupAfter}, stored=${storedCollapsed}`);
+    if (flGroupAfter === flGroupBefore) throw new Error('Toggle Flutter group failed');
 
-    // Re-open Python group
-    await evaluate(`toggleGroup('py');`);
+    // Re-open Flutter group
+    await evaluate(`toggleGroup('flutter');`);
 
-    // Test 4: Python Lesson navigation & AI implementation (py-10: Fondasi AI & Machine Learning)
-    await cdp.send('Page.navigate', { url: BASE_URL + '/#/m/py-10' });
+    // Test 4: React Native Lesson navigation (rn-01: Pengenalan React Native & Expo)
+    await cdp.send('Page.navigate', { url: BASE_URL + '/#/m/rn-01' });
     await sleep(400);
     const title = await evaluate(`return document.querySelector('.lesson-title').textContent;`);
-    const hasAIContent = await evaluate(`return document.querySelector('.lesson-body').textContent.includes('Machine Learning');`);
-    console.log(`[PASS] Lesson navigation to py-10: "${title}", hasAIContent=${hasAIContent}`);
-    if (!hasAIContent) throw new Error('Python AI content missing in py-10');
+    const hasRNContent = await evaluate(`return document.querySelector('.lesson-body').textContent.includes('Expo');`);
+    console.log(`[PASS] Lesson navigation to rn-01: "${title}", hasRNContent=${hasRNContent}`);
+    if (!hasRNContent) throw new Error('RN content missing in rn-01');
 
-    // Mark done on Python lesson
+    // Mark done on RN lesson
     await evaluate(`document.querySelector('#btnDone').click();`);
     await sleep(200);
-    const isDoneStored = await evaluate(`return JSON.parse(localStorage.getItem('rblearn:progress')).includes('py-10');`);
+    const isDoneStored = await evaluate(`return JSON.parse(localStorage.getItem('rblearn:progress')).includes('rn-01');`);
     const pctText = await evaluate(`return document.querySelector('#spPct').textContent;`);
-    console.log(`[PASS] Progress marked for py-10: inStorage=${isDoneStored}, UI pct=${pctText}`);
+    console.log(`[PASS] Progress marked for rn-01: inStorage=${isDoneStored}, UI pct=${pctText}`);
     if (!isDoneStored) throw new Error('Progress saving failed');
 
     // Test 5: Playground execution with Supriyanto
@@ -177,14 +177,14 @@ async function runTests() {
     console.log(`[PASS] Playground execution output: "${pgOutput.trim()}"`);
     if (!pgOutput.includes('Halo, Supriyanto')) throw new Error('Playground execution failed');
 
-    // Test 6: Quiz workflow with Python filter
+    // Test 6: Quiz workflow with Flutter filter
     await cdp.send('Page.navigate', { url: BASE_URL + '/#/quiz' });
     await sleep(400);
-    await evaluate(`startQuiz('py');`);
+    await evaluate(`startQuiz('flutter');`);
     await sleep(200);
     const quizQuestion = await evaluate(`return document.querySelector('.quiz-q').textContent;`);
     const optsCount = await evaluate(`return document.querySelectorAll('.quiz-opt').length;`);
-    console.log(`[PASS] Python Quiz started: "${quizQuestion.slice(0, 45)}...", ${optsCount} options`);
+    console.log(`[PASS] Flutter Quiz started: "${quizQuestion.slice(0, 45)}...", ${optsCount} options`);
     if (optsCount < 2) throw new Error('Quiz options missing');
 
     // Answer first question

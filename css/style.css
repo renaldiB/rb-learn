@@ -18,6 +18,8 @@
   --green:#15803d;   /* track PW  */
   --orange:#ea580c;  /* track Mojo 🔥 */
   --sky:#0284c7;     /* track Python 🐍 */
+  --cyan:#0891b2;    /* track React Native 📱 */
+  --teal:#0d9488;    /* track Flutter 💙 */
   --blue:#1d4ed8;    /* aksi umum */
   --red:#b91c1c;
 
@@ -59,6 +61,8 @@
   --green:#4ade80;
   --orange:#fb923c;
   --sky:#38bdf8;
+  --cyan:#22d3ee;
+  --teal:#2dd4bf;
   --blue:#7aa7ff;
   --red:#f87171;
 
@@ -205,6 +209,8 @@ kbd{
 .side-item[data-accent="green"]{--accent:var(--green)}
 .side-item[data-accent="orange"]{--accent:var(--orange)}
 .side-item[data-accent="sky"]{--accent:var(--sky)}
+.side-item[data-accent="cyan"]{--accent:var(--cyan)}
+.side-item[data-accent="teal"]{--accent:var(--teal)}
 .search-empty{padding:14px 10px;font-size:.84rem;color:var(--ink-3);font-style:italic}
 
 .side-foot{border-top:1px solid var(--line);padding:14px 16px}
@@ -418,6 +424,8 @@ kbd{
 .chip.green{color:var(--green);border-color:color-mix(in srgb,var(--green) 40%,transparent)}
 .chip.orange{color:var(--orange);border-color:color-mix(in srgb,var(--orange) 40%,transparent)}
 .chip.sky{color:var(--sky);border-color:color-mix(in srgb,var(--sky) 40%,transparent)}
+.chip.cyan{color:var(--cyan);border-color:color-mix(in srgb,var(--cyan) 40%,transparent)}
+.chip.teal{color:var(--teal);border-color:color-mix(in srgb,var(--teal) 40%,transparent)}
 .lesson-title{
   font-family:var(--font-display);font-weight:400;
   font-size:clamp(1.7rem,3.4vw,2.3rem);line-height:1.2;letter-spacing:-.01em;

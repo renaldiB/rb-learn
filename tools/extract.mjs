@@ -3,6 +3,8 @@
 import { readFileSync, writeFileSync, mkdirSync } from 'fs';
 import { dirname, join } from 'path';
 import { fileURLToPath } from 'url';
+import { rnTrack } from './tracks/rn.mjs';
+import { flutterTrack } from './tracks/flutter.mjs';
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const JS_DIR = 'C:/Users/Z Series/MainRB/Code Project/Learn JS';
@@ -1373,19 +1375,32 @@ const pythonQuizBank = pythonTrack.lessons.map(l => ({
   track: 'py', topic: l.title, q: l.quiz.q, opts: l.quiz.opts, ans: l.quiz.ans, why: l.quiz.why,
 }));
 
+const rnQuizBank = rnTrack.lessons.map(l => ({
+  track: 'rn', topic: l.title, q: l.quiz.q, opts: l.quiz.opts, ans: l.quiz.ans, why: l.quiz.why,
+}));
+
+const flutterQuizBank = flutterTrack.lessons.map(l => ({
+  track: 'flutter', topic: l.title, q: l.quiz.q, opts: l.quiz.opts, ans: l.quiz.ans, why: l.quiz.why,
+}));
+
 /* ---------- OUTPUT ---------- */
 mkdirSync(join(HERE, '..', 'js'), { recursive: true });
 writeFileSync(join(HERE, '..', 'js/data.js'),
-  '/* Data materi gabungan — dihasilkan dari modul JavaScript, Playwright, Mojo, dan Python. */\n'
-  + 'const TRACKS = ' + JSON.stringify([jsTrack, pwTrack, mojoTrack, pythonTrack], null, 1) + ';\n\n'
-  + 'const QUIZ_BANK = ' + JSON.stringify([...jsQuizBank, ...pwQuizBank, ...mojoQuizBank, ...pythonQuizBank], null, 1) + ';\n'
+  '/* Data materi gabungan — dihasilkan dari modul JavaScript, Playwright, Mojo, Python, React Native, dan Flutter. */\n'
+  + 'const TRACKS = ' + JSON.stringify([jsTrack, pwTrack, mojoTrack, pythonTrack, rnTrack, flutterTrack], null, 1) + ';\n\n'
+  + 'const QUIZ_BANK = ' + JSON.stringify([...jsQuizBank, ...pwQuizBank, ...mojoQuizBank, ...pythonQuizBank, ...rnQuizBank, ...flutterQuizBank], null, 1) + ';\n'
 );
 
 console.log('JS lessons:', jsTrack.lessons.length);
 console.log('PW lessons:', pwTrack.lessons.length);
 console.log('Mojo lessons:', mojoTrack.lessons.length);
 console.log('Python lessons:', pythonTrack.lessons.length);
-console.log('Total lessons:', jsTrack.lessons.length + pwTrack.lessons.length + mojoTrack.lessons.length + pythonTrack.lessons.length);
-console.log('Quiz total:', jsQuizBank.length + pwQuizBank.length + mojoQuizBank.length + pythonQuizBank.length, '(js', jsQuizBank.length, '/ pw', pwQuizBank.length, '/ mojo', mojoQuizBank.length, '/ py', pythonQuizBank.length + ')');
+console.log('RN lessons:', rnTrack.lessons.length);
+console.log('Flutter lessons:', flutterTrack.lessons.length);
+const totalL = jsTrack.lessons.length + pwTrack.lessons.length + mojoTrack.lessons.length + pythonTrack.lessons.length + rnTrack.lessons.length + flutterTrack.lessons.length;
+const totalQ = jsQuizBank.length + pwQuizBank.length + mojoQuizBank.length + pythonQuizBank.length + rnQuizBank.length + flutterQuizBank.length;
+console.log('Total lessons:', totalL);
+console.log('Quiz total:', totalQ, `(js ${jsQuizBank.length} / pw ${pwQuizBank.length} / mojo ${mojoQuizBank.length} / py ${pythonQuizBank.length} / rn ${rnQuizBank.length} / flutter ${flutterQuizBank.length})`);
+
 
 
