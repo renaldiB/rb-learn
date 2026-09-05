@@ -6,7 +6,9 @@
   --ink-3:#8a8580;
   --line:#e5e1d8;
   --line-2:#d6d1c4;
+  --line-strong:#b8b2a5;
   --card:#ffffff;
+  --brand:#1c1917;
 
   --amber:#b45309;   
   --green:#15803d;   
@@ -17,6 +19,7 @@
   --rose:#e11d48;    
   --blue:#1d4ed8;    
   --red:#b91c1c;
+  --emerald:#059669;
 
   
   --code-bg:#f4f1e8;
@@ -39,6 +42,7 @@
 
   --r-s:5px;
   --r-m:8px;
+  --r-l:14px;
   --side-w:284px;
   --measure:720px;
 }
@@ -50,7 +54,9 @@
   --ink-3:#78716c;
   --line:#2a2724;
   --line-2:#3a3632;
+  --line-strong:#4a453f;
   --card:#1b1917;
+  --brand:#e8e5e0;
 
   --amber:#e8a04c;
   --green:#4ade80;
@@ -61,6 +67,7 @@
   --rose:#fb7185;
   --blue:#7aa7ff;
   --red:#f87171;
+  --emerald:#34d399;
 
   
   --code-bg:#1a1815;
@@ -907,7 +914,7 @@ textarea.pg-editor{
 }
 .fc-back {
   transform: rotateY(180deg);
-  background: color-mix(in srgb, var(--brand) 4%, var(--card));
+  background: var(--card);
 }
 .fc-counter {
   font-size: .8rem;
@@ -975,8 +982,16 @@ textarea.pg-editor{
   gap: 6px;
 }
 .fc-btn:hover { background: var(--paper-2); border-color: var(--line-strong); }
-.fc-btn.primary { background: var(--brand); color: #fff; border-color: var(--brand); }
-.fc-btn.primary:hover { opacity: .9; }
+.fc-btn.primary {
+  background: var(--ink);
+  color: var(--paper);
+  border-color: var(--ink);
+}
+.fc-btn.primary:hover {
+  background: var(--ink-2);
+  color: var(--paper);
+  border-color: var(--ink-2);
+}
 
 .ko-char {
   cursor: pointer;

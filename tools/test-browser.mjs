@@ -124,24 +124,22 @@ async function run() {
       return await cdp.send('Runtime.evaluate', { expression: expr, returnByValue: true });
     }
 
-    // 1. Beranda with 13 Tracks & Categories
+    // 1. Beranda with All 13 Tracks Collapsed by Default in Sidebar
     await cdp.send('Page.navigate', { url: BASE_URL + '/#/' });
     await sleep(600);
     await evalCode('localStorage.clear(); applyTheme("light"); render(); renderSidebar();');
     await sleep(300);
-    await capture('beranda-13-tracks.png', 1440, 1200);
+    await capture('beranda-sidebar-collapsed.png', 1440, 1000);
 
-    // 2. QA Lesson 02: Black Box Testing & Boundary Value Analysis
-    await cdp.send('Page.navigate', { url: BASE_URL + '/#/m/qa-02' });
+    // 2. Flashcard in Light Mode showing high-contrast 'Berikutnya' button
+    await cdp.send('Page.navigate', { url: BASE_URL + '/#/flashcard' });
     await sleep(500);
-    await capture('qa-lesson-blackbox.png', 1440, 950);
+    await capture('flashcard-light-fixed.png', 1440, 900);
 
-    // 3. QA Quiz View
-    await cdp.send('Page.navigate', { url: BASE_URL + '/#/quiz' });
-    await sleep(500);
-    await evalCode(`startQuiz('qa');`);
+    // 3. Flashcard in Dark Mode showing high-contrast 'Berikutnya' button
+    await evalCode('applyTheme("dark");');
     await sleep(300);
-    await capture('qa-quiz.png', 1440, 900);
+    await capture('flashcard-dark-fixed.png', 1440, 900);
 
     cdp.close();
     console.log('All screenshots captured successfully.');

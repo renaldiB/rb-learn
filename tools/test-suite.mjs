@@ -125,10 +125,16 @@ async function runTests() {
     const expectedOrder = ['flutter', 'git', 'js', 'mojo', 'pw', 'py', 'qa', 'rn', 'sql', 'ts'];
     if (JSON.stringify(itTrackOrder) !== JSON.stringify(expectedOrder)) throw new Error(`Wrong IT track order: ${JSON.stringify(itTrackOrder)}`);
 
-    // Test 2: Category Headers & Catalog Filtering
     const sideCatCount = await evaluate('return document.querySelectorAll(".side-category").length;');
     console.log(`[PASS] Sidebar category headers rendered: ${sideCatCount}`);
     if (sideCatCount < 3) throw new Error('Sidebar category headers missing');
+
+    const collapsedTracksCount = await evaluate('return document.querySelectorAll(".side-group.track.collapsed").length;');
+    const totalTrackGroups = await evaluate('return document.querySelectorAll(".side-group.track").length;');
+    console.log(`[PASS] Default all tracks collapsed in sidebar: ${collapsedTracksCount}/${totalTrackGroups}`);
+    if (collapsedTracksCount !== 13 || totalTrackGroups !== 13) {
+      throw new Error(`Expected all 13 tracks to be collapsed by default, got ${collapsedTracksCount}/${totalTrackGroups}`);
+    }
 
     await evaluate(`document.querySelector('#catalogTabs .cat-tab[data-cat="lang"]').click();`);
     await sleep(200);
@@ -204,8 +210,17 @@ async function runTests() {
     const isFlippedAfter = await evaluate(`return document.querySelector('#fcCard').classList.contains('flipped');`);
     await evaluate(`document.querySelector('#fcNext').click();`);
     const fcCharAfter = await evaluate(`return document.querySelector('.fc-char').textContent;`);
+    const fcBtnStyle = await evaluate(`
+      const b = document.querySelector('#fcNext');
+      const cs = window.getComputedStyle(b);
+      return { text: b.textContent.trim(), color: cs.color, bg: cs.backgroundColor };
+    `);
     console.log(`[PASS] Flashcard: char="${fcCharBefore}", flippedBefore=${isFlippedBefore}, flippedAfter=${isFlippedAfter}, nextChar="${fcCharAfter}"`);
+    console.log(`[PASS] Flashcard "Berikutnya" high-contrast styles: text="${fcBtnStyle.text}", bg="${fcBtnStyle.bg}", color="${fcBtnStyle.color}"`);
     if (!isFlippedAfter || fcCharBefore === fcCharAfter) throw new Error('Flashcard flip or navigation failed');
+    if (!fcBtnStyle.bg || fcBtnStyle.bg === 'rgba(0, 0, 0, 0)' || fcBtnStyle.bg === 'transparent') {
+      throw new Error('Flashcard next button missing solid background color');
+    }
 
     // Test 9: Quiz workflow with QA & Testing
     await cdp.send('Page.navigate', { url: BASE_URL + '/#/quiz' });

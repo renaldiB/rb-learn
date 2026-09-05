@@ -6,7 +6,7 @@ const LS = {
   code: 'rblearn:code',
   bookmarks: 'rblearn:bookmarks',
   notes: 'rblearn:notes',
-  collapsed: 'rblearn:collapsed'
+  expanded: 'rblearn:expanded'
 };
 
 const ALL = TRACKS.flatMap(t => t.lessons.map(l => ({ ...l, track: t })));
@@ -15,7 +15,7 @@ const BY_ID = Object.fromEntries(ALL.map(l => [l.id, l]));
 let progress = new Set(JSON.parse(localStorage.getItem(LS.progress) || '[]'));
 let bookmarks = new Set(JSON.parse(localStorage.getItem(LS.bookmarks) || '[]'));
 let notes = JSON.parse(localStorage.getItem(LS.notes) || '{}');
-let collapsed = new Set(JSON.parse(localStorage.getItem(LS.collapsed) || '[]'));
+let expanded = new Set(JSON.parse(localStorage.getItem(LS.expanded) || '[]'));
 let searchIndex = null;
 let quiz = null;
 
@@ -47,8 +47,8 @@ function scrollTop() {
 }
 
 function toggleGroup(trackId) {
-  collapsed.has(trackId) ? collapsed.delete(trackId) : collapsed.add(trackId);
-  localStorage.setItem(LS.collapsed, JSON.stringify([...collapsed]));
+  expanded.has(trackId) ? expanded.delete(trackId) : expanded.add(trackId);
+  localStorage.setItem(LS.expanded, JSON.stringify([...expanded]));
   renderSidebar($('#searchInput').value);
 }
 
@@ -76,7 +76,8 @@ function renderSidebar(filter = '') {
     const items = t.lessons.filter(matches);
     if (q && items.length === 0) return '';
     const done = t.lessons.filter(l => progress.has(l.id)).length;
-    const isCollapsed = !q && collapsed.has(t.id);
+    const isExpanded = q ? true : expanded.has(t.id);
+    const isCollapsed = !isExpanded;
     return `<div class="side-group track ${isCollapsed ? 'collapsed' : ''}" data-track="${t.id}">
       <div class="side-group-title" role="button" tabindex="0" aria-expanded="${!isCollapsed}"
            title="Buka/tutup daftar ${t.title}">
@@ -412,6 +413,11 @@ function viewLesson(id) {
   const l = BY_ID[id];
   if (!l) { location.hash = '#/'; return; }
   const t = l.track;
+  if (!expanded.has(t.id)) {
+    expanded.add(t.id);
+    localStorage.setItem(LS.expanded, JSON.stringify([...expanded]));
+    renderSidebar($('#searchInput') ? $('#searchInput').value : '');
+  }
   const siblings = t.lessons;
   const idx = siblings.findIndex(x => x.id === l.id);
   const prev = siblings[idx - 1];
@@ -936,10 +942,12 @@ $('#resetBtn').addEventListener('click', () => {
   if (confirm('Hapus semua progres dan catatan di browser ini?')) {
     progress.clear();
     bookmarks.clear();
+    expanded.clear();
     notes = {};
     saveProgress();
     saveBookmarks();
     localStorage.removeItem(LS.notes);
+    localStorage.removeItem(LS.expanded);
     renderSidebar($('#searchInput').value);
     render();
   }
