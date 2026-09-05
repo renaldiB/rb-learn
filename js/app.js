@@ -742,6 +742,7 @@ function renderQuizStart() {
     { id: 'mojo', label: 'Mojo 🔥' },
     { id: 'pw', label: 'Playwright 🎭' },
     { id: 'py', label: 'Python 🐍' },
+    { id: 'qa', label: 'QA & Testing 🛡️' },
     { id: 'rn', label: 'React Native 📱' },
     { id: 'sql', label: 'SQL & DB 🗄️' },
     { id: 'ts', label: 'TypeScript 🔷' },

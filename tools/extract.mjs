@@ -9,6 +9,7 @@ import { mandarinTrack } from './tracks/mandarin.mjs';
 import { gitTrack } from './tracks/git.mjs';
 import { sqlTrack } from './tracks/sql.mjs';
 import { tsTrack } from './tracks/ts.mjs';
+import { qaTrack } from './tracks/qa.mjs';
 import { koreanTrack } from './tracks/korean.mjs';
 import { japaneseTrack } from './tracks/japanese.mjs';
 
@@ -1405,6 +1406,10 @@ const tsQuizBank = tsTrack.lessons.map(l => ({
   track: 'ts', topic: l.title, q: l.quiz.q, opts: l.quiz.opts, ans: l.quiz.ans, why: l.quiz.why,
 }));
 
+const qaQuizBank = qaTrack.lessons.map(l => ({
+  track: 'qa', topic: l.title, q: l.quiz.q, opts: l.quiz.opts, ans: l.quiz.ans, why: l.quiz.why,
+}));
+
 const mandarinQuizBank = mandarinTrack.lessons.map(l => ({
   track: 'mandarin', topic: l.title, q: l.quiz.q, opts: l.quiz.opts, ans: l.quiz.ans, why: l.quiz.why,
 }));
@@ -1424,6 +1429,7 @@ const ALL_TRACKS = [
   mojoTrack,
   pwTrack,
   pythonTrack,
+  qaTrack,
   rnTrack,
   sqlTrack,
   tsTrack,
@@ -1439,6 +1445,7 @@ const ALL_QUIZZES = [
   ...mojoQuizBank,
   ...pwQuizBank,
   ...pythonQuizBank,
+  ...qaQuizBank,
   ...rnQuizBank,
   ...sqlQuizBank,
   ...tsQuizBank,

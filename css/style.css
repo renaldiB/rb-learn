@@ -784,6 +784,11 @@ textarea.pg-editor{
   color: var(--blue);
   border-color: color-mix(in srgb, var(--blue) 30%, transparent);
 }
+.chip.teal {
+  background: color-mix(in srgb, var(--teal) 12%, transparent);
+  color: var(--teal);
+  border-color: color-mix(in srgb, var(--teal) 30%, transparent);
+}
 
 .bm-btn {
   display: inline-flex;

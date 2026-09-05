@@ -119,10 +119,10 @@ async function runTests() {
     const itTrackOrder = await evaluate('return TRACKS.filter(t => t.category === "it" || !t.category).map(t => t.id);');
     console.log(`[PASS] Data integrity: ${lessonCount} lessons, ${quizCount} quiz questions, ${trackCount} tracks, Brand: "${brandText}"`);
     console.log(`[PASS] IT Track Alphabetical Order:`, itTrackOrder);
-    if (lessonCount !== 146 || quizCount !== 171 || trackCount !== 12 || !brandText.includes('RB Learning')) {
+    if (lessonCount !== 158 || quizCount !== 183 || trackCount !== 13 || !brandText.includes('RB Learning')) {
       throw new Error(`Invalid count: lessons=${lessonCount}, quizzes=${quizCount}, tracks=${trackCount}`);
     }
-    const expectedOrder = ['flutter', 'git', 'js', 'mojo', 'pw', 'py', 'rn', 'sql', 'ts'];
+    const expectedOrder = ['flutter', 'git', 'js', 'mojo', 'pw', 'py', 'qa', 'rn', 'sql', 'ts'];
     if (JSON.stringify(itTrackOrder) !== JSON.stringify(expectedOrder)) throw new Error(`Wrong IT track order: ${JSON.stringify(itTrackOrder)}`);
 
     // Test 2: Category Headers & Catalog Filtering
@@ -207,14 +207,14 @@ async function runTests() {
     console.log(`[PASS] Flashcard: char="${fcCharBefore}", flippedBefore=${isFlippedBefore}, flippedAfter=${isFlippedAfter}, nextChar="${fcCharAfter}"`);
     if (!isFlippedAfter || fcCharBefore === fcCharAfter) throw new Error('Flashcard flip or navigation failed');
 
-    // Test 9: Quiz workflow with TypeScript
+    // Test 9: Quiz workflow with QA & Testing
     await cdp.send('Page.navigate', { url: BASE_URL + '/#/quiz' });
     await sleep(400);
-    await evaluate(`startQuiz('ts');`);
+    await evaluate(`startQuiz('qa');`);
     await sleep(200);
     const quizQuestion = await evaluate(`return document.querySelector('.quiz-q').textContent;`);
     const optsCount = await evaluate(`return document.querySelectorAll('.quiz-opt').length;`);
-    console.log(`[PASS] TypeScript Quiz started: "${quizQuestion.slice(0, 45)}...", ${optsCount} options`);
+    console.log(`[PASS] QA Quiz started: "${quizQuestion.slice(0, 45)}...", ${optsCount} options`);
     if (optsCount < 2) throw new Error('Quiz options missing');
 
     // Answer first question
@@ -222,8 +222,16 @@ async function runTests() {
     await sleep(200);
     const whyVisible = await evaluate(`return document.querySelector('#quizWhy').classList.contains('show');`);
     const nextEnabled = await evaluate(`return !document.querySelector('#quizNext').disabled;`);
-    console.log(`[PASS] Quiz answer feedback: whyShown=${whyVisible}, nextEnabled=${nextEnabled}`);
+    console.log(`[PASS] QA Quiz answer feedback: whyShown=${whyVisible}, nextEnabled=${nextEnabled}`);
     if (!whyVisible || !nextEnabled) throw new Error('Quiz answer state failed');
+
+    // Test 9b: QA Lesson 02 (Black Box with Boundary Value Analysis)
+    await cdp.send('Page.navigate', { url: BASE_URL + '/#/m/qa-02' });
+    await sleep(400);
+    const qaTitle = await evaluate(`return document.querySelector('.lesson-title').textContent;`);
+    const hasBvaContent = await evaluate(`return document.querySelector('.lesson-body').textContent.includes('Boundary Value Analysis');`);
+    console.log(`[PASS] QA Lesson 02 loaded: "${qaTitle}", hasBvaContent=${hasBvaContent}`);
+    if (!qaTitle.includes('Black Box') || !hasBvaContent) throw new Error('QA Lesson 02 content check failed');
 
     // Test 10: Theme toggle
     const themeBefore = await evaluate(`return document.documentElement.dataset.theme;`);

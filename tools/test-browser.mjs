@@ -124,34 +124,24 @@ async function run() {
       return await cdp.send('Runtime.evaluate', { expression: expr, returnByValue: true });
     }
 
-    // 1. Beranda with 12 Tracks & Categories
+    // 1. Beranda with 13 Tracks & Categories
     await cdp.send('Page.navigate', { url: BASE_URL + '/#/' });
     await sleep(600);
     await evalCode('localStorage.clear(); applyTheme("light"); render(); renderSidebar();');
     await sleep(300);
-    await capture('beranda-12-tracks.png', 1440, 1200);
+    await capture('beranda-13-tracks.png', 1440, 1200);
 
-    // 2. Git Lesson showing Bookmark & Notes
-    await cdp.send('Page.navigate', { url: BASE_URL + '/#/m/git-01' });
+    // 2. QA Lesson 02: Black Box Testing & Boundary Value Analysis
+    await cdp.send('Page.navigate', { url: BASE_URL + '/#/m/qa-02' });
     await sleep(500);
-    await evalCode(`
-      document.querySelector('#btnBookmark').click();
-      const area = document.querySelector('#notesArea');
-      area.value = 'Catatan Supriyanto: Git adalah mesin waktu kode yang menyimpan snapshot checkpoint proyek.';
-      area.dispatchEvent(new Event('input'));
-    `);
+    await capture('qa-lesson-blackbox.png', 1440, 950);
+
+    // 3. QA Quiz View
+    await cdp.send('Page.navigate', { url: BASE_URL + '/#/quiz' });
+    await sleep(500);
+    await evalCode(`startQuiz('qa');`);
     await sleep(300);
-    await capture('git-lesson-bookmark-notes.png', 1440, 950);
-
-    // 3. Korean Lesson Audio
-    await cdp.send('Page.navigate', { url: BASE_URL + '/#/m/ko-01' });
-    await sleep(500);
-    await capture('korean-lesson-audio.png', 1440, 950);
-
-    // 4. Flashcard View
-    await cdp.send('Page.navigate', { url: BASE_URL + '/#/flashcard' });
-    await sleep(500);
-    await capture('flashcard-view.png', 1440, 950);
+    await capture('qa-quiz.png', 1440, 900);
 
     cdp.close();
     console.log('All screenshots captured successfully.');
