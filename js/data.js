@@ -2496,7 +2496,7 @@ const TRACKS = [
  },
  {
   "id": "korean",
-  "title": "Bahasa Korea 🇰🇷",
+  "title": "Korea 🇰🇷",
   "subtitle": "Hangeul, Salam, Angka, Partikel Tata Bahasa & Percakapan Praktis Sehari-hari",
   "accent": "sky",
   "category": "lang",
@@ -2771,7 +2771,7 @@ const TRACKS = [
  },
  {
   "id": "japanese",
-  "title": "Bahasa Jepang 🇯🇵",
+  "title": "Jepang 🇯🇵",
   "subtitle": "Hiragana, Katakana, Kanji Dasar, Partikel Inti & Percakapan Praktis Sehari-hari",
   "accent": "rose",
   "category": "lang",
