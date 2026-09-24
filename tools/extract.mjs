@@ -12,6 +12,7 @@ import { tsTrack } from './tracks/ts.mjs';
 import { qaTrack } from './tracks/qa.mjs';
 import { koreanTrack } from './tracks/korean.mjs';
 import { japaneseTrack } from './tracks/japanese.mjs';
+import { aiTrack } from './tracks/ai.mjs';
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const JS_DIR = 'C:/Users/Z Series/MainRB/Code Project/Learn JS';
@@ -1422,7 +1423,12 @@ const japaneseQuizBank = japaneseTrack.lessons.map(l => ({
   track: 'japanese', topic: l.title, q: l.quiz.q, opts: l.quiz.opts, ans: l.quiz.ans, why: l.quiz.why,
 }));
 
+const aiQuizBank = aiTrack.lessons.map(l => ({
+  track: 'ai', topic: l.title, q: l.quiz.q, opts: l.quiz.opts, ans: l.quiz.ans, why: l.quiz.why,
+}));
+
 const ALL_TRACKS = [
+  aiTrack,
   flutterTrack,
   gitTrack,
   jsTrack,
@@ -1439,6 +1445,7 @@ const ALL_TRACKS = [
 ];
 
 const ALL_QUIZZES = [
+  ...aiQuizBank,
   ...flutterQuizBank,
   ...gitQuizBank,
   ...jsQuizBank,

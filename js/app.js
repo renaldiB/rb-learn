@@ -742,6 +742,7 @@ function viewQuiz() {
 function renderQuizStart() {
   const filters = [
     { id: 'all', label: 'Semua' },
+    { id: 'ai', label: 'AI & LLM 🤖' },
     { id: 'flutter', label: 'Flutter 💙' },
     { id: 'git', label: 'Git & GitHub 🐙' },
     { id: 'js', label: 'JavaScript 🟨' },

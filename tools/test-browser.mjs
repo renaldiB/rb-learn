@@ -124,22 +124,24 @@ async function run() {
       return await cdp.send('Runtime.evaluate', { expression: expr, returnByValue: true });
     }
 
-    // 1. Beranda with All 13 Tracks Collapsed by Default in Sidebar
+    // 1. Beranda with 14 Tracks (AI as first IT track)
     await cdp.send('Page.navigate', { url: BASE_URL + '/#/' });
     await sleep(600);
     await evalCode('localStorage.clear(); applyTheme("light"); render(); renderSidebar();');
     await sleep(300);
-    await capture('beranda-sidebar-collapsed.png', 1440, 1000);
+    await capture('beranda-14-tracks.png', 1440, 1000);
 
-    // 2. Flashcard in Light Mode showing high-contrast 'Berikutnya' button
-    await cdp.send('Page.navigate', { url: BASE_URL + '/#/flashcard' });
+    // 2. AI Lesson 06: RAG (Retrieval-Augmented Generation)
+    await cdp.send('Page.navigate', { url: BASE_URL + '/#/m/ai-06' });
     await sleep(500);
-    await capture('flashcard-light-fixed.png', 1440, 900);
+    await capture('ai-lesson-rag.png', 1440, 950);
 
-    // 3. Flashcard in Dark Mode showing high-contrast 'Berikutnya' button
-    await evalCode('applyTheme("dark");');
+    // 3. AI Quiz View
+    await cdp.send('Page.navigate', { url: BASE_URL + '/#/quiz' });
+    await sleep(500);
+    await evalCode(`startQuiz('ai');`);
     await sleep(300);
-    await capture('flashcard-dark-fixed.png', 1440, 900);
+    await capture('ai-quiz.png', 1440, 900);
 
     cdp.close();
     console.log('All screenshots captured successfully.');

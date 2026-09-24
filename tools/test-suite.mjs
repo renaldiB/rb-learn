@@ -119,10 +119,10 @@ async function runTests() {
     const itTrackOrder = await evaluate('return TRACKS.filter(t => t.category === "it" || !t.category).map(t => t.id);');
     console.log(`[PASS] Data integrity: ${lessonCount} lessons, ${quizCount} quiz questions, ${trackCount} tracks, Brand: "${brandText}"`);
     console.log(`[PASS] IT Track Alphabetical Order:`, itTrackOrder);
-    if (lessonCount !== 158 || quizCount !== 183 || trackCount !== 13 || !brandText.includes('RB Learning')) {
+    if (lessonCount !== 171 || quizCount !== 199 || trackCount !== 14 || !brandText.includes('RB Learning')) {
       throw new Error(`Invalid count: lessons=${lessonCount}, quizzes=${quizCount}, tracks=${trackCount}`);
     }
-    const expectedOrder = ['flutter', 'git', 'js', 'mojo', 'pw', 'py', 'qa', 'rn', 'sql', 'ts'];
+    const expectedOrder = ['ai', 'flutter', 'git', 'js', 'mojo', 'pw', 'py', 'qa', 'rn', 'sql', 'ts'];
     if (JSON.stringify(itTrackOrder) !== JSON.stringify(expectedOrder)) throw new Error(`Wrong IT track order: ${JSON.stringify(itTrackOrder)}`);
 
     const sideCatCount = await evaluate('return document.querySelectorAll(".side-category").length;');
@@ -132,8 +132,8 @@ async function runTests() {
     const collapsedTracksCount = await evaluate('return document.querySelectorAll(".side-group.track.collapsed").length;');
     const totalTrackGroups = await evaluate('return document.querySelectorAll(".side-group.track").length;');
     console.log(`[PASS] Default all tracks collapsed in sidebar: ${collapsedTracksCount}/${totalTrackGroups}`);
-    if (collapsedTracksCount !== 13 || totalTrackGroups !== 13) {
-      throw new Error(`Expected all 13 tracks to be collapsed by default, got ${collapsedTracksCount}/${totalTrackGroups}`);
+    if (collapsedTracksCount !== 14 || totalTrackGroups !== 14) {
+      throw new Error(`Expected all 14 tracks to be collapsed by default, got ${collapsedTracksCount}/${totalTrackGroups}`);
     }
 
     await evaluate(`document.querySelector('#catalogTabs .cat-tab[data-cat="lang"]').click();`);
@@ -247,6 +247,34 @@ async function runTests() {
     const hasBvaContent = await evaluate(`return document.querySelector('.lesson-body').textContent.includes('Boundary Value Analysis');`);
     console.log(`[PASS] QA Lesson 02 loaded: "${qaTitle}", hasBvaContent=${hasBvaContent}`);
     if (!qaTitle.includes('Black Box') || !hasBvaContent) throw new Error('QA Lesson 02 content check failed');
+
+    // Test 9c: AI Lesson 05 (Grounding) & Lesson 06 (RAG)
+    await cdp.send('Page.navigate', { url: BASE_URL + '/#/m/ai-05' });
+    await sleep(400);
+    const aiTitle05 = await evaluate(`return document.querySelector('.lesson-title').textContent;`);
+    const hasGroundingContent = await evaluate(`return document.querySelector('.lesson-body').textContent.includes('Grounding');`);
+    console.log(`[PASS] AI Lesson 05 loaded: "${aiTitle05}", hasGroundingContent=${hasGroundingContent}`);
+    if (!aiTitle05.includes('Grounding') || !hasGroundingContent) throw new Error('AI Lesson 05 Grounding content check failed');
+
+    await cdp.send('Page.navigate', { url: BASE_URL + '/#/m/ai-06' });
+    await sleep(400);
+    const aiTitle06 = await evaluate(`return document.querySelector('.lesson-title').textContent;`);
+    const hasRagContent = await evaluate(`return document.querySelector('.lesson-body').textContent.includes('Retrieval-Augmented Generation');`);
+    console.log(`[PASS] AI Lesson 06 loaded: "${aiTitle06}", hasRagContent=${hasRagContent}`);
+    if (!aiTitle06.includes('RAG') || !hasRagContent) throw new Error('AI Lesson 06 RAG content check failed');
+
+    // Test 9d: AI Quiz workflow
+    await cdp.send('Page.navigate', { url: BASE_URL + '/#/quiz' });
+    await sleep(400);
+    await evaluate(`startQuiz('ai');`);
+    await sleep(200);
+    const aiQuizQ = await evaluate(`return document.querySelector('.quiz-q').textContent;`);
+    console.log(`[PASS] AI Quiz started: "${aiQuizQ.slice(0, 45)}..."`);
+    await evaluate(`document.querySelector('.quiz-opt[data-i="0"]').click();`);
+    await sleep(200);
+    const aiWhy = await evaluate(`return document.querySelector('#quizWhy').classList.contains('show');`);
+    console.log(`[PASS] AI Quiz answer feedback: whyShown=${aiWhy}`);
+    if (!aiWhy) throw new Error('AI Quiz answer state failed');
 
     // Test 10: Theme toggle
     const themeBefore = await evaluate(`return document.documentElement.dataset.theme;`);
