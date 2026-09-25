@@ -119,7 +119,7 @@ async function runTests() {
     const itTrackOrder = await evaluate('return TRACKS.filter(t => t.category === "it" || !t.category).map(t => t.id);');
     console.log(`[PASS] Data integrity: ${lessonCount} lessons, ${quizCount} quiz questions, ${trackCount} tracks, Brand: "${brandText}"`);
     console.log(`[PASS] IT Track Alphabetical Order:`, itTrackOrder);
-    if (lessonCount !== 171 || quizCount !== 199 || trackCount !== 14 || !brandText.includes('RB Learning')) {
+    if (lessonCount !== 173 || quizCount !== 201 || trackCount !== 14 || !brandText.includes('RB Learning')) {
       throw new Error(`Invalid count: lessons=${lessonCount}, quizzes=${quizCount}, tracks=${trackCount}`);
     }
     const expectedOrder = ['ai', 'flutter', 'git', 'js', 'mojo', 'pw', 'py', 'qa', 'rn', 'sql', 'ts'];
@@ -275,6 +275,21 @@ async function runTests() {
     const aiWhy = await evaluate(`return document.querySelector('#quizWhy').classList.contains('show');`);
     console.log(`[PASS] AI Quiz answer feedback: whyShown=${aiWhy}`);
     if (!aiWhy) throw new Error('AI Quiz answer state failed');
+
+    // Test 9e: AI Lesson 13 (Orchestrator) & Lesson 14 (MCP)
+    await cdp.send('Page.navigate', { url: BASE_URL + '/#/m/ai-13' });
+    await sleep(400);
+    const aiTitle13 = await evaluate(`return document.querySelector('.lesson-title').textContent;`);
+    const hasOrchestratorContent = await evaluate(`return document.querySelector('.lesson-body').textContent.includes('Task Decomposition');`);
+    console.log(`[PASS] AI Lesson 13 loaded: "${aiTitle13}", hasOrchestratorContent=${hasOrchestratorContent}`);
+    if (!aiTitle13.includes('Orchestrator') || !hasOrchestratorContent) throw new Error('AI Lesson 13 Orchestrator content check failed');
+
+    await cdp.send('Page.navigate', { url: BASE_URL + '/#/m/ai-14' });
+    await sleep(400);
+    const aiTitle14 = await evaluate(`return document.querySelector('.lesson-title').textContent;`);
+    const hasMcpContent = await evaluate(`return document.querySelector('.lesson-body').textContent.includes('Model Context Protocol');`);
+    console.log(`[PASS] AI Lesson 14 loaded: "${aiTitle14}", hasMcpContent=${hasMcpContent}`);
+    if (!aiTitle14.includes('MCP') || !hasMcpContent) throw new Error('AI Lesson 14 MCP content check failed');
 
     // Test 10: Theme toggle
     const themeBefore = await evaluate(`return document.documentElement.dataset.theme;`);

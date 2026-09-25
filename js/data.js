@@ -233,6 +233,44 @@ const TRACKS = [
      "ans": 0,
      "why": "Indirect Prompt Injection terjadi ketika payload prompt berbahaya diselipkan ke dalam sumber data eksternal (email, halaman web, PDF) yang kemudian dibaca dan dieksekusi oleh model AI."
     }
+   },
+   {
+    "id": "ai-13",
+    "num": "13",
+    "title": "AI Orchestrator: Pola Workflow Multi-Agent, Routing & Task Decomposition",
+    "level": "Expert",
+    "intro": "Mengendalikan orkestra kecerdasan buatan: bagaimana arsitektur orkestrasi memecah tugas besar, mendelegasikan ke agen spesialis, dan mengelola alur state.",
+    "body": "\n        <h4>🏗️ Analogi Mandor Proyek Toko Supriyanto</h4>\n        <p>Bayangkan Supriyanto ingin merenovasi toko kelontong menjadi supermarket modern. Proyek ini mustahil diselesaikan oleh satu pekerja serba bisa: tukang kayu tidak paham instalasi panel listrik, dan tukang cat tidak mengerti kalibrasi pendingin kulkas.\n        <br>Jika Supriyanto memaksa satu orang mengerjakan semuanya, pekerja itu akan bingung, kehabisan tenaga, dan melupakan instruksi awal.\n        <br>Di sinilah dibutuhkan seorang <b>Mandor (AI Orchestrator)</b> yang tidak mengaduk semen sendiri, melainkan memimpin seluruh orkestra proyek!</p>\n\n        <h4>🧭 Empat Tugas Pokok AI Orchestrator</h4>\n        <ul>\n          <li><b>1. Task Decomposition (Pemecahan Tugas):</b> Menerima tujuan besar dari Supriyanto, lalu memecahnya menjadi rencana kerja bertahap (sub-tugas terstruktur).</li>\n          <li><b>2. Intelligent Routing (Pemilihan Agen Terbaik):</b> Menilai tiap sub-tugas dan memilihkan model/agen yang paling tepat (misal: tugas koding dikirim ke Claude/Gemini Pro, sedangkan klasifikasi cepat dikirim ke model Flash yang murah dan kilat).</li>\n          <li><b>3. State &amp; Context Management:</b> Membagikan informasi secukupnya ke setiap pekerja agar context window masing-masing agen tidak penuh sesak oleh data yang tidak relevan.</li>\n          <li><b>4. Synthesis &amp; Quality Gate:</b> Mengumpulkan hasil kerja dari seluruh agen pekerja, memeriksa apakah ada cacat atau kontradiksi, lalu merangkum laporan final untuk Supriyanto.</li>\n        </ul>\n\n        <h4>🔄 Tiga Pola Desain Alur Orkestrasi Populer</h4>\n        <div class=\"code-block\">A. ROUTING PATTERN:\n   [Prompt User] ──► [Router Orchestrator] ──┬──► [Agent Ahli Finansial]\n                                             └──► [Agent Ahli Hukum/Legal]\n\nB. ORCHESTRATOR-WORKERS PATTERN:\n   [Goal Utama] ──► [Orchestrator] ──┬──► [Worker 1: Riset Data] ──┐\n                                     ├──► [Worker 2: Tulis Kode]  ──┼──► [Sintesis Akhir]\n                                     └──► [Worker 3: Uji QA]     ──┘\n\nC. EVALUATOR-OPTIMIZER LOOP:\n   [Agent Pembuat Draft] ──► [Draft Hasil] ──► [Agent Penilai / Critic]\n         ▲                                                │\n         └───────────── [Minta Revisi &amp; Perbaikan] ───────┘ (Ulangi hingga lolos kriteria)</div>\n      ",
+    "quiz": {
+     "q": "Apa peran utama dari komponen Orchestrator dalam arsitektur AI Multi-Agent modern?",
+     "opts": [
+      "Memecah target besar menjadi sub-tugas terencana, mendelegasikannya ke agen spesialis yang tepat, dan menggabungkan hasil akhirnya secara teratur",
+      "Menghubungkan kabel charger fisik ke stopkontak listrik",
+      "Menghapus seluruh file data pengguna secara acak",
+      "Menggantikan fungsi layar monitor komputer"
+     ],
+     "ans": 0,
+     "why": "AI Orchestrator bertindak sebagai konduktor pengendali yang memecah tugas kompleks, merutekan instruksi ke agen spesialis yang sesuai, mengelola alur status (state), dan mensintesis hasil akhir."
+    }
+   },
+   {
+    "id": "ai-14",
+    "num": "14",
+    "title": "Model Context Protocol (MCP): Standar Universal Integrasi Tool & Data AI",
+    "level": "Expert",
+    "intro": "Masa depan ekosistem AI: memahami protokol open-standard yang menjadi colokan USB-C universal antara asisten AI dan sistem data dunia nyata.",
+    "body": "\n        <h4>🔌 Analogi Colokan Universal USB-C Toko Supriyanto</h4>\n        <p>Di masa lalu, setiap merek handphone memiliki jenis colokan kabel charger yang berbeda-beda. Jika toko Supriyanto menjual 5 jenis HP dan 5 jenis aksesoris, Supriyanto pusing harus menyediakan 25 variasi kabel adaptor yang kusut (<b>Masalah N x M</b>). Kehadiran <b>USB-C</b> menyelesaikan semua kekacauan itu: satu bentuk colokan standar untuk semua alat!</p>\n        <p>Hal yang sama terjadi pada integrasi AI:\n        <br>Sebelum ada standar, jika ada 4 aplikasi AI (Claude, Cursor, Gemini, Antigravity) dan ingin terhubung ke 4 sistem data (Postgres, GitHub, Slack, Google Drive), developer harus membangun belasan konektor kustom yang rapuh.\n        <br><b>Model Context Protocol (MCP)</b> adalah standar terbuka (open standard) yang diciptakan Anthropic agar model AI apa pun dapat langsung \"mencolok\" ke sumber data apa pun dengan satu bahasa protokol standar (JSON-RPC)!</p>\n\n        <h4>🏛️ Tiga Kemampuan Primitif yang Disediakan MCP Server</h4>\n        <table class=\"zh-table\">\n          <thead><tr><th>Fitur MCP</th><th>Sifat Aksi</th><th>Contoh di Toko Supriyanto</th></tr></thead>\n          <tbody>\n            <tr><td><b>Tools</b></td><td>Aktif (Dapat dieksekusi)</td><td>Menjalankan query SQL untuk potong stok barang, membuat issue di GitHub, mengirim pesan notifikasi ke WhatsApp/Slack.</td></tr>\n            <tr><td><b>Resources</b></td><td>Pasif (Hanya dibaca)</td><td>Membaca schema tabel database, membaca file log error server, meninjau dokumen PDF SOP toko.</td></tr>\n            <tr><td><b>Prompts</b></td><td>Panduan Alur</td><td>Template prompt siap pakai dari server (misal: <i>\"analisis-laporan-keuangan-bulanan\"</i>).</td></tr>\n          </tbody>\n        </table>\n\n        <h4>🛡️ Keamanan &amp; Human-in-the-Loop</h4>\n        <p>Protokol MCP dirancang sangat mengutamakan keamanan. Setiap kali AI meminta eksekusi alat (Tool) yang berisiko mengubah data atau mentransfer dana, MCP Client mewajibkan adanya konfirmasi izin eksplisit dari pengguna manusia sebelum perintah dijalankan.</p>\n      ",
+    "quiz": {
+     "q": "Mengapa Model Context Protocol (MCP) sering disebut sebagai 'USB-C untuk ekosistem AI'?",
+     "opts": [
+      "Karena MCP menyediakan satu standar protokol terbuka universal sehingga aplikasi AI mana pun dapat terhubung ke berbagai alat dan sumber data tanpa perlu membuat adaptor konektor kustom terpisah",
+      "Karena MCP adalah kabel fisik yang harus dicolokkan ke motherboard komputer",
+      "Karena MCP diciptakan khusus hanya untuk mengisi daya baterai smartphone",
+      "Karena MCP hanya dapat digunakan pada sistem operasi Linux saja"
+     ],
+     "ans": 0,
+     "why": "MCP mengeliminasi fragmentasi integrasi perangkat lunak dengan menyediakan protokol terbuka standar tunggal berbasis JSON-RPC yang menghubungkan MCP Client (aplikasi AI) dengan MCP Server (sumber data dan alat eksternal)."
+    }
    }
   ]
  },
@@ -3446,6 +3484,32 @@ const QUIZ_BANK = [
   ],
   "ans": 0,
   "why": "Indirect Prompt Injection terjadi ketika payload prompt berbahaya diselipkan ke dalam sumber data eksternal (email, halaman web, PDF) yang kemudian dibaca dan dieksekusi oleh model AI."
+ },
+ {
+  "track": "ai",
+  "topic": "AI Orchestrator: Pola Workflow Multi-Agent, Routing & Task Decomposition",
+  "q": "Apa peran utama dari komponen Orchestrator dalam arsitektur AI Multi-Agent modern?",
+  "opts": [
+   "Memecah target besar menjadi sub-tugas terencana, mendelegasikannya ke agen spesialis yang tepat, dan menggabungkan hasil akhirnya secara teratur",
+   "Menghubungkan kabel charger fisik ke stopkontak listrik",
+   "Menghapus seluruh file data pengguna secara acak",
+   "Menggantikan fungsi layar monitor komputer"
+  ],
+  "ans": 0,
+  "why": "AI Orchestrator bertindak sebagai konduktor pengendali yang memecah tugas kompleks, merutekan instruksi ke agen spesialis yang sesuai, mengelola alur status (state), dan mensintesis hasil akhir."
+ },
+ {
+  "track": "ai",
+  "topic": "Model Context Protocol (MCP): Standar Universal Integrasi Tool & Data AI",
+  "q": "Mengapa Model Context Protocol (MCP) sering disebut sebagai 'USB-C untuk ekosistem AI'?",
+  "opts": [
+   "Karena MCP menyediakan satu standar protokol terbuka universal sehingga aplikasi AI mana pun dapat terhubung ke berbagai alat dan sumber data tanpa perlu membuat adaptor konektor kustom terpisah",
+   "Karena MCP adalah kabel fisik yang harus dicolokkan ke motherboard komputer",
+   "Karena MCP diciptakan khusus hanya untuk mengisi daya baterai smartphone",
+   "Karena MCP hanya dapat digunakan pada sistem operasi Linux saja"
+  ],
+  "ans": 0,
+  "why": "MCP mengeliminasi fragmentasi integrasi perangkat lunak dengan menyediakan protokol terbuka standar tunggal berbasis JSON-RPC yang menghubungkan MCP Client (aplikasi AI) dengan MCP Server (sumber data dan alat eksternal)."
  },
  {
   "track": "flutter",

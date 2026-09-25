@@ -124,19 +124,17 @@ async function run() {
       return await cdp.send('Runtime.evaluate', { expression: expr, returnByValue: true });
     }
 
-    // 1. Beranda with 14 Tracks (AI as first IT track)
-    await cdp.send('Page.navigate', { url: BASE_URL + '/#/' });
-    await sleep(600);
-    await evalCode('localStorage.clear(); applyTheme("light"); render(); renderSidebar();');
-    await sleep(300);
-    await capture('beranda-14-tracks.png', 1440, 1000);
-
-    // 2. AI Lesson 06: RAG (Retrieval-Augmented Generation)
-    await cdp.send('Page.navigate', { url: BASE_URL + '/#/m/ai-06' });
+    // 1. AI Lesson 13: AI Orchestrator
+    await cdp.send('Page.navigate', { url: BASE_URL + '/#/m/ai-13' });
     await sleep(500);
-    await capture('ai-lesson-rag.png', 1440, 950);
+    await capture('ai-lesson-orchestrator.png', 1440, 950);
 
-    // 3. AI Quiz View
+    // 2. AI Lesson 14: Model Context Protocol (MCP)
+    await cdp.send('Page.navigate', { url: BASE_URL + '/#/m/ai-14' });
+    await sleep(500);
+    await capture('ai-lesson-mcp.png', 1440, 950);
+
+    // 3. AI Quiz View with 201 Questions
     await cdp.send('Page.navigate', { url: BASE_URL + '/#/quiz' });
     await sleep(500);
     await evalCode(`startQuiz('ai');`);
