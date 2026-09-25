@@ -1,6 +1,6 @@
 export const koreanTrack = {
   id: 'korean',
-  title: 'Bahasa Korea 🇰🇷',
+  title: 'Korea 🇰🇷',
   subtitle: 'Hangeul, Salam, Angka, Partikel Tata Bahasa & Percakapan Praktis Sehari-hari',
   accent: 'sky',
   category: 'lang',

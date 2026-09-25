@@ -1,6 +1,6 @@
 export const japaneseTrack = {
   id: 'japanese',
-  title: 'Bahasa Jepang 🇯🇵',
+  title: 'Jepang 🇯🇵',
   subtitle: 'Hiragana, Katakana, Kanji Dasar, Partikel Inti & Percakapan Praktis Sehari-hari',
   accent: 'rose',
   category: 'lang',

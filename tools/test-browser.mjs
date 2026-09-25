@@ -124,10 +124,15 @@ async function run() {
       return await cdp.send('Runtime.evaluate', { expression: expr, returnByValue: true });
     }
 
-    // 1. AI Lesson 13: AI Orchestrator
-    await cdp.send('Page.navigate', { url: BASE_URL + '/#/m/ai-13' });
-    await sleep(500);
-    await capture('ai-lesson-orchestrator.png', 1440, 950);
+    // 1. Sidebar Bahasa Dunia (Mandarin, Korea, Jepang)
+    await cdp.send('Page.navigate', { url: BASE_URL + '/#/' });
+    await sleep(600);
+    await evalCode(`
+      const nav = document.querySelector('#sideNav');
+      if (nav) nav.scrollTop = nav.scrollHeight;
+    `);
+    await sleep(300);
+    await capture('sidebar-bahasa-dunia.png', 1440, 1000);
 
     // 2. AI Lesson 14: Model Context Protocol (MCP)
     await cdp.send('Page.navigate', { url: BASE_URL + '/#/m/ai-14' });
