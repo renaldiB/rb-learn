@@ -150,12 +150,47 @@ async function run() {
     await sleep(500);
     await capture('ai-lesson-mcp.png', 1440, 950);
 
-    // 6. AI Quiz View
+    // 6. Playground View
+    await cdp.send('Page.navigate', { url: BASE_URL + '/#/playground' });
+    await sleep(600);
+    await capture('playground-redesign.png', 1440, 900);
+
+    // 7. Quiz Start View
+    await cdp.send('Page.navigate', { url: BASE_URL + '/#/quiz' });
+    await sleep(500);
+    await capture('quiz-start.png', 1440, 900);
+
+    // 8. Quiz Question View
+    await evalCode(`startQuiz('qa');`);
+    await sleep(300);
+    await capture('quiz-question.png', 1440, 900);
+
+    // 9. Dark Mode Home
+    await evalCode(`applyTheme('dark');`);
+    await cdp.send('Page.navigate', { url: BASE_URL + '/#/' });
+    await sleep(500);
+    await capture('dark-mode-home.png', 1440, 950);
+
+    // 10. Dark Mode Playground
+    await cdp.send('Page.navigate', { url: BASE_URL + '/#/playground' });
+    await sleep(500);
+    await capture('dark-mode-playground.png', 1440, 900);
+
+    // 11. Dark Mode Quiz Question
     await cdp.send('Page.navigate', { url: BASE_URL + '/#/quiz' });
     await sleep(500);
     await evalCode(`startQuiz('ai');`);
     await sleep(300);
-    await capture('ai-quiz.png', 1440, 900);
+    await capture('dark-mode-quiz.png', 1440, 900);
+
+    // 12. Dark Mode Lesson
+    await cdp.send('Page.navigate', { url: BASE_URL + '/#/m/ai-14' });
+    await sleep(500);
+    await capture('dark-mode-lesson.png', 1440, 950);
+
+    // Reset back to light
+    await evalCode(`applyTheme('light');`);
+    await sleep(200);
 
     cdp.close();
     console.log('All screenshots captured successfully.');

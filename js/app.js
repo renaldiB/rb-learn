@@ -601,30 +601,41 @@ function viewPlayground() {
   setTopAction('');
 
   const saved = localStorage.getItem(LS.code) ||
-    'const daftar = ["Belajar", "Praktik", "Paham"];\\n' +
-    'const hasil = daftar.map((item, i) => (i + 1) + ". " + item + " bersama Supriyanto");\\n' +
-    'console.log(hasil);';
+`const daftar = ["Belajar", "Praktik", "Paham"];
+const hasil = daftar.map((item, i) => \`\${i + 1}. \${item} bersama Supriyanto\`);
+console.log("Daftar capaian:", hasil);
+console.info("Info: Eksekusi kode berjalan lancar di browser.");`;
 
   $('#view').innerHTML = `
-    <div class="pg-layout">
-      <div class="pg-editor">
-        <div class="pg-bar">
-          <span>JavaScript Playground</span>
-          <button class="btn btn-primary" id="pgRun">Jalankan (Ctrl+Enter) ▶</button>
-        </div>
-        <textarea id="pgCode" spellcheck="false">${esc(saved)}</textarea>
+    <div class="pg-wrap">
+      <div class="pg-head">
+        <h2>Playground JavaScript</h2>
+        <p>Eksperimen snippet JavaScript interaktif langsung di peramban Anda. Tekan <code>Ctrl+Enter</code> untuk mengeksekusi.</p>
       </div>
-      <div class="pg-console">
-        <div class="pg-bar">
-          <span>Console Output</span>
-          <button class="btn btn-ghost" id="pgClear">Bersihkan</button>
+      <div class="pg-grid">
+        <div class="pg-pane">
+          <div class="pg-pane-title">
+            <span>Editor JavaScript</span>
+            <button class="btn btn-primary" id="pgRun" style="margin-left:auto;padding:5px 14px;font-size:.8rem">Jalankan (Ctrl+Enter) ▶</button>
+          </div>
+          <textarea id="pgCode" class="pg-editor" spellcheck="false">${esc(saved)}</textarea>
         </div>
-        <div class="pg-output" id="pgOut"></div>
+        <div class="pg-pane">
+          <div class="pg-pane-title">
+            <span>Console Output</span>
+            <div class="live" title="Siap mengeksekusi"></div>
+            <button class="btn btn-ghost" id="pgClear" style="padding:5px 12px;font-size:.8rem">Bersihkan</button>
+          </div>
+          <div class="pg-output" id="pgOut"></div>
+        </div>
+      </div>
+      <div class="pg-actions">
+        <span class="pg-note">Mendukung <code>console.log</code>, <code>console.info</code>, <code>console.warn</code>, dan <code>console.error</code>.</span>
       </div>
     </div>`;
 
   $('#pgRun').addEventListener('click', runPlayground);
-  $('#pgClear').addEventListener('click', () => { $('#pgOut').innerHTML = ''; });
+  $('#pgClear').addEventListener('click', () => { $('#pgOut').innerHTML = '<div class="line hint"><span class="tag">›</span>Console dibersihkan.</div>'; });
   $('#pgCode').addEventListener('keydown', e => {
     if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
       e.preventDefault();
@@ -632,6 +643,7 @@ function viewPlayground() {
     }
   });
 
+  runPlayground();
   scrollTop();
 }
 
@@ -795,21 +807,32 @@ function renderQuizStart() {
     { id: 'japanese', label: 'Jepang' }
   ];
   $('#view').innerHTML = `
-    <div class="quiz-head">
-      <h2>Quiz</h2>
-      <p>${QUIZ_BANK.length} soal dari seluruh materi. Pilih cakupan materi, jawab, dan baca penjelasannya untuk mempertajam pemahaman.</p>
-    </div>
-    <div class="quiz-filter">
-      ${filters.map(f => `<button class="filter-chip ${f.id === 'all' ? 'on' : ''}" data-f="${f.id}">${f.label}</button>`).join('')}
-      <button class="btn btn-primary" id="quizStart" style="margin-left:auto">Mulai Quiz →</button>
-    </div>
-    <div id="quizArea"></div>`;
+    <div class="quiz-wrap">
+      <div class="quiz-head">
+        <h2>Quiz Interaktif</h2>
+        <p>${QUIZ_BANK.length} soal dari seluruh materi. Pilih cakupan materi, jawab, dan baca penjelasannya untuk mempertajam pemahaman.</p>
+      </div>
+      <div class="quiz-filter-box" id="quizFilterBox">
+        <div class="quiz-filter-title">Pilih Kategori Materi:</div>
+        <div class="quiz-chips">
+          ${filters.map(f => `<button class="filter-chip ${f.id === 'all' ? 'on' : ''}" data-f="${f.id}">${f.label}</button>`).join('')}
+        </div>
+        <div class="quiz-start-bar">
+          <span class="quiz-pool-count" id="quizPoolCount">${QUIZ_BANK.length} soal tersedia</span>
+          <button class="btn btn-primary" id="quizStart">Mulai Quiz →</button>
+        </div>
+      </div>
+      <div id="quizArea"></div>
+    </div>`;
 
   let filter = 'all';
   document.querySelectorAll('.filter-chip').forEach(chip => {
     chip.addEventListener('click', () => {
       filter = chip.dataset.f;
       document.querySelectorAll('.filter-chip').forEach(c => c.classList.toggle('on', c === chip));
+      const pool = filter === 'all' ? QUIZ_BANK : QUIZ_BANK.filter(q => q.track === filter);
+      const countEl = $('#quizPoolCount');
+      if (countEl) countEl.textContent = `${pool.length} soal tersedia`;
     });
   });
   $('#quizStart').addEventListener('click', () => startQuiz(filter));
@@ -827,6 +850,9 @@ function startQuiz(trackId) {
       </div>`;
     return;
   }
+  const fBox = $('#quizFilterBox');
+  if (fBox) fBox.style.display = 'none';
+
   const shuffled = [...pool].sort(() => Math.random() - 0.5);
   const selected = shuffled.slice(0, Math.min(10, shuffled.length));
 
@@ -847,7 +873,7 @@ function renderQuestion() {
 
   $('#quizArea').innerHTML = `
     <div class="quiz-card">
-      <div class="quiz-progress-bar"><div class="quiz-pb-fill" style="width:${Math.round(current / total * 100)}%"></div></div>
+      <div class="quiz-progress-bar quiz-pb"><div class="quiz-pb-fill" style="width:${Math.round(current / total * 100)}%"></div></div>
       <div class="quiz-meta">
         <span class="quiz-step">Soal ${current} dari ${total}</span>
         <span class="quiz-topic">${esc(q.topic)}</span>
@@ -856,12 +882,13 @@ function renderQuestion() {
       <div class="quiz-opts">
         ${q.opts.map((opt, i) => `
           <button class="quiz-opt" data-i="${i}">
-            <span class="quiz-opt-key">${String.fromCharCode(65 + i)}</span>
+            <span class="quiz-opt-key key">${String.fromCharCode(65 + i)}</span>
             <span class="quiz-opt-text">${esc(opt)}</span>
           </button>`).join('')}
       </div>
       <div class="quiz-why" id="quizWhy"></div>
-      <div class="quiz-actions">
+      <div class="quiz-actions quiz-foot">
+        <button class="btn btn-ghost" onclick="renderQuizStart()" style="padding:6px 14px;font-size:.82rem">← Ganti Kategori</button>
         <button class="btn btn-primary" id="quizNext" disabled>Soal Berikutnya →</button>
       </div>
     </div>`;
