@@ -9,6 +9,7 @@ const LS = {
   expanded: 'rblearn:expanded'
 };
 
+TRACKS.forEach(t => { t.title = t.title.replace(/[\uD83C-\uDBFF\uDC00-\uDFFF\u2600-\u27BF]/g, '').trim(); });
 const ALL = TRACKS.flatMap(t => t.lessons.map(l => ({ ...l, track: t })));
 const BY_ID = Object.fromEntries(ALL.map(l => [l.id, l]));
 
@@ -58,6 +59,21 @@ const IC_STAR = `<svg class="tool-ic" viewBox="0 0 24 24" width="16" height="16"
 const IC_PLAY = `<svg class="tool-ic" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>`;
 const IC_QUIZ = `<svg class="tool-ic" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>`;
 const IC_CARD = `<svg class="tool-ic" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><line x1="3" y1="10" x2="21" y2="10"/></svg>`;
+const IC_CODE = `<svg class="tool-ic" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>`;
+const IC_GLOBE = `<svg class="tool-ic" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>`;
+const IC_VOLUME = `<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>`;
+const IC_CHECK = `<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>`;
+const IC_X = `<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>`;
+const IC_SHUFFLE = `<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/><line x1="4" y1="4" x2="9" y2="9"/></svg>`;
+const IC_ROTATE = `<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>`;
+const IC_NOTES = `<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>`;
+const IC_BOOK = `<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>`;
+const IC_ZAP = `<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>`;
+const IC_TARGET = `<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>`;
+const IC_DISK = `<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>`;
+const IC_SEARCH_X = `<svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="8" y1="14" x2="14" y2="8"/></svg>`;
+const IC_EMPTY_BOOKMARK = `<svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`;
+const IC_ALERT = `<svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>`;
 
 function renderSidebar(filter = '') {
   const nav = $('#sideNav');
@@ -103,24 +119,30 @@ function renderSidebar(filter = '') {
 
   const itHtml = itTracks.map(renderTrackGroup).join('');
   if (itHtml) {
-    html += `<div class="side-category">💻 Rekayasa IT</div>` + itHtml;
+    html += `<div class="side-category">${IC_CODE} Rekayasa IT</div>` + itHtml;
   }
 
   const langHtml = langTracks.map(renderTrackGroup).join('');
   if (langHtml) {
-    html += `<div class="side-category">🌏 Bahasa Dunia</div>` + langHtml;
+    html += `<div class="side-category">${IC_GLOBE} Bahasa Dunia</div>` + langHtml;
   }
 
   if (q && !html.includes('side-item" href="#/m/')) {
-    html += `<div class="search-empty">Tidak ada materi yang cocok.</div>`;
+    html += `
+      <div class="empty-state" style="padding:24px 12px;margin:8px 0">
+        <div class="empty-state-icon" style="width:36px;height:36px;margin-bottom:8px">${IC_SEARCH_X}</div>
+        <div class="empty-state-title" style="font-size:.88rem">Tidak ada materi cocok</div>
+        <div class="empty-state-desc" style="font-size:.76rem;margin-bottom:10px">Coba kata kunci umum seperti variabel atau git.</div>
+        <button class="btn btn-ghost" style="font-size:.74rem;padding:4px 10px" onclick="$('#searchInput').value='';renderSidebar('');$('#searchInput').focus();">Reset Pencarian</button>
+      </div>`;
   }
 
-  html += `<div class="side-category">Praktik</div>
+  html += `<div class="side-category">${IC_PLAY} Praktik</div>
   <div class="side-group">
     <div class="side-items">
       <a class="side-item" href="#/playground">${IC_PLAY}<span class="t">Playground</span></a>
       <a class="side-item" href="#/quiz">${IC_QUIZ}<span class="t">Quiz</span></a>
-      <a class="side-item" href="#/flashcard">${IC_CARD}<span class="t">Flashcard 🎴</span></a>
+      <a class="side-item" href="#/flashcard">${IC_CARD}<span class="t">Flashcard</span></a>
     </div>
   </div>`;
 
@@ -189,7 +211,7 @@ function doneButton(l) {
       <span>${isBm ? 'Favorit' : 'Simpan'}</span>
     </button>
     <button class="btn ${isDone ? 'btn-ghost done-state' : 'btn-primary'}" id="btnDone">
-      ${isDone ? 'Selesai ✓' : 'Tandai selesai'}
+      ${isDone ? `Selesai ${IC_CHECK}` : 'Tandai selesai'}
     </button>`;
 }
 
@@ -241,7 +263,7 @@ function viewHome() {
     const pct = Math.round(done / t.lessons.length * 100);
     const nextLesson = t.lessons.find(l => !progress.has(l.id)) || t.lessons[0];
     const isFinished = done === t.lessons.length;
-    const catLabel = t.category === 'lang' ? '🌏 Bahasa' : '💻 IT';
+    const catLabel = t.category === 'lang' ? 'Bahasa Dunia' : 'Rekayasa IT';
 
     return `
       <div class="track-card" data-category="${t.category || 'it'}" style="--track:var(--${t.accent})">
@@ -251,7 +273,7 @@ function viewHome() {
         </div>
         <div class="tc-sub">${esc(t.subtitle)}</div>
         <div class="tc-meta">
-          <span>Tingkat: <b>Pemula → Mahir</b></span>
+          <span>Tingkat: <span style="color:var(--ink-2)">Pemula — Mahir</span></span>
           <span>${done}/${t.lessons.length} selesai</span>
         </div>
         <div class="tc-progress">
@@ -260,7 +282,7 @@ function viewHome() {
         </div>
         <div class="tc-actions">
           <a class="btn ${done > 0 && !isFinished ? 'btn-primary' : 'btn-ghost'}" href="#/m/${nextLesson.id}" style="padding:7px 15px;font-size:.82rem">
-            ${isFinished ? 'Ulangi Materi ↺' : done > 0 ? `Lanjutkan: ${nextLesson.num} →` : 'Mulai Belajar →'}
+            ${isFinished ? 'Ulangi Materi' : done > 0 ? `Lanjutkan: ${nextLesson.num} →` : 'Mulai Belajar →'}
           </a>
         </div>
       </div>`;
@@ -277,9 +299,9 @@ function viewHome() {
         Kurikulum praktis berbahasa Indonesia dengan analogi ramah pemula. Dari fondasi web, version control, database, testing, bahasa performa tinggi, machine learning, aplikasi mobile, hingga bahasa percakapan Mandarin, Korea, dan Jepang.
       </p>
       <div class="home-actions">
-        <a class="btn btn-primary" href="#/m/${next.id}">▶ Lanjutkan: ${esc(next.title)}</a>
+        <a class="btn btn-primary" href="#/m/${next.id}">Lanjutkan: ${esc(next.title)} →</a>
         <a class="btn btn-ghost" href="#/quiz">Uji Pemahaman (Quiz)</a>
-        <a class="btn btn-ghost" href="#/flashcard">Flashcard 🎴</a>
+        <a class="btn btn-ghost" href="#/flashcard">Flashcard</a>
         <a class="btn btn-ghost" href="#/playground">Playground</a>
       </div>
 
@@ -313,8 +335,8 @@ function viewHome() {
       </div>
       <div class="catalog-filter-row" id="catalogTabs">
         <button class="cat-tab active" data-cat="all">Semua (${TRACKS.length})</button>
-        <button class="cat-tab" data-cat="it">💻 Rekayasa IT (${TRACKS.filter(t => (t.category || 'it') === 'it').length})</button>
-        <button class="cat-tab" data-cat="lang">🌏 Bahasa Dunia (${TRACKS.filter(t => t.category === 'lang').length})</button>
+        <button class="cat-tab" data-cat="it">Rekayasa IT (${TRACKS.filter(t => (t.category || 'it') === 'it').length})</button>
+        <button class="cat-tab" data-cat="lang">Bahasa Dunia (${TRACKS.filter(t => t.category === 'lang').length})</button>
       </div>
       <div class="track-cards" id="trackCardsGrid">${cards}</div>
     </div>
@@ -328,22 +350,22 @@ function viewHome() {
       </div>
       <div class="home-features">
         <div class="feature-card">
-          <div class="feature-icon">💡</div>
+          <div class="feature-icon">${IC_BOOK}</div>
           <div class="feature-title">Analogi Ramah Orang Awam</div>
           <div class="feature-desc">Konsep rumit dijelaskan dengan perumpamaan sederhana Supriyanto yang sangat mudah dipahami.</div>
         </div>
         <div class="feature-card">
-          <div class="feature-icon">⚡</div>
+          <div class="feature-icon">${IC_ZAP}</div>
           <div class="feature-title">Playground &amp; Flashcard</div>
           <div class="feature-desc">Eksperimen kode dan latih hafalan kosakata bahasa asing langsung dari peramban secara interaktif.</div>
         </div>
         <div class="feature-card">
-          <div class="feature-icon">🎯</div>
+          <div class="feature-icon">${IC_TARGET}</div>
           <div class="feature-title">Kuis &amp; Pembahasan Detail</div>
           <div class="feature-desc">Uji pemahaman di setiap akhir materi dengan bank soal berbobot, lengkap dengan penjelasan logis di balik setiap jawaban.</div>
         </div>
         <div class="feature-card">
-          <div class="feature-icon">💾</div>
+          <div class="feature-icon">${IC_DISK}</div>
           <div class="feature-title">Progres &amp; Catatan Mandiri</div>
           <div class="feature-desc">Lacak capaian belajar, bookmark materi favorit, dan simpan catatan pribadi persisten di browser tanpa perlu registrasi.</div>
         </div>
@@ -374,10 +396,10 @@ function viewBookmarks() {
   let itemsHtml = '';
   if (bmLessons.length === 0) {
     itemsHtml = `
-      <div class="quiz-card" style="text-align:center;padding:40px 20px">
-        <div style="font-size:2.8rem;margin-bottom:12px">⭐</div>
-        <h3>Belum Ada Materi Favorit</h3>
-        <p style="color:var(--ink-2);margin-bottom:20px">Buka materi apa saja dan klik tombol <b>⭐ Simpan</b> di bagian atas untuk menyimpan materi favorit Anda di sini.</p>
+      <div class="empty-state">
+        <div class="empty-state-icon">${IC_EMPTY_BOOKMARK}</div>
+        <h3 class="empty-state-title">Belum Ada Materi Favorit</h3>
+        <p class="empty-state-desc">Buka materi apa saja dan klik tombol Favorit di kanan atas untuk menandai materi yang ingin Anda pelajari ulang.</p>
         <a class="btn btn-primary" href="#/">Jelajahi Kurikulum →</a>
       </div>`;
   } else {
@@ -393,7 +415,7 @@ function viewBookmarks() {
             <div class="tc-sub">${esc(l.desc || l.intro || '')}</div>
             <div class="tc-actions" style="margin-top:auto">
               <a class="btn btn-primary" href="#/m/${l.id}" style="padding:6px 14px;font-size:.82rem">Buka Materi →</a>
-              <button class="btn btn-ghost" onclick="bookmarks.delete('${l.id}');saveBookmarks();viewBookmarks();" style="padding:6px 10px;font-size:.82rem">Hapus ⭐</button>
+              <button class="btn btn-ghost" onclick="bookmarks.delete('${l.id}');saveBookmarks();viewBookmarks();" style="padding:6px 10px;font-size:.82rem">Hapus Favorit</button>
             </div>
           </div>`).join('')}
       </div>`;
@@ -401,7 +423,7 @@ function viewBookmarks() {
 
   $('#view').innerHTML = `
     <div class="quiz-head">
-      <h2>⭐ Materi Favorit Saya</h2>
+      <h2>Materi Favorit Saya</h2>
       <p>Koleksi modul yang Anda tandai untuk dipelajari ulang secara cepat.</p>
     </div>
     ${itemsHtml}`;
@@ -411,7 +433,22 @@ function viewBookmarks() {
 
 function viewLesson(id) {
   const l = BY_ID[id];
-  if (!l) { location.hash = '#/'; return; }
+  if (!l) {
+    setCrumbs(['Materi Tidak Ditemukan']);
+    setTopAction('');
+    $('#view').innerHTML = `
+      <div class="error-state">
+        <div class="error-state-icon">${IC_ALERT}</div>
+        <h2 class="error-state-title">Materi Tidak Ditemukan</h2>
+        <p class="error-state-desc">Modul dengan kode <code>${esc(id)}</code> tidak ditemukan dalam kurikulum. Periksa kembali tautan atau kembali ke beranda.</p>
+        <div class="error-actions">
+          <a class="btn btn-primary" href="#/">Kembali ke Beranda</a>
+          <button class="btn btn-ghost" onclick="history.back()">Halaman Sebelumnya</button>
+        </div>
+      </div>`;
+    scrollTop();
+    return;
+  }
   const t = l.track;
   if (!expanded.has(t.id)) {
     expanded.add(t.id);
@@ -437,8 +474,8 @@ function viewLesson(id) {
     const langName = isMandarin ? 'Mandarin' : isKorean ? 'Korea' : 'Jepang';
     audioBanner = `
       <div class="zh-audio-banner">
-        <span class="zh-audio-ic">🔊</span>
-        <div><b>Fitur Audio Interaktif:</b> Klik tombol speaker <button class="zh-speak-btn" style="pointer-events:none">🔊</button> atau klik langsung teks berhuruf tebal di bawah untuk mendengarkan pelafalan penutur asli bahasa ${langName}!</div>
+        <span class="zh-audio-ic">${IC_VOLUME}</span>
+        <div><b>Fitur Audio Interaktif:</b> Klik tombol speaker <button class="zh-speak-btn" style="pointer-events:none">${IC_VOLUME}</button> atau klik langsung teks berhuruf tebal di bawah untuk mendengarkan pelafalan penutur asli bahasa ${langName}!</div>
       </div>`;
   }
 
@@ -457,7 +494,7 @@ function viewLesson(id) {
 
       <div class="lesson-notes">
         <div class="notes-head">
-          <div class="notes-title">📝 Catatan Pribadi Saya</div>
+          <div class="notes-title">${IC_NOTES} Catatan Pribadi Saya</div>
           <div class="notes-status" id="notesStatus">${notes[l.id] ? 'Tersimpan otomatis' : 'Belum ada catatan'}</div>
         </div>
         <textarea class="notes-area" id="notesArea" placeholder="Ketik rangkuman atau catatan penting materi ini... (tersimpan otomatis di browser)">${esc(notes[l.id] || '')}</textarea>
@@ -512,7 +549,7 @@ function viewLesson(id) {
         btn.dataset.speak = pureText;
         btn.dataset.lang = langCode;
         btn.title = `Putar suara "${pureText}"`;
-        btn.innerHTML = '🔊';
+        btn.innerHTML = IC_VOLUME;
         el.appendChild(btn);
       }
     });
@@ -531,7 +568,7 @@ function viewLesson(id) {
           speechText = speechText.replace(/\s*\([^)]*\)\s*$/, '').trim();
           if (speechText) {
             changed = true;
-            return `${line} <button class="dialog-speak-btn" data-speak="${esc(speechText)}" data-lang="${langCode}" title="Putar kalimat: ${esc(speechText)}">🔊</button>`;
+            return `${line} <button class="dialog-speak-btn" data-speak="${esc(speechText)}" data-lang="${langCode}" title="Putar kalimat: ${esc(speechText)}">${IC_VOLUME}</button>`;
           }
         }
         return line;
@@ -616,14 +653,14 @@ function runPlayground() {
   const fakeConsole = {};
   for (const level of ['log', 'info', 'warn', 'error', 'debug']) {
     fakeConsole[level] = (...args) =>
-      push(level === 'error' ? '✗' : level === 'warn' ? '!' : '›',
+      push(level === 'error' ? '×' : level === 'warn' ? '!' : '›',
            level === 'error' ? 'err' : 'ok', args);
   }
   try {
     const sandbox = new Function('console', 'window', 'document', 'localStorage', 'sessionStorage', 'fetch', 'XMLHttpRequest', code);
     sandbox(fakeConsole, {}, {}, {}, {}, undefined, undefined);
   } catch (err) {
-    lines.push(`<div class="line err"><span class="tag">✗</span>${esc(err.name + ': ' + err.message)}</div>`);
+    lines.push(`<div class="line err"><span class="tag">×</span>${esc(err.name + ': ' + err.message)}</div>`);
   }
   out.innerHTML = lines.join('');
   localStorage.setItem(LS.code, code);
@@ -660,7 +697,7 @@ function viewFlashcard() {
     return `
       <div class="flashcard-view">
         <div class="fc-head">
-          <h2>🎴 Flashcard Kosakata Multibahasa</h2>
+          <h2>Flashcard Kosakata Multibahasa</h2>
           <p>Latih daya ingat kosakata Mandarin, Korea, dan Jepang dengan kartu interaktif.</p>
         </div>
 
@@ -669,22 +706,22 @@ function viewFlashcard() {
             <div class="fc-front">
               <span class="fc-counter">KARTU ${fcIndex + 1} / ${fcDeck.length}</span>
               <div class="fc-char">${item.char}</div>
-              <button class="zh-speak-btn" data-speak="${item.char}" data-lang="${item.lang}" style="margin-bottom:12px">🔊 Putar Suara</button>
-              <div class="fc-hint">👆 Klik kartu untuk melihat arti &amp; contoh</div>
+              <button class="zh-speak-btn" data-speak="${item.char}" data-lang="${item.lang}" style="margin-bottom:12px">${IC_VOLUME} Putar Suara</button>
+              <div class="fc-hint">${IC_ROTATE} Klik kartu untuk melihat arti &amp; contoh</div>
             </div>
             <div class="fc-back">
               <span class="fc-counter">ARTI &amp; CONTOH KALIMAT</span>
               <div class="fc-pinyin">${item.pinyin}</div>
               <div class="fc-meaning">${item.meaning}</div>
               <div class="fc-example">${item.example}</div>
-              <div class="fc-hint">👆 Klik kartu untuk kembali ke depan</div>
+              <div class="fc-hint">${IC_ROTATE} Klik kartu untuk kembali ke depan</div>
             </div>
           </div>
         </div>
 
         <div class="fc-controls">
           <button class="fc-btn" id="fcPrev">← Sebelumnya</button>
-          <button class="fc-btn" id="fcShuffle">🔀 Acak</button>
+          <button class="fc-btn" id="fcShuffle">${IC_SHUFFLE} Acak</button>
           <button class="fc-btn primary" id="fcNext">Berikutnya →</button>
         </div>
       </div>`;
@@ -742,20 +779,20 @@ function viewQuiz() {
 function renderQuizStart() {
   const filters = [
     { id: 'all', label: 'Semua' },
-    { id: 'ai', label: 'AI & LLM 🤖' },
-    { id: 'flutter', label: 'Flutter 💙' },
-    { id: 'git', label: 'Git & GitHub 🐙' },
-    { id: 'js', label: 'JavaScript 🟨' },
-    { id: 'mojo', label: 'Mojo 🔥' },
-    { id: 'pw', label: 'Playwright 🎭' },
-    { id: 'py', label: 'Python 🐍' },
-    { id: 'qa', label: 'QA & Testing 🛡️' },
-    { id: 'rn', label: 'React Native 📱' },
-    { id: 'sql', label: 'SQL & DB 🗄️' },
-    { id: 'ts', label: 'TypeScript 🔷' },
-    { id: 'mandarin', label: 'Mandarin 🇨🇳' },
-    { id: 'korean', label: 'Korea 🇰🇷' },
-    { id: 'japanese', label: 'Jepang 🇯🇵' }
+    { id: 'ai', label: 'AI & LLM' },
+    { id: 'flutter', label: 'Flutter' },
+    { id: 'git', label: 'Git & GitHub' },
+    { id: 'js', label: 'JavaScript' },
+    { id: 'mojo', label: 'Mojo' },
+    { id: 'pw', label: 'Playwright' },
+    { id: 'py', label: 'Python' },
+    { id: 'qa', label: 'QA & Testing' },
+    { id: 'rn', label: 'React Native' },
+    { id: 'sql', label: 'SQL & DB' },
+    { id: 'ts', label: 'TypeScript' },
+    { id: 'mandarin', label: 'Mandarin' },
+    { id: 'korean', label: 'Korea' },
+    { id: 'japanese', label: 'Jepang' }
   ];
   $('#view').innerHTML = `
     <div class="quiz-head">
@@ -781,7 +818,13 @@ function renderQuizStart() {
 function startQuiz(trackId) {
   const pool = trackId === 'all' ? QUIZ_BANK : QUIZ_BANK.filter(q => q.track === trackId);
   if (!pool.length) {
-    $('#quizArea').innerHTML = '<div class="quiz-empty">Belum ada soal untuk track ini.</div>';
+    $('#quizArea').innerHTML = `
+      <div class="empty-state">
+        <div class="empty-state-icon">${IC_ALERT}</div>
+        <h3 class="empty-state-title">Belum Ada Soal</h3>
+        <p class="empty-state-desc">Belum ada bank soal untuk kategori materi ini.</p>
+        <button class="btn btn-primary" onclick="startQuiz('all')">Mulai Kuis Semua Materi</button>
+      </div>`;
     return;
   }
   const shuffled = [...pool].sort(() => Math.random() - 0.5);
@@ -843,7 +886,7 @@ function chooseAnswer(choice) {
 
   const why = $('#quizWhy');
   why.innerHTML = `
-    <div class="why-badge ${isCorrect ? 'why-ok' : 'why-no'}">${isCorrect ? '✓ Benar!' : '✗ Kurang tepat'}</div>
+    <div class="why-badge ${isCorrect ? 'why-ok' : 'why-no'}">${isCorrect ? `${IC_CHECK} Benar!` : `${IC_X} Kurang tepat`}</div>
     <div class="why-body">${esc(q.why)}</div>`;
   why.classList.add('show');
   $('#quizNext').disabled = false;
@@ -901,17 +944,33 @@ function applyTheme(theme) {
   localStorage.setItem(LS.theme, theme);
 }
 
+function viewNotFound() {
+  setCrumbs(['Halaman Tidak Ditemukan']);
+  setTopAction('');
+  $('#view').innerHTML = `
+    <div class="error-state">
+      <div class="error-state-icon">${IC_ALERT}</div>
+      <h2 class="error-state-title">Halaman Tidak Ditemukan</h2>
+      <p class="error-state-desc">Rute yang Anda akses tidak tersedia dalam kurikulum. Silakan kembali ke beranda atau mulai kuis.</p>
+      <div class="error-actions">
+        <a class="btn btn-primary" href="#/">Kembali ke Beranda</a>
+        <a class="btn btn-ghost" href="#/quiz">Uji Pemahaman</a>
+      </div>
+    </div>`;
+  scrollTop();
+}
+
 function render() {
   const hash = location.hash || '#/';
   closeSidebar();
 
-  if (hash === '#/' || hash === '#') { viewHome(); }
+  if (hash === '#/' || hash === '#' || hash === '') { viewHome(); }
   else if (hash === '#/bookmarks') { viewBookmarks(); }
   else if (hash === '#/playground') { viewPlayground(); }
   else if (hash === '#/flashcard') { viewFlashcard(); }
   else if (hash === '#/quiz') { viewQuiz(); }
   else if (hash.startsWith('#/m/')) { viewLesson(hash.slice(4)); }
-  else { location.hash = '#/'; }
+  else { viewNotFound(); }
 
   highlightActive();
 }

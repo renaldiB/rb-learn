@@ -93,7 +93,8 @@ async function run() {
     '--headless=new',
     '--remote-debugging-port=' + PORT,
     '--no-first-run',
-    '--no-default-browser-check'
+    '--no-default-browser-check',
+    '--user-data-dir=' + path.join(process.env.TEMP || 'C:/Temp', 'chrome-test-browser')
   ]);
 
   await sleep(1500);
@@ -124,22 +125,32 @@ async function run() {
       return await cdp.send('Runtime.evaluate', { expression: expr, returnByValue: true });
     }
 
-    // 1. Sidebar Bahasa Dunia (Mandarin, Korea, Jepang)
+    // 1. Home View
     await cdp.send('Page.navigate', { url: BASE_URL + '/#/' });
     await sleep(600);
-    await evalCode(`
-      const nav = document.querySelector('#sideNav');
-      if (nav) nav.scrollTop = nav.scrollHeight;
-    `);
-    await sleep(300);
-    await capture('sidebar-bahasa-dunia.png', 1440, 1000);
+    await capture('home-redesign.png', 1440, 950);
 
-    // 2. AI Lesson 14: Model Context Protocol (MCP)
+    // 2. Empty Bookmarks State
+    await cdp.send('Page.navigate', { url: BASE_URL + '/#/bookmarks' });
+    await sleep(500);
+    await capture('bookmarks-empty-state.png', 1440, 800);
+
+    // 3. Flashcard View
+    await cdp.send('Page.navigate', { url: BASE_URL + '/#/flashcard' });
+    await sleep(500);
+    await capture('flashcard-redesign.png', 1440, 850);
+
+    // 4. Missing Lesson 404 Error State
+    await cdp.send('Page.navigate', { url: BASE_URL + '/#/m/non-existent-99' });
+    await sleep(500);
+    await capture('error-state-404.png', 1440, 800);
+
+    // 5. AI Lesson 14: Model Context Protocol (MCP)
     await cdp.send('Page.navigate', { url: BASE_URL + '/#/m/ai-14' });
     await sleep(500);
     await capture('ai-lesson-mcp.png', 1440, 950);
 
-    // 3. AI Quiz View with 201 Questions
+    // 6. AI Quiz View
     await cdp.send('Page.navigate', { url: BASE_URL + '/#/quiz' });
     await sleep(500);
     await evalCode(`startQuiz('ai');`);

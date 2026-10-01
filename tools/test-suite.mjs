@@ -45,6 +45,12 @@ async function cdpSession(wsUrl) {
   const callbacks = new Map();
   ws.onmessage = (event) => {
     const data = JSON.parse(event.data);
+    if (data.method === 'Runtime.exceptionThrown') {
+      console.error('Browser Exception:', JSON.stringify(data.params.exceptionDetails));
+    }
+    if (data.method === 'Runtime.consoleAPICalled') {
+      console.log('Console:', data.params.type, data.params.args.map(a => a.value));
+    }
     if (data.id && callbacks.has(data.id)) {
       const { resolve, reject } = callbacks.get(data.id);
       callbacks.delete(data.id);
@@ -88,7 +94,8 @@ async function runTests() {
     '--headless=new',
     '--remote-debugging-port=' + PORT,
     '--no-first-run',
-    '--no-default-browser-check'
+    '--no-default-browser-check',
+    '--user-data-dir=' + path.join(process.env.TEMP || 'C:/Temp', 'chrome-test-suite')
   ]);
 
   await sleep(1500);
@@ -108,8 +115,9 @@ async function runTests() {
       return res.result ? res.result.value : undefined;
     }
 
+    cdp.onException = (ex) => console.error('Browser Exception:', ex);
     await cdp.send('Page.navigate', { url: BASE_URL + '/#/' });
-    await sleep(600);
+    await sleep(1500);
 
     // Test 1: Data integrity & Branding & Track Ordering
     const lessonCount = await evaluate('return ALL.length;');
